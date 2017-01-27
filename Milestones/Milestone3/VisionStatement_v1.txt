@@ -1,0 +1,12 @@
+Vision Statement 1.0
+
+For international certification companies who need to manage memberships, 
+certifications, and client accessibility. The International Professional 
+Groomers Membership and Management Directory and Information System (IPGMMDIS) (WIP) 
+is a web application that will allow for searching and the display of certified
+members and their detailed information, allow the creation and editing of member 
+profiles, allow a company update and maintain data, and collect reporting 
+information on the respective members. Unlike current certification websites,
+our product will provide a more user friendly way for both users and administrators 
+to manage certifications and memberships.
+
