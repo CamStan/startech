@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Diagnostics;
 
 namespace FakeNewsProject.Controllers
 {
@@ -36,18 +35,12 @@ namespace FakeNewsProject.Controllers
         [HttpPost]
         public ActionResult Create(Story newPost)
         {
-            Debug.WriteLine("We're at the post!");
-            Debug.WriteLine(newPost.ID);
-            Debug.WriteLine(newPost.PostDate);
-
             if (ModelState.IsValid)
             {
-                Debug.WriteLine("We are saving!");
                 db.Stories.Add(newPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            Debug.WriteLine("We missed the save.");
             return View(newPost);
         }
     }
