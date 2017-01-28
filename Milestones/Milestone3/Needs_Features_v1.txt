@@ -1,0 +1,11 @@
+Needs and Features:
+
+* Users need to be able to create an account
+* Users and admin need to be able to update member accounts
+* Site visitors need to be able to search for a member in multiple ways
+* Site visitors need to be able to view a member’s profile
+* Site visitors and members need access to the webstore
+* The site needs to be secure
+* Site visitors in different countries need to be able to view the site in the language of their country of origin
+* Members and potential members need to be able to add and upgrade their certifications
+* Administrators need a way to track and manage membership data
