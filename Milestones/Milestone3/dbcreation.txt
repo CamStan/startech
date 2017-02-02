@@ -1,0 +1,7 @@
+﻿CREATE DATABASE [FakeNewsDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'FakeNewsDB', FILENAME = N'C:\Users\Christopher\Documents\School\CS461\startech_ceaston\FakeNewsProject\FakeNewsProject\App_Data\FakeNewsDB.mdf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'FakeNewsDB_log', FILENAME = N'C:\Users\Christopher\Documents\School\CS461\startech_ceaston\FakeNewsProject\FakeNewsProject\App_Data\FakeNewsDB_log.ldf' , SIZE = 8192KB , FILEGROWTH = 65536KB )
+GO
