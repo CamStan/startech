@@ -2,6 +2,10 @@ IF OBJECT_ID('dbo.Story','U') IS NOT NULL
 	DROP TABLE [dbo].[Story];
 GO
 
+IF OBJECT_ID('dbo.UserKey','U') IS NOT NULL
+	DROP TABLE [dbo].[UserKey];
+GO
+
 IF OBJECT_ID('dbo.User','U') IS NOT NULL
 	DROP TABLE [dbo].[User];
 GO
@@ -27,4 +31,15 @@ CREATE TABLE [dbo].[Story]
 	[PostDate] DATE NOT NULL,
 	CONSTRAINT [PK_dbo.Story] PRIMARY KEY CLUSTERED ([ID] ASC),
 	CONSTRAINT [FK_dbo.Story_dbo.User_ID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID])
+);
+
+
+-- ########### UserKey ###########
+CREATE TABLE [dbo].[UserKey]
+(
+	[ID] INT IDENTITY (1,1) NOT NULL,
+	[UserID] INT NOT NULL,
+	[UKey] INT NOT NULL,
+	CONSTRAINT [PK_dbo.UserKey] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_dbo.UserKey_dbo.User_ID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID])
 );
