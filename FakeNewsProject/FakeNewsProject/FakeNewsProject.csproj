@@ -131,7 +131,10 @@
     </Compile>
     <Compile Include="Models\FakeNewsContext.cs" />
     <Compile Include="Models\Story.cs" />
+    <Compile Include="Models\StoryTag.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
