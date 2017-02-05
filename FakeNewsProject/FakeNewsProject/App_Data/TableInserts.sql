@@ -4,6 +4,11 @@ INSERT INTO [dbo].[User](FName,LName,UserName)VALUES('Mr','Anon','Anonymous');
 -- ########### Story ###########
 
 INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'First','This is my first post ever!','First Post','2016-11-21');
+INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'Animals!','A bunch of animals of a certain type did a funny thing','Animal Post','2017-1-21');
+INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'Fitness!','Tried the treadmill, fell on my face.','Oops','2017-1-11');
+INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'Tech','A robot ran off with my girlfriend','Tech Woes','2016-11-21');
+INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'Sports','New study finds that falling down drunk at the sports bar does not count as sports related injury','Sports Injury','2016-12-21');
+INSERT INTO [dbo].[Story](UserID,Title,Body,Summary,PostDate)VALUES(1,'Politics','They will cause massive destruction and have cats and dogs living together!','Us vs Them','2017-1-25');
 
 -- ########### UserKey ###########
 
@@ -20,3 +25,8 @@ INSERT INTO [dbo].[Tag](Name)VALUES('Animals');
 -- ########### StoryTag ###########
 
 INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(1,1);
+INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(2,5);
+INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(3,4);
+INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(4,3);
+INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(5,2);
+INSERT INTO [dbo].[StoryTag](StoryID,TagID)VALUES(6,1);
