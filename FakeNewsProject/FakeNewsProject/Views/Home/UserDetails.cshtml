@@ -1,0 +1,32 @@
+﻿@model FakeNewsProject.Models.User
+
+@{
+    ViewBag.Title = "Detail Page for " + Model.UserName;
+}
+
+<center><h2>User Details for @Model.UserName</h2></center>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dd><br/></dd>
+        <dt>
+            Stories:
+        </dt>
+            @foreach (var item in Model.Stories)
+            {
+                <dd>@item.Title</dd>
+            }
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

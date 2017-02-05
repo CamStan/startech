@@ -47,5 +47,11 @@ namespace FakeNewsProject.Controllers
             }
             return View(newPost);
         }
+
+        public ActionResult UserDetails(int? userID = 1)
+        {
+            User details = db.Users.Where(u => u.ID == (int)userID).FirstOrDefault();
+            return View(details);
+        }
     }
 }
