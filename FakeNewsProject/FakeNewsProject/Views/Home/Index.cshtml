@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink(item.Title, "Details", "Stories", new { ID = item.ID }, null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.UserName)
