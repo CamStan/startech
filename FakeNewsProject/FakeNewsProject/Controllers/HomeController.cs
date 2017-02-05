@@ -20,6 +20,5 @@ namespace FakeNewsProject.Controllers
                 .FirstOrDefault()).OrderByDescending(y => y.PostDate).ToList();
             return View(pared);
         }
-
     }
 }
