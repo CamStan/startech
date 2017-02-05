@@ -11,18 +11,18 @@
 <div class="row">
     <div class="col-md-7">
         <div class="row text-center">
-            <h1>@Html.DisplayFor(model => model[1].Title)</h1>
+            <h1>@Html.DisplayFor(model => model[0].Title)</h1>
         </div>
-        <div class="row text-center">@Html.DisplayFor(model => model[1].Summary)</div>
+        <div class="row text-center">@Html.DisplayFor(model => model[0].Summary)</div>
         <div class="row">
             <div class="col-md-4">
                 By:
-                @Html.DisplayFor(model => model[1].User.UserName)
+                @Html.DisplayFor(model => model[0].User.UserName)
             </div>
             <div class="col-md-4"></div>
-            <div class="col-md-4">@Html.DisplayFor(model => model[1].PostDate)</div>
+            <div class="col-md-4">@Html.DisplayFor(model => model[0].PostDate)</div>
         </div>
-        <div class="row">@Html.DisplayFor(model => model[1].Body)</div>
+        <div class="row"><pre>@Html.DisplayFor(model => model[0].Body)</pre></div>
         <p>
             @Html.ActionLink("Create News Story", "Create")
         </p>
@@ -53,4 +53,15 @@
             }
         </center>
     </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        We can put some more text below the stories. The left side is reserved for the newest story while the right side shows the newest story in the other 4 categories that we have at this time.
+
+    </div>
+    <div class="col-md-4"></div>
 </div>
