@@ -32,7 +32,7 @@
             {
                 <hr />
                 <div class="row text-center">
-                    @Html.DisplayFor(model => model[i].Title)
+                    @Html.ActionLink(Model[i].Title, "Details", "Stories", new { ID = Model[i].ID }, null)
                 </div>
                 <div class="row">
                     @Html.DisplayFor(model => model[i].Summary)
