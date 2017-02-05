@@ -31,6 +31,7 @@ namespace FakeNewsProject.Models
         public string Summary { get; set; }
 
         [Column(TypeName = "date")]
+        [Display(Name = "Date"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PostDate { get; set; }
 
         public virtual User User { get; set; }

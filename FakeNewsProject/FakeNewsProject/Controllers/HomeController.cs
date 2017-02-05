@@ -14,7 +14,11 @@ namespace FakeNewsProject.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(db.Stories.OrderByDescending(s => s.PostDate).ToList());
+            var pared = db.Stories
+                .GroupBy(genre => genre.StoryTags.FirstOrDefault().Tag.Name)
+                .Select(grp => grp.OrderByDescending(x => x.PostDate)
+                .FirstOrDefault()).OrderByDescending(y => y.PostDate).ToList();
+            return View(pared);
         }
 
         /// <summary>
