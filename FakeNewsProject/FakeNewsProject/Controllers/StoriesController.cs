@@ -36,29 +36,31 @@ namespace FakeNewsProject.Controllers
             return View(story);
         }
 
-        // GET: Stories/Create
+        /// <summary>
+        /// HttpGet method
+        /// Shows story creation page. Will need to set a way to get user's ID
+        /// from log in. Story model requires the user's ID.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName");
-            return View();
+            Story postSetup = new Story();
+            postSetup.UserID = 1;
+            postSetup.PostDate = DateTime.Now;
+            return View(postSetup);
         }
 
-        // POST: Stories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,Title,Body,Summary,PostDate")] Story story)
+        public ActionResult Create(Story newPost)
         {
             if (ModelState.IsValid)
             {
-                db.Stories.Add(story);
+                db.Stories.Add(newPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName", story.UserID);
-            return View(story);
+            return View(newPost);
         }
 
         // GET: Stories/Edit/5
