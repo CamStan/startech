@@ -12,11 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.User.FName)
+            @Html.DisplayNameFor(model => model.User.UserName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User.FName)
+            @Html.ActionLink(Model.User.UserName, "Details", "Users", new { ID = Model.User.ID }, null)
         </dd>
 
         <dt>
@@ -55,5 +55,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Story Index", "Index")
 </p>

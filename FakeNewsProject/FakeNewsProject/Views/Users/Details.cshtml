@@ -25,11 +25,12 @@
         </dt>
             @foreach (var item in Model.Stories)
             {
-                <dd>@item.Title</dd>
+                <dd>@Html.ActionLink(item.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
             }
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
-    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("User List", "Index") |
+    @Html.ActionLink("Story List", "Index","Stories")
 </p>
