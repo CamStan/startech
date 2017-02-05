@@ -1,57 +1,56 @@
-﻿@model IEnumerable<FakeNewsProject.Models.Story>
+﻿@model IList<FakeNewsProject.Models.Story>
 
 @{
     ViewBag.Title = "News";
 }
 
-<center><h2>Fake News<small>....or is it?</small></h2></center>
+<center><h1>Fake News</h1></center>
+<center><small>....or is it?</small></center>
 
-<p>
-    @Html.ActionLink("Create News Story", "Create")
-</p>
-<table class="table">
-    <tr>
-                <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Summary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </th>
-        <th>
-            Tag
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StoryTags.SingleOrDefault().Tag.Name)
-        </td>
-    </tr>
-}
+<div class="row">
+    <div class="col-md-7">
+        <div class="row text-center">
+            <h1>@Html.DisplayFor(model => model[1].Title)</h1>
+        </div>
+        <div class="row text-center">@Html.DisplayFor(model => model[1].Summary)</div>
+        <div class="row">
+            <div class="col-md-4">
+                By:
+                @Html.DisplayFor(model => model[1].User.UserName)
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">@Html.DisplayFor(model => model[1].PostDate)</div>
+        </div>
+        <div class="row">@Html.DisplayFor(model => model[1].Body)</div>
+        <p>
+            @Html.ActionLink("Create News Story", "Create")
+        </p>
+    </div>
+    <div class="col-md-5">
+        <center>
+            @for (var i = 1; i < Model.Count; i++)
+            {
+                <hr />
+                <div class="row text-center">
+                    @Html.DisplayFor(model => model[i].Title)
+                </div>
+                <div class="row">
+                    @Html.DisplayFor(model => model[i].Summary)
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        By: @Html.DisplayFor(model => model[i].User.UserName)
+                    </div>
+                    <div class="col-md-6 text-center">
+                        @Html.DisplayFor(model => model[i].PostDate)
+                    </div>
+                </div>
 
-</table>
+                    @*Place link to story page here*@
+
+
+            }
+        </center>
+    </div>
+</div>
