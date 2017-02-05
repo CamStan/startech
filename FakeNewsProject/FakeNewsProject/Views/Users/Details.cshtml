@@ -12,10 +12,13 @@
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
+        <dt>Real Name</dt>
+        <dd>
+        @Html.DisplayFor(model => model.FName) 
+        @Html.DisplayFor(model => model.LName)</dd>
         <dd><br/></dd>
         <dt>
             Stories:
@@ -28,5 +31,5 @@
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

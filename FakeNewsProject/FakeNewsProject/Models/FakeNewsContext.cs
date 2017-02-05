@@ -8,7 +8,7 @@ namespace FakeNewsProject.Models
     public partial class FakeNewsContext : DbContext
     {
         public FakeNewsContext()
-            : base("name=FakeNewsContext")
+            : base("name=FakeNewsContextRemote")
         {
         }
 
