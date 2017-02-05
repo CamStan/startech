@@ -128,5 +128,18 @@ namespace FakeNewsProject.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Save(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (db.Users.Find(id) == null)
+            {
+                return RedirectToAction("Details");
+            }
+            //add entry to database here.
+            return RedirectToAction("Index");
+        }
     }
 }
