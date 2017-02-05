@@ -17,7 +17,7 @@ namespace FakeNewsProject.Controllers
             var pared = db.Stories
                 .GroupBy(genre => genre.StoryTags.FirstOrDefault().Tag.Name)
                 .Select(grp => grp.OrderByDescending(x => x.PostDate)
-                .FirstOrDefault()).ToList();
+                .FirstOrDefault()).OrderByDescending(y => y.PostDate).ToList();
             return View(pared);
         }
 
