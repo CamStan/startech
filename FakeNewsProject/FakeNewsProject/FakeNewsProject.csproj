@@ -100,9 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <!--<Content Include="App_Data\FakeNewsDB.mdf" />
-    <Content Include="App_Data\FakeNewsDB_log.ldf" />
+    <Content Include="App_Data\FakeNewsDB_log.ldf" />-->
     <Content Include="App_Data\Tablecreation.sql" />
-    <Content Include="App_Data\TableInserts.sql" />-->
+    <Content Include="App_Data\TableInserts.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -126,12 +126,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StoriesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FakeNewsContext.cs" />
     <Compile Include="Models\Story.cs" />
+    <Compile Include="Models\StoryTag.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,12 +148,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Stories\Create.cshtml" />
     <Content Include="Views\Stories\Delete.cshtml" />
     <Content Include="Views\Stories\Details.cshtml" />
     <Content Include="Views\Stories\Edit.cshtml" />
     <Content Include="Views\Stories\Index.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,114 +10,113 @@ using FakeNewsProject.Models;
 
 namespace FakeNewsProject.Controllers
 {
-    public class StoriesController : Controller
+    public class UsersController : Controller
     {
         private FakeNewsContext db = new FakeNewsContext();
 
-        // GET: Stories
+        //// GET: Users
+        //public ActionResult Details(int? userID = 1)
+        //{
+        //    User details = db.Users.Where(u => u.ID == (int)userID).FirstOrDefault();
+        //    return View(details);
+        //}
+        // GET: Users1
         public ActionResult Index()
         {
-            var stories = db.Stories.Include(s => s.User);
-            return View(stories.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Stories/Details/5
-        public ActionResult Details(int? id)
+        // GET: Users1/Details/5
+        public ActionResult Details(int? id = 1)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.Stories.Find(id);
-            if (story == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(story);
+            return View(user);
         }
 
-        /// <summary>
-        /// HttpGet method
-        /// Shows story creation page. Will need to set a way to get user's ID
-        /// from log in. Story model requires the user's ID.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
+        // GET: Users1/Create
         public ActionResult Create()
         {
-            Story postSetup = new Story();
-            postSetup.UserID = 1;
-            postSetup.PostDate = DateTime.Now;
-            return View(postSetup);
+            return View();
         }
 
+        // POST: Users1/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(Story newPost)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,FName,LName,UserName")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Stories.Add(newPost);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(newPost);
+
+            return View(user);
         }
 
-        // GET: Stories/Edit/5
+        // GET: Users1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.Stories.Find(id);
-            if (story == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName", story.UserID);
-            return View(story);
+            return View(user);
         }
 
-        // POST: Stories/Edit/5
+        // POST: Users1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,Title,Body,Summary,PostDate")] Story story)
+        public ActionResult Edit([Bind(Include = "ID,FName,LName,UserName")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(story).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName", story.UserID);
-            return View(story);
+            return View(user);
         }
 
-        // GET: Stories/Delete/5
+        // GET: Users1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Story story = db.Stories.Find(id);
-            if (story == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(story);
+            return View(user);
         }
 
-        // POST: Stories/Delete/5
+        // POST: Users1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Story story = db.Stories.Find(id);
-            db.Stories.Remove(story);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -129,19 +128,6 @@ namespace FakeNewsProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public ActionResult Save(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (db.Users.Find(id) == null)
-            {
-                return RedirectToAction("Details");
-            }
-            //add entry to database here.
-            return RedirectToAction("Index");
         }
     }
 }

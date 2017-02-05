@@ -1,9 +1,17 @@
-IF OBJECT_ID('dbo.Story','U') IS NOT NULL
-	DROP TABLE [dbo].[Story];
-GO
-
 IF OBJECT_ID('dbo.UserKey','U') IS NOT NULL
 	DROP TABLE [dbo].[UserKey];
+GO
+
+IF OBJECT_ID('dbo.Tag','U') IS NOT NULL
+	DROP TABLE [dbo].[Tag];
+GO
+
+IF OBJECT_ID('dbo.StoryTag','U') IS NOT NULL
+	DROP TABLE [dbo].[StoryTag];
+GO
+
+IF OBJECT_ID('dbo.Story','U') IS NOT NULL
+	DROP TABLE [dbo].[Story];
 GO
 
 IF OBJECT_ID('dbo.User','U') IS NOT NULL
@@ -42,4 +50,23 @@ CREATE TABLE [dbo].[UserKey]
 	[UKey] INT NOT NULL,
 	CONSTRAINT [PK_dbo.UserKey] PRIMARY KEY CLUSTERED ([ID] ASC),
 	CONSTRAINT [FK_dbo.UserKey_dbo.User_ID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID])
+);
+
+-- ########### Tag ###########
+CREATE TABLE [dbo].[Tag]
+(
+	[ID] INT IDENTITY (1,1) NOT NULL,
+	[Name] NVARCHAR (50) NOT NULL,
+	CONSTRAINT [PK_dbo.Tag] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
+-- ########### StoryTag ###########
+CREATE TABLE [dbo].[StoryTag]
+(
+	[ID] INT IDENTITY (1,1) NOT NULL,
+	[StoryID] INT NOT NULL,
+	[TagID] INT NOT NULL,
+	CONSTRAINT [PK_dbo.StoryTag] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_dbo.StoryTag_dbo.StoryID] FOREIGN KEY ([StoryID]) REFERENCES [dbo].[Story] ([ID]),
+	CONSTRAINT [FK_dbo.StoryTag_dbo.TagID] FOREIGN KEY ([TagID]) REFERENCES [dbo].[Tag] ([ID])
 );
