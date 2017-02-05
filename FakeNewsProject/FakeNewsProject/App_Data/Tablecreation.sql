@@ -1,13 +1,5 @@
-IF OBJECT_ID('dbo.Story','U') IS NOT NULL
-	DROP TABLE [dbo].[Story];
-GO
-
 IF OBJECT_ID('dbo.UserKey','U') IS NOT NULL
 	DROP TABLE [dbo].[UserKey];
-GO
-
-IF OBJECT_ID('dbo.User','U') IS NOT NULL
-	DROP TABLE [dbo].[User];
 GO
 
 IF OBJECT_ID('dbo.Tag','U') IS NOT NULL
@@ -16,6 +8,14 @@ GO
 
 IF OBJECT_ID('dbo.StoryTag','U') IS NOT NULL
 	DROP TABLE [dbo].[StoryTag];
+GO
+
+IF OBJECT_ID('dbo.Story','U') IS NOT NULL
+	DROP TABLE [dbo].[Story];
+GO
+
+IF OBJECT_ID('dbo.User','U') IS NOT NULL
+	DROP TABLE [dbo].[User];
 GO
 
 -- ########### User ###########
