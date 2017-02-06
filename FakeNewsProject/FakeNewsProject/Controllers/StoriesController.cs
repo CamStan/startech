@@ -151,15 +151,24 @@ namespace FakeNewsProject.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public ActionResult Save(int? id, int? storyId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (db.Users.Find(id) == null)
+            {
+                return RedirectToAction("Details");
+            }
+            Favorite fav = new Favorite();
+            fav.UserID = (int)id;
+            fav.StoryID = (int)storyId;
+            db.Favorites.Add(fav);
+            db.SaveChanges();
+            return RedirectToAction("Details","Users", id);
 
-        //private List<bool> createTagOptions(List<Tag> tags)
-        //{
-        //    List<bool> tagOptions = new List<bool>();
-
-        //    foreach (int t in tags)
-        //    {
-        //        bool t =
-        //    }
-        //}
+        }
     }
 }

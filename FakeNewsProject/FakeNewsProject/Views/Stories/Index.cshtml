@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
+            @Html.ActionLink(item.User.UserName, "Details", "Users", new { ID = item.User.ID }, null)
         </td>
         <td>
             @Html.ActionLink(item.Title, "Details", new { ID = item.ID })
@@ -48,8 +48,8 @@
             @Html.DisplayFor(modelItem => item.PostDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+
         </td>
     </tr>
 }

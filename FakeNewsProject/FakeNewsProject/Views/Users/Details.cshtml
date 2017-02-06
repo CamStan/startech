@@ -23,13 +23,14 @@
         <dt>
             Stories:
         </dt>
-            @foreach (var item in Model.Stories)
+            @foreach (var item in Model.Favorites)
             {
-                <dd>@item.Title</dd>
+                <dd>@Html.ActionLink(item.Story.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
             }
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
-    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("User List", "Index") |
+    @Html.ActionLink("Story List", "Index","Stories")
 </p>

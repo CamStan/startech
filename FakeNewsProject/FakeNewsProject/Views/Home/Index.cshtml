@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-4">
                 By:
-                @Html.DisplayFor(model => model[0].User.UserName)
+                @Html.ActionLink(Model[0].User.UserName, "Details", "Users", new { ID = Model[0].ID }, null)
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4">@Html.DisplayFor(model => model[0].PostDate)</div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 text-center">
-                        By: @Html.DisplayFor(model => model[i].User.UserName)
+                        By: @Html.ActionLink(Model[i].User.UserName, "Details", "Users", new { ID = Model[i].User.ID }, null)
                     </div>
                     <div class="col-md-6 text-center">
                         @Html.DisplayFor(model => model[i].PostDate)
