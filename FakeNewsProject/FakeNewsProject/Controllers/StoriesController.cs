@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FakeNewsProject.Models;
+using FakeNewsProject.ViewModels;
 
 namespace FakeNewsProject.Controllers
 {
@@ -36,29 +37,51 @@ namespace FakeNewsProject.Controllers
             return View(story);
         }
 
-        // GET: Stories/Create
+        /// <summary>
+        /// HttpGet method
+        /// Shows story creation page. Will need to set a way to get user's ID
+        /// from log in. Story model requires the user's ID.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName");
-            return View();
+            Story postSetup = db.Stories.Create();
+            postSetup.UserID = 1;
+            postSetup.PostDate = DateTime.Now;
+
+            var tags = db.Tags.OrderBy(t => t.Name).ToList();
+
+            // create a list of viewmodels to associate a boolean with each tag
+            var tagOptions = new List<TagSelect>();
+            foreach (Tag t in tags)
+            {
+                tagOptions.Add(new TagSelect { TagName = t.Name, TagID = t.ID});
+            }
+
+            TagStories ts = new TagStories { TheStory = postSetup, TheTags = tagOptions };
+            return View(ts);
         }
 
-        // POST: Stories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,Title,Body,Summary,PostDate")] Story story)
+        public ActionResult Create(TagStories newPost)
         {
             if (ModelState.IsValid)
             {
-                db.Stories.Add(story);
+                db.Stories.Add(newPost.TheStory);
+                // create a link between story and tag for all selected tags
+                foreach(var tag in newPost.TheTags)
+                {
+                    if (tag.IsSelected)
+                    {
+                        // not how to do this, but don't care at this point
+                        db.StoryTags.Add(new StoryTag { StoryID = db.Stories.Count() + 1, TagID = tag.TagID });
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.UserID = new SelectList(db.Users, "ID", "FName", story.UserID);
-            return View(story);
+            return View(newPost);
         }
 
         // GET: Stories/Edit/5
@@ -127,6 +150,25 @@ namespace FakeNewsProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        
+        public ActionResult Save(int? id, int? storyId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (db.Users.Find(id) == null)
+            {
+                return RedirectToAction("Details");
+            }
+            Favorite fav = new Favorite();
+            fav.UserID = (int)id;
+            fav.StoryID = (int)storyId;
+            db.Favorites.Add(fav);
+            db.SaveChanges();
+            return RedirectToAction("Details","Users", id);
+
         }
     }
 }

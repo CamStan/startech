@@ -130,12 +130,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FakeNewsContext.cs" />
+    <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StoryTag.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TagSelect.cs" />
+    <Compile Include="ViewModels\TagStories.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -147,7 +150,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Stories\Create.cshtml" />
     <Content Include="Views\Stories\Delete.cshtml" />
     <Content Include="Views\Stories\Details.cshtml" />

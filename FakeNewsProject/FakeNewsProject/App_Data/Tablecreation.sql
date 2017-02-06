@@ -1,13 +1,5 @@
-IF OBJECT_ID('dbo.Story','U') IS NOT NULL
-	DROP TABLE [dbo].[Story];
-GO
-
 IF OBJECT_ID('dbo.UserKey','U') IS NOT NULL
 	DROP TABLE [dbo].[UserKey];
-GO
-
-IF OBJECT_ID('dbo.User','U') IS NOT NULL
-	DROP TABLE [dbo].[User];
 GO
 
 IF OBJECT_ID('dbo.Tag','U') IS NOT NULL
@@ -16,6 +8,14 @@ GO
 
 IF OBJECT_ID('dbo.StoryTag','U') IS NOT NULL
 	DROP TABLE [dbo].[StoryTag];
+GO
+
+IF OBJECT_ID('dbo.Story','U') IS NOT NULL
+	DROP TABLE [dbo].[Story];
+GO
+
+IF OBJECT_ID('dbo.User','U') IS NOT NULL
+	DROP TABLE [dbo].[User];
 GO
 
 -- ########### User ###########
@@ -69,4 +69,15 @@ CREATE TABLE [dbo].[StoryTag]
 	CONSTRAINT [PK_dbo.StoryTag] PRIMARY KEY CLUSTERED ([ID] ASC),
 	CONSTRAINT [FK_dbo.StoryTag_dbo.StoryID] FOREIGN KEY ([StoryID]) REFERENCES [dbo].[Story] ([ID]),
 	CONSTRAINT [FK_dbo.StoryTag_dbo.TagID] FOREIGN KEY ([TagID]) REFERENCES [dbo].[Tag] ([ID])
+);
+
+-- ########### Favorites ###########
+CREATE TABLE [dbo].[Favorites]
+(
+	[ID] INT IDENTITY (1,1) NOT NULL,
+	[UserID] INT NOT NULL,
+	[StoryID] INT NOT NULL,
+	CONSTRAINT [PK_dbo.Favorites] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_dbo.Favorites_dbo.StoryID] FOREIGN KEY ([StoryID]) REFERENCES [dbo].[Story] ([ID]),
+	CONSTRAINT [FK_dbo.Favorites_dbo.UserID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID])
 );

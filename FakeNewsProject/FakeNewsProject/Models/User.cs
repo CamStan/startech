@@ -12,6 +12,7 @@ namespace FakeNewsProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            Favorites = new HashSet<Favorite>();
             Stories = new HashSet<Story>();
             UserKeys = new HashSet<UserKey>();
         }
@@ -29,6 +30,9 @@ namespace FakeNewsProject.Models
         [Required]
         [StringLength(50)]
         public string UserName { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favorite> Favorites { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Story> Stories { get; set; }
