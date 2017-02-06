@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<<<<<<< HEAD
 <body>
     <h2>@Html.DisplayFor(model => model.Title)</h2>
     <div>
@@ -42,15 +41,17 @@
         <hr />
         <!--This area takes user input in the form of text (for now). The input should be
             the user ID. That will make a 'favorite' of this story for future use. SJA-->
-        <h4>
-            Want to save this article for later? Just input your user ID and click<br />
-            submit!The article will be saved in your user profile!
-        </h4>
-        @using (@Html.BeginForm("Save", "Stories", new { id = Model.User.ID}))
-        {
-            <input type="text" name="userID" />
-            <input type="submit" value="Submit">
-        }
+        <div style="text-align:right" >
+            <h4>
+                Want to save this article for later? Just input your user ID and click<br />
+                submit!The article will be saved in your user profile!
+            </h4>
+            @using (@Html.BeginForm("Save", "Stories", new { id = Model.User.ID, storyId = Model.ID }))
+            {
+                <input type="text" name="userID" />
+                <input type="submit" value="Submit">
+            }
+        </div>
     </div>
 </body>
 <p>

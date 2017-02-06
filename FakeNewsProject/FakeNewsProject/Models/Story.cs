@@ -12,6 +12,7 @@ namespace FakeNewsProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Story()
         {
+            Favorites = new HashSet<Favorite>();
             StoryTags = new HashSet<StoryTag>();
         }
 
@@ -33,6 +34,9 @@ namespace FakeNewsProject.Models
         [Column(TypeName = "date")]
         [Display(Name = "Date"), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime PostDate { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favorite> Favorites { get; set; }
 
         public virtual User User { get; set; }
 

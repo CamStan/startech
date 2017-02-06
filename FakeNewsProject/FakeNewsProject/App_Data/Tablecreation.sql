@@ -70,3 +70,14 @@ CREATE TABLE [dbo].[StoryTag]
 	CONSTRAINT [FK_dbo.StoryTag_dbo.StoryID] FOREIGN KEY ([StoryID]) REFERENCES [dbo].[Story] ([ID]),
 	CONSTRAINT [FK_dbo.StoryTag_dbo.TagID] FOREIGN KEY ([TagID]) REFERENCES [dbo].[Tag] ([ID])
 );
+
+-- ########### Favorites ###########
+CREATE TABLE [dbo].[Favorites]
+(
+	[ID] INT IDENTITY (1,1) NOT NULL,
+	[UserID] INT NOT NULL,
+	[StoryID] INT NOT NULL,
+	CONSTRAINT [PK_dbo.Favorites] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_dbo.Favorites_dbo.StoryID] FOREIGN KEY ([StoryID]) REFERENCES [dbo].[Story] ([ID]),
+	CONSTRAINT [FK_dbo.Favorites_dbo.UserID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID])
+);

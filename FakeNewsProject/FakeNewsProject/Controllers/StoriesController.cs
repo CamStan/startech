@@ -130,7 +130,7 @@ namespace FakeNewsProject.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Save(int? id)
+        public ActionResult Save(int? id, int? storyId)
         {
             if (id == null)
             {
@@ -140,8 +140,13 @@ namespace FakeNewsProject.Controllers
             {
                 return RedirectToAction("Details");
             }
-            //add entry to database here.
-            return RedirectToAction("Index");
+            Favorite fav = new Favorite();
+            fav.UserID = (int)id;
+            fav.StoryID = (int)storyId;
+            db.Favorites.Add(fav);
+            db.SaveChanges();
+            return RedirectToAction("Details","Users", id);
+
         }
     }
 }

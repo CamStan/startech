@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 text-center">
-                        By: @Html.ActionLink(Model[i].User.UserName, "Details", "Users", new { ID = Model[i].ID }, null)
+                        By: @Html.ActionLink(Model[i].User.UserName, "Details", "Users", new { ID = Model[i].User.ID }, null)
                     </div>
                     <div class="col-md-6 text-center">
                         @Html.DisplayFor(model => model[i].PostDate)
