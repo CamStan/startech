@@ -1,0 +1,59 @@
+﻿@model FakeNewsProject.Models.Story
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal" style="font-size:18px">
+            <dt>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </dt>
+
+            <dd>
+                @Html.ActionLink(Model.User.UserName, "Details", "Users", new { ID = Model.User.ID }, null)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PostDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Body)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Body)
+            </dd>
+        </dl>
+        <hr />
+        <!--This area takes user input in the form of text (for now). The input should be
+            the user ID. That will make a 'favorite' of this story for future use. SJA-->
+        <div style="text-align:right" >
+            <h4>
+                Want to save this article for later? Just input your user ID and click<br />
+                submit!The article will be saved in your user profile!
+            </h4>
+            @using (@Html.BeginForm("Save", "Stories", new { id = Model.User.ID, storyId = Model.ID }))
+            {
+                <input type="text" name="userID" />
+                <input type="submit" value="Submit">
+            }
+        </div>
+    </div>
+</body>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
