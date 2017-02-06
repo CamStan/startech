@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FakeNewsProject.Models;
+using FakeNewsProject.ViewModels;
 
 namespace FakeNewsProject.Controllers
 {
@@ -45,18 +46,38 @@ namespace FakeNewsProject.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            Story postSetup = new Story();
+            Story postSetup = db.Stories.Create();
             postSetup.UserID = 1;
             postSetup.PostDate = DateTime.Now;
-            return View(postSetup);
+
+            var tags = db.Tags.OrderBy(t => t.Name).ToList();
+
+            // create a list of viewmodels to associate a boolean with each tag
+            var tagOptions = new List<TagSelect>();
+            foreach (Tag t in tags)
+            {
+                tagOptions.Add(new TagSelect { TagName = t.Name, TagID = t.ID});
+            }
+
+            TagStories ts = new TagStories { TheStory = postSetup, TheTags = tagOptions };
+            return View(ts);
         }
 
         [HttpPost]
-        public ActionResult Create(Story newPost)
+        public ActionResult Create(TagStories newPost)
         {
             if (ModelState.IsValid)
             {
-                db.Stories.Add(newPost);
+                db.Stories.Add(newPost.TheStory);
+                // create a link between story and tag for all selected tags
+                foreach(var tag in newPost.TheTags)
+                {
+                    if (tag.IsSelected)
+                    {
+                        // not how to do this, but don't care at this point
+                        db.StoryTags.Add(new StoryTag { StoryID = db.Stories.Count() + 1, TagID = tag.TagID });
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -130,5 +151,15 @@ namespace FakeNewsProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //private List<bool> createTagOptions(List<Tag> tags)
+        //{
+        //    List<bool> tagOptions = new List<bool>();
+
+        //    foreach (int t in tags)
+        //    {
+        //        bool t =
+        //    }
+        //}
     }
 }
