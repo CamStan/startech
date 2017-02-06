@@ -12,6 +12,7 @@ namespace FakeNewsProject.Models
         {
         }
 
+        public virtual DbSet<Favorite> Favorites { get; set; }
         public virtual DbSet<Story> Stories { get; set; }
         public virtual DbSet<StoryTag> StoryTags { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
@@ -29,6 +30,11 @@ namespace FakeNewsProject.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Story>()
+                .HasMany(e => e.Favorites)
+                .WithRequired(e => e.Story)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Story>()
                 .HasMany(e => e.StoryTags)
                 .WithRequired(e => e.Story)
                 .WillCascadeOnDelete(false);
@@ -36,6 +42,11 @@ namespace FakeNewsProject.Models
             modelBuilder.Entity<Tag>()
                 .HasMany(e => e.StoryTags)
                 .WithRequired(e => e.Tag)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Favorites)
+                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

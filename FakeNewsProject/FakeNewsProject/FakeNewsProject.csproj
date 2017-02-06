@@ -131,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FakeNewsContext.cs" />
+    <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StoryTag.cs" />
     <Compile Include="Models\Tag.cs" />

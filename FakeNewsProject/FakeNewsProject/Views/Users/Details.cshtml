@@ -23,9 +23,9 @@
         <dt>
             Stories:
         </dt>
-            @foreach (var item in Model.Stories)
+            @foreach (var item in Model.Favorites)
             {
-                <dd>@Html.ActionLink(item.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
+                <dd>@Html.ActionLink(item.Story.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
             }
     </dl>
 </div>
