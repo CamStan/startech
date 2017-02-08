@@ -21,13 +21,22 @@
         @Html.DisplayFor(model => model.LName)</dd>
         <dd><br/></dd>
         <dt>
-            Stories:
+            Favorites:
         </dt>
             @foreach (var item in Model.Favorites)
             {
                 <dd>@Html.ActionLink(item.Story.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
             }
-    </dl>
+            <dd><br /></dd>    
+        <dt>
+            Authored Stories:
+        </dt>
+            @foreach (var item in Model.Stories)
+            {
+                <dd>@Html.ActionLink(item.Title, "Details", "Stories", new { ID = item.ID }, null)</dd>
+            }
+        </dl>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
