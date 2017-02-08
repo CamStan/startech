@@ -1,0 +1,22 @@
+﻿Needs and Features
+The IPG site needs to:
+   * Have a mechanism to gather and track member/visitor feedback 
+      * As a user, I want to be able to report groomers and members for violating IPG Code of Conduct so that I, and others, can be confident in the quality of IPG certified groomers.
+      * As an admin, I want to be able to log and track user reporting so that I can investigate IPG certified groomers that may be violating the Code of Conduct.
+      * As an admin, I want to be able to suspend member accounts when they are found to have violated the Code of Conduct so that I can ensure the quality of my members.
+   * Have a mechanism to store user data for later access, display, and search.
+      * As an admin, I want to be able to access member account information so that I can view the information and display it for others to see.
+      * As a visitor, I want to be able search for certified groomers in a variety of ways so that I can find a trusted groomer for my pet.
+   * Have a webstore so that members can add/upgrade membership seamlessly. 
+      * As a pet groomer, I want to be able to apply for membership through IPG I can start my certification process.
+      * As an already certified member of IPG, I want to be able to renew my certification as well as be able to start on the next level of certification.
+   * Have an mechanism for member information to be updated and added.
+      * As a user, I want to be able to create an account so that I can become a member of IPG.
+      * As an admin, I want to be able to access member account information so that I can update the information.
+      * As a certified groomer, I want to be able to add to and update the information on my profile so that potential clients can find out all they need to know about my business.
+   * Be able to auto-generate notifications to users.
+      * As an admin, I want to be able to generate a list of members that match a certain criteria, so that I can have the system generate specific notifications based on that criteria.
+   * Be able to be support international interaction.
+      * As a user from a non-English speaking country, I want to be able to input characters that are not in the English alphabet.
+   * Have an admin panel so that admin can access and update information from anywhere with Internet access
+   * Be secure so that members and visitors can be confident in giving their personal information through the site.
