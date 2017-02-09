@@ -1,5 +1,7 @@
 # Tools and Configurations #
 
+## Visual Studio ##
+
 Microsoft Visual Studio Community 2015
 Version 14.0.25431.01 Update 3
 Microsoft .NET Framework
@@ -7,34 +9,42 @@ Version 4.6.01586
 
 Installed Version: Community
 
-Entity Framework
+### Entity Framework ###
 Version: 6.1.3
 
-System.Web.Mvc
+### System.Web.Mvc ###
 Version: 5.2.3.0
 
-Microsoft Visual Studio Tools for Applications 2015   00322-20000-00000-AA648
+### Microsoft Visual Studio Tools for Applications 2015 ###
+00322-20000-00000-AA648
 Microsoft Visual Studio Tools for Applications 2015
 
-Visual Basic 2015   00322-20000-00000-AA648
+### Visual Basic 2015 ###
+00322-20000-00000-AA648
 Microsoft Visual Basic 2015
 
-Visual C# 2015   00322-20000-00000-AA648
+### Visual C# 2015 ###
+00322-20000-00000-AA648
 Microsoft Visual C# 2015
 
-Visual C++ 2015   00322-20000-00000-AA648
+### Visual C++ 2015 ###
+00322-20000-00000-AA648
 Microsoft Visual C++ 2015
 
-Application Insights Tools for Visual Studio Package   7.17.00119.9
+### Application Insights Tools for Visual Studio Package ###
+7.17.00119.9
 Application Insights Tools for Visual Studio
 
-ASP.NET and Web Tools 2015.1   14.1.21111.0
+### ASP.NET and Web Tools 2015.1 ###
+14.1.21111.0
 ASP.NET and Web Tools 2015.1
 
-ASP.NET Web Frameworks and Tools 2012.2   4.1.41102.0
-For additional information, visit http://go.microsoft.com/fwlink/?LinkID=309563
+### ASP.NET Web Frameworks and Tools 2012.2 ###
+4.1.41102.0
+For additional information, visit [Visual Studio 2012 | The ASP.NET Site](http://go.microsoft.com/fwlink/?LinkID=309563)
 
-ASP.NET Web Frameworks and Tools 2013   5.2.40314.0
+### ASP.NET Web Frameworks and Tools 2013 ###
+5.2.40314.0
 For additional information, visit http://www.asp.net/
 
 Azure App Service Tools v2.9.6   14.0.21111.0
