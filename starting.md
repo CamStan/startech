@@ -1,11 +1,11 @@
-        * Red 
-        + Green 
-            * dark  green 
-            * lime  
-        - Blue      
-            1. Item one
-                1. subitem 1
-                1. subitem 2
+* Red 
++ Green 
+  * dark  green 
+  * lime  
+      - Blue      
+          1. Item one
+            1. subitem 1
+            1. subitem 2
             1. Item two
 
                 This is is a first paragraph.
