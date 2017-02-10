@@ -2,9 +2,9 @@
 
 ## Visual Studio ##
 
-Microsoft Visual Studio Community 2015
-Version 14.0.25431.01 Update 3
-Microsoft .NET Framework
+Microsoft Visual Studio Community 2015  
+Version 14.0.25431.01 Update 3  
+Microsoft .NET Framework  
 Version 4.6.01586
 
 Installed Version: Community
