@@ -1,4 +1,4 @@
-# Tools and Configurations #
+# Tools, Configurations, and Packages #
 
 ## Visual Studio ##
 
@@ -8,12 +8,6 @@ Microsoft .NET Framework
 Version 4.6.01586
 
 Installed Version: Community
-
-### Entity Framework ###
-Version: 6.1.3
-
-### System.Web.Mvc ###
-Version: 5.2.3.0
 
 ### Microsoft Visual Studio Tools for Applications 2015 ###
 00322-20000-00000-AA648  
@@ -119,3 +113,11 @@ Version 13.0.1701.8
 ### TypeScript ###
 1.8.36.0  
 TypeScript tools for Visual Studio
+
+## Packages ##
+
+### Entity Framework ###
+Version: 6.1.3
+
+### System.Web.Mvc ###
+Version: 5.2.3.0
