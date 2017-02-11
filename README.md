@@ -46,7 +46,9 @@ Here is a list of [contributors](contributors.md) to this project. Please add yo
 
 ### Software Construction Process ###
 
-Talk about Agile/Scrum...
+For this project, we are following Agile methodologies, specifically Disciplined Agile Delivery process framework. 
+We follow a two-week sprint cycle that involves daily SCRUM meetings, weekly sprint planning sessions, an end of sprint review and retrospective. 
+To contribute to this project, one will need to be involved in this process with the StarTech team.
 
 ### Tools, Configurations, and Packages ###
 
