@@ -1,6 +1,22 @@
 # README #
 
-This is the repository for StarTech, a team for the CS461/CS462 Senior Project 2017 at Western Oregon University.
+This is the repository for StarTech, a team for the CS461/CS462 Senior Project 2017 at Western Oregon University. The main project in this course is meant as a capstone project for a Bachelor's degree in Computer Science.
+
+### The contents of this repository includes: ###
+
+1. IPG
+    * The primary group project for this repository.
+2. FakeNewsProject 
+    * An in class project that was used for the initial learning of the Scrum process.
+3. Milestones 
+    1. Milestone1 
+	    * StarTech logo and letterhead, three initial group project ideas, and a resume and sample business cards for each StarTech member.
+	2. Milestone2  
+	    * The initial inception of the in class projects and a slightly more detailed write up of two of the initial group project ideas.
+	3. Milestone3
+	    * An initial mindmap, some initial ideas for needs and features, and a first draft vision statement for the IPG project.
+	4. Milestone4
+	    * Documents for the IPG project, to include; architecture and modeling, needs and features, functional and non-functional requirements, a timeline and release plan, and the final draft of the vision statement.
 
 ## StarTech Members ##
 
@@ -21,17 +37,17 @@ Talk about the project, add external link to IPG's current website
 
 ### How do I get started? ###
 
-Information about how to clone and set up this project on your local machine  and how to become a contributor coming soon...
+The [starting](starting.md) file has information about how to clone and set up this project on your local machine  and how to become a contributor.
 
 ### Contributing ###
 
-For contributing and coding guildines when working on this project, see these [Guidelines](guidelines.md)
+For contributing and coding guildines when working on this project, see these [Guidelines](guidelines.md).
 Here is a list of [contributors](contributors.md) to this project. Please add your name to this document when you become a contributor.
 
 ### Software Construction Process ###
 
 Talk about Agile/Scrum...
 
-### Tools and Configurations ###
+### Tools, Configurations, and Packages ###
 
-[Tools](tools.md) is a list of all the software, libraries, tools, and versions used on this project. Make sure you are using the same ones to avoid any compatability errors.
+[Tools](tools.md) is a list of all the software, libraries, tools, packages, and versions used on this project. Make sure you are using the same ones to avoid any compatability errors.
