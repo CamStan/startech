@@ -4,7 +4,7 @@ This is the repository for StarTech, a team for the CS461/CS462 Senior Project 2
 
 ### The contents of this repository includes: ###
 
-1. IPG
+1. IPGMMS
     * The primary group project for this repository.
 2. FakeNewsProject 
     * An in class project that was used for the initial learning of the Scrum process.
@@ -27,13 +27,13 @@ This is the repository for StarTech, a team for the CS461/CS462 Senior Project 2
 
 ## StarTech Project ##
 
-### IPG ###
+### IPGMMS ###
 
-Talk about the project, add external link to IPG's current website
+The project StarTech has taken on for their senior capstone is the creation of the International Professional Groomers Members Management Service. This project is to assist [International Professional Groomers, Inc](http://www.ipgicmg.com/) (IPG) with the managing and promotion of their members.
 
 #### Vision Statement ####
 
-> For international certification companies who need to manage memberships, certifications, and client accessibility. The International Professional Groomers web service (IPG) is a publically available web application containing all that is necessary for the managing, certifying, informing, and locating of professional groomers all over the world; providing a valuable resource for IPG admin, pet groomers, and clients alike. This application will assist IPG admin in the certification of new members, as well as the creating and updating accounts and the management of already certified members. Secondly, this application will provide a simple and organized way for potential members to begin their certification process and for already certified members to update and upgrade their certifications. Lastly, this application will provide a variety of convenient ways for clients to search for and find all needed information about IPG members in their area or area of choice. Unlike the current lack of pet groomer websites, our product will provide an easy-to-use centralized hub for the entire spectrum of user needs regarding professional groomers.
+> For international certification companies who need to manage memberships, certifications, and client accessibility. The International Professional Groomers Member Management Service (IPGMMS) is a publically available web application containing all that is necessary for the managing, certifying, informing, and locating of professional groomers all over the world; providing a valuable resource for IPG admin, pet groomers, and clients alike. This application will assist IPG admin in the certification of new members, as well as the creating and updating accounts and the management of already certified members. Secondly, this application will provide a simple and organized way for potential members to begin their certification process and for already certified members to update and upgrade their certifications. Lastly, this application will provide a variety of convenient ways for clients to search for and find all needed information about IPG members in their area or area of choice. Unlike the current lack of pet groomer websites, our product will provide an easy-to-use centralized hub for the entire spectrum of user needs regarding professional groomers.
 
 ### How do I get started? ###
 
