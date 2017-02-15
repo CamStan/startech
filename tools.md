@@ -119,5 +119,107 @@ TypeScript tools for Visual Studio
 ### Entity Framework ###
 Version: 6.1.3
 
+### Antlr ###
+Version: 3.5.0.2
+
 ### System.Web.Mvc ###
 Version: 5.2.3.0
+
+### bootstrap ###
+Version: 3.3.7
+
+### Castle.Core ###
+Version: 4.0.0
+
+### jQuery ###
+Version: 3.1.1
+
+### jQuery.Validation ###
+Version: 1.16.0
+
+### Identity.Core ###
+Version: 2.2.1
+
+### Identity.EntityFramework ###
+Version: 2.2.1
+
+### Identity.Owin ###
+Version: 2.2.1
+
+### AspNet.Razor ###
+Version: 3.2.3
+
+### AspNet.Web.Optimization ###
+Version: 1.1.3
+
+### AspNet.WebPages ###
+Version: 3.2.3
+
+### CodeDom.Providers.DotNetCompilerPlatform ###
+Version: 1.0.3
+
+### jQuery.Unobtrusive.Validation ###
+Version: 3.2.3
+
+### Microsoft.Owin ###
+Version: 3.0.1
+
+### Microsoft.Owin.Host.SystemWeb ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.Cookies ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.Facebook ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.Google ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.MicrosoftAccount ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.OAuth ###
+Version: 3.0.1
+
+### Microsoft.Owin.Security.Twitter ###
+Version: 3.0.1
+
+### Microsoft.Web.Infrastructure ###
+Version: 1.0.0.0
+
+### Modernizr ###
+Version: 2.8.3
+
+### Moq ###
+Version: 4.5.30
+
+### Newtonsoft.Json ###
+Version: 9.0.1
+
+### Ninject ###
+Version: 3.2.2.0
+
+### Ninject.MVC5 ###
+Version: 3.2.1.0
+
+### Ninject.Web.Common ###
+Version: 3.2.3.0
+
+### Ninject.Web.Common.WebHost ###
+Version: 3.2.3.0
+
+### Owin ###
+Version: 1.0
+
+### Respond ###
+Version: 1.4.2
+
+### WebActivatorEx ###
+Version: 2.2.0
+
+### WebGrease ###
+Version: 1.6.0
