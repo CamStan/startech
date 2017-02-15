@@ -1,0 +1,10 @@
+﻿Requirements and Nonfunctional Requirements:
+
+
+* The site needs to be mobile friendly so people can view it on the go.
+* The database needs to be backed-up on a schedule.
+* The entire website needs to be attractive and visually appealing. 
+* The company logo needs to be places on each page.
+* All links need to be valid and prevent malicious search results
+* System needs to be secure so changes can only be made by authorized users.
+* Users that are able to make changes need to be authenticated.
