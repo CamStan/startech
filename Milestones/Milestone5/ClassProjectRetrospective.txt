@@ -1,0 +1,40 @@
+﻿Conduct a Safety Check
+
+    * Anonymous check using 0-4 sent to one person to determine how comfortable we feel with talking and sharing.
+       * Team average: 3 
+          * Discussion of a few general things that might make us uncomfortable
+
+
+What did you learn from the sprint?
+
+    * Not to place too many constraints on the project.
+    * Try to avoid heavy crossover between team members’ user stories.
+    * Not to delete other’s code
+    * Communicate better between team members, especially when what I’m trying to work on might affect code someone else is working on as well
+    * VSTS can be overwhelming when it’s full of large, vague stories
+    * What one person thinks a user story means, might not be how someone else interprets it
+    * Quantity kills, choose quality
+
+
+What still puzzles you?
+
+    * Effort is still ambiguous
+       * How do you know how long something is really going to take you?
+
+
+What can the team do better during the next sprint? Make a specific action plan.
+
+    * Estimations needs to be more accurate
+       * Include set-up time, time for commenting code, merging, testing, beautify
+    * Communication needs to improve
+       * Can use Slack, phone, text, Discord
+       * Be very careful when changing someone else’s code (if you do)
+       * Comment, comment, comment
+    * Be realistic in your abilities and what you think you can do
+       * Don’t overestimate your abilities
+    * Narrow the user stories so they involve fewer individual pieces.
+
+
+Are there any items that need to be brought up with someone outside the team 
+
+    * Not at this time.
