@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /FakeNewsProject/FakeNewsProject/connections.config
+/IPGMMS/IPGMMS/WebConn.config
