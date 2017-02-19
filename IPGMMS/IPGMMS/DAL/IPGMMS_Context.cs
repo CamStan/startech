@@ -5,10 +5,10 @@ namespace IPGMMS.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class IPGMMS : DbContext
+    public partial class IPGMMS_Context : DbContext
     {
-        public IPGMMS()
-            : base("name=IPGMMS")
+        public IPGMMS_Context()
+            : base("name=IPGMMS_Context")
         {
         }
 
@@ -19,7 +19,6 @@ namespace IPGMMS.Models
         public virtual DbSet<MemberCertification> MemberCertifications { get; set; }
         public virtual DbSet<MemberLevel> MemberLevels { get; set; }
         public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<UserNameBridge> UserNameBridges { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
