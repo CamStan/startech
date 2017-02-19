@@ -1,4 +1,8 @@
-﻿using Ninject;
+﻿using IPGMMS.Abstract;
+using IPGMMS.DAL;
+using IPGMMS.DAL.Repositories;
+using Ninject;
+using Ninject.Web.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +33,9 @@ namespace IPGMMS.Infrastructure
 
         private void AddBindings()
         {
-            // tell Ninject what to use to meet a dependency
+            kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
+
+            kernel.Bind<IMemberRepository>().To<EFMemberRepository>().InRequestScope();
         }
     }
 }
