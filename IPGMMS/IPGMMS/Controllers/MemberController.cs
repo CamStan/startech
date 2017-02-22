@@ -20,7 +20,7 @@ namespace IPGMMS.Controllers
         // GET: Member
         public ActionResult Index()
         {
-            IEnumerable<Member> members = memberRepo.GetAllMembers();
+            IEnumerable<Member> members = memberRepo.GetAllMembers;
             return View(members);
         }
     }
