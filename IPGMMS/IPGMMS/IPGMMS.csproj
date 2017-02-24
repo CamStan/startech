@@ -292,7 +292,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="WebConn.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
