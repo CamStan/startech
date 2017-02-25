@@ -17,11 +17,26 @@ namespace IPGMMS.Controllers
             memberRepo = repo;
         }
 
-        // GET: Member
-        public ActionResult Index()
+        /// <summary>
+        /// GET: Members
+        /// Displays all members sorted by last name, 3 at a time on a page with paging.
+        /// </summary>
+        /// <param name="page">The page number</param>
+        /// <returns></returns>
+        public ActionResult Index(int? page)
         {
-            IEnumerable<Member> members = memberRepo.GetAllMembers;
-            return View(members);
+            var members = memberRepo.GetAllMembers;
+
+            int pageSize = 3;
+            double pages = Math.Ceiling((double)members.Count() / pageSize);
+
+            int pageNum = page ?? 1;
+
+            ViewBag.Pages = pages;
+
+            var membersPaged = members.Skip(pageSize * (pageNum - 1)).Take(pageSize);
+
+            return View(membersPaged);
         }
 
         // GET: Member

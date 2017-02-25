@@ -1,0 +1,30 @@
+﻿@model IEnumerable<IPGMMS.Models.Member>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2>IPG Members</h2></center>
+
+<div class="row">
+    <!-- Displays each member, their member level, business name, and website -->
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <center><h3>@Html.ActionLink(item.FullName, "Details", new { ID = item.ID })<br /><small>@Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)</small></h3></center>
+            <div><span>@Html.DisplayNameFor(model => model.BusinessName): </span><span>@Html.DisplayFor(modelItem => item.BusinessName)</span></div>
+            <div><span>@Html.DisplayNameFor(model => model.Website): </span><span><a href="@item.Website">@item.Website</a></span></div>
+        </div>
+    }
+</div>
+<br />
+<!-- Paging -->
+<div>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.Pages; ++i)
+        {
+            <li>@Html.ActionLink(i.ToString(), "Index", new { page = i })</li>
+        }
+
+    </ul>
+</div>
