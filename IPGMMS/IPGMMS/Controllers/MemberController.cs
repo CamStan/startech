@@ -23,5 +23,16 @@ namespace IPGMMS.Controllers
             IEnumerable<Member> members = memberRepo.GetAllMembers;
             return View(members);
         }
+
+        // GET: Member
+        public ActionResult Details(int? ID)
+        {
+            if (!ID.HasValue)
+            {
+                ID = 5;
+            }
+            Member memb = memberRepo.Find(ID);
+            return View(memb);
+        }
     }
 }
