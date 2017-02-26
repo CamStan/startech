@@ -232,7 +232,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Contact.css" />
+    <Content Include="Content\Homepage.css" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
+    <Content Include="Content\Images\IPGLogo.jpg" />
+    <Content Include="Content\Images\IPGLogo2.jpeg" />
+    <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -299,6 +303,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Home\_Home.cshtml" />
+    <Content Include="Views\Shared\_LeftNav.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

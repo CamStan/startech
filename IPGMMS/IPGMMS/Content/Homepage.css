@@ -1,0 +1,29 @@
+﻿div.left-navbar {
+    background-color: #d3e7f0;
+  /*  max-width: 260px; */
+  /*  position: fixed; */
+    padding: 5px;
+    padding-left: 0px;
+}
+
+div.left-navbar ul li {
+    font-size: 12pt;
+    padding-bottom: 5px
+}
+
+div.map {
+    padding: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.main {
+    background-color: white;
+    height: 740px;
+    overflow-y:auto;
+}
