@@ -22,11 +22,11 @@ namespace IPGMMS.DAL.Repositories
         }
 
         /// <summary>
-        /// Gets a list of all members.
+        /// Gets a list of all members except for the admin member sorted by last name.
         /// </summary>
         public IEnumerable<Member> GetAllMembers
         {
-            get { return db.Members.ToList(); }
+            get { return db.Members.Where(m => m.ID > 1).OrderBy(m => m.LastName).ToList(); }
         }
 
         /// <summary>
