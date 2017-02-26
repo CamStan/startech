@@ -216,8 +216,9 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
     <Compile Include="Models\MemberLevel.cs" />
-    <Compile Include="Models\Partials\Member.Meta.cs"> 
-        <DependentUpon>Member.cs</DependentUpon> </Compile>
+    <Compile Include="Models\Partials\Member.Meta.cs">
+      <DependentUpon>Member.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserNameBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Contact.css" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

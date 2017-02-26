@@ -1,0 +1,22 @@
+﻿div.fieldSet{
+    border: 5px solid black;
+    width: 500px;
+}
+
+fieldset{
+    border: none;
+    margin: 0 0 0 -10px;
+    padding: 0;
+}
+
+label.field{
+    text-align: right;
+    width: 200px;
+    float: left;
+    font-weight:bold;
+}
+
+input.inputbox{
+    width: 200px;
+    float: left;
+}
