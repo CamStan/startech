@@ -303,7 +303,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
-    <Content Include="Views\Home\_Home.cshtml" />
     <Content Include="Views\Shared\_LeftNav.cshtml" />
   </ItemGroup>
   <ItemGroup />

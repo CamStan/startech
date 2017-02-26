@@ -27,3 +27,9 @@ img {
     height: 740px;
     overflow-y:auto;
 }
+
+.main > p {
+    text-indent:20px;
+    margin-left: 50px;
+    margin-right: 45px;
+}

@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Centers all images on site. */
+img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    max-width: 100%;
+}
