@@ -299,6 +299,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
