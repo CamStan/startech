@@ -175,7 +175,7 @@ CREATE TABLE [dbo].[Members]
 -- ############# ContactInfo #############
 CREATE TABLE [dbo].[ContactInfo]
 (
-	[ID] INT NOT NULL  IDENTITY UNIQUE, 
+	[ID] INT IDENTITY (1,1) NOT NULL UNIQUE, 
     [Member_ID] INT NOT NULL, 
     [StreetAddress] NVARCHAR(255) NULL, 
     [City] NVARCHAR(255) NULL,
