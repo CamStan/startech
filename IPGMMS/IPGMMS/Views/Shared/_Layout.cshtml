@@ -9,8 +9,12 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
+            <div class="row col-md-3">
+                <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
+            </div>
+            <h1 class="row col-md-9">International Professional Groomers, Inc<br /><small>Member Management System</small></h1>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -21,10 +25,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("IPG Members", "Index", "Member")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
-                    <li>@Html.ActionLink("OurMembers", "Index", "Member")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
