@@ -25,9 +25,11 @@ namespace IPGMMS.Models
         public string Membership_Number { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_SignupDate { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_ExpirationDate { get; set; }
 
         public int MemberLevel { get; set; }
