@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="DAL\Repositories\EFMemberRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -309,6 +310,8 @@
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Shared\_LeftNav.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Shared\_AdminNav.cshtml" />
+    <Content Include="Views\Portal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
