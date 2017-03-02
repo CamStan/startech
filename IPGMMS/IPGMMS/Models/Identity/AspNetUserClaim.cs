@@ -6,18 +6,18 @@ namespace IPGMMS.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class UserNameBridge
+    public partial class AspNetUserClaim
     {
-        public int ID { get; set; }
-
-        public int Member_ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(128)]
-        public string AspNet_ID { get; set; }
+        public string UserId { get; set; }
+
+        public string ClaimType { get; set; }
+
+        public string ClaimValue { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
-
-        public virtual Member Member { get; set; }
     }
 }

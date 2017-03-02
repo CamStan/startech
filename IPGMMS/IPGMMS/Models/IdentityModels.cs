@@ -21,7 +21,7 @@ namespace IPGMMS.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("IPGMMS_Context", throwIfV1Schema: false)
         {
             Database.SetInitializer<ApplicationDbContext>(null);
         }

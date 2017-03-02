@@ -13,6 +13,7 @@ namespace IPGMMS.Models
         {
             Contacts = new HashSet<Contact>();
             MemberCertifications = new HashSet<MemberCertification>();
+            UserNameBridges = new HashSet<UserNameBridge>();
         }
 
         public int ID { get; set; }
@@ -25,11 +26,9 @@ namespace IPGMMS.Models
         public string Membership_Number { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_SignupDate { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_ExpirationDate { get; set; }
 
         public int MemberLevel { get; set; }
@@ -58,5 +57,8 @@ namespace IPGMMS.Models
         public virtual ICollection<MemberCertification> MemberCertifications { get; set; }
 
         public virtual MemberLevel MemberLevel1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserNameBridge> UserNameBridges { get; set; }
     }
 }
