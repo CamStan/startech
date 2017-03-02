@@ -206,6 +206,10 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Identity\AspNetRole.cs" />
+    <Compile Include="Models\Identity\AspNetUser.cs" />
+    <Compile Include="Models\Identity\AspNetUserClaim.cs" />
+    <Compile Include="Models\Identity\AspNetUserLogin.cs" />
     <Compile Include="Models\Certificate.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactInfo.cs" />
