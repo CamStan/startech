@@ -9,6 +9,22 @@
 </div>
 
 <div class="col-md-10">
-    
+    <br />
+    <br />
+    <p>
+        This will be the Admin Portal showing all sorts of neat stuff.
+        @if(ViewBag.displayAdmin == "Yes")
+        {
+            <h1> Welcome Admin. Now you can create user roles.</h1>
+            <h3>
+                <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+            </h3>
+        }
+        else
+        {
+
+            <h2>Hey wait <strong>@ViewBag.Name!</strong> You're not an Admin!!</h2>
+        }
+    </p>
 </div>
 
