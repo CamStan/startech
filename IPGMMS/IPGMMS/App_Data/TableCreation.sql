@@ -215,9 +215,9 @@ CREATE TABLE [dbo].[MemberCertifications]
 CREATE TABLE [dbo].[UserNameBridges]
 (
 	[ID] INT IDENTITY (1,1) NOT NULL,
-	[Member_UserName] NVARCHAR(256) UNIQUE NOT NULL,
-	[AspNet_UserName] NVARCHAR (256) UNIQUE NOT NULL,
+	[Member_ID] INT NOT NULL,
+	[AspNet_ID] NVARCHAR (128) NOT NULL,
 	CONSTRAINT [PK_UserNameBridge] PRIMARY KEY ([ID]),
-	CONSTRAINT [FK_dbo.UserNameBridge_dbo.AspNetUsers] FOREIGN KEY ([AspNet_UserName]) REFERENCES [dbo].[AspNetUsers]([UserName]),
-	CONSTRAINT [FK_dbo.UserNameBridge_dbo.Members] FOREIGN KEY ([Member_UserName]) REFERENCES [dbo].[Members]([UserName])
+	CONSTRAINT [FK_dbo.UserNameBridge_dbo.AspNetUsers] FOREIGN KEY ([AspNet_ID]) REFERENCES [dbo].[AspNetUsers]([ID]),
+	CONSTRAINT [FK_dbo.UserNameBridge_dbo.Members] FOREIGN KEY ([Member_ID]) REFERENCES [dbo].[Members]([ID])
 );
