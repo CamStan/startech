@@ -35,9 +35,9 @@ namespace IPGMMS
 
                 var user = new ApplicationUser();
                 user.UserName = "Valkyrie";
-                user.Email = "honor@valhalla.com";
+                user.Email = "flightofthe@valhalla.com";
 
-                string userPWD = "Odinisl1fe!";
+                string userPWD = "W@gner3";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
