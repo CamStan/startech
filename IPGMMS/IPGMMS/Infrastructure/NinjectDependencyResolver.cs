@@ -1,6 +1,11 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.DAL;
 using IPGMMS.DAL.Repositories;
+using IPGMMS.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Ninject;
 using Ninject.Web.Common;
 using System;
@@ -33,8 +38,26 @@ namespace IPGMMS.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
+            // Here to binding ApplicationUserManager is to allow for DI of UserManagaer and SignInManager
+            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
+            kernel.Bind<UserManager<ApplicationUser>>().ToSelf();
 
+            kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
+
+            kernel.Bind<ApplicationSignInManager>().ToMethod((context) =>
+            {
+                var cbase = new HttpContextWrapper(HttpContext.Current);
+                return cbase.GetOwinContext().Get<ApplicationSignInManager>();
+            });
+
+            kernel.Bind<ApplicationUserManager>().ToSelf();
+
+            // Binding for the dbContexts
+            kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+
+            // Binding for repositories
+            kernel.Bind<IAccountRepository>().To<EFAccountRepository>().InRequestScope();
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>().InRequestScope();
             kernel.Bind<IPortalRepository>().To<EFPortalRepository>().InRequestScope();
         }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
+using IPGMMS.Abstract;
 
 namespace IPGMMS.Controllers
 {
@@ -17,17 +18,18 @@ namespace IPGMMS.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        ApplicationDbContext context;
+        private IAccountRepository repo;
 
-        public AccountController()
-        {
-            context = new ApplicationDbContext();    
-        }
+        //public AccountController()
+        //{
+        //    context = new ApplicationDbContext();    
+        //}
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountRepository accountRepo)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            repo = accountRepo;
         }
 
         public ApplicationSignInManager SignInManager
@@ -141,7 +143,7 @@ namespace IPGMMS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
             return View();
         }
 
@@ -172,7 +174,7 @@ namespace IPGMMS.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
                 AddErrors(result);
             }
 
