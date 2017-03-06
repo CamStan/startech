@@ -13,6 +13,8 @@ namespace IPGMMS.Models
         [Display(Name = "Member")]
         public string FullName { get { return $"{FirstName} {LastName}"; } }
 
+        [Display(Name = "Website")]
+        public string WebAddress { get { return $"http://{Website}"; } }
     }
 
     public class MemberMetadata
