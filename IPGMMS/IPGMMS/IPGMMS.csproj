@@ -190,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IMemberRepository.cs" />
+    <Compile Include="Abstract\IPortalRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="DAL\Repositories\EFMemberRepository.cs" />
+    <Compile Include="DAL\Repositories\EFPortalRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,9 +223,7 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
     <Compile Include="Models\MemberLevel.cs" />
-    <Compile Include="Models\Partials\Member.Meta.cs">
-      <DependentUpon>Member.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Models\UserNameBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
