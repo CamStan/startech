@@ -36,6 +36,7 @@ namespace IPGMMS.Infrastructure
             kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
 
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>().InRequestScope();
+            kernel.Bind<IPortalRepository>().To<EFPortalRepository>().InRequestScope();
         }
     }
 }

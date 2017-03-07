@@ -9,6 +9,24 @@
 </div>
 
 <div class="col-md-10">
-    
+    <br />
+    <br />
+    <p>
+        This will be the Admin Portal showing all sorts of neat stuff.
+        @*@if(ViewBag.displayAdmin == "Yes")
+        {*@
+            <h1> Welcome @User.Identity.Name</h1>
+            <p>
+                This page will be worked on in due time. For now just sit back and enjoy the blue along the top and left side.
+                This is a test @User.Identity.AuthenticationType
+            </p>
+
+        @*}
+        else
+        {
+
+            <h2>Hey wait <strong>@ViewBag.Name!</strong> You're not an Admin!!</h2>
+        }*@
+    </p>
 </div>
 

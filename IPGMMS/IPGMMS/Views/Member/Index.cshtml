@@ -13,7 +13,7 @@
         <div class="col-md-4">
             <center><h3>@Html.ActionLink(item.FullName, "Details", new { ID = item.ID })<br /><small>@Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)</small></h3></center>
             <div><span>@Html.DisplayNameFor(model => model.BusinessName): </span><span>@Html.DisplayFor(modelItem => item.BusinessName)</span></div>
-            <div><span>@Html.DisplayNameFor(model => model.Website): </span><span><a href="@item.Website">@item.Website</a></span></div>
+            <div><span>@Html.DisplayNameFor(model => model.Website): </span><span><a href="@item.WebAddress" target="_blank">@item.Website</a></span></div>
         </div>
     }
 </div>

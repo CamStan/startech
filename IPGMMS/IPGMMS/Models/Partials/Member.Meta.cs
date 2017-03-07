@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using IPGMMS.Models;
 
 namespace IPGMMS.Models
 {
@@ -12,6 +13,8 @@ namespace IPGMMS.Models
         [Display(Name = "Member")]
         public string FullName { get { return $"{FirstName} {LastName}"; } }
 
+        [Display(Name = "Website")]
+        public string WebAddress { get { return $"http://{Website}"; } }
     }
 
     public class MemberMetadata
