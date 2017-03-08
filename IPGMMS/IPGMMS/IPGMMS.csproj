@@ -312,6 +312,7 @@
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Shared\_AdminNav.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
+    <Content Include="Views\Portal\ListMembers.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
