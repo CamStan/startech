@@ -135,7 +135,7 @@ CREATE NONCLUSTERED INDEX [IX_RoleId] ON [dbo].[AspNetUserRoles]([RoleId] ASC);
 CREATE TABLE [dbo].[MemberLevels]
 (
 	[ID] INT IDENTITY (1,1) NOT NULL PRIMARY KEY, 
-    [MLevel] NCHAR(255) NOT NULL
+    [MLevel] NVARCHAR(255) NOT NULL
 );
 
 
@@ -143,7 +143,7 @@ CREATE TABLE [dbo].[MemberLevels]
 CREATE TABLE [dbo].[ContactTypes]
 (
 	[ID] INT IDENTITY (1,1) NOT NULL PRIMARY KEY, 
-    [ContactType] NCHAR(50) NOT NULL 
+    [ContactType] NVARCHAR(50) NOT NULL 
 );
 
 -- ############# Certificates #############

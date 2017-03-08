@@ -48,19 +48,19 @@ namespace IPGMMS
                 }
             }
 
-            // creating Creating Manager role
-            if (!roleManager.RoleExists("Manager"))
+            // creating Student role
+            if (!roleManager.RoleExists("Student_Member"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Manager";
+                role.Name = "Student_Member";
                 roleManager.Create(role);
             }
 
-            // creating Creating Employee role
-            if(!roleManager.RoleExists("Employee"))
+            // creating base member role
+            if(!roleManager.RoleExists("IPG_Member"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Employee";
+                role.Name = "IPG_Member";
                 roleManager.Create(role);
 
                 var user = new ApplicationUser();
@@ -71,12 +71,69 @@ namespace IPGMMS
 
                 var chkUser = UserManager.Create(user, userPWD);
 
-                // Add default User to Role Employee
+                // Add default User to Role IPG_Member
                 if (chkUser.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Employee");
+                    var result1 = UserManager.AddToRole(user.Id, "IPG_Member");
                 }
             }
+
+            // creating Certified Professional Groomer
+            if (!roleManager.RoleExists("Certified_Professional_Groomer"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Certified_Professional_Groomer";
+                roleManager.Create(role);
+            }
+
+            // creating Certified Advanced Professional Groomer
+            if (!roleManager.RoleExists("Certified_Advanced_Professional_Groomer"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Certified_Advanced_Professional_Groomer";
+                roleManager.Create(role);
+            }
+
+            // creating International Certified Master Groomer
+            if (!roleManager.RoleExists("International_Certified_Master_Groomer"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "International_Certified_Master_Groomer";
+                roleManager.Create(role);
+            }
+
+            // creating Approved Salon
+            if (!roleManager.RoleExists("Approved_Salon"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Approved_Salon";
+                roleManager.Create(role);
+            }
+
+             // creating Approved School
+            if (!roleManager.RoleExists("Approved_School"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Approved_School";
+                roleManager.Create(role);
+            }
+
+            // creating Member School
+            if (!roleManager.RoleExists("Member_School"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Member_School";
+                roleManager.Create(role);
+            }
+
+            // creating Uncategorized
+            if (!roleManager.RoleExists("Uncategorized"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Uncategorized";
+                roleManager.Create(role);
+            }
+
         }
     }
 }
