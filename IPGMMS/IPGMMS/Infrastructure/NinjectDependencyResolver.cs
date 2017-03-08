@@ -1,6 +1,11 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.DAL;
 using IPGMMS.DAL.Repositories;
+using IPGMMS.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Ninject;
 using Ninject.Web.Common;
 using System;
@@ -33,8 +38,12 @@ namespace IPGMMS.Infrastructure
 
         private void AddBindings()
         {
+            // Binding for the dbContexts
             kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
 
+            // Binding for repositories
+            kernel.Bind<IAccountRepository>().To<EFAccountRepository>().InRequestScope();
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>().InRequestScope();
             kernel.Bind<IPortalRepository>().To<EFPortalRepository>().InRequestScope();
         }
