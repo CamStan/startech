@@ -9,49 +9,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
+using IPGMMS.Abstract;
 
 namespace IPGMMS.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : MController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        ApplicationDbContext context;
+        private IAccountRepository repo;
 
-        public AccountController()
+        public AccountController(IAccountRepository accountRepo)
         {
-            context = new ApplicationDbContext();    
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            repo = accountRepo;
         }
 
         //
@@ -141,7 +110,7 @@ namespace IPGMMS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
             return View();
         }
 
@@ -172,7 +141,7 @@ namespace IPGMMS.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
+                ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
                 AddErrors(result);
             }
 
@@ -409,26 +378,6 @@ namespace IPGMMS.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
         }
 
         #region Helpers

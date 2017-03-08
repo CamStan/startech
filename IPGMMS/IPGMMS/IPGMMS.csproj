@@ -189,6 +189,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAccountRepository.cs" />
     <Compile Include="Abstract\IMemberRepository.cs" />
     <Compile Include="Abstract\IPortalRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -200,8 +201,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
+    <Compile Include="DAL\Repositories\EFAccountRepository.cs" />
     <Compile Include="DAL\Repositories\EFMemberRepository.cs" />
     <Compile Include="DAL\Repositories\EFPortalRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -272,7 +275,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -314,7 +319,9 @@
     <Content Include="Views\Portal\Index.cshtml" />
     <Content Include="Views\Portal\ListMembers.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\M\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
