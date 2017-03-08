@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace IPGMMS.Controllers
 {
     //[Authorize(Roles = "Admin")]
-    public class PortalController : Controller
+    public class PortalController : MController
     {
         private IPortalRepository repo;
 
@@ -26,8 +26,6 @@ namespace IPGMMS.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = User.Identity;
-                ApplicationDbContext context = new ApplicationDbContext();
-                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = UserManager.GetRoles(user.GetUserId());
                 if (s[0].ToString() == "Admin")
                 {

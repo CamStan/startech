@@ -38,20 +38,6 @@ namespace IPGMMS.Infrastructure
 
         private void AddBindings()
         {
-            // Here to binding ApplicationUserManager is to allow for DI of UserManagaer and SignInManager
-            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
-            kernel.Bind<UserManager<ApplicationUser>>().ToSelf();
-
-            kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
-
-            kernel.Bind<ApplicationSignInManager>().ToMethod((context) =>
-            {
-                var cbase = new HttpContextWrapper(HttpContext.Current);
-                return cbase.GetOwinContext().Get<ApplicationSignInManager>();
-            });
-
-            kernel.Bind<ApplicationUserManager>().ToSelf();
-
             // Binding for the dbContexts
             kernel.Bind<IPGMMS_Context>().ToSelf().InRequestScope();
             kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();

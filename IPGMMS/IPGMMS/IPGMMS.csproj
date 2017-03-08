@@ -201,6 +201,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="DAL\Repositories\EFAccountRepository.cs" />
@@ -317,7 +318,9 @@
     <Content Include="Views\Shared\_AdminNav.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\M\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
