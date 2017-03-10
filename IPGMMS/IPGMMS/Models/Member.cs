@@ -13,7 +13,6 @@ namespace IPGMMS.Models
         {
             Contacts = new HashSet<Contact>();
             MemberCertifications = new HashSet<MemberCertification>();
-            UserNameBridges = new HashSet<UserNameBridge>();
         }
 
         public int ID { get; set; }
@@ -50,6 +49,9 @@ namespace IPGMMS.Models
         [StringLength(256)]
         public string Website { get; set; }
 
+        [StringLength(128)]
+        public string Identity_ID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts { get; set; }
 
@@ -57,8 +59,5 @@ namespace IPGMMS.Models
         public virtual ICollection<MemberCertification> MemberCertifications { get; set; }
 
         public virtual MemberLevel MemberLevel1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserNameBridge> UserNameBridges { get; set; }
     }
 }

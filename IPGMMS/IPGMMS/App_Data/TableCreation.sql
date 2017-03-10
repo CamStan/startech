@@ -1,8 +1,4 @@
-﻿IF OBJECT_ID('dbo.UserNameBridges','U') IS NOT NULL
-	DROP TABLE [dbo].[UserNameBridges];
-GO
-
-IF OBJECT_ID('AspNetUserRoles','U') IS NOT NULL
+﻿IF OBJECT_ID('AspNetUserRoles','U') IS NOT NULL
 	DROP TABLE [dbo].[AspNetUserRoles];
 GO
 
@@ -120,17 +116,6 @@ CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[AspNetUserRoles]([UserId] ASC);
 GO
 CREATE NONCLUSTERED INDEX [IX_RoleId] ON [dbo].[AspNetUserRoles]([RoleId] ASC);
 
--- ############# __MigrationHistory #############
---CREATE TABLE [dbo].[__MigrationHistory]
---(
---    [MigrationId]    NVARCHAR (150)  NOT NULL,
---    [ContextKey]     NVARCHAR (300)  NOT NULL,
---    [Model]          VARBINARY (MAX) NOT NULL,
---    [ProductVersion] NVARCHAR (32)   NOT NULL,
---    CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED ([MigrationId] ASC, [ContextKey] ASC)
---);
-
-
 -- ############# MemberLevels #############
 CREATE TABLE [dbo].[MemberLevels]
 (
@@ -168,7 +153,7 @@ CREATE TABLE [dbo].[Members]
     [LastName] NVARCHAR(50) NOT NULL, 
     [BusinessName] NVARCHAR(256) NULL, 
     [Website] NVARCHAR(256) NULL,
---	CONSTRAINT [FK_dbo.Members_dbo.AspNetUsers] FOREIGN KEY ([UserName]) REFERENCES [dbo].[AspNetUsers]([UserName]),
+	[Identity_ID] NVARCHAR(128),
 	CONSTRAINT [FK_dbo.Members_dbo.MemberLevels] FOREIGN KEY ([MemberLevel]) REFERENCES [dbo].[MemberLevels]([ID]),
 );
 
@@ -209,15 +194,4 @@ CREATE TABLE [dbo].[MemberCertifications]
 	CONSTRAINT [PK_dbo.MemberCertifications] PRIMARY KEY CLUSTERED ([ID] ASC),
 	CONSTRAINT [FK_dbo.MemberCertifications_dbo.Members)] FOREIGN KEY ([Member_ID]) REFERENCES [dbo].[Members]([ID]),
 	CONSTRAINT [FK_dbo.MemberCertifications_dbo.Certifcates] FOREIGN KEY ([Certificate_ID]) REFERENCES [dbo].[Certificates] ([ID])
-);
-
--- #############  Username Bridge #################
-CREATE TABLE [dbo].[UserNameBridges]
-(
-	[ID] INT IDENTITY (1,1) NOT NULL,
-	[Member_ID] INT NOT NULL,
-	[AspNet_ID] NVARCHAR (128) NOT NULL,
-	CONSTRAINT [PK_UserNameBridge] PRIMARY KEY ([ID]),
-	CONSTRAINT [FK_dbo.UserNameBridge_dbo.AspNetUsers] FOREIGN KEY ([AspNet_ID]) REFERENCES [dbo].[AspNetUsers]([ID]),
-	CONSTRAINT [FK_dbo.UserNameBridge_dbo.Members] FOREIGN KEY ([Member_ID]) REFERENCES [dbo].[Members]([ID])
 );

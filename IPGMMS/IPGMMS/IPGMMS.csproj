@@ -212,10 +212,6 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Identity\AspNetRole.cs" />
-    <Compile Include="Models\Identity\AspNetUser.cs" />
-    <Compile Include="Models\Identity\AspNetUserClaim.cs" />
-    <Compile Include="Models\Identity\AspNetUserLogin.cs" />
     <Compile Include="Models\Certificate.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactInfo.cs" />
@@ -227,7 +223,6 @@
     <Compile Include="Models\MemberCertification.cs" />
     <Compile Include="Models\MemberLevel.cs" />
     <Compile Include="Models\Partials\Member.Meta.cs" />
-    <Compile Include="Models\UserNameBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -318,9 +313,7 @@
     <Content Include="Views\Shared\_AdminNav.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\M\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
