@@ -192,6 +192,7 @@
     <Compile Include="Abstract\IAccountRepository.cs" />
     <Compile Include="Abstract\IMemberRepository.cs" />
     <Compile Include="Abstract\IPortalRepository.cs" />
+    <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

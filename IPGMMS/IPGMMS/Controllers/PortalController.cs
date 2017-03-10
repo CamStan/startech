@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace IPGMMS.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [AdminAuthorize(Roles = "Admin")]
     public class PortalController : MController
     {
         private IMemberRepository memberRepo;
@@ -25,43 +25,43 @@ namespace IPGMMS.Controllers
         
 
         //Check if admin
-        public Boolean isAdminUser()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = User.Identity;
-                var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return false;
-        }
+        //public Boolean isAdminUser()
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        var user = User.Identity;
+        //        var s = UserManager.GetRoles(user.GetUserId());
+        //        if (s[0].ToString() == "Admin")
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         // GET: Portal
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
+            //if (User.Identity.IsAuthenticated)
+            //{
                 var user = User.Identity;
                 ViewBag.Name = user.Name;
-                ViewBag.displayAdmin = "No";
+                //ViewBag.displayAdmin = "No";
 
-                if (isAdminUser())
-                {
-                    ViewBag.displayAdmin = "Yes";
-                }
-                return View();
-            }
-            else
-            {
-                ViewBag.Name = "Not Logged In";
-            }
+            //    if (isAdminUser())
+            //    {
+            //        ViewBag.displayAdmin = "Yes";
+            //    }
+            //    return View();
+            //}
+            //else
+            //{
+            //    ViewBag.Name = "Not Logged In";
+            //}
             return View();
         }
 
