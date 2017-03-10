@@ -14,16 +14,18 @@
         Links go here, these not in order. Will need to touch up once links are established.
     </p>
     <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About IPG", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact IPG", "Contact", "Home")</li>
-        <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
-        <li>@Html.ActionLink("Members", "Index", "Member")</li>
-        <li>For future links</li>
-        <li>Yupe, you guessed it.</li>
-        <li>Another one</li>
-        <li>And another</li>
-        <li>And another</li>
+        
+        <li>@Ajax.ActionLink(
+            "List All Members",
+            "ListMembers",
+            "Portal",
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame"
+            })
+        </li>
         <li>Hi</li>
     </ul>
 </div>
