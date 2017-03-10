@@ -13,12 +13,16 @@ namespace IPGMMS.Controllers
     //[Authorize(Roles = "Admin")]
     public class PortalController : MController
     {
-        private IPortalRepository repo;
+        private IMemberRepository memberRepo;
+        private IPortalRepository portalRepo;
 
-        public PortalController(IPortalRepository portalRepo)
+        public PortalController(IPortalRepository pRepo, IMemberRepository mRepo)
         {
-            repo = portalRepo;
+            portalRepo = pRepo;
+            memberRepo = mRepo;
         }
+
+        
 
         //Check if admin
         public Boolean isAdminUser()
@@ -64,32 +68,53 @@ namespace IPGMMS.Controllers
 
         public ActionResult ListMembers()
         {
-            return View();
+            var members = memberRepo.GetAllMembers;
+            return PartialView("_ListMembers",members);
+        }
+
+        public ActionResult DetailMember()
+        {
+            return PartialView("_DetailMember");
         }
 
         public ActionResult AddMember()
         {
-            return View();
+            return PartialView("_AddMember");
+        }
+
+        public ActionResult UpdateMember()
+        {
+            return PartialView("_UpdateMember");
         }
 
         public ActionResult ListTests()
         {
-            return View();
+            return PartialView("_ListTests");
         }
 
         public ActionResult AddTest()
         {
-            return View();
+            return PartialView("_AddTest");
         }
 
         public ActionResult ListCertifications()
         {
-            return View();
+            return PartialView("_ListCertifications");
+        }
+
+        public ActionResult DetailCertification()
+        {
+            return PartialView("_DetailCertification");
         }
 
         public ActionResult AddCertification()
         {
-            return View();
+            return PartialView("_AddCertification");
+        }
+
+        public ActionResult UpdateCertification()
+        {
+            return PartialView("_UpdateCertification");
         }
     }
 }

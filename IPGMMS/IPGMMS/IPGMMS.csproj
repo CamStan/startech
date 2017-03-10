@@ -265,6 +265,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -317,7 +319,16 @@
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Shared\_AdminNav.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
-    <Content Include="Views\Portal\ListMembers.cshtml" />
+    <Content Include="Views\Portal\_AddMember.cshtml" />
+    <Content Include="Views\Portal\_ListMembers.cshtml" />
+    <Content Include="Views\Portal\_ListTests.cshtml" />
+    <Content Include="Views\Portal\_AddTest.cshtml" />
+    <Content Include="Views\Portal\_ListCertifications.cshtml" />
+    <Content Include="Views\Portal\_UpdateCertification.cshtml" />
+    <Content Include="Views\Portal\_AddCertification.cshtml" />
+    <Content Include="Views\Portal\_DetailCertification.cshtml" />
+    <Content Include="Views\Portal\_DetailMember.cshtml" />
+    <Content Include="Views\Portal\_UpdateMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\M\" />
