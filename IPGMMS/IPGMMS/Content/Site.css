@@ -38,3 +38,34 @@ img {
     height: auto;
     max-width: 100%;
 }
+/*Site headings and such*/
+@font-face {
+    font-family: 'Palanquin';
+    src: url(../fonts/palanquin-regular.ttf);
+}
+@font-face{
+    font-family:'League Gothic';
+    src: url(../fonts/LeagueGothic-Regular.otf);
+}
+
+h1{
+    font-family:'League Gothic';
+    font-size: 48px;
+}
+h2{
+    font-family:'League Gothic';
+    font-size: 36px;
+}
+h3{
+    font-family:League Gothic;
+    font-size:28px;
+}
+
+h4{
+    font-family:Palanquin;
+    font-size: 22px;
+}
+p,body{
+    font-family:Palanquin;
+    font-size:18px;
+}
