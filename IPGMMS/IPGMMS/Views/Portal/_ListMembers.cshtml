@@ -1,36 +1,148 @@
 ﻿@model IEnumerable<IPGMMS.Models.Member>
 
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MemberLevel1.MLevel)
+            @{ var memlvl = @Html.DisplayNameFor(model => model.MemberLevel1.MLevel).ToString();}
+            @Ajax.ActionLink(
+            memlvl,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.mem_lvl },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @{ var userName = @Html.DisplayNameFor(model => model.UserName).ToString();}
+            @Ajax.ActionLink(
+            userName,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.userName },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
+            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Membership_Number)
+            @{ var mem_num = @Html.DisplayNameFor(model => model.Membership_Number).ToString();}
+            @Ajax.ActionLink(
+            mem_num,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.mem_num },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Membership_SignupDate)
+            @{ var date_start = @Html.DisplayNameFor(model => model.Membership_SignupDate).ToString();}
+            @Ajax.ActionLink(
+            date_start,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.date_start },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Membership_ExpirationDate)
+            @{ var date_end = @Html.DisplayNameFor(model => model.Membership_ExpirationDate).ToString();}
+            @Ajax.ActionLink(
+            date_end,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.date_end },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @{ var f_name = @Html.DisplayNameFor(model => model.FirstName).ToString();}
+            @Ajax.ActionLink(
+            f_name,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.f_name },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MiddleName)
+            @{ var m_name = @Html.DisplayNameFor(model => model.MiddleName).ToString();}
+            @Ajax.ActionLink(
+            m_name,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.m_name },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @{ var l_name = @Html.DisplayNameFor(model => model.LastName).ToString();}
+            @Ajax.ActionLink(
+            l_name,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.lName },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BusinessName)
+            @{ var b_name = @Html.DisplayNameFor(model => model.BusinessName).ToString();}
+            @Ajax.ActionLink(
+            b_name,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.b_name },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Website)
+            @{ var website = @Html.DisplayNameFor(model => model.Website).ToString();}
+            @Ajax.ActionLink(
+            website,
+            "ListMembers",
+            "Portal",
+            new { sortOrder = ViewBag.website },
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "CenterPartialUpdateFrame",
+            })
         </th>
         <th></th>
     </tr>
