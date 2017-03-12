@@ -11,6 +11,36 @@ div.left-navbar ul li {
     padding-bottom: 5px
 }
 
+.navbar-fixed-left {
+  width: 140px;
+  position: fixed;
+  border-radius: 0;
+  /*height: 100%;*/
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none; 
+  width: 139px;
+  text-align: center;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 160px;  
+}
+
+.navbar-fixed-left .navbar-brand {
+    margin-bottom: 20px;
+}
+
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 140px;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
 div.map {
     padding: 20px;
 }
