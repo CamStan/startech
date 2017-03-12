@@ -11,10 +11,10 @@
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="row col-md-3">
-                <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
-            </div>
-            <h1 class="row col-md-9">International Professional Groomers, Inc<br /><small>Member Management System</small></h1>
+            @*<div class="row col-md-3">
+                    <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
+                </div>
+                <h1 class="row col-md-9">International Professional Groomers, Inc<br /><small>Member Management System</small></h1>*@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -37,6 +37,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+    </div>
+    <div>
         <footer>
             <p>&copy; @DateTime.Now.Year - StarTech Application</p>
             <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />

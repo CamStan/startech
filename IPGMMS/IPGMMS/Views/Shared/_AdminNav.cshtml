@@ -2,30 +2,55 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<br>
-<br>
-
-<div class="left-navbar">
-    <div class="topLogo">
-        <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
+<div class="navbar navbar-fixed-left">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
+        </a>
     </div>
-    <p>
-        Links go here, these not in order. Will need to touch up once links are established.
-    </p>
-    <ul>
-        
-        <li>@Ajax.ActionLink(
-            "List All Members",
-            "ListMembers",
-            "Portal",
-            new AjaxOptions
-            {
-                HttpMethod = "GET",
-                InsertionMode = InsertionMode.Replace,
-                UpdateTargetId = "CenterPartialUpdateFrame"
-            })
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members</a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    @Ajax.ActionLink(
+                    "View",
+                    "ListMembers",
+                    "Portal",
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "CenterPartialUpdateFrame"
+                    })
+                </li>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Update</a></li>
+            </ul>
         </li>
-        <li>Hi</li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tests</a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Update</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Certifications</a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Update</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Test Results</a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">View</a></li>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Update</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
