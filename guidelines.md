@@ -15,6 +15,8 @@
 ## Style ##
 
 * Use external CSS files (no in-line CSS)
+* Color scheme for this project includes the following colors:
+    * 
 
 ## Database ##
 

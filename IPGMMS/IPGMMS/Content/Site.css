@@ -47,25 +47,26 @@ img {
     font-family:'League Gothic';
     src: url(../fonts/LeagueGothic-Regular.otf);
 }
-
-h1{
+/*Set the font for the project and various headings*/
+h1,h2,h3{
     font-family:'League Gothic';
+}
+h4,p,body{
+    font-family:Palanquin;
+}
+/*Heading specific information such as size, color, etc*/
+h1{
     font-size: 48px;
 }
 h2{
-    font-family:'League Gothic';
     font-size: 36px;
 }
 h3{
-    font-family:League Gothic;
     font-size:28px;
 }
-
 h4{
-    font-family:Palanquin;
     font-size: 22px;
 }
 p,body{
-    font-family:Palanquin;
     font-size:18px;
 }
