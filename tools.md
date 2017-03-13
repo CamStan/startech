@@ -98,7 +98,7 @@ Version 13.0.1701.8
 14.0.61021.0  
 Microsoft SQL Server Data Tools
 
-### SQL Server Integration Services ### 
+### SQL Server Integration Services ###
 Microsoft SQL Server Integration Services Designer  
 Version 13.0.1601.5
 
@@ -214,6 +214,9 @@ Version: 3.2.3.0
 
 ### Owin ###
 Version: 1.0
+
+### PagedList.MVC ###
+Version 4.5.0
 
 ### Respond ###
 Version: 1.4.2

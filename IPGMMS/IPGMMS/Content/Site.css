@@ -17,7 +17,7 @@
 }
 
 .navbar {
-    background: -webkit-linear-gradient(#ecf4f8, #b3d3ef);
+    background: -webkit-linear-gradient(rgb(84,161,196), rgb(211,231,240));
 }
 
 .navbar h1 {
