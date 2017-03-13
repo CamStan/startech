@@ -35,17 +35,20 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="row col-md-1"></div>
+    <div class="row col-md-2"> 
+        @Html.Partial("_LeftNav")
+    </div>
+    <div class="row col-md-1"></div>
+    <div class="row col-md-9">
         @RenderBody()
         <hr />
     </div>
-    <div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - StarTech Application</p>
-            <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
-        </footer>
-    </div>
-
+    <footer>
+        <p>&copy; @DateTime.Now.Year - StarTech Application</p>
+        <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
+    </footer>
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
