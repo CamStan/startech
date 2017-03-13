@@ -37,15 +37,13 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+    </div>
+    <footer>
         <hr />
-    </div>
-    <div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - StarTech Application</p>
-            <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
-        </footer>
-    </div>
-
+        <p>&copy; @DateTime.Now.Year - StarTech Application</p>
+        <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
+    </footer>
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
