@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace IPGMMS.Controllers
 {
@@ -66,10 +67,20 @@ namespace IPGMMS.Controllers
         }
 
 
-        public ActionResult ListMembers(string sortOrder)
+        public ActionResult ListMembers(string sortOrder, int? page, string searchString)
         {
             
             var members = memberRepo.GetAllMembers;
+
+            //This section is to check the search string and return a member list that
+            //has only the information that was searched for 
+            //Credit for filtering and some paging code goes to: 
+            //docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                members = members.Where(s => s.LastName.ToLower().Contains(searchString.ToLower())
+                                       || s.FirstName.ToLower().Contains(searchString.ToLower()));
+            }
 
             // Viewbag variables to keep track of which way to sort. 
             // It will switch the stored variable so it will use the other
@@ -149,7 +160,11 @@ namespace IPGMMS.Controllers
                     members = members.OrderByDescending(m => m.LastName);
                     break;
             }
-            return PartialView("_ListMembers",members);
+
+            int pageSize = 5; //the number of items that can appear on each page.
+            int startPage = (page ?? 1);
+
+            return PartialView("_ListMembers", members.ToList().ToPagedList(startPage,pageSize));
         }
 
         public ActionResult DetailMember()

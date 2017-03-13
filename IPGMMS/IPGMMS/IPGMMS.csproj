@@ -77,6 +77,14 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -241,8 +249,10 @@
     <Content Include="Content\Images\IPGLogo.jpg" />
     <Content Include="Content\Images\IPGLogo2.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\SIL Open Font License.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -253,6 +263,21 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\palanquin-bold.ttf" />
+    <Content Include="fonts\palanquin-extralight.ttf" />
+    <Content Include="fonts\palanquin-light.ttf" />
+    <Content Include="fonts\palanquin-medium.ttf" />
+    <Content Include="fonts\palanquin-regular.ttf" />
+    <Content Include="fonts\palanquin-semibold.ttf" />
+    <Content Include="fonts\palanquin-thin.ttf" />
+    <Content Include="fonts\palanquindark-bold.ttf" />
+    <Content Include="fonts\palanquindark-medium.ttf" />
+    <Content Include="fonts\palanquindark-regular.ttf" />
+    <Content Include="fonts\palanquindark-semibold.ttf" />
+    <Content Include="fonts\LeagueGothic-CondensedItalic.otf" />
+    <Content Include="fonts\LeagueGothic-CondensedRegular.otf" />
+    <Content Include="fonts\LeagueGothic-Italic.otf" />
+    <Content Include="fonts\LeagueGothic-Regular.otf" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

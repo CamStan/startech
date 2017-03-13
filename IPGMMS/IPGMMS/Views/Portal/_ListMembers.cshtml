@@ -1,10 +1,27 @@
-﻿@model IEnumerable<IPGMMS.Models.Member>
+﻿@model PagedList.IPagedList<IPGMMS.Models.Member>
+@using PagedList.Mvc
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@using (Ajax.BeginForm("ListMembers", "Portal", FormMethod.Post,
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "CenterPartialUpdateFrame"
+                        }))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 
 <table class="table">
     <tr>
         <th>
-            @{ var memlvl = @Html.DisplayNameFor(model => model.MemberLevel1.MLevel).ToString();}
+            @{ var memlvl = @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel).ToString();}
             @Ajax.ActionLink(
             memlvl,
             "ListMembers",
@@ -18,7 +35,7 @@
             })
         </th>
         <th>
-            @{ var userName = @Html.DisplayNameFor(model => model.UserName).ToString();}
+            @{ var userName = @Html.DisplayNameFor(model => model.FirstOrDefault().UserName).ToString();}
             @Ajax.ActionLink(
             userName,
             "ListMembers",
@@ -33,7 +50,7 @@
             
         </th>
         <th>
-            @{ var mem_num = @Html.DisplayNameFor(model => model.Membership_Number).ToString();}
+            @{ var mem_num = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number).ToString();}
             @Ajax.ActionLink(
             mem_num,
             "ListMembers",
@@ -47,7 +64,7 @@
             })
         </th>
         <th>
-            @{ var date_start = @Html.DisplayNameFor(model => model.Membership_SignupDate).ToString();}
+            @{ var date_start = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_SignupDate).ToString();}
             @Ajax.ActionLink(
             date_start,
             "ListMembers",
@@ -61,7 +78,7 @@
             })
         </th>
         <th>
-            @{ var date_end = @Html.DisplayNameFor(model => model.Membership_ExpirationDate).ToString();}
+            @{ var date_end = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_ExpirationDate).ToString();}
             @Ajax.ActionLink(
             date_end,
             "ListMembers",
@@ -75,7 +92,7 @@
             })
         </th>
         <th>
-            @{ var f_name = @Html.DisplayNameFor(model => model.FirstName).ToString();}
+            @{ var f_name = @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName).ToString();}
             @Ajax.ActionLink(
             f_name,
             "ListMembers",
@@ -89,7 +106,7 @@
             })
         </th>
         <th>
-            @{ var m_name = @Html.DisplayNameFor(model => model.MiddleName).ToString();}
+            @{ var m_name = @Html.DisplayNameFor(model => model.FirstOrDefault().MiddleName).ToString();}
             @Ajax.ActionLink(
             m_name,
             "ListMembers",
@@ -103,7 +120,7 @@
             })
         </th>
         <th>
-            @{ var l_name = @Html.DisplayNameFor(model => model.LastName).ToString();}
+            @{ var l_name = @Html.DisplayNameFor(model => model.FirstOrDefault().LastName).ToString();}
             @Ajax.ActionLink(
             l_name,
             "ListMembers",
@@ -117,7 +134,7 @@
             })
         </th>
         <th>
-            @{ var b_name = @Html.DisplayNameFor(model => model.BusinessName).ToString();}
+            @{ var b_name = @Html.DisplayNameFor(model => model.FirstOrDefault().BusinessName).ToString();}
             @Ajax.ActionLink(
             b_name,
             "ListMembers",
@@ -131,7 +148,7 @@
             })
         </th>
         <th>
-            @{ var website = @Html.DisplayNameFor(model => model.Website).ToString();}
+            @{ var website = @Html.DisplayNameFor(model => model.FirstOrDefault().Website).ToString();}
             @Ajax.ActionLink(
             website,
             "ListMembers",
@@ -186,5 +203,10 @@
         </td>
     </tr>
 }
-
 </table>
+<div>
+    Page @(Model.PageNumber < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ListMembers", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.currentFilter}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "CenterPartialUpdateFrame" }))
+</div>

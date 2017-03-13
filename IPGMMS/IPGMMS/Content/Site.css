@@ -17,7 +17,7 @@
 }
 
 .navbar {
-    background: -webkit-linear-gradient(#ecf4f8, #b3d3ef);
+    background: -webkit-linear-gradient(rgb(84,161,196), rgb(211,231,240));
 }
 
 .navbar h1 {
@@ -37,4 +37,36 @@ img {
     margin: 0 auto;
     height: auto;
     max-width: 100%;
+}
+/*Site headings and such*/
+@font-face {
+    font-family: 'Palanquin';
+    src: url(../fonts/palanquin-regular.ttf);
+}
+@font-face{
+    font-family:'League Gothic';
+    src: url(../fonts/LeagueGothic-Regular.otf);
+}
+/*Set the font for the project and various headings*/
+h1,h2,h3{
+    font-family:'League Gothic';
+}
+h4,p,body{
+    font-family:Palanquin;
+}
+/*Heading specific information such as size, color, etc*/
+h1{
+    font-size: 48px;
+}
+h2{
+    font-size: 36px;
+}
+h3{
+    font-size:28px;
+}
+h4{
+    font-size: 22px;
+}
+p,body{
+    font-size:18px;
 }
