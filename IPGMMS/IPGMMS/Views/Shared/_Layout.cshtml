@@ -35,16 +35,11 @@
             </div>
         </div>
     </div>
-    <div class="row col-md-1"></div>
-    <div class="row col-md-2"> 
-        @Html.Partial("_LeftNav")
-    </div>
-    <div class="row col-md-1"></div>
-    <div class="row col-md-9">
+    <div class="container body-content">
         @RenderBody()
-        <hr />
     </div>
     <footer>
+        <hr />
         <p>&copy; @DateTime.Now.Year - StarTech Application</p>
         <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
     </footer>
