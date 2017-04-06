@@ -1,7 +1,6 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace IPGMMS.Models
 {
@@ -10,7 +9,7 @@ namespace IPGMMS.Models
         public Member MemberInfo { get; set; }
         public ContactInfo MailingInfo { get; set; }
         public ContactInfo ListingInfo { get; set; }
-        public MemberLevel Levels { get; set; }
+        public IEnumerable<SelectListItem> Levels { get; set; }
 
     }
 }

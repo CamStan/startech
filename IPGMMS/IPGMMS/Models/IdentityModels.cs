@@ -31,5 +31,7 @@ namespace IPGMMS.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<IPGMMS.Models.Member> Members { get; set; }
     }
 }
