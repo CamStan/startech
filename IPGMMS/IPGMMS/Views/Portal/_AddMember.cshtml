@@ -101,9 +101,9 @@
         <h4>Mailing Contact Info</h4>
         <hr />
         <div class="form-group">
-            @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md=10">
-                @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttrbutes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttrbutes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MailingInfo.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -151,7 +151,10 @@
 
         <h4>Listing Contact Info</h4>
         <hr />
-        <div>Use mailing info for listing info?: <input type="checkbox" id="trigger" /></div>
+        <div>
+            Use mailing info for listing info?
+            <input type="checkbox" id="trigger" />
+        </div>
         <br />
         <div id="hidden_form">
             <div class="form-group">
@@ -206,13 +209,23 @@
             $(function () {
                 var checkbox = $("#trigger");
                 var hidden = $("#hidden_form");
-                hidden.hide();
+                //hidden.hide();
 
                 checkbox.change(function () {
                     if (checkbox.is(':checked')) {
-                        hidden.show();
+                        document.getElementById("ListingInfo_Email").value = document.getElementById("MailingInfo_Email").value;
+                        document.getElementById("ListingInfo_PhoneNumber").value = document.getElementById("MailingInfo_PhoneNumber").value;
+                        document.getElementById("ListingInfo_StreetAddress").value = document.getElementById("MailingInfo_StreetAddress").value;
+                        document.getElementById("ListingInfo_City").value = document.getElementById("MailingInfo_City").value;
+                        document.getElementById("ListingInfo_StateName").value = document.getElementById("MailingInfo_StateName").value;
+                        document.getElementById("ListingInfo_PostalCode").value = document.getElementById("MailingInfo_PostalCode").value;
                     } else {
-                        hidden.hide();
+                        document.getElementById("ListingInfo_Email").value = "";
+                        document.getElementById("ListingInfo_PhoneNumber").value = "";
+                        document.getElementById("ListingInfo_StreetAddress").value = "";
+                        document.getElementById("ListingInfo_City").value = "";
+                        document.getElementById("ListingInfo_StateName").value = "";
+                        document.getElementById("ListingInfo_PostalCode").value = "";
                     }
                 });
             });
