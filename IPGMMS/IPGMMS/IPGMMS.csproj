@@ -250,6 +250,7 @@
     <Content Include="Content\Images\IPGLogo2.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PortalCSS.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\SIL Open Font License.txt" />
@@ -350,6 +351,7 @@
     <Content Include="Views\Portal\_DetailCertification.cshtml" />
     <Content Include="Views\Portal\_DetailMember.cshtml" />
     <Content Include="Views\Portal\_UpdateMember.cshtml" />
+    <Content Include="Views\Shared\_PortalLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
