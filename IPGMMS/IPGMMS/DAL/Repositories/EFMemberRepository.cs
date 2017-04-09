@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using IPGMMS.Models;
 using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace IPGMMS.DAL.Repositories
 {
@@ -56,7 +57,7 @@ namespace IPGMMS.DAL.Repositories
                 db.Entry(member).State = EntityState.Modified;
             }
         }
-        
+
         /// <summary>
         /// Changes the entity state of the Member with the input ID to being deleted.
         /// Save() must be called to make this change take effect.
@@ -77,5 +78,29 @@ namespace IPGMMS.DAL.Repositories
         }
 
         // Add other functionalities pertaining to Memebers here
+
+        public IEnumerable<SelectListItem> GetLevels
+        {
+            get
+            {
+                var _levels = db.MemberLevels.Select(l => new SelectListItem
+                {
+                    Value = l.ID.ToString(),
+                    Text = l.MLevel
+                });
+
+                return DefaultLevel.Concat(_levels);
+            }
+        }
+        public IEnumerable<SelectListItem> DefaultLevel
+        {
+            get {
+                return Enumerable.Repeat(new SelectListItem
+                {
+                    Value = "-1",
+                    Text = "Select a level"
+                }, count: 1);
+            }
+        }
     }
 }
