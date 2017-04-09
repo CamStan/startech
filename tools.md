@@ -215,6 +215,9 @@ Version: 3.2.3.0
 ### Owin ###
 Version: 1.0
 
+### PagedList ###
+Version 1.17.0
+
 ### PagedList.MVC ###
 Version 4.5.0
 
