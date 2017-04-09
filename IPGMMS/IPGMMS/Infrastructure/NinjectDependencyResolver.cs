@@ -45,7 +45,7 @@ namespace IPGMMS.Infrastructure
             // Binding for repositories
             kernel.Bind<IAccountRepository>().To<EFAccountRepository>().InRequestScope();
             kernel.Bind<IMemberRepository>().To<EFMemberRepository>().InRequestScope();
-            kernel.Bind<IPortalRepository>().To<EFPortalRepository>().InRequestScope();
+            kernel.Bind<IContactRepository>().To<EFContactRepository>().InRequestScope();
         }
     }
 }

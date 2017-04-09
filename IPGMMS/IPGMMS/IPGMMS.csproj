@@ -198,8 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAccountRepository.cs" />
+    <Compile Include="Abstract\IContactRepository.cs" />
     <Compile Include="Abstract\IMemberRepository.cs" />
-    <Compile Include="Abstract\IPortalRepository.cs" />
     <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -214,8 +214,8 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="DAL\Repositories\EFAccountRepository.cs" />
+    <Compile Include="DAL\Repositories\EFContactRepository.cs" />
     <Compile Include="DAL\Repositories\EFMemberRepository.cs" />
-    <Compile Include="DAL\Repositories\EFPortalRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

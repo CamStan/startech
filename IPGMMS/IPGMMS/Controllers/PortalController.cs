@@ -17,12 +17,12 @@ namespace IPGMMS.Controllers
     public class PortalController : MController
     {
         private IMemberRepository memberRepo;
-        private IPortalRepository portalRepo;
+        private IContactRepository contactRepo;
 
-        public PortalController(IPortalRepository pRepo, IMemberRepository mRepo)
+        public PortalController(IMemberRepository mRepo, IContactRepository cRepo)
         {
-            portalRepo = pRepo;
             memberRepo = mRepo;
+            contactRepo = cRepo;
         }
 
 

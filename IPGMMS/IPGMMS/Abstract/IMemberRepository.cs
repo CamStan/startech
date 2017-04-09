@@ -11,6 +11,7 @@ namespace IPGMMS.Abstract
     {
         IEnumerable<Member> GetAllMembers { get; }
         IEnumerable<SelectListItem> GetLevels { get; }
+        Member CreateMember();
         Member Find(int? id);
         void InsertorUpdate(Member member);
         void Delete(int id);
