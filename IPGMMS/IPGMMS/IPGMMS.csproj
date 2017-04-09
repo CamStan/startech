@@ -230,7 +230,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
-    <Compile Include="Models\MemberCreate.cs" />
+    <Compile Include="ViewModels\MemberCreate.cs" />
     <Compile Include="Models\MemberLevel.cs" />
     <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,8 +1,9 @@
 ﻿
+using IPGMMS.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace IPGMMS.Models
+namespace IPGMMS.ViewModels
 {
     public class MemberCreate
     {

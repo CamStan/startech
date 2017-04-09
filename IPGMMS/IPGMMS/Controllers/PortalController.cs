@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
+using IPGMMS.ViewModels;
 
 namespace IPGMMS.Controllers
 {
