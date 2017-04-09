@@ -129,32 +129,32 @@ namespace IPGMMS.Controllers
 
         public ActionResult ListTests()
         {
-            return PartialView("_ListTests");
+            return PartialView("ListTests");
         }
 
         public ActionResult AddTest()
         {
-            return PartialView("_AddTest");
+            return PartialView("AddTest");
         }
 
         public ActionResult ListCertifications()
         {
-            return PartialView("_ListCertifications");
+            return PartialView("ListCertifications");
         }
 
         public ActionResult DetailCertification()
         {
-            return PartialView("_DetailCertification");
+            return View("DetailCertification");
         }
 
         public ActionResult AddCertification()
         {
-            return PartialView("_AddCertification");
+            return View("AddCertification");
         }
 
         public ActionResult UpdateCertification()
         {
-            return PartialView("_UpdateCertification");
+            return View("UpdateCertification");
         }
 
         // Two dictionaries, one for ascending, one for descending
