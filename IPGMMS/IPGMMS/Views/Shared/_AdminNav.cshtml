@@ -24,7 +24,18 @@
                         UpdateTargetId = "CenterPartialUpdateFrame"
                     })
                 </li>
-                <li><a href="#">Add</a></li>
+                <li>
+                    @Ajax.ActionLink(
+                   "Add",
+                   "AddMember",
+                   "Portal",
+                   new AjaxOptions
+                   {
+                       HttpMethod = "GET",
+                       InsertionMode = InsertionMode.Replace,
+                       UpdateTargetId = "CenterPartialUpdateFrame"
+                   })
+                </li>
                 <li><a href="#">Update</a></li>
             </ul>
         </li>

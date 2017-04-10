@@ -198,8 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAccountRepository.cs" />
+    <Compile Include="Abstract\IContactRepository.cs" />
     <Compile Include="Abstract\IMemberRepository.cs" />
-    <Compile Include="Abstract\IPortalRepository.cs" />
     <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -214,8 +214,8 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="DAL\Repositories\EFAccountRepository.cs" />
+    <Compile Include="DAL\Repositories\EFContactRepository.cs" />
     <Compile Include="DAL\Repositories\EFMemberRepository.cs" />
-    <Compile Include="DAL\Repositories\EFPortalRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +230,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
+    <Compile Include="Models\Partials\ContactInfo.Meta.cs" />
+    <Compile Include="ViewModels\MemberCreate.cs" />
     <Compile Include="Models\MemberLevel.cs" />
     <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +241,7 @@
     <Content Include="App_Data\auth.sql" />
     <Content Include="App_Data\tableCreation.sql" />
     <Content Include="App_Data\TableInserts.sql" />
+    <Content Include="Content\AdminPortalSharedLayout.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -250,6 +253,7 @@
     <Content Include="Content\Images\IPGLogo2.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\SIL Open Font License.txt" />
@@ -342,14 +346,15 @@
     <Content Include="Views\Portal\Index.cshtml" />
     <Content Include="Views\Portal\_AddMember.cshtml" />
     <Content Include="Views\Portal\_ListMembers.cshtml" />
-    <Content Include="Views\Portal\_ListTests.cshtml" />
-    <Content Include="Views\Portal\_AddTest.cshtml" />
-    <Content Include="Views\Portal\_ListCertifications.cshtml" />
-    <Content Include="Views\Portal\_UpdateCertification.cshtml" />
-    <Content Include="Views\Portal\_AddCertification.cshtml" />
-    <Content Include="Views\Portal\_DetailCertification.cshtml" />
     <Content Include="Views\Portal\_DetailMember.cshtml" />
     <Content Include="Views\Portal\_UpdateMember.cshtml" />
+    <Content Include="Views\Shared\_AdminPortalLayout.cshtml" />
+    <Content Include="Views\Portal\AddCertification.cshtml" />
+    <Content Include="Views\Portal\AddTest.cshtml" />
+    <Content Include="Views\Portal\DetailCertification.cshtml" />
+    <Content Include="Views\Portal\ListCertifications.cshtml" />
+    <Content Include="Views\Portal\ListTests.cshtml" />
+    <Content Include="Views\Portal\UpdateCertification.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

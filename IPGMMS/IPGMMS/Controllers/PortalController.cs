@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Diagnostics;
+using IPGMMS.ViewModels;
 
 namespace IPGMMS.Controllers
 {
@@ -15,54 +17,21 @@ namespace IPGMMS.Controllers
     public class PortalController : MController
     {
         private IMemberRepository memberRepo;
-        private IPortalRepository portalRepo;
+        private IContactRepository contactRepo;
 
-        public PortalController(IPortalRepository pRepo, IMemberRepository mRepo)
+        public PortalController(IMemberRepository mRepo, IContactRepository cRepo)
         {
-            portalRepo = pRepo;
             memberRepo = mRepo;
+            contactRepo = cRepo;
         }
 
-        
-
-        //Check if admin
-        //public Boolean isAdminUser()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var user = User.Identity;
-        //        var s = UserManager.GetRoles(user.GetUserId());
-        //        if (s[0].ToString() == "Admin")
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return false;
-        //}
 
         // GET: Portal
         public ActionResult Index()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
                 var user = User.Identity;
                 ViewBag.Name = user.Name;
-                //ViewBag.displayAdmin = "No";
 
-            //    if (isAdminUser())
-            //    {
-            //        ViewBag.displayAdmin = "Yes";
-            //    }
-            //    return View();
-            //}
-            //else
-            //{
-            //    ViewBag.Name = "Not Logged In";
-            //}
             return View();
         }
 
@@ -82,7 +51,6 @@ namespace IPGMMS.Controllers
                                        || s.FirstName.ToLower().Contains(searchString.ToLower()));
             }
 
-            // Viewbag variables to keep track of which way to sort. 
             // It will switch the stored variable so it will use the other
             // next time.
             ViewBag.lName = String.IsNullOrEmpty(sortOrder) ? "l_name" : "";
@@ -96,69 +64,29 @@ namespace IPGMMS.Controllers
             ViewBag.b_name = sortOrder == "b_name" ? "bname_desc" : "b_name";
             ViewBag.website = sortOrder == "website" ? "website_desc" : "website";
 
-            // Really large switch, probably longer than it should be for performance reasons.
-            switch (sortOrder)
+            // Initialize the variable that will become the sort option
+            Func<Member, object> sorting;
+
+            // Check each of the four dictionaries for sort params
+            // Dictionary is at the bottom of file
+            if (!String.IsNullOrEmpty(sortOrder))
             {
-                case "mem_lvl":
-                    members = members.OrderBy(m => m.MemberLevel1.MLevel);
-                    break;
-                case "lvl_desc":
-                    members = members.OrderByDescending(m => m.MemberLevel1.MLevel);
-                    break;
-                case "user_name":
-                    members = members.OrderBy(m => m.UserName);
-                    break;
-                case "username_desc":
-                    members = members.OrderByDescending(m => m.UserName);
-                    break;
-                case "mem_num":
-                    members = members.OrderBy(m => m.Membership_Number);
-                    break;
-                case "num_desc":
-                    members = members.OrderByDescending(m => m.Membership_Number);
-                    break;
-                case "date_start":
-                    members = members.OrderBy(m => m.Membership_SignupDate);
-                    break;
-                case "start_desc":
-                    members = members.OrderByDescending(m => m.Membership_SignupDate);
-                    break;
-                case "date_end":
-                    members = members.OrderBy(m => m.Membership_ExpirationDate);
-                    break;
-                case "end_desc":
-                    members = members.OrderByDescending(m => m.Membership_ExpirationDate);
-                    break;
-                case "f_name":
-                    members = members.OrderBy(m => m.FirstName);
-                    break;
-                case "fname_desc":
-                    members = members.OrderByDescending(m => m.FirstName);
-                    break;
-                case "m_name":
-                    members = members.OrderBy(m => m.MiddleName);
-                    break;
-                case "mname_desc":
-                    members = members.OrderByDescending(m => m.MiddleName);
-                    break;
-                case "l_name":
-                    members = members.OrderBy(m => m.LastName);
-                    break;
-                case "b_name":
-                    members = members.OrderBy(m => m.BusinessName);
-                    break;
-                case "bname_desc":
-                    members = members.OrderByDescending(m => m.BusinessName);
-                    break;
-                case "website":
-                    members = members.OrderBy(m => m.Website);
-                    break;
-                case "website_desc":
-                    members = members.OrderByDescending(m => m.Website);
-                    break;
-                default:
+                if (sortBy.TryGetValue(sortOrder, out sorting))
+                {
+                    members = members.OrderBy(sorting);
+                }
+                else if (sortByDesc.TryGetValue(sortOrder, out sorting))
+                {
+                    members = members.OrderByDescending(sorting);
+                }
+                else // Shouldn't need this but will catch any non-match
+                {
                     members = members.OrderByDescending(m => m.LastName);
-                    break;
+                }
+            }
+            else // Catch if sortOrder is null or empty
+            {
+                members = members.OrderByDescending(m => m.LastName);
             }
 
             int pageSize = 5; //the number of items that can appear on each page.
@@ -172,9 +100,26 @@ namespace IPGMMS.Controllers
             return PartialView("_DetailMember");
         }
 
+        // GET: Addmember()
         public ActionResult AddMember()
         {
-            return PartialView("_AddMember");
+            MemberCreate createMember = new MemberCreate();
+            createMember.Levels = memberRepo.GetLevels;
+            return PartialView("_AddMember", createMember);
+        }
+
+        // POST: AddMember()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddMember(MemberCreate infos)
+        {
+            if(ModelState.IsValid)
+            {
+                Debug.WriteLine("Says it's valid but not really");
+                return View("Index");
+            }
+            infos.Levels = memberRepo.GetLevels;
+            return PartialView("_AddMember", infos);
         }
 
         public ActionResult UpdateMember()
@@ -184,32 +129,61 @@ namespace IPGMMS.Controllers
 
         public ActionResult ListTests()
         {
-            return PartialView("_ListTests");
+            return PartialView("ListTests");
         }
 
         public ActionResult AddTest()
         {
-            return PartialView("_AddTest");
+            return PartialView("AddTest");
         }
 
         public ActionResult ListCertifications()
         {
-            return PartialView("_ListCertifications");
+            return PartialView("ListCertifications");
         }
 
         public ActionResult DetailCertification()
         {
-            return PartialView("_DetailCertification");
+            return View("DetailCertification");
         }
 
         public ActionResult AddCertification()
         {
-            return PartialView("_AddCertification");
+            return View("AddCertification");
         }
 
         public ActionResult UpdateCertification()
         {
-            return PartialView("_UpdateCertification");
+            return View("UpdateCertification");
         }
+
+        // Two dictionaries, one for ascending, one for descending
+        Dictionary<String, Func<Member, object>> sortBy = new Dictionary<String, Func<Member, object>>()
+            {
+                { "mem_lvl", m => m.MemberLevel1.MLevel },
+                { "user_name", m => m.UserName },
+                { "mem_num", m => m.Membership_Number },
+                { "date_start", m => m.Membership_SignupDate },
+                { "date_end", m => m.Membership_ExpirationDate },
+                { "f_name", m => m.FirstName },
+                { "m_name", m => m.MiddleName },
+                { "l_name", m => m.LastName },
+                { "b_name", m => m.BusinessName },
+                { "website", m => m.Website },
+            };
+
+        Dictionary<String, Func<Member, object>> sortByDesc = new Dictionary<String, Func<Member, object>>()
+            {
+                { "lvl_desc", m => m.MemberLevel1.MLevel },
+                { "username_desc", m => m.UserName },
+                { "num_desc", m => m.Membership_Number },
+                { "start_desc", m => m.Membership_SignupDate },
+                { "end_desc", m => m.Membership_ExpirationDate },
+                { "fname_desc", m => m.FirstName },
+                { "mname_desc", m => m.MiddleName },
+                { "lname_desc", m => m.LastName },
+                { "bname_desc", m => m.BusinessName },
+                { "website_desc", m => m.Website },
+            };
     }
 }

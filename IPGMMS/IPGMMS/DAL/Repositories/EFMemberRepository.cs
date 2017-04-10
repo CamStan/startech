@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using IPGMMS.Models;
 using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace IPGMMS.DAL.Repositories
 {
@@ -27,6 +28,15 @@ namespace IPGMMS.DAL.Repositories
         public IEnumerable<Member> GetAllMembers
         {
             get { return db.Members.Where(m => m.ID > 1).OrderBy(m => m.LastName).ToList(); }
+        }
+
+        /// <summary>
+        /// Creates a new member based on the EF Member model
+        /// </summary>
+        /// <returns>A new member based on the EF Member model</returns>
+        public Member CreateMember()
+        {
+            return db.Members.Create();
         }
 
         /// <summary>
@@ -56,7 +66,7 @@ namespace IPGMMS.DAL.Repositories
                 db.Entry(member).State = EntityState.Modified;
             }
         }
-        
+
         /// <summary>
         /// Changes the entity state of the Member with the input ID to being deleted.
         /// Save() must be called to make this change take effect.
@@ -114,5 +124,29 @@ namespace IPGMMS.DAL.Repositories
             return memberNum;
         }
         // Add other functionalities pertaining to Memebers here
+
+        public IEnumerable<SelectListItem> GetLevels
+        {
+            get
+            {
+                var _levels = db.MemberLevels.Select(l => new SelectListItem
+                {
+                    Value = l.ID.ToString(),
+                    Text = l.MLevel
+                });
+
+                return DefaultLevel.Concat(_levels);
+            }
+        }
+        public IEnumerable<SelectListItem> DefaultLevel
+        {
+            get {
+                return Enumerable.Repeat(new SelectListItem
+                {
+                    Value = "-1",
+                    Text = "Select a level"
+                }, count: 1);
+            }
+        }
     }
 }
