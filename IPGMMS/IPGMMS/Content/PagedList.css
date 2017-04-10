@@ -4,7 +4,7 @@
   margin: 20px 0;
   border-radius: 4px;
 }
-
+ 	
 .pagination > li {
   display: inline;
 }
@@ -50,8 +50,8 @@
   z-index: 2;
   color: #ffffff;
   cursor: default;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #000080;
+  border-color: #000080;
 }
 
 .pagination > .disabled > span,

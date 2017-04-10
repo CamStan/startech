@@ -1,22 +1,25 @@
 ﻿@model PagedList.IPagedList<IPGMMS.Models.Member>
 @using PagedList.Mvc
 
+@{
+    ViewBag.Title = "List Members";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @using (Ajax.BeginForm("ListMembers", "Portal", FormMethod.Post,
-                        new AjaxOptions
-                        {
-                            HttpMethod = "POST",
-                            InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "CenterPartialUpdateFrame"
-                        }))
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "CenterPartialUpdateFrame"
+                                    }))
 {
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Find by name: @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+</p>
 }
-
 
 <table class="table">
     <tr>
@@ -36,7 +39,8 @@
         </th>
         <th>
             @{ var userName = @Html.DisplayNameFor(model => model.FirstOrDefault().UserName).ToString();}
-            @Ajax.ActionLink(
+            @Html.ActionLink(userName,"ListMembers","Portal", new { sortOrder = ViewBag.userName}, null)
+            @*@Ajax.ActionLink(
             userName,
             "ListMembers",
             "Portal",
@@ -46,8 +50,8 @@
                 HttpMethod = "GET",
                 InsertionMode = InsertionMode.Replace,
                 UpdateTargetId = "CenterPartialUpdateFrame",
-            })
-            
+            })*@
+
         </th>
         <th>
             @{ var mem_num = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number).ToString();}
@@ -164,49 +168,50 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Membership_Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Membership_SignupDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MiddleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BusinessName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 </table>
 <div>
     Page @(Model.PageNumber < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("ListMembers", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.currentFilter}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+    @Html.PagedListPager(Model, page => Url.Action("ListMembers", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.currentFilter }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
         new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "CenterPartialUpdateFrame" }))
 </div>

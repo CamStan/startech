@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - IPG Admin Portal</title>
+    @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/w3.css")
     @Styles.Render("~/Content/AdminPortalSharedLayout.css")
     @Styles.Render("~/Content/Site.css")
@@ -32,8 +33,9 @@
                 <p>MEMBERS</p>
             </a>
             <div class="dropdown-content">
-                <a href="#">Add Member</a>
-                <a href="#">Update Member</a>
+                <a href="@Url.Action("AddMember", "Portal")">Add Member</a>
+                <a href="@Url.Action("UpdateMember","Portal")">Update Member</a>
+                <a href="@Url.Action("ListMembers","Portal")">Search Members</a>
             </div>
         </div>
         <div class="dropdown">
@@ -78,6 +80,11 @@
         </div>
     </div>
 
+    <!-- END PAGE CONTENT -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
     <!-- Page Content -->
     <div class="w3-padding-large" id="main">
@@ -92,11 +99,7 @@
         <!-- End footer -->
     </footer>
 
-    <!-- END PAGE CONTENT -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 
 </body>
 

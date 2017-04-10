@@ -92,12 +92,12 @@ namespace IPGMMS.Controllers
             int pageSize = 5; //the number of items that can appear on each page.
             int startPage = (page ?? 1);
 
-            return PartialView("_ListMembers", members.ToList().ToPagedList(startPage,pageSize));
+            return View("ListMembers", members.ToList().ToPagedList(startPage,pageSize));
         }
 
         public ActionResult DetailMember()
         {
-            return PartialView("_DetailMember");
+            return View("DetailMember");
         }
 
         // GET: Addmember()
@@ -124,22 +124,22 @@ namespace IPGMMS.Controllers
 
         public ActionResult UpdateMember()
         {
-            return PartialView("_UpdateMember");
+            return View("UpdateMember");
         }
 
         public ActionResult ListTests()
         {
-            return PartialView("ListTests");
+            return View("ListTests");
         }
 
         public ActionResult AddTest()
         {
-            return PartialView("AddTest");
+            return View("AddTest");
         }
 
         public ActionResult ListCertifications()
         {
-            return PartialView("ListCertifications");
+            return View("ListCertifications");
         }
 
         public ActionResult DetailCertification()

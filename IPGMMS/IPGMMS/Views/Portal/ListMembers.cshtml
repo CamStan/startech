@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<IPGMMS.Models.Member>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "List Members";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @{ var memlvl = @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel).ToString();}
+            @Html.ActionLink(memlvl, "ListMembers", "Portal", new { sortOrder = ViewBag.userName }, null)
+        </th>
+        <th>
+            @{ var userName = @Html.DisplayNameFor(model => model.FirstOrDefault().UserName).ToString();}
+            @Html.ActionLink(userName, "ListMembers", "Portal", new { sortOrder = ViewBag.userName }, null)
+        </th>
+        <th>
+            @{ var mem_num = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number).ToString();}
+            @Html.ActionLink(mem_num, "ListMembers", "Portal", new { sortOrder = ViewBag.mem_num }, null)
+        </th>
+        <th>
+            @{ var date_start = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_SignupDate).ToString();}
+            @Html.ActionLink(date_start, "ListMembers", "Portal", new { sortOrder = ViewBag.date_start }, null)
+        </th>
+        <th>
+            @{ var date_end = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_ExpirationDate).ToString();}
+            @Html.ActionLink(date_end, "ListMembers", "Portal", new { sortOrder = ViewBag.date_end }, null)
+        </th>
+        <th>
+            @{ var f_name = @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName).ToString();}
+            @Html.ActionLink(f_name, "ListMembers", "Portal", new { sortOrder = ViewBag.f_name }, null)
+        </th>
+        <th>
+            @{ var m_name = @Html.DisplayNameFor(model => model.FirstOrDefault().MiddleName).ToString();}
+            @Html.ActionLink(m_name, "ListMembers", "Portal", new { sortOrder = ViewBag.m_name }, null)
+        </th>
+        <th>
+            @{ var l_name = @Html.DisplayNameFor(model => model.FirstOrDefault().LastName).ToString();}
+            @Html.ActionLink(l_name, "ListMembers", "Portal", new { sortOrder = ViewBag.l_name }, null)
+        </th>
+        <th>
+            @{ var b_name = @Html.DisplayNameFor(model => model.FirstOrDefault().BusinessName).ToString();}
+            @Html.ActionLink(b_name, "ListMembers", "Portal", new { sortOrder = ViewBag.b_name }, null)
+        </th>
+        <th>
+            @{ var website = @Html.DisplayNameFor(model => model.FirstOrDefault().Website).ToString();}
+            @Html.ActionLink(website, "ListMembers", "Portal", new { sortOrder = ViewBag.website }, null)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+        </tr>
+    }
+</table>
+<div>
+
+    Page @(Model.PageNumber < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ListMembers",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
