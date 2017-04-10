@@ -75,7 +75,44 @@ namespace IPGMMS.DAL.Repositories
         {
             db.SaveChanges();
         }
+        /// <summary>
+        /// Takes in a member ID and returns the numeric code for the country in their contact table.
+        /// </summary>
+        /// <param name="id">The member primary key</param>
+        /// <returns>returns country id as a string</returns>
+        public string getCountry(int id)
+        {
+            //Fetch the country from the db
+            //assign country a number, potentially have a list using 2 digits
+            //make us a 1 and uk a 2 and aus a 3 etc etc....
+            return "0";
+        }
 
+        /// <summary>
+        /// Given a member, a new member number will be assigned and returned.
+        /// </summary>
+        /// <param name="memb">Object of type member</param>
+        /// <returns></returns>
+        public string setMemberNumber(Member memb)
+        {
+            if (memb == null)
+            {
+                return "0";
+            }
+            string country = getCountry(memb.ID);
+            Random rand = new Random();
+            bool cont = true;
+            int rnum = rand.Next(9);
+            string nextNum = "0000";
+            var mem = db.Members.Where(s => s.Membership_Number)
+            // Set nextNum to the next unused number from the db list.
+            string memberNum = country + nextNum + rnum;
+            
+
+            // save the member number to the member's entry in the db.
+            // Implement this later so we can check for bugs before then!
+            return memberNum;
+        }
         // Add other functionalities pertaining to Memebers here
     }
 }
