@@ -344,7 +344,7 @@
     <Content Include="Views\Member\Details.cshtml" />
     <Content Include="Views\Shared\_AdminNav.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
-    <Content Include="Views\Portal\_AddMember.cshtml" />
+    <Content Include="Views\Portal\AddMember.cshtml" />
     <Content Include="Views\Portal\AJAXListMembers.cshtml" />
     <Content Include="Views\Portal\DetailMember.cshtml" />
     <Content Include="Views\Portal\UpdateMember.cshtml" />
