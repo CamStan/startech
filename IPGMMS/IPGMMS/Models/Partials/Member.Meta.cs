@@ -28,7 +28,7 @@ namespace IPGMMS.Models
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_SignupDate;
 
-        [Display(Name = "Member Expiration Date")]
+        [Display(Name = "Member Exp. Date")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_ExpirationDate;
 
