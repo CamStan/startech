@@ -16,5 +16,6 @@ namespace IPGMMS.Abstract
         void InsertorUpdate(Member member);
         void Delete(int id);
         void Save();
+        string setMemberNumber(Member memb);
     }
 }
