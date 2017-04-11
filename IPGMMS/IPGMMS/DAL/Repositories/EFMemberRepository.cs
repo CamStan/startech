@@ -31,6 +31,15 @@ namespace IPGMMS.DAL.Repositories
         }
 
         /// <summary>
+        /// Creates a new member based on the EF Member model
+        /// </summary>
+        /// <returns>A new member based on the EF Member model</returns>
+        public Member CreateMember()
+        {
+            return db.Members.Create();
+        }
+
+        /// <summary>
         /// Finds the member entity with the input ID
         /// </summary>
         /// <param name="id">The ID of the member to find.</param>

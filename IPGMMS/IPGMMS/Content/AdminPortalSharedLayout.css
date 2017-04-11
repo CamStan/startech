@@ -8,6 +8,7 @@
     padding-right: 20px;
     text-align: right;
     overflow: visible;
+    z-index:200;
 }
 
 
@@ -18,16 +19,22 @@
     background-color: white;
     overflow: visible;
     padding-top: 20px;
+    border-right: solid;
+    border-right-color: grey;
+    border-right-width: 1px;
 }
 
 
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 
 #main {
-    margin-left: 120px;
+    margin-left: 145px;
     margin-top: 60px;
 }
 
+#mainFooter {
+    margin-left: 160px;
+}
 
 /* Dropdown content for top nav for user navigation*/
 

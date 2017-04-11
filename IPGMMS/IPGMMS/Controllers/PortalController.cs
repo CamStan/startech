@@ -17,12 +17,12 @@ namespace IPGMMS.Controllers
     public class PortalController : MController
     {
         private IMemberRepository memberRepo;
-        private IPortalRepository portalRepo;
+        private IContactRepository contactRepo;
 
-        public PortalController(IPortalRepository pRepo, IMemberRepository mRepo)
+        public PortalController(IMemberRepository mRepo, IContactRepository cRepo)
         {
-            portalRepo = pRepo;
             memberRepo = mRepo;
+            contactRepo = cRepo;
         }
 
 
@@ -105,7 +105,7 @@ namespace IPGMMS.Controllers
         {
             MemberCreate createMember = new MemberCreate();
             createMember.Levels = memberRepo.GetLevels;
-            return PartialView("_AddMember", createMember);
+            return PartialView("AddMember", createMember);
         }
 
         // POST: AddMember()
@@ -115,11 +115,11 @@ namespace IPGMMS.Controllers
         {
             if(ModelState.IsValid)
             {
-                Debug.WriteLine("Says it's valid but not really");
+                Debug.WriteLine("Says it's valid but not really, maybe");
                 return View("Index");
             }
             infos.Levels = memberRepo.GetLevels;
-            return PartialView("_AddMember", infos);
+            return PartialView("AddMember", infos);
         }
 
         public ActionResult UpdateMember()
