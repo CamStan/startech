@@ -36,7 +36,7 @@ namespace IPGMMS.Controllers
         }
 
 
-        public ActionResult ListMembers(string sortOrder, int? page, string searchString)
+        public ActionResult ListMembers(int? page, string sortOrder, string searchString)
         {
             
             var members = memberRepo.GetAllMembers;
