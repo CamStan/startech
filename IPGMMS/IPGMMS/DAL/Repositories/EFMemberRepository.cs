@@ -149,15 +149,17 @@ namespace IPGMMS.DAL.Repositories
             string num = lastMem.Substring(2, 5);
             int i = 0;
             bool success = Int32.TryParse(num, out i);
-            i = i * 10;
-            i += rnum;
-
-            string newNum = string.Format("{00000}", i);
-            string memberNum = country + i;
+            
             
             if (success)
             {
+                i = i * 10;
+                i += rnum;
 
+                string newNum = string.Format("{00000}", i);
+                string memberNum = country + i;
+                memb.Membership_Number = memberNum;
+                
                 // save the member number to the member's entry in the db.
                 // Implement this later so we can check for bugs before then!
             }
