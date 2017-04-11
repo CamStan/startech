@@ -137,6 +137,58 @@ namespace IPGMMS.Controllers
             return View("UpdateMember");
         }
 
+        // GET: UpdateMemberInfo()
+        public ActionResult UpdateMemberInfo(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+            var member = memberRepo.Find(memID);
+
+            return View(member);
+        }
+
+        // GET: UpdateMemberMailing()
+        public ActionResult UpdateMemberMailing(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+            
+            return View(contactRepo.MailingInfoFromMID(memID));
+        }
+
+        // POST: UpdateMemberMailing()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberMailing(ContactInfo info)
+        {
+            contactRepo.InsertorUpdate(info);
+            return View();
+        }
+
+        // GET: UpdateMemberListing()
+        public ActionResult UpdateMemberListing(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+
+            return View(contactRepo.ListingInfoFromMID(memID));
+        }
+
+        // POST: UpdateMemberListing()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberListing(ContactInfo info)
+        {
+            contactRepo.InsertorUpdate(info);
+            return View();
+        }
+
         public ActionResult ListTests()
         {
             return View("ListTests");
