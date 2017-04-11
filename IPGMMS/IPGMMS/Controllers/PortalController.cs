@@ -105,7 +105,7 @@ namespace IPGMMS.Controllers
         {
             MemberCreate createMember = new MemberCreate();
             createMember.Levels = memberRepo.GetLevels;
-            return PartialView("AddMember", createMember);
+            return View("AddMember", createMember);
         }
 
         // POST: AddMember()
@@ -113,18 +113,90 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddMember(MemberCreate infos)
         {
+            
             if(ModelState.IsValid)
             {
+                Member memb = infos.MemberInfo;
+                memb = memberRepo.InsertorUpdate(memb);
+                ContactInfo mail = infos.MailingInfo;
+                contactRepo.InsertorUpdate(mail);
+                contactRepo.LinkMailingContact(memb,mail);
+                ContactInfo list = infos.ListingInfo;
+                contactRepo.InsertorUpdate(list);
+                contactRepo.LinkListingContact(memb, list);
+
                 Debug.WriteLine("Says it's valid but not really, maybe");
                 return View("Index");
             }
             infos.Levels = memberRepo.GetLevels;
-            return PartialView("AddMember", infos);
+            return View("AddMember", infos);
         }
 
         public ActionResult UpdateMember()
         {
             return View("UpdateMember");
+        }
+
+        // GET: UpdateMemberInfo()
+        public ActionResult UpdateMemberInfo(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+            var member = memberRepo.Find(memID);
+
+            return View(member);
+        }
+
+        // POST: UpdateMemberInfo()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberInfo(Member memb)
+        {
+            memberRepo.InsertorUpdate(memb);
+
+            return View();
+        }
+
+        // GET: UpdateMemberMailing()
+        public ActionResult UpdateMemberMailing(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+            
+            return View(contactRepo.MailingInfoFromMID(memID));
+        }
+
+        // POST: UpdateMemberMailing()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberMailing(ContactInfo info)
+        {
+            contactRepo.InsertorUpdate(info);
+            return View();
+        }
+
+        // GET: UpdateMemberListing()
+        public ActionResult UpdateMemberListing(int? memID)
+        {
+            if (memID == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
+
+            return View(contactRepo.ListingInfoFromMID(memID));
+        }
+
+        // POST: UpdateMemberListing()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberListing(ContactInfo info)
+        {
+            contactRepo.InsertorUpdate(info);
+            return View();
         }
 
         public ActionResult ListTests()
