@@ -41,6 +41,30 @@ namespace IPGMMS.DAL.Repositories
         }
 
         /// <summary>
+        /// Find the Listing ContactInfo based on a member ID
+        /// </summary>
+        /// <param name="id">The ID of the member</param>
+        /// <returns>The ContactInfo object which is the listing info for the memberID provided</returns>
+        public ContactInfo ListingInfoFromMID(int? id)
+        {
+            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType.ContactType1 == "Listing").First().ContactInfo_ID;
+            var contInfo = Find(listID);
+            return contInfo;
+        }
+
+        /// <summary>
+        /// Find the Mailing ContactInfo based on a member ID
+        /// </summary>
+        /// <param name="id">The ID of the member</param>
+        /// <returns>The ContactInfo object which is the mailing info for the memberID provided</returns>
+        public ContactInfo MailingInfoFromMID(int? id)
+        {
+            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType.ContactType1 == "Mailing").First().ContactInfo_ID;
+            var contInfo = Find(listID);
+            return contInfo;
+        }
+
+        /// <summary>
         /// Inserts the input contactInfo into the database if it's a new object, else updates
         /// the entity already in the database. This method only changes the entity's state,
         /// thus the Save() method must be called to make the changes permanant.
@@ -56,6 +80,7 @@ namespace IPGMMS.DAL.Repositories
             {
                 db.Entry(contactInfo).State = EntityState.Modified;
             }
+            Save();
         }
 
         /// <summary>
