@@ -149,6 +149,16 @@ namespace IPGMMS.Controllers
             return View(member);
         }
 
+        // POST: UpdateMemberInfo()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMemberInfo(Member memb)
+        {
+            memberRepo.InsertorUpdate(memb);
+
+            return View();
+        }
+
         // GET: UpdateMemberMailing()
         public ActionResult UpdateMemberMailing(int? memID)
         {
