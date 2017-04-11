@@ -105,7 +105,7 @@ namespace IPGMMS.Controllers
         {
             MemberCreate createMember = new MemberCreate();
             createMember.Levels = memberRepo.GetLevels;
-            return PartialView("AddMember", createMember);
+            return View("AddMember", createMember);
         }
 
         // POST: AddMember()
@@ -113,13 +113,23 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddMember(MemberCreate infos)
         {
+            
             if(ModelState.IsValid)
             {
+                Member memb = infos.MemberInfo;
+                memb = memberRepo.InsertorUpdate(memb);
+                ContactInfo mail = infos.MailingInfo;
+                contactRepo.InsertorUpdate(mail);
+                contactRepo.LinkMailingContact(memb,mail);
+                ContactInfo list = infos.ListingInfo;
+                contactRepo.InsertorUpdate(list);
+                contactRepo.LinkListingContact(memb, list);
+
                 Debug.WriteLine("Says it's valid but not really, maybe");
                 return View("Index");
             }
             infos.Levels = memberRepo.GetLevels;
-            return PartialView("AddMember", infos);
+            return View("AddMember", infos);
         }
 
         public ActionResult UpdateMember()

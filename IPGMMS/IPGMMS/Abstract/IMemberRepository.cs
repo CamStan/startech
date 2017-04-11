@@ -13,7 +13,7 @@ namespace IPGMMS.Abstract
         IEnumerable<SelectListItem> GetLevels { get; }
         Member CreateMember();
         Member Find(int? id);
-        void InsertorUpdate(Member member);
+        Member InsertorUpdate(Member member);
         void Delete(int id);
         void Save();
         string setMemberNumber(Member memb);

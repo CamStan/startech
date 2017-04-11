@@ -49,13 +49,15 @@ namespace IPGMMS.DAL.Repositories
             return db.Members.Find(id);
         }
 
+        
+
         /// <summary>
         /// Inserts the input member into the database if it's a new member, else updates
         /// the member entity already in the database. This method only changes the entity's state,
         /// thus the Save() method must be called to make the changes permanant.
         /// </summary>
         /// <param name="member">The Member to insert or update</param>
-        public void InsertorUpdate(Member member)
+        public Member InsertorUpdate(Member member)
         {
             if (member.ID == default(int)) // new Member
             {
@@ -65,6 +67,8 @@ namespace IPGMMS.DAL.Repositories
             {
                 db.Entry(member).State = EntityState.Modified;
             }
+            Save();
+            return member;
         }
 
         /// <summary>
@@ -95,11 +99,30 @@ namespace IPGMMS.DAL.Repositories
             //Fetch the country from the db
             //assign country a number, potentially have a list using 2 digits
             //make us a 1 and uk a 2 and aus a 3 etc etc....
-            return "0";
+            var place = db.ContactInfoes.Where(s => s.Member_ID == id).FirstOrDefault().Country;
+            if (place == null)
+            {
+                return "00";
+            }
+            if (place == "USA")
+            {
+                return "01";
+            }
+            if (place == "Canada")
+            {
+                return "02";
+            }
+            if (place == "UK")
+            {
+                return "03";
+            }
+
+            return "00";
         }
 
         /// <summary>
         /// Given a member, a new member number will be assigned and returned.
+        /// if 0000000 is returned the country code could not be created.
         /// </summary>
         /// <param name="memb">Object of type member</param>
         /// <returns></returns>
@@ -110,20 +133,40 @@ namespace IPGMMS.DAL.Repositories
                 return "0";
             }
             string country = getCountry(memb.ID);
+            if (country == "00")
+            {
+                return "0000000";
+            }
             Random rand = new Random();
-            bool cont = true;
             int rnum = rand.Next(9);
-            string nextNum = "0000";
-            var mem = db.Members.Where(s => s.Membership_Number)
-            // Set nextNum to the next unused number from the db list.
-            string memberNum = country + nextNum + rnum;
-            
 
-            // save the member number to the member's entry in the db.
-            // Implement this later so we can check for bugs before then!
+            string lastMem = db.Members.Where(s => s.Membership_Number.StartsWith(country)).OrderByDescending(x => x.Membership_Number).FirstOrDefault().Membership_Number;
+            if (lastMem == null)
+            {
+                lastMem = (country+"2000"+"0");
+            }
+
+            string num = lastMem.Substring(2, 5);
+            int i = 0;
+            bool success = Int32.TryParse(num, out i);
+            i = i * 10;
+            i += rnum;
+
+            string newNum = string.Format("{00000}", i);
+            string memberNum = country + i;
+            
+            if (success)
+            {
+
+                // save the member number to the member's entry in the db.
+                // Implement this later so we can check for bugs before then!
+            }
             return memberNum;
         }
         // Add other functionalities pertaining to Memebers here
+
+
+
 
         public IEnumerable<SelectListItem> GetLevels
         {

@@ -56,6 +56,7 @@ namespace IPGMMS.DAL.Repositories
             {
                 db.Entry(contactInfo).State = EntityState.Modified;
             }
+            Save();
         }
 
         /// <summary>
