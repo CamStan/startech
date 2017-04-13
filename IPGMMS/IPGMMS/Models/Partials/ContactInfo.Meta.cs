@@ -28,4 +28,15 @@ namespace IPGMMS.Models
         [Display(Name = "Phone #")]
         public string PhoneNumber;
     }
+
+    [MetadataType(typeof(MailingInfoMetadata))]
+    public partial class MailingInfo : ContactInfo
+    {
+    }
+
+    public class MailingInfoMetadata
+    {
+        [Required]
+        public string Email;
+    }
 }

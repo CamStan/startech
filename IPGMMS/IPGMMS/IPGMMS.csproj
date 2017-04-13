@@ -356,6 +356,7 @@
     <Content Include="Views\Portal\ListTests.cshtml" />
     <Content Include="Views\Portal\UpdateCertification.cshtml" />
     <Content Include="Views\Portal\ListMembers.cshtml" />
+    <Content Include="Views\Member\PersonalDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

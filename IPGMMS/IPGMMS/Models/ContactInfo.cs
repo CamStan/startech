@@ -40,6 +40,7 @@ namespace IPGMMS.Models
         public string PostalCode { get; set; }
 
         [StringLength(22)]
+        [RegularExpression(@"^((\+|00)[1-9]{1,3})?(\-| {0,1})?(([\d]{0,3})(\-| {0,1})?([\d]{7,15})){1}$", ErrorMessage = "Not a valid Phone number")]
         public string PhoneNumber { get; set; }
 
         [StringLength(50)]
