@@ -131,7 +131,7 @@ namespace IPGMMS.Controllers
                 contactRepo.LinkListingContact(memb, list);
 
                 Debug.WriteLine("Says it's valid but not really, maybe");
-                return View("Index");
+                return View("DetailMember",memb);
             }
             infos.Levels = memberRepo.GetLevels;
             return View("AddMember", infos);
