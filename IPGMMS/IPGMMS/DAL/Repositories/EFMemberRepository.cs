@@ -49,15 +49,23 @@ namespace IPGMMS.DAL.Repositories
             return db.Members.Find(id);
         }
 
-        
-
         /// <summary>
-        /// Inserts the input member into the database if it's a new member, else updates
-        /// the member entity already in the database. This method only changes the entity's state,
-        /// thus the Save() method must be called to make the changes permanant.
+        /// Finds the member by their Identity ID string
         /// </summary>
-        /// <param name="member">The Member to insert or update</param>
-        public Member InsertorUpdate(Member member)
+        /// <param name="id">The Identity ID of the member to find</param>
+        /// <returns>A Member Object</returns>
+        public Member FindByIdentityID(string id)
+        {
+            return (Member)db.Members.Where(m => m.Identity_ID == id).FirstOrDefault();
+        }
+
+    /// <summary>
+    /// Inserts the input member into the database if it's a new member, else updates
+    /// the member entity already in the database. This method only changes the entity's state,
+    /// thus the Save() method must be called to make the changes permanant.
+    /// </summary>
+    /// <param name="member">The Member to insert or update</param>
+    public Member InsertorUpdate(Member member)
         {
             if (member.ID == default(int)) // new Member
             {
