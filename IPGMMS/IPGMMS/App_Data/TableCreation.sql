@@ -143,7 +143,6 @@ CREATE TABLE [dbo].[Certificates]
 CREATE TABLE [dbo].[Members]
 (
     [ID] INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
-	[UserName] NVARCHAR(256) UNIQUE NOT NULL, 
     [Membership_Number] NVARCHAR(50) NULL, 
     [Membership_SignupDate] DATE NULL, 
     [Membership_ExpirationDate] DATE NULL, 
@@ -153,15 +152,14 @@ CREATE TABLE [dbo].[Members]
     [LastName] NVARCHAR(50) NOT NULL, 
     [BusinessName] NVARCHAR(256) NULL, 
     [Website] NVARCHAR(256) NULL,
-	[Identity_ID] NVARCHAR(128),
+	[Identity_ID] NVARCHAR(128) NULL,
 	CONSTRAINT [FK_dbo.Members_dbo.MemberLevels] FOREIGN KEY ([MemberLevel]) REFERENCES [dbo].[MemberLevels]([ID]),
 );
 
 -- ############# ContactInfo #############
 CREATE TABLE [dbo].[ContactInfo]
 (
-	[ID] INT IDENTITY (1,1) NOT NULL UNIQUE, 
-    [Member_ID] INT NOT NULL, 
+	[ID] INT IDENTITY (1,1) NOT NULL UNIQUE,
     [StreetAddress] NVARCHAR(255) NULL, 
     [City] NVARCHAR(255) NULL,
 	[StateName] NVARCHAR(255) NULL,
@@ -169,7 +167,7 @@ CREATE TABLE [dbo].[ContactInfo]
     [PostalCode] NVARCHAR(50) NULL,
 	[PhoneNumber] NVARCHAR(22) NULL,
 	[Email] NVARCHAR(50) NULL,
-    CONSTRAINT [PK_dbo.ContactInfo] PRIMARY KEY ([Member_ID], [ID]),
+    CONSTRAINT [PK_dbo.ContactInfo] PRIMARY KEY ([ID]),
 );
 
 -- ############# Contacts #############
@@ -182,7 +180,7 @@ CREATE TABLE [dbo].[Contacts]
 	CONSTRAINT [PK_dbo.Contacts] UNIQUE CLUSTERED ([Member_ID], [ContactType_ID]),
 	CONSTRAINT [FK_dbo.ContactInfo_dbo.ContactTypes] FOREIGN KEY ([ContactType_ID]) REFERENCES [dbo].[ContactTypes]([ID]),
 	CONSTRAINT [FK_dbo.ContactInfo_dbo.Members] FOREIGN KEY ([Member_ID]) REFERENCES [dbo].[Members]([ID]),
-	CONSTRAINT [FK_dbo.Contact_dbo.ContactInfo] FOREIGN KEY ([Member_ID],[ContactInfo_ID]) REFERENCES [dbo].[ContactInfo]([Member_ID],[ID])
+	CONSTRAINT [FK_dbo.Contact_dbo.ContactInfo] FOREIGN KEY ([ContactInfo_ID]) REFERENCES [dbo].[ContactInfo]([ID])
 );
 
 -- ############# MemberCertifications #############

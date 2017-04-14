@@ -54,15 +54,12 @@ namespace IPGMMS.Controllers
             // It will switch the stored variable so it will use the other
             // next time.
             ViewBag.lName = String.IsNullOrEmpty(sortOrder) ? "l_name" : "";
-            ViewBag.mem_lvl = sortOrder == "mem_lvl" ? "lvl_desc" : "mem_lvl";
-            ViewBag.userName = sortOrder == "user_name" ? "username_desc" : "user_name";
             ViewBag.mem_num = sortOrder == "mem_num" ? "num_desc" : "mem_num";
             ViewBag.date_start = sortOrder == "date_start" ? "start_desc" : "date_start";
             ViewBag.date_end = sortOrder == "date_end" ? "end_desc" : "date_end";
             ViewBag.f_name = sortOrder == "f_name" ? "fname_desc" : "f_name";
-            ViewBag.m_name = sortOrder == "m_name" ? "mname_desc" : "m_name";
             ViewBag.b_name = sortOrder == "b_name" ? "bname_desc" : "b_name";
-            ViewBag.website = sortOrder == "website" ? "website_desc" : "website";
+            ViewBag.mem_lvl = sortOrder == "mem_lvl" ? "lvl_desc" : "mem_lvl";
 
             // Initialize the variable that will become the sort option
             Func<Member, object> sorting;
@@ -120,13 +117,11 @@ namespace IPGMMS.Controllers
                 memb = memberRepo.InsertorUpdate(memb);
                 // Mailing info is required.
                 ContactInfo mail = (ContactInfo)infos.MailingInfo;
-                mail.Member_ID = memb.ID;
                 mail = contactRepo.InsertorUpdate(mail);
                 contactRepo.LinkMailingContact(memb,mail);
 
                 // Listing info is optional.
                 ContactInfo list = infos.ListingInfo;
-                list.Member_ID = memb.ID;
                 list = contactRepo.InsertorUpdate(list);
                 contactRepo.LinkListingContact(memb, list);
 
@@ -237,30 +232,24 @@ namespace IPGMMS.Controllers
         // Two dictionaries, one for ascending, one for descending
         Dictionary<String, Func<Member, object>> sortBy = new Dictionary<String, Func<Member, object>>()
             {
-                { "mem_lvl", m => m.MemberLevel1.MLevel },
-                { "user_name", m => m.UserName },
                 { "mem_num", m => m.Membership_Number },
                 { "date_start", m => m.Membership_SignupDate },
                 { "date_end", m => m.Membership_ExpirationDate },
                 { "f_name", m => m.FirstName },
-                { "m_name", m => m.MiddleName },
                 { "l_name", m => m.LastName },
                 { "b_name", m => m.BusinessName },
-                { "website", m => m.Website },
+                { "mem_lvl", m => m.MemberLevel1.MLevel }
             };
 
         Dictionary<String, Func<Member, object>> sortByDesc = new Dictionary<String, Func<Member, object>>()
             {
-                { "lvl_desc", m => m.MemberLevel1.MLevel },
-                { "username_desc", m => m.UserName },
                 { "num_desc", m => m.Membership_Number },
                 { "start_desc", m => m.Membership_SignupDate },
                 { "end_desc", m => m.Membership_ExpirationDate },
                 { "fname_desc", m => m.FirstName },
-                { "mname_desc", m => m.MiddleName },
                 { "lname_desc", m => m.LastName },
                 { "bname_desc", m => m.BusinessName },
-                { "website_desc", m => m.Website },
+                { "lvl_desc", m => m.MemberLevel1.MLevel }
             };
     }
 }

@@ -18,9 +18,6 @@ namespace IPGMMS.Models
 
     public class MemberMetadata
     {
-        [Display(Name = "Username")]
-        public string UserName;
-
         [Display(Name = "IPG Member #")]
         public string Membership_Number;
 

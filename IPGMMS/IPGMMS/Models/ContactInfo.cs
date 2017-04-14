@@ -15,15 +15,7 @@ namespace IPGMMS.Models
             Contacts = new HashSet<Contact>();
         }
 
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Member_ID { get; set; }
 
         [StringLength(255)]
         public string StreetAddress { get; set; }
@@ -41,7 +33,6 @@ namespace IPGMMS.Models
         public string PostalCode { get; set; }
 
         [StringLength(22)]
-        [RegularExpression(@"^((\+|00)[1-9]{1,3})?(\-| {0,1})?(([\d]{0,3})(\-| {0,1})?([\d]{7,15})){1}$", ErrorMessage = "Not a valid Phone number")]
         public string PhoneNumber { get; set; }
 
         [StringLength(50)]

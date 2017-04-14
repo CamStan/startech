@@ -18,14 +18,6 @@
 <table class="table">
     <tr>
         <th>
-            @{ var memlvl = @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel).ToString();}
-            @Html.ActionLink(memlvl, "ListMembers", "Portal", new { sortOrder = ViewBag.userName }, null)
-        </th>
-        <th>
-            @{ var userName = @Html.DisplayNameFor(model => model.FirstOrDefault().UserName).ToString();}
-            @Html.ActionLink(userName, "ListMembers", "Portal", new { sortOrder = ViewBag.userName }, null)
-        </th>
-        <th>
             @{ var mem_num = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number).ToString();}
             @Html.ActionLink(mem_num, "ListMembers", "Portal", new { sortOrder = ViewBag.mem_num }, null)
         </th>
@@ -42,8 +34,7 @@
             @Html.ActionLink(f_name, "ListMembers", "Portal", new { sortOrder = ViewBag.f_name }, null)
         </th>
         <th>
-            @{ var m_name = @Html.DisplayNameFor(model => model.FirstOrDefault().MiddleName).ToString();}
-            @Html.ActionLink(m_name, "ListMembers", "Portal", new { sortOrder = ViewBag.m_name }, null)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MiddleName)
         </th>
         <th>
             @{ var l_name = @Html.DisplayNameFor(model => model.FirstOrDefault().LastName).ToString();}
@@ -54,8 +45,11 @@
             @Html.ActionLink(b_name, "ListMembers", "Portal", new { sortOrder = ViewBag.b_name }, null)
         </th>
         <th>
-            @{ var website = @Html.DisplayNameFor(model => model.FirstOrDefault().Website).ToString();}
-            @Html.ActionLink(website, "ListMembers", "Portal", new { sortOrder = ViewBag.website }, null)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Website)
+        </th>
+        <th>
+            @{ var memlvl = @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel).ToString();}
+            @Html.ActionLink(memlvl, "ListMembers", "Portal", new { sortOrder = ViewBag.mem_lvl }, null)
         </th>
         <th></th>
     </tr>
@@ -63,12 +57,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Membership_Number)
             </td>
@@ -92,6 +80,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
             </td>
         </tr>
     }

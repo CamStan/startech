@@ -17,10 +17,6 @@ namespace IPGMMS.Models
 
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(256)]
-        public string UserName { get; set; }
-
         [StringLength(50)]
         public string Membership_Number { get; set; }
 
@@ -30,8 +26,6 @@ namespace IPGMMS.Models
         [Column(TypeName = "date")]
         public DateTime? Membership_ExpirationDate { get; set; }
 
-        [Required]
-        [Range(1,9,ErrorMessage = "The member level must be selected.")]
         public int MemberLevel { get; set; }
 
         [Required]

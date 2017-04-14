@@ -99,7 +99,9 @@ namespace IPGMMS.DAL.Repositories
             //Fetch the country from the db
             //assign country a number, potentially have a list using 2 digits
             //make us a 1 and uk a 2 and aus a 3 etc etc....
-            var place = db.ContactInfoes.Where(s => s.Member_ID == id).FirstOrDefault().Country;
+            //var place = db.ContactInfoes.Where(s => s.Member_ID == id).FirstOrDefault().Country;
+            int cTypeID = db.ContactTypes.Where(ct => ct.ContactType1.Equals("Mailing")).FirstOrDefault().ID;
+            var place = db.Contacts.Where(c => c.Member_ID == id && c.ContactType_ID == cTypeID).FirstOrDefault().ContactInfo.Country;
             if (place == null)
             {
                 return "00";
