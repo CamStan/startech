@@ -118,11 +118,16 @@ namespace IPGMMS.Controllers
             {
                 Member memb = infos.MemberInfo;
                 memb = memberRepo.InsertorUpdate(memb);
-                ContactInfo mail = infos.MailingInfo;
-                contactRepo.InsertorUpdate(mail);
+                // Mailing info is required.
+                ContactInfo mail = (ContactInfo)infos.MailingInfo;
+                mail.Member_ID = memb.ID;
+                mail = contactRepo.InsertorUpdate(mail);
                 contactRepo.LinkMailingContact(memb,mail);
+
+                // Listing info is optional.
                 ContactInfo list = infos.ListingInfo;
-                contactRepo.InsertorUpdate(list);
+                list.Member_ID = memb.ID;
+                list = contactRepo.InsertorUpdate(list);
                 contactRepo.LinkListingContact(memb, list);
 
                 Debug.WriteLine("Says it's valid but not really, maybe");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -27,16 +28,5 @@ namespace IPGMMS.Models
 
         [Display(Name = "Phone #")]
         public string PhoneNumber;
-    }
-
-    [MetadataType(typeof(MailingInfoMetadata))]
-    public partial class MailingInfo : ContactInfo
-    {
-    }
-
-    public class MailingInfoMetadata
-    {
-        [Required]
-        public string Email;
     }
 }

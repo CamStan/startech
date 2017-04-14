@@ -8,7 +8,7 @@ namespace IPGMMS.ViewModels
     public class MemberCreate
     {
         public Member MemberInfo { get; set; }
-        public MailingInfo MailingInfo { get; set; }
+        public ContactInfo MailingInfo { get; set; }
         public ContactInfo ListingInfo { get; set; }
         public IEnumerable<SelectListItem> Levels { get; set; }
 

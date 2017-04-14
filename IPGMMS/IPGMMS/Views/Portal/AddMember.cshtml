@@ -119,7 +119,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
