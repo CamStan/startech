@@ -5,12 +5,22 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
+using IPGMMS.Abstract;
 
 namespace IPGMMS.Controllers
 {
     [Authorize]
     public class ManageController : MController
     {
+        private IMemberRepository memberRepo;
+        private IContactRepository contactRepo;
+
+        public ManageController(IMemberRepository mRepo, IContactRepository cRepo)
+        {
+            memberRepo = mRepo;
+            contactRepo = cRepo;
+        }
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -33,7 +43,14 @@ namespace IPGMMS.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
-            return View(model);
+
+            ViewModels.MemberIdentityInfoViewModel modelCompound = new ViewModels.MemberIdentityInfoViewModel();
+            modelCompound.MemberInfo = memberRepo.FindByIdentityID(userId);
+            modelCompound.IdentityInfo = model;
+
+
+            return View(modelCompound);
+
         }
 
         //
@@ -294,7 +311,7 @@ namespace IPGMMS.Controllers
         //    base.Dispose(disposing);
         //}
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -345,6 +362,6 @@ namespace IPGMMS.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
