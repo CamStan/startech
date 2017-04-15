@@ -12,17 +12,10 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="w3-white">
+
     <!--Top Nav Bar-->
     <div class="w3-navbar w3-black">
-        <div class="w3-dropdown-hover">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-white">
-                <i class="fa fa-user-circle w3-xlarge"></i>
-            </a>
-            <div class="w3-dropdown-content">
-                <a href="#">My Profile</a>
-                <a href="#">Log Out</a>
-            </div>
-        </div>
+        @Html.Partial("_LoginPartial")
     </div>
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-black">
@@ -34,7 +27,7 @@
             </a>
             <div class="dropdown-content">
                 <a href="@Url.Action("AddMember", "Portal")">Add Member</a>
-                <a href="@Url.Action("UpdateMember","Portal")">Update Member</a>
+                <a href="@Url.Action("UpdateMemberInfo","Portal")">Update Member</a>
                 <a href="@Url.Action("ListMembers","Portal")">Search Members</a>
             </div>
         </div>
