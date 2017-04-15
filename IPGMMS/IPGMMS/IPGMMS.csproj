@@ -361,6 +361,9 @@
     <Content Include="Views\Portal\UpdateCertification.cshtml" />
     <Content Include="Views\Portal\ListMembers.cshtml" />
     <Content Include="Views\Member\PersonalDetails.cshtml" />
+    <Content Include="Views\Portal\UpdateMemberInfo.cshtml" />
+    <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
+    <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
