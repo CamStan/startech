@@ -18,13 +18,6 @@
             <hr />
             <div class="col-md-5">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MemberInfo.UserName, htmlAttributes: new { @class = "control-label col-lg-4" })
-                    <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MemberInfo.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MemberInfo.UserName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.MemberInfo.Membership_Number, htmlAttributes: new { @class = "control-label col-lg-4" })
@@ -119,7 +112,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -159,7 +152,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MailingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.Country, "", new { @class = "text-danger" })
                     </div>
                 </div>

@@ -70,7 +70,7 @@ namespace IPGMMS.DAL.Repositories
         /// thus the Save() method must be called to make the changes permanant.
         /// </summary>
         /// <param name="contactInfo">The ContactInfo object to insert or update</param>
-        public void InsertorUpdate(ContactInfo contactInfo)
+        public ContactInfo InsertorUpdate(ContactInfo contactInfo)
         {
             if (contactInfo.ID == default(int)) // new Member
             {
@@ -81,6 +81,7 @@ namespace IPGMMS.DAL.Repositories
                 db.Entry(contactInfo).State = EntityState.Modified;
             }
             Save();
+            return contactInfo;
         }
 
         /// <summary>
@@ -122,7 +123,8 @@ namespace IPGMMS.DAL.Repositories
                 contact.ContactType_ID = db.ContactTypes.Where(c => c.ContactType1.Equals("Mailing")).FirstOrDefault().ID;
                 contact.Member_ID = member.ID;
                 contact.ContactInfo_ID = contactInfo.ID;
-                //Save();
+                db.Contacts.Add(contact);
+                Save();
                 return true;
             }
         }
@@ -147,7 +149,8 @@ namespace IPGMMS.DAL.Repositories
                 contact.ContactType_ID = db.ContactTypes.Where(c => c.ContactType1.Equals("Listing")).FirstOrDefault().ID;
                 contact.Member_ID = member.ID;
                 contact.ContactInfo_ID = contactInfo.ID;
-                //Save();
+                db.Contacts.Add(contact);
+                Save();
                 return true;
             }
         }

@@ -236,6 +236,7 @@
     <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MemberIdentityInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\auth.sql" />
@@ -356,6 +357,8 @@
     <Content Include="Views\Portal\ListTests.cshtml" />
     <Content Include="Views\Portal\UpdateCertification.cshtml" />
     <Content Include="Views\Portal\ListMembers.cshtml" />
+    <Content Include="Views\Member\PersonalDetails.cshtml" />
+    <Content Include="Views\Manage\PersonalDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

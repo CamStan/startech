@@ -49,15 +49,23 @@ namespace IPGMMS.DAL.Repositories
             return db.Members.Find(id);
         }
 
-        
-
         /// <summary>
-        /// Inserts the input member into the database if it's a new member, else updates
-        /// the member entity already in the database. This method only changes the entity's state,
-        /// thus the Save() method must be called to make the changes permanant.
+        /// Finds the member by their Identity ID string
         /// </summary>
-        /// <param name="member">The Member to insert or update</param>
-        public Member InsertorUpdate(Member member)
+        /// <param name="id">The Identity ID of the member to find</param>
+        /// <returns>A Member Object</returns>
+        public Member FindByIdentityID(string id)
+        {
+            return (Member)db.Members.Where(m => m.Identity_ID == id).FirstOrDefault();
+        }
+
+    /// <summary>
+    /// Inserts the input member into the database if it's a new member, else updates
+    /// the member entity already in the database. This method only changes the entity's state,
+    /// thus the Save() method must be called to make the changes permanant.
+    /// </summary>
+    /// <param name="member">The Member to insert or update</param>
+    public Member InsertorUpdate(Member member)
         {
             if (member.ID == default(int)) // new Member
             {
@@ -99,7 +107,9 @@ namespace IPGMMS.DAL.Repositories
             //Fetch the country from the db
             //assign country a number, potentially have a list using 2 digits
             //make us a 1 and uk a 2 and aus a 3 etc etc....
-            var place = db.ContactInfoes.Where(s => s.Member_ID == id).FirstOrDefault().Country;
+            //var place = db.ContactInfoes.Where(s => s.Member_ID == id).FirstOrDefault().Country;
+            int cTypeID = db.ContactTypes.Where(ct => ct.ContactType1.Equals("Mailing")).FirstOrDefault().ID;
+            var place = db.Contacts.Where(c => c.Member_ID == id && c.ContactType_ID == cTypeID).FirstOrDefault().ContactInfo.Country;
             if (place == null)
             {
                 return "00";

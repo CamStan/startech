@@ -15,14 +15,7 @@ namespace IPGMMS.Models
             Contacts = new HashSet<Contact>();
         }
 
-        [Key]
-        [Column(Order = 0)]
         public int ID { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Member_ID { get; set; }
 
         [StringLength(255)]
         public string StreetAddress { get; set; }

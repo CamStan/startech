@@ -32,7 +32,7 @@ namespace IPGMMS.DAL
             modelBuilder.Entity<ContactInfo>()
                 .HasMany(e => e.Contacts)
                 .WithRequired(e => e.ContactInfo)
-                .HasForeignKey(e => new { e.ContactInfo_ID, e.Member_ID })
+                .HasForeignKey(e => e.ContactInfo_ID)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ContactType>()

@@ -18,9 +18,6 @@ namespace IPGMMS.Models
 
     public class MemberMetadata
     {
-        [Display(Name = "Username")]
-        public string UserName;
-
         [Display(Name = "IPG Member #")]
         public string Membership_Number;
 
@@ -32,7 +29,9 @@ namespace IPGMMS.Models
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? Membership_ExpirationDate;
 
+        [Required]
         [Display(Name = "Member Level")]
+        [Range(1, 9, ErrorMessage = "The member level must be selected.")]
         public int MemberLevel;
 
         [Display(Name = "First Name")]
