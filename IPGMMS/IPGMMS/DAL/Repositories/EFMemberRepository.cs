@@ -169,9 +169,9 @@ namespace IPGMMS.DAL.Repositories
                 string newNum = string.Format("{00000}", i);
                 memberNum = country + i;
                 memb.Membership_Number = memberNum;
+                db.Entry(memb).State = EntityState.Modified;
+                Save();
                 
-                // save the member number to the member's entry in the db.
-                // Implement this later so we can check for bugs before then!
             }
             return memberNum;
         }
