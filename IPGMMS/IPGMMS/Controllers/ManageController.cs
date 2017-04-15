@@ -46,6 +46,9 @@ namespace IPGMMS.Controllers
 
             ViewModels.MemberIdentityInfoViewModel modelCompound = new ViewModels.MemberIdentityInfoViewModel();
             modelCompound.MemberInfo = memberRepo.FindByIdentityID(userId);
+            var memId = modelCompound.MemberInfo.ID;
+            modelCompound.MailingInfo = contactRepo.MailingInfoFromMID(memId);
+            modelCompound.ListingInfo = contactRepo.ListingInfoFromMID(memId);
             modelCompound.IdentityInfo = model;
 
 
