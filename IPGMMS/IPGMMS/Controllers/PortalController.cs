@@ -132,9 +132,17 @@ namespace IPGMMS.Controllers
             return View("AddMember", infos);
         }
 
-        public ActionResult UpdateMember()
+        public ActionResult UpdateMember(int? id)
         {
-            return View("UpdateMember");
+            if (id == null)
+            {
+                id = 4;
+            }
+            MemberInfoViewModel info = new MemberInfoViewModel();
+            info.MemberInfo = memberRepo.Find(id);
+            info.ListingInfo = contactRepo.ListingInfoFromMID(id);
+            info.MailingInfo = contactRepo.MailingInfoFromMID(id);
+            return View(info);
         }
 
         // GET: UpdateMemberInfo()
