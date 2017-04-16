@@ -87,9 +87,14 @@ p,body{
         padding: 6px 16px;
         display: block;
         background-color: white;
+        text-align:right;
     }
 
         .w3-dropdown-content a:hover {
             background-color: #000080;
             color: white;
         }
+#memberListTable a{
+    color: #000080;
+    font-weight:bold;
+}

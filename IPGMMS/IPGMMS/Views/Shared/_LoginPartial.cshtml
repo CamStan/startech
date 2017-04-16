@@ -11,6 +11,10 @@
                 </a>
                 <div class="w3-dropdown-content">
                     <a href="@Url.Action("Index","Manage")">Manage Account</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Index","Portal")">Admin Portal</a>
+                    }
                     <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                     
                 </div>

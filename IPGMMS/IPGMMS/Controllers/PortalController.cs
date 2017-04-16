@@ -171,7 +171,15 @@ namespace IPGMMS.Controllers
             return View(memberinfo);
         }
 
-        // POST: UpdateMemberInfo()
+        /// <summary>
+        /// This method is the POST for UpdateMemberInfo(). This takes in a ViewModel parameter
+        /// that holds a member object and a select list of membership levels. This method will
+        /// save updates to the database and return the user to the UpdateMember page to view 
+        /// their changes.
+        /// </summary>
+        /// <param name="memb"></param>
+        /// <returns>If the model state is valid, this returns the user back to the UpdateMember view
+        /// if it is not valid, it returns the user to the UpdateMemberInfo view with the ViewModel given.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateMemberInfo(MemberInfoVM memb)
@@ -180,7 +188,12 @@ namespace IPGMMS.Controllers
             {
                 var member = memb.MemberInfo;
                 memberRepo.InsertorUpdate(member);
-                return View("DetailMember", member);
+                MemberInfoViewModel memberDetails = new MemberInfoViewModel();
+                memberDetails.MemberInfo = member;
+                memberDetails.ListingInfo = contactRepo.ListingInfoFromMID(member.ID);
+                memberDetails.MailingInfo = contactRepo.MailingInfoFromMID(member.ID);
+                memb.Levels = memberRepo.GetLevels;
+                return View("UpdateMember", memberDetails);
             }
 
             memb.Levels = memberRepo.GetLevels;
