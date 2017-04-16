@@ -238,6 +238,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MemberInfoViewModel.cs" />
     <Compile Include="ViewModels\MemberIdentityInfoViewModel.cs" />
+    <Compile Include="ViewModels\MemberInfoVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\auth.sql" />

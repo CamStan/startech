@@ -70,3 +70,31 @@ h4{
 p,body{
     font-size:16px;
 }
+/* Dropdown content for top nav for user navigation*/
+.w3-dropdown-content {
+    cursor: auto;
+    color: #000;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    margin: 0;
+    padding: 0;
+    right: 0;
+}
+
+    .w3-dropdown-content a {
+        padding: 6px 16px;
+        display: block;
+        background-color: white;
+        text-align:right;
+    }
+
+        .w3-dropdown-content a:hover {
+            background-color: #000080;
+            color: white;
+        }
+#memberListTable a{
+    color: #000080;
+    font-weight:bold;
+}

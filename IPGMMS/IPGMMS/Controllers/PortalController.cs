@@ -25,20 +25,20 @@ namespace IPGMMS.Controllers
             contactRepo = cRepo;
         }
 
-
+        //***********************************************ADMIN PORTAL INDEX*****************************
         // GET: Portal
         public ActionResult Index()
         {
-                var user = User.Identity;
-                ViewBag.Name = user.Name;
+            var user = User.Identity;
+            ViewBag.Name = user.Name;
 
             return View();
         }
 
-
+        //***********************************************LIST MEMBER INFO*****************************
         public ActionResult ListMembers(int? page, string sortOrder, string searchString)
         {
-            
+
             var members = memberRepo.GetAllMembers;
 
             //This section is to check the search string and return a member list that
@@ -89,14 +89,14 @@ namespace IPGMMS.Controllers
             int pageSize = 5; //the number of items that can appear on each page.
             int startPage = (page ?? 1);
 
-            return View("ListMembers", members.ToList().ToPagedList(startPage,pageSize));
+            return View("ListMembers", members.ToList().ToPagedList(startPage, pageSize));
         }
-
+        //***********************************************DETAILED MEMBER INFO*****************************
         public ActionResult DetailMember()
         {
             return View("DetailMember");
         }
-
+        //***********************************************ADD MEMBER*****************************
         // GET: Addmember()
         public ActionResult AddMember()
         {
@@ -110,15 +110,15 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddMember(MemberCreate infos)
         {
-            
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 Member memb = infos.MemberInfo;
                 memb = memberRepo.InsertorUpdate(memb);
                 // Mailing info is required.
                 ContactInfo mail = (ContactInfo)infos.MailingInfo;
                 mail = contactRepo.InsertorUpdate(mail);
-                contactRepo.LinkMailingContact(memb,mail);
+                contactRepo.LinkMailingContact(memb, mail);
 
                 // Listing info is optional.
                 ContactInfo list = infos.ListingInfo;
@@ -126,7 +126,7 @@ namespace IPGMMS.Controllers
                 contactRepo.LinkListingContact(memb, list);
 
                 Debug.WriteLine("Says it's valid but not really, maybe");
-                return View("DetailMember",memb);
+                return View("DetailMember", memb);
             }
             infos.Levels = memberRepo.GetLevels;
             return View("AddMember", infos);
@@ -145,26 +145,59 @@ namespace IPGMMS.Controllers
             return View(info);
         }
 
-        // GET: UpdateMemberInfo()
+        //***********************************************UPDATE MEMBER INFO*****************************
+        /// <summary>
+        /// This method is the GET for UpdateMemberInfo(). This takes in the memberID 
+        /// (not to be confused with the memberNumber) and, if a valid memberID, returns
+        /// a form that allows the user to update member information.
+        /// </summary>
+        /// <param name="memID"></param>
+        /// <returns>The UpdateMemberInfo view. </returns>
         public ActionResult UpdateMemberInfo(int? memID)
         {
             if (memID == null)
             {
                 return View(Request.UrlReferrer.ToString());
             }
-            var member = memberRepo.Find(memID);
+            if (memberRepo.Find(memID) == null)
+            {
+                return View(Request.UrlReferrer.ToString());
+            }
 
-            return View(member);
+            MemberInfoVM memberinfo = new MemberInfoVM();
+            memberinfo.Levels = memberRepo.GetLevels;
+            memberinfo.MemberInfo = memberRepo.Find(memID);
+
+            return View(memberinfo);
         }
 
-        // POST: UpdateMemberInfo()
+        /// <summary>
+        /// This method is the POST for UpdateMemberInfo(). This takes in a ViewModel parameter
+        /// that holds a member object and a select list of membership levels. This method will
+        /// save updates to the database and return the user to the UpdateMember page to view 
+        /// their changes.
+        /// </summary>
+        /// <param name="memb"></param>
+        /// <returns>If the model state is valid, this returns the user back to the UpdateMember view
+        /// if it is not valid, it returns the user to the UpdateMemberInfo view with the ViewModel given.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateMemberInfo(Member memb)
+        public ActionResult UpdateMemberInfo(MemberInfoVM memb)
         {
-            memberRepo.InsertorUpdate(memb);
+            if (ModelState.IsValid)
+            {
+                var member = memb.MemberInfo;
+                memberRepo.InsertorUpdate(member);
+                MemberInfoViewModel memberDetails = new MemberInfoViewModel();
+                memberDetails.MemberInfo = member;
+                memberDetails.ListingInfo = contactRepo.ListingInfoFromMID(member.ID);
+                memberDetails.MailingInfo = contactRepo.MailingInfoFromMID(member.ID);
+                memb.Levels = memberRepo.GetLevels;
+                return View("UpdateMember", memberDetails);
+            }
 
-            return View();
+            memb.Levels = memberRepo.GetLevels;
+            return View(memb);
         }
 
         // GET: UpdateMemberMailing()
@@ -174,7 +207,7 @@ namespace IPGMMS.Controllers
             {
                 return View(Request.UrlReferrer.ToString());
             }
-            
+
             return View(contactRepo.MailingInfoFromMID(memID));
         }
 
