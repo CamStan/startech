@@ -91,11 +91,13 @@ namespace IPGMMS.Controllers
 
             return View("ListMembers", members.ToList().ToPagedList(startPage, pageSize));
         }
+
         //***********************************************DETAILED MEMBER INFO*****************************
         public ActionResult DetailMember()
         {
             return View("DetailMember");
         }
+
         //***********************************************ADD MEMBER*****************************
         // GET: Addmember()
         public ActionResult AddMember()
@@ -114,9 +116,10 @@ namespace IPGMMS.Controllers
             if (ModelState.IsValid)
             {
                 Member memb = infos.MemberInfo;
+                ContactInfo mail = (ContactInfo)infos.MailingInfo;
+                memb.Membership_Number = memberRepo.setMemberNumber(memb, mail);
                 memb = memberRepo.InsertorUpdate(memb);
                 // Mailing info is required.
-                ContactInfo mail = (ContactInfo)infos.MailingInfo;
                 mail = contactRepo.InsertorUpdate(mail);
                 contactRepo.LinkMailingContact(memb, mail);
 
