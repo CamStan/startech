@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
 using IPGMMS.Abstract;
+using IPGMMS.ViewModels;
 
 namespace IPGMMS.Controllers
 {
@@ -44,16 +45,82 @@ namespace IPGMMS.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
 
-            ViewModels.MemberIdentityInfoViewModel modelCompound = new ViewModels.MemberIdentityInfoViewModel();
+            MemberIdentityInfoViewModel modelCompound = new MemberIdentityInfoViewModel();
             modelCompound.MemberInfo = memberRepo.FindByIdentityID(userId);
-            var memId = modelCompound.MemberInfo.ID;
-            modelCompound.MailingInfo = contactRepo.MailingInfoFromMID(memId);
-            modelCompound.ListingInfo = contactRepo.ListingInfoFromMID(memId);
+            if (modelCompound.MemberInfo != null)
+            {
+                var memId = modelCompound.MemberInfo.ID;
+                modelCompound.MailingInfo = contactRepo.MailingInfoFromMID(memId);
+                modelCompound.ListingInfo = contactRepo.ListingInfoFromMID(memId);
+            }
             modelCompound.IdentityInfo = model;
-
 
             return View(modelCompound);
 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(MemberIdentityInfoViewModel modelCompound, FormCollection form, ManageMessageId? message)
+        {
+            ViewBag.StatusMessage =
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : "";
+
+            var userId = User.Identity.GetUserId();
+            var model = new IndexViewModel
+            {
+                HasPassword = HasPassword(),
+                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                Logins = await UserManager.GetLoginsAsync(userId),
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+            };
+
+            modelCompound.IdentityInfo = model;
+
+            string ipgNum = form["membNum"].Equals("") ? "-1" : form["membNum"];
+
+            var mem = memberRepo.FindByIPG_ID(ipgNum);
+
+            int errorCode = 0;
+            string errorMessage = "";
+
+            if (mem != null) // IPG number corresponds to a member
+            {
+                if (mem.Identity_ID == null || mem.Identity_ID == "") // This member doesn't have a corresponding identity account yet
+                {
+                    // link identity id to member, update role, and populate the rest of the viewModel
+                    var level = mem.MemberLevel1.MLevel;
+                    level = level.Replace(' ', '_');
+                    UserManager.AddToRole(userId, level);
+
+                    mem.Identity_ID = userId;
+                    modelCompound.MemberInfo = memberRepo.InsertorUpdate(mem);
+
+                    var memId = modelCompound.MemberInfo.ID;
+                    modelCompound.MailingInfo = contactRepo.MailingInfoFromMID(memId);
+                    modelCompound.ListingInfo = contactRepo.ListingInfoFromMID(memId);
+                    return View(modelCompound);
+                }
+                errorCode = 1;
+                errorMessage = "The member number entered is already linked to an account.";
+            }
+            else
+            {
+                errorCode = 2;
+                errorMessage = "The member number you entered does not exist. Please contact a system admin if you feel this is a mistake.";
+            }
+
+            ViewBag.ErrorCode = errorCode;
+            ViewBag.ErrorMessage = errorMessage;
+
+            return View(modelCompound);
         }
 
         //

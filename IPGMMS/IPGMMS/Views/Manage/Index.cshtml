@@ -9,97 +9,138 @@
 
 <h2>Details for @User.Identity.Name</h2>
 
-<div class="row">
-    @* Side barish for member picture, Name, Number, Type and dates*@
-    <div class="col-md-3">
-        <div class="row">
-            <div class="pic">
-                @* Need database table to hold pics and code here to retrieve. *@
-                <img src="~/Content/Images/avatar_a4be82c62409_128.png" alt="Spanish_Inquisition" />
+@if (Model.MemberInfo != null)
+{
+    <div class="row">
+        @* Side barish for member picture, Name, Number, Type and dates*@
+        <div class="col-md-3">
+            <div class="row">
+                <div class="pic">
+                    @* Need database table to hold pics and code here to retrieve. *@
+                    <img src="~/Content/Images/avatar_a4be82c62409_128.png" alt="Spanish_Inquisition" />
+                </div>
             </div>
+            <dl class="dl-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.MemberInfo.FullName)</dt>
+                <dd>@Html.DisplayFor(model => model.MemberInfo.FullName)</dd>
+                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_Number)</dt>
+                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_Number)</dd>
+                <dt>@Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)</dt>
+                <dd>@Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)</dd>
+                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)</dt>
+                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)</dd>
+                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
+                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
+            </dl>
         </div>
-        <dl class="dl-horizontal">
-            <dt>@Html.DisplayNameFor(model => model.MemberInfo.FullName)</dt>
-            <dd>@Html.DisplayFor(model => model.MemberInfo.FullName)</dd>
-            <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_Number)</dt>
-            <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_Number)</dd>
-            <dt>@Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)</dt>
-            <dd>@Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)</dd>
-            <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)</dt>
-            <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)</dd>
-            <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
-            <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
-        </dl>
-    </div>
 
-    @* Mainpage part for Business Name, Website, Contact Info, Certifications and Test Results.*@
-    <div class="col-md-9">
-        <div class="row">
-            <div class="col-md-5">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.MemberInfo.BusinessName)</dt>
-                    <dd>@Html.DisplayFor(model => model.MemberInfo.BusinessName) </dd>
-                </dl>
+        @* Mainpage part for Business Name, Website, Contact Info, Certifications and Test Results.*@
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-5">
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.BusinessName)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.BusinessName) </dd>
+                    </dl>
+                </div>
+                <div class="col-md-5">
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.Website)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.Website)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Edit Profile", "Edit", new { id = Model.MemberInfo.ID })
+                </div>
             </div>
-            <div class="col-md-5">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.MemberInfo.Website)</dt>
-                    <dd>@Html.DisplayFor(model => model.MemberInfo.Website)</dd>
-                </dl>
+            <hr />
+            <div class="row">
+                @*Mailing List Info*@
+                <div class="col-md-6">
+                    <p> Private Contact Information</p>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.Email)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.Email)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.PhoneNumber)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.PhoneNumber)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.StreetAddress)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.StreetAddress)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.City)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.City)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.StateName)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.StateName)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.Country)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.Country)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MailingInfo.PostalCode)</dt>
+                        <dd>@Html.DisplayFor(model => model.MailingInfo.PostalCode)</dd>
+                    </dl>
+                </div>
+                @* Listing Info*@
+                <div class="col-md-6">
+                    <p> Public Contact Information</p>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.Email)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.PhoneNumber)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StreetAddress)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.StreetAddress)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.City)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.City)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StateName)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.StateName)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Country)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.Country)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)</dd>
+                    </dl>
+                </div>
             </div>
-            <div class="col-md-2">
-                @Html.ActionLink("Edit Profile", "Edit", new { id = Model.MemberInfo.ID })
-            </div>
+            @* Add further information here such as Certificates and Tests Taken/Results*@
         </div>
+
+    </div>
+}
+else
+{
+    <div class="row">
+        <h4>Link your IPG account or start the application to become an IPG member</h4>
         <hr />
-        <div class="row">
-            @*Mailing List Info*@
-            <div class="col-md-6">
-                <p> Private Contact Information</p>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.Email)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.Email)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.PhoneNumber)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.PhoneNumber)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.StreetAddress)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.StreetAddress)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.City)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.City)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.StateName)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.StateName)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.Country)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.Country)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.MailingInfo.PostalCode)</dt>
-                    <dd>@Html.DisplayFor(model => model.MailingInfo.PostalCode)</dd>
-                </dl>
-            </div>
-            @* Listing Info*@
-            <div class="col-md-6">
-                <p> Public Contact Information</p>
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.Email)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.PhoneNumber)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.StreetAddress)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.StreetAddress)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.City)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.City)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.StateName)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.StateName)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.Country)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.Country)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
-                    <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)</dd>
-                </dl>
+        @if (ViewBag.ErrorCode != 0) {
+            <p class="text-danger">@ViewBag.ErrorMessage</p>
+        }
+        <div class="panel-group col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
+                    <a class="btn btn-default" href="#">Start IPG Application</a>
+                </div>
+                <div id="memberLookUp" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Enter IPG Membership Number</h4>
+                            <hr />
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="membNum">IPG #</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" name="membNum" maxlength="10" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Look Up" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
-        @* Add further information here such as Certificates and Tests Taken/Results*@
+        <div class="col-md-8"></div>
     </div>
-
-</div>
-
-<br />
+}
 <hr />
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
