@@ -19,5 +19,6 @@ namespace IPGMMS.Abstract
         void Delete(int id);
         void Save();
         string setMemberNumber(Member memb);
+        string setMemberNumber(Member memb, ContactInfo info);
     }
 }

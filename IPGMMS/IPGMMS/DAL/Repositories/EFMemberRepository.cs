@@ -185,6 +185,74 @@ namespace IPGMMS.DAL.Repositories
             }
             return memberNum;
         }
+
+        /// <summary>
+        /// Generates a new member number based on the last member number from
+        /// that country. Adds a random digit at the end to prevent two members
+        /// that sign up at the same time from possibly having consecutive
+        /// numbers.
+        /// </summary>
+        /// <param name="memb">Member Object</param>
+        /// <param name="info">ContactInfo Object</param>
+        /// <returns></returns>
+        public string setMemberNumber(Member memb, ContactInfo info)
+        {
+            if (memb == null)
+            {
+                return "0";
+            }
+            string country = info.Country;
+            if(country == null)
+            {
+                return "0000000";
+            }
+            else
+            {
+                if (country == "USA")
+                {
+                    country = "01";
+                }
+                else if (country == "Canada")
+                {
+                    country = "02";
+                }
+                else if (country == "UK")
+                {
+                    country = "03";
+                }
+                else
+                {
+                    country = "00";
+                }
+            }
+
+            Random rand = new Random();
+            int rnum = rand.Next(9);
+
+            string lastMem = db.Members.Where(s => s.Membership_Number.StartsWith(country)).OrderByDescending(x => x.Membership_Number).FirstOrDefault().Membership_Number;
+            if (lastMem == null)
+            {
+                lastMem = (country + "2000" + "0");
+            }
+
+            string num = lastMem.Substring(2, 5);
+            int i = 0;
+            bool success = Int32.TryParse(num, out i);
+            string memberNum = "";
+
+            if (success)
+            {
+                i = i * 10;
+                i += rnum;
+
+                string newNum = string.Format("{00000}", i);
+                memberNum = country + i;
+                memb.Membership_Number = memberNum;
+                return memberNum;
+
+            }
+            return memberNum;
+        }
         // Add other functionalities pertaining to Memebers here
 
 
