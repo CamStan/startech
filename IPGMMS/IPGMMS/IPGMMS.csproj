@@ -236,6 +236,7 @@
     <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MemberInfoViewModel.cs" />
     <Compile Include="ViewModels\MemberIdentityInfoViewModel.cs" />
     <Compile Include="ViewModels\MemberInfoVM.cs" />
   </ItemGroup>
@@ -250,10 +251,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Contact.css" />
     <Content Include="Content\Homepage.css" />
+    <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\IPGLogo.jpg" />
     <Content Include="Content\Images\IPGLogo2.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
+    <Content Include="Content\ManageDetails.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
@@ -359,8 +362,9 @@
     <Content Include="Views\Portal\UpdateCertification.cshtml" />
     <Content Include="Views\Portal\ListMembers.cshtml" />
     <Content Include="Views\Member\PersonalDetails.cshtml" />
-    <Content Include="Views\Manage\PersonalDetails.cshtml" />
     <Content Include="Views\Portal\UpdateMemberInfo.cshtml" />
+    <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
+    <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

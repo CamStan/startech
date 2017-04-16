@@ -47,7 +47,7 @@ namespace IPGMMS.DAL.Repositories
         /// <returns>The ContactInfo object which is the listing info for the memberID provided</returns>
         public ContactInfo ListingInfoFromMID(int? id)
         {
-            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType.ContactType1 == "Listing").First().ContactInfo_ID;
+            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType_ID == 2).First().ContactInfo_ID;
             var contInfo = Find(listID);
             return contInfo;
         }
@@ -59,7 +59,7 @@ namespace IPGMMS.DAL.Repositories
         /// <returns>The ContactInfo object which is the mailing info for the memberID provided</returns>
         public ContactInfo MailingInfoFromMID(int? id)
         {
-            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType.ContactType1 == "Mailing").First().ContactInfo_ID;
+            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType_ID == 1).First().ContactInfo_ID;
             var contInfo = Find(listID);
             return contInfo;
         }

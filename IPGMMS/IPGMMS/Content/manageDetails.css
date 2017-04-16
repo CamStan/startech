@@ -1,0 +1,31 @@
+﻿body {
+}
+
+img {
+    display: block;
+    margin: 0px 75px;
+    height: auto;
+    max-width: 100%;
+    float: left;
+}
+
+.dl-horizontal {
+    width: auto;
+    margin-left: auto;
+    display: table-cell;
+ }
+
+.dl-horizontal dt {
+    width: 120px;
+    text-align: left;
+    display: table-cell;
+}
+
+.dl-horizontal dd  {
+    text-align: left;
+    display: table-cell;
+}
+
+hr {
+    border-top: 2px solid #eee;
+}

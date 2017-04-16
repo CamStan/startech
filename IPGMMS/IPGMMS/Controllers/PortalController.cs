@@ -131,6 +131,20 @@ namespace IPGMMS.Controllers
             infos.Levels = memberRepo.GetLevels;
             return View("AddMember", infos);
         }
+
+        public ActionResult UpdateMember(int? id)
+        {
+            if (id == null)
+            {
+                id = 4;
+            }
+            MemberInfoViewModel info = new MemberInfoViewModel();
+            info.MemberInfo = memberRepo.Find(id);
+            info.ListingInfo = contactRepo.ListingInfoFromMID(id);
+            info.MailingInfo = contactRepo.MailingInfoFromMID(id);
+            return View(info);
+        }
+
         //***********************************************UPDATE MEMBER INFO*****************************
         /// <summary>
         /// This method is the GET for UpdateMemberInfo(). This takes in the memberID 
