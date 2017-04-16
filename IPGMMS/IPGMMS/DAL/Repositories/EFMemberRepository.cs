@@ -59,6 +59,16 @@ namespace IPGMMS.DAL.Repositories
             return (Member)db.Members.Where(m => m.Identity_ID == id).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Finds the member with the correspsonding IPG Member ID
+        /// </summary>
+        /// <param name="id">The IPG Member ID of the member to find</param>
+        /// <returns>The Member Object with the input member ID, or null if none</returns>
+        public Member FindByIPG_ID(string id)
+        {
+            return db.Members.Where(i => i.Membership_Number == id).FirstOrDefault();
+        }
+
     /// <summary>
     /// Inserts the input member into the database if it's a new member, else updates
     /// the member entity already in the database. This method only changes the entity's state,
