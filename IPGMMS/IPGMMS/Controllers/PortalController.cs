@@ -117,7 +117,6 @@ namespace IPGMMS.Controllers
             {
                 Member memb = infos.MemberInfo;
                 ContactInfo mail = (ContactInfo)infos.MailingInfo;
-
                 memb.Membership_Number = memberRepo.setMemberNumber(memb, mail);
                 memb = memberRepo.InsertorUpdate(memb);
                 // Mailing info is required.
