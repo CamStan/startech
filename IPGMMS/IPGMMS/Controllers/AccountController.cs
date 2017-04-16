@@ -136,12 +136,12 @@ namespace IPGMMS.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     // Assign Role to user Here
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    //await this.UserManager.AddToRoleAsync(user.Id, "Uncategorized");
                     // Ends here
 
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
+                //ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
                 AddErrors(result);
             }
 
