@@ -173,8 +173,9 @@ namespace IPGMMS.DAL.Repositories
             
             if (success)
             {
-                i = i * 10;
-                i += rnum;
+                i = i + 1; // increment to next number
+                i = i * 10; // Add a zero to the end to place the 'random' number
+                i += rnum; // Replace the zero at the end with a random int 0-9
 
                 string newNum = string.Format("{00000}", i);
                 memberNum = country + i;

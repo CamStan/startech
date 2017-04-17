@@ -207,10 +207,13 @@ namespace IPGMMS.Controllers
         // GET: UpdateMemberMailing()
         public ActionResult UpdateMemberMailing(int? memID)
         {
+            
             if (memID == null)
             {
-                return View(Request.UrlReferrer.ToString());
+                return View("Index");
+                //return View(Request.UrlReferrer.ToString());
             }
+            
 
             return View(contactRepo.MailingInfoFromMID(memID));
         }
@@ -220,8 +223,17 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateMemberMailing(ContactInfo info)
         {
-            contactRepo.InsertorUpdate(info);
-            return View();
+            if (ModelState.IsValid)
+            {
+                contactRepo.InsertorUpdate(info);
+                MemberInfoViewModel memberDetails = new MemberInfoViewModel();
+                var memID = contactRepo.getMemberID(info);
+                memberDetails.MemberInfo = memberRepo.Find(memID);
+                memberDetails.ListingInfo = contactRepo.ListingInfoFromMID(memID);
+                memberDetails.MailingInfo = info;
+                return View("UpdateMember", memberDetails);
+            }
+            return View(info);
         }
 
         // GET: UpdateMemberListing()
@@ -229,7 +241,8 @@ namespace IPGMMS.Controllers
         {
             if (memID == null)
             {
-                return View(Request.UrlReferrer.ToString());
+                return View("Index");
+                //return View(Request.UrlReferrer.ToString());
             }
 
             return View(contactRepo.ListingInfoFromMID(memID));
