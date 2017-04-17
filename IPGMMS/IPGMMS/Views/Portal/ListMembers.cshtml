@@ -15,7 +15,7 @@
     </p>
 }
 
-<table class="table">
+<table class="table" id="memberListTable">
     <tr>
         <th>
             @{ var mem_num = @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number).ToString();}
@@ -66,8 +66,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+            <td id="memberListLinks">
+                @Html.ActionLink(item.FirstName, "UpdateMember/" + item.ID, "Portal")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MiddleName)

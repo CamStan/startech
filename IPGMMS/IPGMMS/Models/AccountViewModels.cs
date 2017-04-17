@@ -63,9 +63,9 @@ namespace IPGMMS.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "User Roles")]
-        public string UserRoles { get; set; }
+        //[Required]
+        //[Display(Name = "User Roles")]
+        //public string UserRoles { get; set; }
 
         [Required]
         [EmailAddress]

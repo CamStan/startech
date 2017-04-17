@@ -14,9 +14,11 @@ namespace IPGMMS.Abstract
         Member CreateMember();
         Member Find(int? id);
         Member FindByIdentityID(string id);
+        Member FindByIPG_ID(string id);
         Member InsertorUpdate(Member member);
         void Delete(int id);
         void Save();
         string setMemberNumber(Member memb);
+        string setMemberNumber(Member memb, ContactInfo info);
     }
 }
