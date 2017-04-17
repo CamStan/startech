@@ -125,7 +125,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Update Mailing Information", "UpdateMailingInfo", new { ID = Model.MemberInfo.ID })<br />
+    @Html.ActionLink("Update Mailing Information", "UpdateMemberMailing", new { memID = Model.MemberInfo.ID })<br />
 </div>
 
 <div>
@@ -192,7 +192,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Update Listing Information", "UpdateListingInfo", new { ID = Model.MemberInfo.ID })<br />
+    @Html.ActionLink("Update Listing Information", "UpdateMemberListing", new { memID = Model.MemberInfo.ID })<br />
 </div>
 
 @section Scripts {

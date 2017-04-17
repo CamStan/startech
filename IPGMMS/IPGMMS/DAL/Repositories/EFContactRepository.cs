@@ -65,6 +65,18 @@ namespace IPGMMS.DAL.Repositories
         }
 
         /// <summary>
+        /// Fetch the member ID that corresponds to the contact info.
+        /// </summary>
+        /// <param name="info">ContactInfo object</param>
+        /// <returns>The memberID that matches the contactInfoID in the contact table.</returns>
+        public int getMemberID(ContactInfo info)
+        {
+            var memID = db.Contacts.Where(s => s.ContactInfo_ID == info.ID).First().Member_ID;
+
+            return memID;
+        }
+
+        /// <summary>
         /// Inserts the input contactInfo into the database if it's a new object, else updates
         /// the entity already in the database. This method only changes the entity's state,
         /// thus the Save() method must be called to make the changes permanant.

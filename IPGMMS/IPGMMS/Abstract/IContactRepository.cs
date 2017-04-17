@@ -12,6 +12,7 @@ namespace IPGMMS.Abstract
         ContactInfo Find(int? id);
         ContactInfo ListingInfoFromMID(int? id);
         ContactInfo MailingInfoFromMID(int? id);
+        int getMemberID(ContactInfo info);
         ContactInfo InsertorUpdate(ContactInfo contactInfo);
         void Delete(int id);
         void Save();
