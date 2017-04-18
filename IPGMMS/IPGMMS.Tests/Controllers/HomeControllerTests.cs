@@ -62,11 +62,6 @@ namespace IPGMMS.Tests.Controllers
             TestRouteMatch("~/FAQ", "Home", "FAQ");
         }
 
-        [Test]
-        public void FAQ_WithHome_ShouldFail()
-        {
-            TestRouteFail("~/Home/Contact/List");
-        }
         [TearDown]
         public void TearDown()
         {

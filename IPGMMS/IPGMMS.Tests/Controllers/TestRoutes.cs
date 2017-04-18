@@ -70,17 +70,18 @@ namespace IPGMMS.Tests
                 }
                 return result;
             }
-
-            protected void TestRouteFail(string url)
-            {
-                //Arrange
-                RouteCollection routes = new RouteCollection();
-                RouteConfig.RegisterRoutes(routes);
-                //Act - process the route
-                RouteData result = routes.GetRouteData(CreateHttpContext(url));
-                //Assert
-                Assert.IsTrue(result == null || result.Route == null);
-            }
+            //Not using this method for now for testing. Kept here as a placeholder
+            //in case that changes at some point.
+            //protected void TestRouteFail(string url)
+            //{
+            //    //Arrange
+            //    RouteCollection routes = new RouteCollection();
+            //    RouteConfig.RegisterRoutes(routes);
+            //    //Act - process the route
+            //    RouteData result = routes.GetRouteData(CreateHttpContext(url));
+            //    //Assert
+            //    Assert.IsTrue(result == null || result.Route == null);
+            //}
 
         }
     }
