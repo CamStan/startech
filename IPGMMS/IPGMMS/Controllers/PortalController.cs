@@ -98,7 +98,7 @@ namespace IPGMMS.Controllers
             return View("DetailMember");
         }
 
-        //***********************************************ADD MEMBER*****************************
+        //***********************************************ADD MEMBER***************************************
         // GET: Addmember()
         public ActionResult AddMember()
         {
@@ -144,8 +144,29 @@ namespace IPGMMS.Controllers
             }
             MemberInfoViewModel info = new MemberInfoViewModel();
             info.MemberInfo = memberRepo.Find(id);
-            info.ListingInfo = contactRepo.ListingInfoFromMID(id);
-            info.MailingInfo = contactRepo.MailingInfoFromMID(id);
+            //Try to get the Listing info from the contact repo. If there's no listing 
+            //for this member, then the info.ListingInfo is set to null for this
+            //ViewModel that is passed back to the view.
+            try
+            {
+                info.ListingInfo = contactRepo.ListingInfoFromMID(id);
+            }
+            catch(System.InvalidOperationException)
+            {
+                info.ListingInfo = null;
+            }
+            //Try to get the Mailing info from the contact repo. If there's no listing 
+            //for this member, then the info.MailingInfo is set to null for this
+            //ViewModel that is passed back to the view.
+            try
+            {
+                info.MailingInfo = contactRepo.MailingInfoFromMID(id);
+            }
+            catch (System.InvalidOperationException)
+            {
+                info.MailingInfo = null;
+            }
+
             return View(info);
         }
 
