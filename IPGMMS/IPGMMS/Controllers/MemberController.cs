@@ -110,7 +110,7 @@ namespace IPGMMS.Controllers
                 list = contactRepo.InsertorUpdate(list);
                 contactRepo.LinkListingContact(memb, list);
 
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Index", "Manage", new { success = true });
             }
 
             return View(newMember);

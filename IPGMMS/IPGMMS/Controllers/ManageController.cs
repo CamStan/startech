@@ -24,7 +24,7 @@ namespace IPGMMS.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public async Task<ActionResult> Index(ManageMessageId? message, bool? success = false)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -34,6 +34,12 @@ namespace IPGMMS.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            // check if a user was just redirected to this page after successfully applying to IPG
+            bool applied = success ?? false;
+            ViewBag.Success = applied;
+            if (applied)                
+                ViewBag.SuccessMessage = "Thank you for applying to IPG";
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
