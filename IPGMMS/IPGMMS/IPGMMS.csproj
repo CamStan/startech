@@ -85,6 +85,10 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -245,6 +249,7 @@
     <Content Include="App_Data\tableCreation.sql" />
     <Content Include="App_Data\TableInserts.sql" />
     <Content Include="Content\AdminPortalSharedLayout.css" />
+    <Content Include="Content\Apply.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -288,6 +293,7 @@
     <Content Include="fonts\LeagueGothic-Italic.otf" />
     <Content Include="fonts\LeagueGothic-Regular.otf" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\apply.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -301,6 +307,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\manage.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -365,6 +372,7 @@
     <Content Include="Views\Portal\UpdateMemberInfo.cshtml" />
     <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
     <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
+    <Content Include="Views\Member\Apply.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

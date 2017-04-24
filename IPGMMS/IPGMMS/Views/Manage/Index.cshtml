@@ -6,6 +6,13 @@
     ViewBag.Title = "Details";
 }
 
+<!-- Success message when new user has successfully applied for IPG account -->
+@if (ViewBag.Success)
+{
+    <div class="row">
+        <div id="successMessage" class="alert alert-success" style="margin-top: 1em"><center><span>@ViewBag.SuccessMessage</span></center></div>
+    </div>
+}
 
 <h2>Details for @User.Identity.Name</h2>
 
@@ -113,7 +120,7 @@ else
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
-                    <a class="btn btn-default" href="#">Start IPG Application</a>
+                    @Html.ActionLink("Start IPG Application", "Apply", "Member", null, new { @class = "btn btn-default" })
                 </div>
                 <div id="memberLookUp" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -130,7 +137,7 @@ else
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" class="btn btn-default" value="Look Up" />
+                                    <input type="submit" class="btn btn-default" value="Link Account" />
                                 </div>
                             </div>
                         }
@@ -224,5 +231,7 @@ else
 </div>
 
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/manage.js"></script>
     <link href="@Url.Content("~/Content/ManageDetails.css")" rel="stylesheet" />
 }
