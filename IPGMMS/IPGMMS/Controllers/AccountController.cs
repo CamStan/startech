@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
 using IPGMMS.Abstract;
+using reCAPTCHA.MVC;
 
 namespace IPGMMS.Controllers
 {
@@ -110,6 +111,10 @@ namespace IPGMMS.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Manage");
+            }
             ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
             return View();
         }
@@ -119,7 +124,8 @@ namespace IPGMMS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        [CaptchaValidator]
+        public async Task<ActionResult> Register(RegisterViewModel model, bool captchaValid)
         {
             if (ModelState.IsValid)
             {

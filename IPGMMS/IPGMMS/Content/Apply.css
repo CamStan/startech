@@ -1,0 +1,10 @@
+﻿/* spacing between the input form items */
+.w3-input-group {
+    padding-bottom: 1.5em;
+}
+
+/* place a red * next to required field labels */
+.w3-input-group.required .control-label:after {
+    content: " *";
+    color: red;
+}

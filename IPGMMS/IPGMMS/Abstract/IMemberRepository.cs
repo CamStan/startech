@@ -20,5 +20,6 @@ namespace IPGMMS.Abstract
         void Save();
         string setMemberNumber(Member memb);
         string setMemberNumber(Member memb, ContactInfo info);
+        int GetMemberLevelID(string level);
     }
 }

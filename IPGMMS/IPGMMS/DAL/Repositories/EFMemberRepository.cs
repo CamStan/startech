@@ -282,5 +282,15 @@ namespace IPGMMS.DAL.Repositories
                 }, count: 1);
             }
         }
+
+        /// <summary>
+        /// Gets the ID for the input member level
+        /// </summary>
+        /// <param name="level">The member level to look for as a string</param>
+        /// <returns>The ID of the input member level</returns>
+        public int GetMemberLevelID(string level)
+        {
+            return db.MemberLevels.Where(ml => ml.MLevel.Equals(level)).FirstOrDefault().ID;
+        }
     }
 }
