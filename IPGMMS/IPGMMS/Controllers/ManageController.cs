@@ -129,8 +129,17 @@ namespace IPGMMS.Controllers
             return View(modelCompound);
         }
 
-        
-
+        //GET: /Manage/UpdateMyMailing
+        public ActionResult UpdateMyMailing(int? mail)
+        {
+            if(mail == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var mailInfo = contactRepo.Find(mail);
+            
+            return View(mailInfo);
+        }
 
 
 
