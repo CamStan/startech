@@ -123,6 +123,22 @@ namespace IPGMMS.Controllers
             return View(modelCompound);
         }
 
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

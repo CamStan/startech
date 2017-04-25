@@ -365,6 +365,9 @@
     <Content Include="Views\Portal\UpdateMemberInfo.cshtml" />
     <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
     <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
+    <Content Include="Views\Manage\UpdateMyInfo.cshtml" />
+    <Content Include="Views\Manage\UpdateMyListing.cshtml" />
+    <Content Include="Views\Manage\UpdateMyMailing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
