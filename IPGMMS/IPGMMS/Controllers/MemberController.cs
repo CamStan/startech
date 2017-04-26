@@ -115,5 +115,36 @@ namespace IPGMMS.Controllers
 
             return View(newMember);
         }
+
+
+        //GET: /Manage/UpdateMyMailing
+        public ActionResult UpdateMyMailing(int? mail)
+        {
+            if (mail == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var mailInfo = contactRepo.Find(mail);
+
+            return View(mailInfo);
+        }
+
+        //Post: /Manage/UpdateMyMailing
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMyMailing(ContactInfo mail)
+        {
+
+            if (ModelState.IsValid)
+            {
+                contactRepo.InsertorUpdate(mail);
+
+                return RedirectToAction("Index");
+            }
+            var id = mail.ID;
+            return RedirectToAction("UpdateMyMailing","Manage", id);
+        }
+
+
     }
 }

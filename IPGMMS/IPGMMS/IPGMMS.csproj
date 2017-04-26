@@ -376,6 +376,7 @@
     <Content Include="Views\Manage\UpdateMyListing.cshtml" />
     <Content Include="Views\Manage\UpdateMyMailing.cshtml" />
     <Content Include="Views\Member\Apply.cshtml" />
+    <Content Include="Views\Manage\UpdateContact.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
