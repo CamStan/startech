@@ -38,7 +38,7 @@ namespace IPGMMS.Controllers
 
             ViewBag.Pages = pages;
 
-            var membersPaged = members.Skip(pageSize * (pageNum - 1)).Take(pageSize);
+            var membersPaged = members.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
 
             return View(membersPaged);
         }
