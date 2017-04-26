@@ -32,32 +32,6 @@ namespace IPGMMS.Tests.Controllers
         //    TestRouteFail("~/Member/Cat");
         //}
 
-        // Haven't figured out how to test query strings
-
-        //[Test]
-        //public void MemberWith_Page2_ShouldMapTo_Member_Index_Page2()
-        //{
-        //    TestRouteMatch("~/Member?page=2", "Member", "Index", new { page = 2 });
-        //}
-
-        //[Test]
-        //public void MemberWith_SlashPage2_ShouldMapTo_Member_Index_Page2()
-        //{
-        //    TestRouteMatch("~/Member/?page=2", "Member", "Index", new { page = 2 });
-        //}
-
-        //[Test]
-        //public void MemberWithIndex_Page2_ShouldMapTo_Member_Index_Page2()
-        //{
-        //    TestRouteMatch("~/Member/Index?page=2", "Member", "Index", new { page = 2 });
-        //}
-
-        //[Test]
-        //public void MemberWithIndex_SlashPage2_ShouldMapTo_Member_Index_Page2()
-        //{
-        //    TestRouteMatch("~/Member/Index/?page=2", "Member", "Index", new { page = 2 });
-        //}
-
         [Test]
         public void MemberWith_Page0_ShouldMapTo_Member_Index()
         {
