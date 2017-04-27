@@ -1,16 +1,16 @@
 ﻿@model IPGMMS.Models.ContactInfo
 
 @{
-    ViewBag.Title = "UpdateMemberMailing";
-    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+    ViewBag.Title = "UpdateContact";
 }
 
-<h2>Update Member Mailing Address</h2>
+<h2>Update My Contact Information</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ContactInfo</h4>
         <hr />
@@ -82,5 +82,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cancel", "Index")
 </div>
+

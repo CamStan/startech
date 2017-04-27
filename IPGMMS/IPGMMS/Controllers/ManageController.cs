@@ -129,6 +129,75 @@ namespace IPGMMS.Controllers
             return View(modelCompound);
         }
 
+        //GET: UpdateMyMailing
+        public ActionResult UpdateContact(int? mail)
+        {
+            if(mail == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ContactInfo mailInfo = contactRepo.Find(mail);
+            
+            return View(mailInfo);
+        }
+
+        //Post: UpdateMyMailing()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateContact(ContactInfo mailInfo)
+        {
+
+            if (ModelState.IsValid)
+            {
+                contactRepo.InsertorUpdate(mailInfo);
+                
+                return RedirectToAction("Index");
+            }
+            var id = mailInfo.ID;
+            return RedirectToAction("UpdateMyMailing", id);
+        }
+
+
+       // GET
+       public ActionResult UpdateMyInfo(int? memID)
+       {
+           if (memID == null)
+           {
+               return View(Request.UrlReferrer.ToString());
+           }
+           if (memberRepo.Find(memID) == null)
+           {
+               return View(Request.UrlReferrer.ToString());
+           }
+
+           var memb = memberRepo.Find(memID);
+
+           return View(memb);
+       }
+
+       /// <summary>
+       /// This method is the POST for UpdateMyInfo(). 
+       /// This method will save updates to the database and return the user to the Index page to view 
+       /// their changes.
+       /// </summary>
+       /// <param name="memb">Member object</param>
+       /// <returns>If the model state is valid, this returns the user back to the Index view
+       /// if it is not valid, it returns the user to the UpdateMyInfo view with the Model given.</returns>
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public ActionResult UpdateMyInfo(Member memb)
+       {
+           if (ModelState.IsValid)
+           {
+               memberRepo.InsertorUpdate(memb);
+               return RedirectToAction("Index");
+           }
+           return View(memb);
+       }
+      
+
+
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

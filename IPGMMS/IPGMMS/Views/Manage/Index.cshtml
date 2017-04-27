@@ -39,8 +39,10 @@
                 <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
                 <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
             </dl>
-        </div>
 
+            @Html.ActionLink("Update Member Information", "UpdateMyInfo", new { memID = Model.MemberInfo.ID })<br />
+        </div>
+      
         @* Mainpage part for Business Name, Website, Contact Info, Certifications and Test Results.*@
         <div class="col-md-9">
             <div class="row">
@@ -81,6 +83,8 @@
                         <dt>@Html.DisplayNameFor(model => model.MailingInfo.PostalCode)</dt>
                         <dd>@Html.DisplayFor(model => model.MailingInfo.PostalCode)</dd>
                     </dl>
+
+                    @Html.ActionLink("Update Mailing Information", "UpdateContact",new { mail = Model.MailingInfo.ID })<br />
                 </div>
                 @* Listing Info*@
                 <div class="col-md-6">
@@ -101,6 +105,8 @@
                         <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
                         <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)</dd>
                     </dl>
+
+                    @Html.ActionLink("Update Listing Information", "UpdateContact", new { mail = Model.ListingInfo.ID })<br />
                 </div>
             </div>
             @* Add further information here such as Certificates and Tests Taken/Results*@
