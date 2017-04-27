@@ -373,8 +373,6 @@
     <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
     <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
     <Content Include="Views\Manage\UpdateMyInfo.cshtml" />
-    <Content Include="Views\Manage\UpdateMyListing.cshtml" />
-    <Content Include="Views\Manage\UpdateMyMailing.cshtml" />
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
   </ItemGroup>
