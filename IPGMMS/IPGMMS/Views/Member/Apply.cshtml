@@ -1,0 +1,249 @@
+﻿<link href="~/Content/Apply.css" rel="stylesheet" type="text/css" />
+
+@model IPGMMS.ViewModels.MemberInfoViewModel
+
+@{
+    ViewBag.Title = "Apply";
+}
+
+<h2>IPG Membership Application</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="w3-container">
+            <h4>Member Info</h4>
+            <hr />
+            <!-- Member info portion of form -->
+            <div class="col-md-5">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @*IPG Member #*@
+                @Html.HiddenFor(model => model.MemberInfo.Membership_Number)
+
+                @* First Name *@
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MemberInfo.FirstName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MemberInfo.FirstName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                        @Html.ValidationMessageFor(model => model.MemberInfo.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Middle Name *@
+                <div class="w3-input-group">
+                    @Html.LabelFor(model => model.MemberInfo.MiddleName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MemberInfo.MiddleName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                        @Html.ValidationMessageFor(model => model.MemberInfo.MiddleName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Last Name *@
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MemberInfo.LastName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MemberInfo.LastName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                        @Html.ValidationMessageFor(model => model.MemberInfo.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*Member Level *@
+                @Html.HiddenFor(model => model.MemberInfo.MemberLevel)
+
+            </div>
+            @* End of first column*@
+
+            @* Start of second column*@
+            <div class="col-md-5">
+                @*Member Since Date*@
+                @Html.HiddenFor(model => model.MemberInfo.Membership_SignupDate)
+
+                @*Member Expiration Date*@
+                @Html.HiddenFor(model => model.MemberInfo.Membership_ExpirationDate)
+
+                @* Business Name *@
+                <div class="w3-input-group">
+                    @Html.LabelFor(model => model.MemberInfo.BusinessName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MemberInfo.BusinessName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                        @Html.ValidationMessageFor(model => model.MemberInfo.BusinessName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Website *@
+                <div class="w3-input-group">
+                    @Html.LabelFor(model => model.MemberInfo.Website, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "www.mywebsite.com" } })
+                        @Html.ValidationMessageFor(model => model.MemberInfo.Website, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model.MemberInfo.Identity_ID)
+
+            @* Spacer column to have white space on right*@
+            <div class="col-md-2"></div>
+        </div>
+        <br />
+        @* End of Member info input*@
+
+        @* Start of Contact Info input*@
+        <div class="w3-container">
+
+            @* Mailing Contact Info *@
+            <div class="col-md-5">
+                <h4>Mailing Contact Info</h4>
+                <hr />
+                <br />
+                <br />
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.Email, new { type = "email", htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.PhoneNumber, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required", placeholder = "no dashes" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.StreetAddress, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.StreetAddress, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.StreetAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.City, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.City, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.StateName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.StateName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.StateName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="w3-input-group required">
+                    @Html.LabelFor(model => model.MailingInfo.PostalCode, htmlAttributes: new { @class = "control-label col-lg-4" })
+                    <div class="col-lg-8">
+                        @Html.EditorFor(model => model.MailingInfo.PostalCode, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.MailingInfo.PostalCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+            </div>
+            @* End of Mailing Info *@
+
+            @* Listing Contact Info *@
+            <div class="col-md-5">
+                <h4>Listing Contact Info</h4>
+                <hr />
+                <div>
+                    <label>Use mailing info for listing info?</label>
+                    <input type="checkbox" id="trigger" />
+                </div>
+                <br />
+                <div id="hidden_form">
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.Email, new { type = "email", htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.PhoneNumber, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "no dashes" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.StreetAddress, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.StreetAddress, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.StreetAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.City, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.City, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.StateName, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.StateName, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.StateName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.Country, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="w3-input-group">
+                        @Html.LabelFor(model => model.ListingInfo.PostalCode, htmlAttributes: new { @class = "control-label col-lg-4" })
+                        <div class="col-lg-8">
+                            @Html.EditorFor(model => model.ListingInfo.PostalCode, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.ValidationMessageFor(model => model.ListingInfo.PostalCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* End of Listing Info *@
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="w3-input-group">
+            <div class="col-lg-offset-2">
+                <input type="submit" value="Apply" class="w3-button w3-border w3-white w3-round-large w3-ripple w3-hover-shadow" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/apply.js"></script>
+}

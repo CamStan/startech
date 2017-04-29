@@ -6,6 +6,13 @@
     ViewBag.Title = "Details";
 }
 
+<!-- Success message when new user has successfully applied for IPG account -->
+@if (ViewBag.Success)
+{
+    <div class="row">
+        <div id="successMessage" class="alert alert-success" style="margin-top: 1em"><center><span>@ViewBag.SuccessMessage</span></center></div>
+    </div>
+}
 
 <h2>Details for @User.Identity.Name</h2>
 
@@ -32,8 +39,10 @@
                 <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
                 <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
             </dl>
-        </div>
 
+            @Html.ActionLink("Update Member Information", "UpdateMyInfo", new { memID = Model.MemberInfo.ID })<br />
+        </div>
+      
         @* Mainpage part for Business Name, Website, Contact Info, Certifications and Test Results.*@
         <div class="col-md-9">
             <div class="row">
@@ -74,6 +83,8 @@
                         <dt>@Html.DisplayNameFor(model => model.MailingInfo.PostalCode)</dt>
                         <dd>@Html.DisplayFor(model => model.MailingInfo.PostalCode)</dd>
                     </dl>
+
+                    @Html.ActionLink("Update Mailing Information", "UpdateContact",new { mail = Model.MailingInfo.ID })<br />
                 </div>
                 @* Listing Info*@
                 <div class="col-md-6">
@@ -94,6 +105,8 @@
                         <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
                         <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)</dd>
                     </dl>
+
+                    @Html.ActionLink("Update Listing Information", "UpdateContact", new { mail = Model.ListingInfo.ID })<br />
                 </div>
             </div>
             @* Add further information here such as Certificates and Tests Taken/Results*@
@@ -113,7 +126,7 @@ else
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
-                    <a class="btn btn-default" href="#">Start IPG Application</a>
+                    @Html.ActionLink("Start IPG Application", "Apply", "Member", null, new { @class = "btn btn-default" })
                 </div>
                 <div id="memberLookUp" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -130,7 +143,7 @@ else
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" class="btn btn-default" value="Look Up" />
+                                    <input type="submit" class="btn btn-default" value="Link Account" />
                                 </div>
                             </div>
                         }
@@ -224,5 +237,7 @@ else
 </div>
 
 @section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/manage.js"></script>
     <link href="@Url.Content("~/Content/ManageDetails.css")" rel="stylesheet" />
 }

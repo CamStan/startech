@@ -274,8 +274,17 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateMemberListing(ContactInfo info)
         {
-            contactRepo.InsertorUpdate(info);
-            return View();
+            if (ModelState.IsValid)
+            {
+                contactRepo.InsertorUpdate(info);
+                MemberInfoViewModel memberDetails = new MemberInfoViewModel();
+                var memID = contactRepo.getMemberID(info);
+                memberDetails.MemberInfo = memberRepo.Find(memID);
+                memberDetails.ListingInfo = info;
+                memberDetails.MailingInfo = contactRepo.MailingInfoFromMID(memID);
+                return View("UpdateMember", memberDetails);
+            }
+            return View(info);
         }
 
         public ActionResult ListTests()
