@@ -365,6 +365,7 @@
     <Content Include="Views\Portal\UpdateMemberInfo.cshtml" />
     <Content Include="Views\Portal\UpdateMemberMailing.cshtml" />
     <Content Include="Views\Portal\UpdateMemberListing.cshtml" />
+    <Content Include="Views\Shared\_GoogleMap.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
