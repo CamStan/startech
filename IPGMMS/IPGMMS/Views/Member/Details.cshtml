@@ -10,7 +10,7 @@
 </div>
 <br />
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-4 col-xs-8">
         @if (Model.MemberLevelbyInt == 1)
         {
             <div class="base">
@@ -43,7 +43,7 @@
         }
 
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-8 col-xs-12">
         @if (Model.MemberLevelbyInt == 5)
         {
             @Html.Raw("<div class=master>");
@@ -85,7 +85,7 @@
     {
         <button class="tablinks" onclick="openTab(event, 'Business')">Business Information</button>
     }
-    @if (Model.Email != null)
+    @if (Model.Contact.Email != null)
     {
         <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Information</button>
     }
@@ -103,7 +103,7 @@
 <div id="Business" class="tabcontent">
     <dl class="dl-horizontal">
         <dd>@Html.DisplayFor(model => model.BusinessName)</dd>
-        <dd>@Html.DisplayFor(model => model.Street)</dd>
+        <dd>@Html.DisplayFor(model => model.Contact.StreetAddress)</dd>
         <dd>@Html.DisplayFor(model => model.Location)</dd>
         @* Add further info here if available like hours and services*@
     </dl>
@@ -112,8 +112,8 @@
 
 <div id="Contact" class="tabcontent">
     <dl class="dl-horizontal">
-        <dd>@Html.DisplayFor(model => model.Email)</dd>
-        <dd>@Html.DisplayFor(model => model.Phone)</dd>
+        <dd>@Html.DisplayFor(model => model.Contact.Email)</dd>
+        <dd>@Html.DisplayFor(model => model.Contact.PhoneNumber)</dd>
     </dl>
 </div>
 

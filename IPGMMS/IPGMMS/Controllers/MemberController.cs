@@ -72,6 +72,7 @@ namespace IPGMMS.Controllers
             }
 
             MemberDetails memDet = new MemberDetails();
+            memDet.Contact = cont;
 
             memDet.MemberLevelbyInt = memb.MemberLevel;
             string abbr;
@@ -79,12 +80,9 @@ namespace IPGMMS.Controllers
             memDet.LevelAbbrev = ", " + abbr;
             memDet.FullName = memb.FullName;
             memDet.BusinessName = memb.BusinessName;
-            memDet.Email = cont.Email;
             if (memb.MemberLevel > 1)
             {
                 memDet.MemberLevel = memb.MemberLevel1.MLevel;
-                memDet.Phone = cont.PhoneNumber;
-                memDet.Street = cont.StreetAddress;
                 memDet.Website = memb.Website;
             }
             else

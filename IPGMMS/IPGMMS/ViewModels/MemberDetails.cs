@@ -17,10 +17,8 @@ namespace IPGMMS.ViewModels
         public int MemberLevelbyInt { get; set; }
         public string LevelAbbrev { get; set; }
         public string Location { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Street { get; set; }
         public string Website { get; set; }
+        public Models.ContactInfo Contact { get; set; }
 
         // There can be more added for the form questions
         // ie. self-wash available, mobile grooming, etc.
