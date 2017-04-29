@@ -263,6 +263,7 @@
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\SharedLayout.css" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -313,6 +314,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SharedLayout.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -376,7 +378,7 @@
     <Content Include="Views\Manage\UpdateMyInfo.cshtml" />
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
-
+    <Content Include="Views\Shared\_SharedLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

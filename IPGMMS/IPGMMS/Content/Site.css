@@ -1,4 +1,6 @@
-﻿body {
+﻿@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -43,13 +45,10 @@ img {
     font-family: 'Palanquin';
     src: url(../fonts/palanquin-regular.ttf);
 }
-@font-face{
-    font-family:'League Gothic';
-    src: url(../fonts/LeagueGothic-Regular.otf);
-}
+
 /*Set the font for the project and various headings*/
 h1,h2,h3{
-    font-family:'League Gothic';
+    font-family: 'Oswald', sans-serif;
 }
 h4,p,body{
     font-family:Palanquin;

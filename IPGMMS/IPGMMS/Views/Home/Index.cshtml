@@ -1,14 +1,9 @@
 ﻿@{
     ViewBag.Title = "IPGMMS";
+    Layout = "_SharedLayout.cshtml";
+    Layout = "~/Views/Shared/_SharedLayout.cshtml";
 }
 
-@section scripts {
-    <link href="@Url.Content("~/Content/Homepage.css")" rel="stylesheet" />
-}
-
-<div class="row col-md-2">
-    @Html.Partial("_LeftNav")
-</div>
     <div class="col-md-10">
         <br />
         <br />
