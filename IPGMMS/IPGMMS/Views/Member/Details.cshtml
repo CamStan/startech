@@ -81,11 +81,11 @@
 
 <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'map')">Map</button>
-    @if (Model.BusinessName != null)
+    @if (Model.BusinessName != null && Model.BusinessName != "")
     {
         <button class="tablinks" onclick="openTab(event, 'Business')">Business Information</button>
     }
-    @if (Model.Contact.Email != null)
+    @if (Model.Contact.Email != null && Model.Contact.Email != "")
     {
         <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Information</button>
     }
