@@ -10,10 +10,10 @@ namespace IPGMMS.Models
     [MetadataType(typeof(ContactInfoMetadata))]
     public partial class ContactInfo
     {
-        public string mapURL { get { return
-            $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q={formatAddressString},{City}+{StateName}+{PostalCode}";}}
-
+        public string mapURL{ get { return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q={formatAddressString},{formatCityString}+{StateName}+{PostalCode}"; } }
+ 
         private string formatAddressString { get { return StreetAddress.Replace(' ', '+'); } }
+        private string formatCityString { get { return City.Replace(' ', '+'); } }
     }
 
     public class ContactInfoMetadata

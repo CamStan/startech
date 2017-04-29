@@ -1,5 +1,6 @@
-﻿@model IPGMMS.Models.ContactInfoMetadata
+﻿@model IPGMMS.ViewModels.MemberInfoViewModel
 
-<iframe width="450" height="250" frameborder="0" style="border:0" @Url.Action(Model.)></iframe>
+<div class="row col-md-12">
+    <iframe width="450" height="250" frameborder="0" style="border:0" src="@Url.Content(Model.ListingInfo.mapURL)" )></iframe>
+</div>
 
-<!--https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=6475+Wallace+Rd+NW,Salem+OR+97306 -->
