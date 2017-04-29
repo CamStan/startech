@@ -43,7 +43,14 @@ namespace IPGMMS.Controllers
             return View(membersPaged);
         }
 
-        // GET: Member
+        /// <summary>
+        /// GET: Details
+        /// Displays a member's details based on the membership level of the
+        /// member. This will only send select information to the view to
+        /// prevent private information from being displayed.
+        /// </summary>
+        /// <param name="ID"> The member ID to display</param>
+        /// <returns></returns>
         public ActionResult Details(int? ID)
         {
             if (!ID.HasValue)
@@ -51,7 +58,47 @@ namespace IPGMMS.Controllers
                 ID = 5;
             }
             Member memb = memberRepo.Find(ID);
-            return View(memb);
+            ContactInfo cont = new ContactInfo();
+
+            // This should probably be checked in the repo method rather
+            // than here, but such is life.
+            try
+            {
+                cont = contactRepo.ListingInfoFromMID(ID);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+
+            MemberDetails memDet = new MemberDetails();
+
+            memDet.MemberLevelbyInt = memb.MemberLevel;
+            string abbr;
+            ToAbbr.TryGetValue(memb.MemberLevel1.MLevel, out abbr);
+            memDet.LevelAbbrev = ", " + abbr;
+            memDet.FullName = memb.FullName;
+            memDet.BusinessName = memb.BusinessName;
+            memDet.Email = cont.Email;
+            if (memb.MemberLevel > 1)
+            {
+                memDet.MemberLevel = memb.MemberLevel1.MLevel;
+                memDet.Phone = cont.PhoneNumber;
+                memDet.Street = cont.StreetAddress;
+                memDet.Website = memb.Website;
+            }
+            else
+            {
+                // We have no schools set in database. Maybe require students
+                // to list their school as the business name.
+                memDet.BusinessName = "Grooming School";
+            }
+            if (cont.StateName != null)
+            {
+                memDet.Location = cont.StateName + ", " + cont.Country;
+            }
+
+            return View(memDet);
         }
 
         /// <summary>
@@ -65,7 +112,7 @@ namespace IPGMMS.Controllers
         public ActionResult Apply()
         {
             var userID = User.Identity.GetUserId();
-            if(memberRepo.FindByIdentityID(userID) == null) // current Identity user doesn't already have an associated IPG account/application
+            if (memberRepo.FindByIdentityID(userID) == null) // current Identity user doesn't already have an associated IPG account/application
             {
                 MemberInfoViewModel newMember = new MemberInfoViewModel();
                 newMember.MemberInfo = memberRepo.CreateMember();
@@ -116,6 +163,18 @@ namespace IPGMMS.Controllers
             return View(newMember);
         }
 
+        Dictionary<String, String> ToAbbr = new Dictionary<string, string>()
+        {
+            {"Student Member", "Student" },
+            {"IPG Member", "IPG Member" },
+            {"Certified Professional Groomer", "CPG" },
+            {"Certified Advanced Professional Groomer", "APG" },
+            {"International Certified Master Groomer", "ICMG" },
+            {"Approved Salon", "Salon" },
+            {"Approved School", "School" },
+            {"Member School", "School" },
+            {"Uncategorized", "Newbie" }
+        };
 
 
     }

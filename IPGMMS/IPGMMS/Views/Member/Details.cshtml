@@ -1,66 +1,126 @@
-﻿@model IPGMMS.Models.Member
+﻿@model IPGMMS.ViewModels.MemberDetails
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<br />
+<div class="row">
+    <center><h3>IPG Member Profile</h3></center>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-5">
+        @if (Model.MemberLevelbyInt == 1)
+        {
+            <div class="base">
+                <img src="~/Content/Images/students_250x250.jpeg" alt="Student Member" />
+            </div>
+        }
+        else if (Model.MemberLevelbyInt == 2)
+        {
+            <div class="member">
+                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+            </div>
+        }
+        else if (Model.MemberLevelbyInt == 3)
+        {
+            <div class="cpg">
+                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+            </div>
+        }
+        else if (Model.MemberLevelbyInt == 4)
+        {
+            <div class="apg">
+                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+            </div>
+        }
+        else
+        {
+            <div class="master">
+                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+            </div>
+        }
 
-<div>
-    <h4>Member</h4>
-    <hr />
+    </div>
+    <div class="col-sm-7">
+        @if (Model.MemberLevelbyInt == 5)
+        {
+            @Html.Raw("<div class=master>");
+        }
+        else if (Model.MemberLevelbyInt == 4)
+        {
+            @Html.Raw("<div class=apg>");
+        }
+        else if (Model.MemberLevelbyInt == 3)
+        {
+            @Html.Raw("<div class=cpg>");
+        }
+        else if (Model.MemberLevelbyInt == 2)
+        {
+            @Html.Raw("<div class=member>");
+        }
+        else
+        {
+            @Html.Raw("<div class=base>");
+        }
+
+        <dl class="dl-horizontal">
+            <dd> @Html.DisplayFor(model => model.FullName) @Html.DisplayFor(model => model.LevelAbbrev)</dd>
+            <dd> @Html.DisplayFor(model => model.BusinessName)</dd>
+            <dd> @Html.DisplayFor(model => model.Location)</dd>
+            <dd> @Html.DisplayFor(model => model.MemberLevel)</dd>
+        </dl>
+
+        @if (true)
+        {
+            @Html.Raw("</div>");
+        }
+    </div>
+</div>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'map')">Map</button>
+    @if (Model.BusinessName != null)
+    {
+        <button class="tablinks" onclick="openTab(event, 'Business')">Business Information</button>
+    }
+    @if (Model.Email != null)
+    {
+        <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Information</button>
+    }
+    @if (Model.Website != null && Model.Website != "")
+    {
+        <button class="tablinks" onclick="openTab(event, 'Website')">Website</button>
+    }
+    @* A certification tab can be added here to show certifications *@
+</div>
+
+<div id="map" class="tabcontent">
+    @* put the map info here*@
+</div>
+
+<div id="Business" class="tabcontent">
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberLevel1.MLevel)
-        </dt>
+        <dd>@Html.DisplayFor(model => model.BusinessName)</dd>
+        <dd>@Html.DisplayFor(model => model.Street)</dd>
+        <dd>@Html.DisplayFor(model => model.Location)</dd>
+        @* Add further info here if available like hours and services*@
+    </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberLevel1.MLevel)
-        </dd>
+</div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Membership_SignupDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Membership_SignupDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BusinessName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BusinessName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
+<div id="Contact" class="tabcontent">
+    <dl class="dl-horizontal">
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div id="Website" class="tabcontent">
+    <a href="http://@Html.DisplayFor(model => model.Website)">@Html.DisplayFor(model => model.Website)</a>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/MemberDetailTabs.js"></script>
+    <link href="@Url.Content("~/Content/MemberDetails.css")" rel="stylesheet" />
+}
