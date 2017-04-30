@@ -95,6 +95,7 @@ namespace IPGMMS.Controllers
             {
                 memDet.Location = cont.StateName + ", " + cont.Country;
             }
+            
 
             return View(memDet);
         }
