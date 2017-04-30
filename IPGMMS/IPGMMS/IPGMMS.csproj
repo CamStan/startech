@@ -240,6 +240,7 @@
     <Compile Include="Models\Partials\Member.Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MemberDetails.cs" />
     <Compile Include="ViewModels\MemberInfoViewModel.cs" />
     <Compile Include="ViewModels\MemberIdentityInfoViewModel.cs" />
     <Compile Include="ViewModels\MemberInfoVM.cs" />
@@ -260,8 +261,11 @@
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\IPGLogo.jpg" />
     <Content Include="Content\Images\IPGLogo2.jpeg" />
+    <Content Include="Content\Images\member_250x250.jpeg" />
+    <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
+    <Content Include="Content\MemberDetails.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SharedLayout.css" />
     <Content Include="Content\w3.css" />
@@ -309,6 +313,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\manage.js" />
+    <Content Include="Scripts\MemberDetailTabs.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
