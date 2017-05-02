@@ -1,6 +1,7 @@
-﻿
-/* Top nav bar settings*/
-
+﻿/* Top nav bar settings*/
+body{
+    padding-top: 0;
+}
 .w3-navbar {
     position: fixed;
     top: 0;
@@ -11,10 +12,10 @@
     z-index:200;
 }
 
-
 /* Set the width of the sidebar to 120px */
 
 .w3-sidebar {
+    height: 500px;
     width: 140px;
     background-color: white;
     overflow: visible;
@@ -22,6 +23,7 @@
     border-right: solid;
     border-right-color: grey;
     border-right-width: 1px;
+    top:45px;
 }
 
 
@@ -48,12 +50,13 @@
     margin: 0;
     padding: 0;
     right: 20px;
+    font-size:18px;
 }
 
     .w3-dropdown-content a {
         padding: 6px 16px;
         display: block;
-        background-color: white;
+       
     }
 
         .w3-dropdown-content a:hover {

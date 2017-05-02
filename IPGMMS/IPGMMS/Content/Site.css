@@ -1,7 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿@import url(https://fonts.googleapis.com/css?family=Oswald);
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -43,33 +40,50 @@ img {
     font-family: 'Palanquin';
     src: url(../fonts/palanquin-regular.ttf);
 }
-@font-face{
-    font-family:'League Gothic';
-    src: url(../fonts/LeagueGothic-Regular.otf);
-}
+
 /*Set the font for the project and various headings*/
-h1,h2,h3{
-    font-family:'League Gothic';
-}
-h4,p,body{
-    font-family:Palanquin;
-}
-/*Heading specific information such as size, color, etc*/
-h1{
-    font-size: 48px;
-}
-h2{
-    font-size: 36px;
-}
-h3{
-    font-size:28px;
-}
-h4{
-    font-size: 22px;
+h1,h2,h3,h4{
+    font-family: 'Oswald', sans-serif;
 }
 p,body{
-    font-size:16px;
+    font-family:Palanquin;
 }
+/*Set fonts to be responsive*/
+
+/*Heading specific information such as size, color, etc*/
+h1{
+    font-size: 170%;
+}
+h2{
+    font-size: 150%;
+}
+h3{
+    font-size:130%;
+}
+h4{
+    font-size: 110%;
+}
+p,body{
+    font-size:100%;
+}
+@media screen and (max-width: 950px) {
+     h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+ h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+ h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
 /* Dropdown content for top nav for user navigation*/
 .w3-dropdown-content {
     cursor: auto;
@@ -97,4 +111,7 @@ p,body{
 #memberListTable a{
     color: #000080;
     font-weight:bold;
+}
+.login{
+    font-size: 18px;
 }

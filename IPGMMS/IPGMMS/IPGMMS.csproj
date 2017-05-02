@@ -260,13 +260,15 @@
     <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\IPGLogo.jpg" />
-    <Content Include="Content\Images\IPGLogo2.jpeg" />
+    <Content Include="Content\Images\IPGLogo2.png" />
+    <Content Include="Content\Images\ipgLogo_transparent.png" />
     <Content Include="Content\Images\member_250x250.jpeg" />
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
     <Content Include="Content\MemberDetails.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\SharedLayout.css" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -318,6 +320,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SharedLayout.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -331,7 +334,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutOLD.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -381,7 +384,7 @@
     <Content Include="Views\Manage\UpdateMyInfo.cshtml" />
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
-
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

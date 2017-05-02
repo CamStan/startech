@@ -6,49 +6,73 @@
     <title>@ViewBag.Title - IPGMMS</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/w3.css")
+    @Styles.Render("~/Content/SharedLayout.css")
     @Styles.Render("~/Content/Site.css")
     @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            @*<div class="row col-md-3">
-                    <img src="~/Content/Images/IPGLogo2.jpeg" alt="Top Logo" />
-                </div>
-                <h1 class="row col-md-9">International Professional Groomers, Inc<br /><small>Member Management System</small></h1>*@
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("IPGMMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("IPG Members", "Index", "Member")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+
+<body class="w3-content" style="max-width:100%">
+
+    <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card-2 w3-top w3-xlarge w3-animate-left w3-light-gray" style="display:none;z-index:2;width:40%;max-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-close"></i></a>
+        <div class="w3-padding-12"><a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/IPGLogo2.png" /></a></div>
+        <a href="@Url.Action("Index","Member")" onclick="w3_close()" class="w3-bar-item w3-button">IPG Member Search</a>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">About IPG Membership</a>
+       
+    </nav>
+
+    <!-- Top menu -->
+    <div class="w3-top w3-light-gray w3-padding-right">
+        <div class="w3-xlarge" style="max-width:100%; margin:auto">
+            <div class="w3-button w3-left" onclick="w3_open()"><i class="fa fa-bars w3-xxlarge"></i></div>
+            <div class="w3-right">@Html.Partial("_LoginPartial")</div>
+            <div class="w3-left"><h4 class="w3-hide-small">International Professional Groomers, Inc.</h4></div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- Page Content -->
+    <div class="w3-padding-large" id="main">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
     </div>
-    <footer>
-        <hr />
-        <p>&copy; @DateTime.Now.Year - StarTech Application</p>
-        <img src="~/Content/Images/IPGLogo.jpg" alt="Bottom Logo" />
-    </footer>
-    
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-32 w3-dark-grey">
+            <div class="w3-row-padding">
+                <div class="w3-quarter w3-left">          
+                        <h5><a href="@Url.Action("Index","Home")">Home</a></h5>
+                        <h5><a href="@Url.Action("About","Home")">About IPG</a></h5>
+                        <h5><a href="@Url.Action("FAQ", "Home")">FAQ</a></h5>
+                        <h5><a href="@Url.Action("Contact", "Home")">Contact IPG</a></h5>
+                    </div>
+                    <div class="w3-quarter">
+                        <h5>IPG Certification Tracks</h5>
+                        <h5>IPG Events</h5>
+                        <h5>IPG Products</h5>
+                    </div>
+                <div class="w3-half">
+                    <img src="~/Content/Images/IPGLogo.jpg">
+                </div>
+                </div>
+        </footer>
+
+
+
+    <!-- END PAGE CONTENT -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/SharedLayout.js")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="HomePage.js"></script>
 </body>
+
 </html>

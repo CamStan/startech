@@ -102,7 +102,9 @@
     <Compile Include="Controllers\MemberControllerTests.cs" />
     <Compile Include="Controllers\PortalControllerTests.cs" />
     <Compile Include="DependencyTests\MemberTests.cs" />
-    <Compile Include="DependencyTests\UnitTest1.cs" />
+    <Compile Include="DependencyTests\ContactTests.cs" />
+    <Compile Include="DependencyTests\PortalMemberTests.cs" />
+    <Compile Include="ManageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\TestRoutes.cs" />
   </ItemGroup>

@@ -178,7 +178,7 @@ namespace IPGMMS.DAL.Repositories
                 i += rnum; // Replace the zero at the end with a random int 0-9
 
                 string newNum = string.Format("{00000}", i);
-                memberNum = country + i;
+                memberNum = country + newNum;
                 memb.Membership_Number = memberNum;
                 db.Entry(memb).State = EntityState.Modified;
                 Save();

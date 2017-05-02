@@ -22,6 +22,7 @@ namespace IPGMMS.Tests.DependencyTests
         [SetUp]
         public void SetupContactMock()
         {
+
             //Set up ContactInfos to test***********************************************************************************
             var data = new List<ContactInfo>
             {

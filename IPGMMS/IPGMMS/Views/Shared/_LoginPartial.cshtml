@@ -6,7 +6,7 @@
         @Html.AntiForgeryToken()
         
             <div class="w3-dropdown-hover">
-                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-white">
+                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-light-gray">
                     <i class="fa fa-user-circle w3-xlarge"></i>
                 </a>
                 <div class="w3-dropdown-content">
@@ -23,7 +23,7 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right login">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

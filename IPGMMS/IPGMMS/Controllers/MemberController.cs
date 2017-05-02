@@ -48,6 +48,8 @@ namespace IPGMMS.Controllers
         /// Displays a member's details based on the membership level of the
         /// member. This will only send select information to the view to
         /// prevent private information from being displayed.
+        /// 
+        /// Defaults to ID = 5 for some reason.
         /// </summary>
         /// <param name="ID"> The member ID to display</param>
         /// <returns></returns>
@@ -57,7 +59,14 @@ namespace IPGMMS.Controllers
             {
                 ID = 5;
             }
-            Member memb = memberRepo.Find(ID);
+
+            Member memb;
+            memb = memberRepo.Find(ID);
+            if (memb == null)
+            {
+                ID = 5;
+                memb = memberRepo.Find(5);
+            }
             ContactInfo cont = new ContactInfo();
 
             // This should probably be checked in the repo method rather
@@ -95,6 +104,7 @@ namespace IPGMMS.Controllers
             {
                 memDet.Location = cont.StateName + ", " + cont.Country;
             }
+            
 
             return View(memDet);
         }
@@ -173,7 +183,5 @@ namespace IPGMMS.Controllers
             {"Member School", "School" },
             {"Uncategorized", "Newbie" }
         };
-
-
     }
 }
