@@ -38,6 +38,7 @@ namespace IPGMMS.Tests.DependencyTests
                     new Member {ID = 4, FirstName = "Sally", LastName = "Solomon" },
                     new Member {ID = 5, FirstName = "Mary", LastName = "Albright" }
                 });
+            
 
             // Wayne m.Find
             memberMock.Setup(m => m.Find(5))
@@ -53,6 +54,7 @@ namespace IPGMMS.Tests.DependencyTests
 
             // setup things in contactRepo to test
             contactMock = new Mock<IContactRepository>();
+            
 
             // Wayne m.ListingInfoFromMID
             contactMock.Setup(m => m.ListingInfoFromMID(5))
@@ -66,9 +68,9 @@ namespace IPGMMS.Tests.DependencyTests
             // setup things in dbContext to test
             var data = new List<Member>
             {
-                new Member {ID = 1, FirstName = "Wolverine", Membership_Number = "01-123", Identity_ID = "ABC123" },
-                new Member {ID = 1, FirstName = "Storm", Membership_Number = "02-345", Identity_ID = "DEF456" },
-                new Member {ID = 1, FirstName = "Rogue", Membership_Number = "03-456", Identity_ID = "GHI789" }
+                new Member {ID = 1, FirstName = "Wolverine", Membership_Number = "0100123", Identity_ID = "ABC123" },
+                new Member {ID = 2, FirstName = "Storm", Membership_Number = "0200345", Identity_ID = "DEF456" },
+                new Member {ID = 3, FirstName = "Rogue", Membership_Number = "0300456", Identity_ID = "GHI789" }
             }.AsQueryable();
 
             dbSetMock = new Mock<DbSet<Member>>();
@@ -115,7 +117,7 @@ namespace IPGMMS.Tests.DependencyTests
         {
             EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
 
-            Member mem = repo.FindByIPG_ID("02-345");
+            Member mem = repo.FindByIPG_ID("0200345");
 
             Assert.AreEqual(mem.FirstName, "Storm");
         }
@@ -125,7 +127,7 @@ namespace IPGMMS.Tests.DependencyTests
         {
             EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
 
-            Member mem = repo.FindByIPG_ID("04-321");
+            Member mem = repo.FindByIPG_ID("0400321");
 
             Assert.IsNull(mem);
         }
@@ -179,5 +181,16 @@ namespace IPGMMS.Tests.DependencyTests
             var memberDetails = (MemberDetails)result.ViewData.Model;
             Assert.AreEqual(memberDetails.FullName, "Tom Solomon");
         }
+
+        /*
+        [Test]
+        public void TestMemberNumberUpdate()
+        {
+            EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
+
+            Member mem = repo.Find(1);
+
+
+        }*/
     }
 }
