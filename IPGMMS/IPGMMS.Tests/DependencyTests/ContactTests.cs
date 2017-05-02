@@ -59,8 +59,8 @@ namespace IPGMMS.Tests.DependencyTests
         {
             ContactInfo contact = new ContactInfo { ID = 1, StreetAddress = "123 Galaxy Way", City = "Mars Town", StateName = "OR", PostalCode = "97306" };
             string mapURL = contact.mapURL;
-
-            string correctMapURL = "https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=123+Galaxy+Way,Mars+Town+OR+97306";
+            Console.WriteLine(mapURL);
+            string correctMapURL = "https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=123+Galaxy+Way,Mars+Town+OR+97306+";
 
             Assert.AreEqual(mapURL, correctMapURL);
         }
