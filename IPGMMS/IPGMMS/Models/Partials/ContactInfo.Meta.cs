@@ -10,6 +10,30 @@ namespace IPGMMS.Models
     [MetadataType(typeof(ContactInfoMetadata))]
     public partial class ContactInfo
     {
+        /// <summary>
+        /// This method returns the GoogleMap url based on the address given in the Contact Info. If the StreetAddress
+        /// and the City and the StateName are all null, then the url returned will render only a map of the world. Otherwise
+        /// it will send any location information available. There are 2 private methods below the mapURL method that format
+        /// the address and the city to replace any white space with a +, which is how the string needs to be formatted 
+        /// to render the map.
+        /// </summary>
+        public string mapURL
+        {
+            get
+            {
+                if ((StreetAddress == null) && (City == null) && (StateName == null) && (Country == null))
+                {
+                    return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=,";
+                }
+                else
+                {
+                    return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q={formatAddressString},{formatCityString}+{StateName}+{PostalCode}+{Country}";
+                }
+            }
+        }
+
+        private string formatAddressString { get { if (StreetAddress == null) { return ""; } else { return StreetAddress.Replace(' ', '+'); } } }
+        private string formatCityString { get { if (City == null) { return ""; } else { return City.Replace(' ', '+'); } } }
     }
 
     public class ContactInfoMetadata

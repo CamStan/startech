@@ -1,0 +1,9 @@
+﻿@model IPGMMS.ViewModels.MemberDetails
+
+<!--This is the partial view that renders a Google map based on the mapURL string that is in the ContactInfo.Meta
+    partial class. Will render a view of the world if there is no information for the address of the groomer.-->
+
+<div class="row col-md-12">
+    <iframe width="450" height="250" frameborder="0" style="border:0" src="@Url.Content(Model.Contact.mapURL)" )></iframe>
+</div>
+

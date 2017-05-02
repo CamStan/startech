@@ -71,6 +71,7 @@ namespace IPGMMS.Tests.DependencyTests
                 new Member {ID = 1, FirstName = "Wolverine", Membership_Number = "0100123", Identity_ID = "ABC123" },
                 new Member {ID = 2, FirstName = "Storm", Membership_Number = "0200345", Identity_ID = "DEF456" },
                 new Member {ID = 3, FirstName = "Rogue", Membership_Number = "0300456", Identity_ID = "GHI789" }
+
             }.AsQueryable();
 
             dbSetMock = new Mock<DbSet<Member>>();

@@ -5,120 +5,130 @@
 }
 
 <br />
+
 <div class="row">
-    <center><h3>IPG Member Profile</h3></center>
-</div>
-<br />
-<div class="row">
-    <div class="col-sm-4 col-xs-8">
-        @if (Model.MemberLevelbyInt == 1)
-        {
-            <div class="base">
-                <img src="~/Content/Images/students_250x250.jpeg" alt="Student Member" />
-            </div>
-        }
-        else if (Model.MemberLevelbyInt == 2)
-        {
-            <div class="member">
-                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
-            </div>
-        }
-        else if (Model.MemberLevelbyInt == 3)
-        {
-            <div class="cpg">
-                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
-            </div>
-        }
-        else if (Model.MemberLevelbyInt == 4)
-        {
-            <div class="apg">
-                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
-            </div>
-        }
-        else
-        {
-            <div class="master">
-                <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
-            </div>
-        }
+    <div class="col-lg-1"><p>    </p></div>
+    <div class="col-lg-10 memberProfileBox w3-padding-12">
+        <br />
+        <div class="row">
+            <div class="col-sm-4 col-xs-8">
+                @if (Model.MemberLevelbyInt == 1)
+            {
+                    <div class="base">
+                        <img src="~/Content/Images/students_250x250.jpeg" alt="Student Member" />
+                    </div>
+                }
+                else if (Model.MemberLevelbyInt == 2)
+                {
+                    <div class="member">
+                        <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+                    </div>
+                }
+                else if (Model.MemberLevelbyInt == 3)
+                {
+                    <div class="cpg">
+                        <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+                    </div>
+                }
+                else if (Model.MemberLevelbyInt == 4)
+                {
+                    <div class="apg">
+                        <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+                    </div>
+                }
+                else
+                {
+                    <div class="master">
+                        <img src="~/Content/Images/member_250x250.jpeg" alt="Full Member" />
+                    </div>
+                }
 
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                @if (Model.MemberLevelbyInt == 5)
+            {
+                    @Html.Raw("<div class=master>");
+            }
+            else if (Model.MemberLevelbyInt == 4)
+            {
+                    @Html.Raw("<div class=apg>");
+            }
+            else if (Model.MemberLevelbyInt == 3)
+            {
+                    @Html.Raw("<div class=cpg>");
+            }
+            else if (Model.MemberLevelbyInt == 2)
+            {
+                    @Html.Raw("<div class=member>");
+            }
+            else
+            {
+                    @Html.Raw("<div class=base>");
+            }
+
+                <dl class="dl-horizontal">
+                    <dd><h2> @Html.DisplayFor(model => model.FullName)@Html.DisplayFor(model => model.LevelAbbrev)</h2></dd>
+                    <dd><h3> @Html.DisplayFor(model => model.BusinessName)</h3></dd>
+                    <dd> @Html.DisplayFor(model => model.Location)</dd>
+                    <dd> @Html.DisplayFor(model => model.MemberLevel)</dd>
+                </dl>
+
+                @if (true)
+            {
+                    @Html.Raw("</div>");
+            }
+            </div>
+        </div>
+
+        <div class="tab">
+
+            @if (Model.BusinessName != null && Model.BusinessName != "")
+            {
+                <button class="tablinks" onclick="openTab(event, 'Business')">Business Information</button>
+            }
+            @if (Model.Contact.Email != null && Model.Contact.Email != "")
+            {
+                <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Information</button>
+            }
+            <button class="tablinks" onclick="openTab(event, 'map')">Map</button>
+            @if (Model.Website != null && Model.Website != "")
+            {
+                <button class="tablinks" onclick="openTab(event, 'Website')">Website</button>
+            }
+            @* A certification tab can be added here to show certifications *@
+        </div>
+
+        <div id="Business" class="tabcontent">
+            <dl class="dl-horizontal">
+                <dd>@Html.DisplayFor(model => model.BusinessName)</dd>
+                <dd>@Html.DisplayFor(model => model.Contact.StreetAddress)</dd>
+                <dd>@Html.DisplayFor(model => model.Location)</dd>
+                @* Add further info here if available like hours and services*@
+            </dl>
+
+        </div>
+
+        <div id="Contact" class="tabcontent">
+            <dl class="dl-horizontal">
+                <dd>@Html.DisplayFor(model => model.Contact.Email)</dd>
+                <dd>@Html.DisplayFor(model => model.Contact.PhoneNumber)</dd>
+            </dl>
+        </div>
+
+        @if (Model.Contact != null || Model.Location != "")
+        {
+            <div id="map" class="tabcontent">
+                <dl class="dl-horizontal">
+                    <dd>@Html.Partial("_GoogleMap")</dd>
+                </dl>
+            </div>
+        }
+        <div id="Website" class="tabcontent">
+            <a href="http://@Html.DisplayFor(model => model.Website)">@Html.DisplayFor(model => model.Website)</a>
+        </div>
     </div>
-    <div class="col-sm-8 col-xs-12">
-        @if (Model.MemberLevelbyInt == 5)
-        {
-            @Html.Raw("<div class=master>");
-        }
-        else if (Model.MemberLevelbyInt == 4)
-        {
-            @Html.Raw("<div class=apg>");
-        }
-        else if (Model.MemberLevelbyInt == 3)
-        {
-            @Html.Raw("<div class=cpg>");
-        }
-        else if (Model.MemberLevelbyInt == 2)
-        {
-            @Html.Raw("<div class=member>");
-        }
-        else
-        {
-            @Html.Raw("<div class=base>");
-        }
+    <div class="col-lg-1"><p>    </p></div>
 
-        <dl class="dl-horizontal">
-            <dd> @Html.DisplayFor(model => model.FullName) @Html.DisplayFor(model => model.LevelAbbrev)</dd>
-            <dd> @Html.DisplayFor(model => model.BusinessName)</dd>
-            <dd> @Html.DisplayFor(model => model.Location)</dd>
-            <dd> @Html.DisplayFor(model => model.MemberLevel)</dd>
-        </dl>
-
-        @if (true)
-        {
-            @Html.Raw("</div>");
-        }
-    </div>
-</div>
-
-<div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'map')">Map</button>
-    @if (Model.BusinessName != null && Model.BusinessName != "")
-    {
-        <button class="tablinks" onclick="openTab(event, 'Business')">Business Information</button>
-    }
-    @if (Model.Contact.Email != null && Model.Contact.Email != "")
-    {
-        <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Information</button>
-    }
-    @if (Model.Website != null && Model.Website != "")
-    {
-        <button class="tablinks" onclick="openTab(event, 'Website')">Website</button>
-    }
-    @* A certification tab can be added here to show certifications *@
-</div>
-
-<div id="map" class="tabcontent">
-    @* put the map info here*@
-</div>
-
-<div id="Business" class="tabcontent">
-    <dl class="dl-horizontal">
-        <dd>@Html.DisplayFor(model => model.BusinessName)</dd>
-        <dd>@Html.DisplayFor(model => model.Contact.StreetAddress)</dd>
-        <dd>@Html.DisplayFor(model => model.Location)</dd>
-        @* Add further info here if available like hours and services*@
-    </dl>
-
-</div>
-
-<div id="Contact" class="tabcontent">
-    <dl class="dl-horizontal">
-        <dd>@Html.DisplayFor(model => model.Contact.Email)</dd>
-        <dd>@Html.DisplayFor(model => model.Contact.PhoneNumber)</dd>
-    </dl>
-</div>
-
-<div id="Website" class="tabcontent">
-    <a href="http://@Html.DisplayFor(model => model.Website)">@Html.DisplayFor(model => model.Website)</a>
 </div>
 @section scripts {
     <script type="text/javascript" src="~/Scripts/MemberDetailTabs.js"></script>

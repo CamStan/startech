@@ -1,0 +1,38 @@
+﻿#pageBottom {
+    background-color: #000080;
+}
+.navAlign{
+    vertical-align:middle;
+}
+.footer{
+    margin:0;
+}
+body{
+    padding-top: 90px;
+    padding-bottom: 20px;
+}
+/* Dropdown content for top nav for user navigation*/
+
+.w3-dropdown-content {
+    cursor: auto;
+    color: #000;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    margin: 0;
+    padding: 0;
+    right: 20px;
+    font-size:18px;
+}
+
+    .w3-dropdown-content a {
+        padding: 6px 16px;
+        display: block;
+       
+    }
+
+        .w3-dropdown-content a:hover {
+            background-color: #000080;
+            color: white;
+        }

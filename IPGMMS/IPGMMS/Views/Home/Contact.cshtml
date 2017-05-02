@@ -2,55 +2,62 @@
 @{
     ViewBag.Title = "Contact Us";
 }
-<div class="row col-md-2">
-    @Html.Partial("_LeftNav")
-</div>
+
 
 <div class="row col-md-1"></div>
 
 <div class="row col-md-8">
-    <h2>@ViewBag.Title</h2>
+
     <h3 style="text-align:center">
         IPG IS BASED ON THE BELIEF THAT OUR MEMBERS NEEDS ARE OF THE UTMOST IMPORTANCE.<br />
         Our association is committed to meeting those needs.
     </h3>
+    <br />
+    <hr />
+    <div class="row col-md-2"></div>
+    <div class="row col-md-4">
+        <address>
+            Mailing Address:<br />
+            International Professional Groomers, INC<br />
+            6475 Wallace Rd NW<br />
+            Salem, OR 97304<br />
+            P: 503-551-2397<br />
+        </address>
 
-    <address>
-        Mailing Address:<br />
-        International Professional Groomers, INC<br />
-        6475 Wallace Rd NW<br />
-        Salem, OR 97304<br />
-        P: 503-551-2397<br />
-    </address>
-
-    <address>
-        <strong>Email:</strong>   <a href="mailto:Info@ipgicmg.com">Info@ipgicmg.com </a><br />
-    </address>
+        <address>
+            <strong>Email:</strong>   <a href="mailto:Info@ipgicmg.com">Info@ipgicmg.com </a><br />
+        </address>
+    </div>
+    <div class="row col-md-2"></div>
+    <div class="row col-md-4">
+        <iframe width="450" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=6475+Wallace+Rd+NW,Salem+OR+97304+USA" )></iframe>
+    </div>
+    <div class="row col-md-2"></div>
     <br />
     <!--Start contact form that will email contact information to admin.
         Adapted code from www.docs.microsoft.com. This doesn't do anything for now
         until we decide how we want to deal with the data.-->
+    <div class="row col-md-12">
+        <form method="get" action="ProcessRequest.cshtml">
+            <fieldset>
+                <legend>Mailing List Sign Up</legend>
+                <p><label class="field" for="firstName">First Name:  </label><input type="text" name="firstName" class="inputbox" /></p><br />
+                <p><label class="field" for="lastName">Last Name:  </label><input type="text" name="lastName" class="inputbox" /></p><br />
+                <p><label class="field" for="company">Company:  </label><input type="text" name="company" class="inputbox" /></p><br />
+                <p><label class="field" for="email">Email:  </label><input type="text" name="email" class="inputbox" /></p><br />
+                <p><label class="field" for="phone">Phone:  </label><input type="text" name="phone" class="inputbox" /></p><br />
+                <p><label class="field" for="streetAdd">Street Address:  </label><input type="text" name="streetAdd" class="inputbox" /></p><br />
+                <p><label class="field" for="city">City:  </label><input type="text" name="city" class="inputbox" /></p><br />
+                <p><label class="field" for="state">State:  </label><input type="text" name="state" class="inputbox" /></p><br />
+                <p><label class="field" for="zip">Zip Code:  </label><input type="text" name="zip" class="inputbox" /></p><br />
+                <p><label class="field" for="comments">Comments:  </label><textarea type="text" name="comments" class="inputbox"></textarea></p><br />
 
-    <form method="get" action="ProcessRequest.cshtml">
-        <fieldset>
-            <legend>Mailing List Sign Up</legend>
-            <p><label class="field" for="firstName">First Name:  </label><input type="text" name="firstName" class="inputbox" /></p><br />
-            <p><label class="field" for="lastName">Last Name:  </label><input type="text" name="lastName" class="inputbox" /></p><br />
-            <p><label class="field" for="company">Company:  </label><input type="text" name="company" class="inputbox" /></p><br />
-            <p><label class="field" for="email">Email:  </label><input type="text" name="email" class="inputbox" /></p><br />
-            <p><label class="field" for="phone">Phone:  </label><input type="text" name="phone" class="inputbox" /></p><br />
-            <p><label class="field" for="streetAdd">Street Address:  </label><input type="text" name="streetAdd" class="inputbox" /></p><br />
-            <p><label class="field" for="city">City:  </label><input type="text" name="city" class="inputbox" /></p><br />
-            <p><label class="field" for="state">State:  </label><input type="text" name="state" class="inputbox" /></p><br />
-            <p><label class="field" for="zip">Zip Code:  </label><input type="text" name="zip" class="inputbox" /></p><br />
-            <p><label class="field" for="comments">Comments:  </label><textarea type="text" name="comments" class="inputbox"></textarea></p><br />
-
-            <div>
-                <input type="submit" value="Submit" />
-            </div>
-        </fieldset>
-    </form>
-
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </fieldset>
+        </form>
+    </div>
     <hr />
 
     <div class="row">
