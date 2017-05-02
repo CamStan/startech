@@ -72,7 +72,6 @@ namespace IPGMMS.DAL.Repositories
         public int getMemberID(ContactInfo info)
         {
             var memID = db.Contacts.Where(s => s.ContactInfo_ID == info.ID).First().Member_ID;
-
             return memID;
         }
 

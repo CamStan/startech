@@ -15,12 +15,15 @@ namespace IPGMMS.Tests.DependencyTests
     public class ContactTests
     {
         private Mock<DbSet<ContactInfo>> dbSetMock;
+        private Mock<DbSet<Contact>> dbSetMock1;
+        private Mock<DbSet<Member>> dbSetMock2;
         private Mock<IPGMMS_Context> dbMock;
 
         [SetUp]
         public void SetupContactMock()
         {
-            // setup things in dbContext to test
+
+            //Set up ContactInfos to test***********************************************************************************
             var data = new List<ContactInfo>
             {
                new ContactInfo { ID = 1, StreetAddress = "123 Galaxy Way", City = "Mars Town", StateName = "OR", PostalCode = "97306"},
@@ -35,9 +38,39 @@ namespace IPGMMS.Tests.DependencyTests
             dbSetMock.As<IQueryable<ContactInfo>>().Setup(m => m.ElementType).Returns(data.ElementType);
             dbSetMock.As<IQueryable<ContactInfo>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
 
+            //Set up Contacts to test************************************************************************************
+            var contacts = new List<Contact>
+            {
+                new Contact { ID = 1, Member_ID = 1, ContactInfo_ID = 1, ContactType_ID = 2 },
+                new Contact { ID = 2, Member_ID = 2,  ContactInfo_ID = 2, ContactType_ID = 1 },
+                new Contact { ID = 3, Member_ID = 3, ContactInfo_ID = 3, ContactType_ID = 2 },
+            }.AsQueryable();
+
+            dbSetMock1 = new Mock<DbSet<Contact>>();
+            dbSetMock1.As<IQueryable<Contact>>().Setup(m => m.Provider).Returns(contacts.Provider);
+            dbSetMock1.As<IQueryable<Contact>>().Setup(m => m.Expression).Returns(contacts.Expression);
+            dbSetMock1.As<IQueryable<Contact>>().Setup(m => m.ElementType).Returns(contacts.ElementType);
+            dbSetMock1.As<IQueryable<Contact>>().Setup(m => m.GetEnumerator()).Returns(() => contacts.GetEnumerator());
+
+            //Set up Members to test***************************************************************************************
+            var members = new List<Member>
+            {
+                new Member {ID = 1, FirstName = "Thor", LastName = "Smith", Membership_Number = "03-456" },
+                new Member {ID = 2, FirstName = "Star-Lord", LastName = "Johnson", Membership_Number = "04-567"},
+                new Member {ID = 3, FirstName = "Groot", LastName = "Root", Membership_Number = "05-678"},
+            }.AsQueryable();
+
+            dbSetMock2 = new Mock<DbSet<Member>>();
+            dbSetMock2.As<IQueryable<Member>>().Setup(m => m.Provider).Returns(members.Provider);
+            dbSetMock2.As<IQueryable<Member>>().Setup(m => m.Expression).Returns(members.Expression);
+            dbSetMock2.As<IQueryable<Member>>().Setup(m => m.ElementType).Returns(members.ElementType);
+            dbSetMock2.As<IQueryable<Member>>().Setup(m => m.GetEnumerator()).Returns(() => members.GetEnumerator());
+
+            //Wrap it all up*************************************************************************************************
             dbMock = new Mock<IPGMMS_Context>();
             dbMock.Setup(d => d.ContactInfoes).Returns(dbSetMock.Object);
-
+            dbMock.Setup(d => d.Contacts).Returns(dbSetMock1.Object);
+            dbMock.Setup(d => d.Members).Returns(dbSetMock2.Object);
         }
 
         //This test verifies that the mapURL is formatted properly from the ContactInfo model when
@@ -87,6 +120,30 @@ namespace IPGMMS.Tests.DependencyTests
             ContactInfo contactInfo = repo.Find(10);
 
             Assert.IsNull(contactInfo);
+        }
+
+        [Test]
+        public void Test_Get_MemberID_From_ContactInfo()
+        {
+            ContactInfo conInfo = new ContactInfo { ID = 1, StreetAddress = "123 Galaxy Way", City = "Mars Town", StateName = "OR", PostalCode = "97306" };
+            
+            EFContactRepository repo = new EFContactRepository(dbMock.Object);
+
+            int memberNumber = repo.getMemberID(conInfo);
+       
+            Assert.AreEqual(1, memberNumber);    
+        }
+
+        [Test]
+        public void Test_Does_Not_Retrieve_Incorrect_MemberID()
+        {
+            ContactInfo conInfo = new ContactInfo { ID = 1, StreetAddress = "123 Galaxy Way", City = "Mars Town", StateName = "OR", PostalCode = "97306" };
+
+            EFContactRepository repo = new EFContactRepository(dbMock.Object);
+
+            int memberNumber = repo.getMemberID(conInfo);
+
+            Assert.AreNotEqual(memberNumber, 2);
         }
     }
 }
