@@ -21,19 +21,19 @@ namespace IPGMMS.Models
         {
             get
             {
-                if ((StreetAddress == null) && (City == null) && (StateName == null))
+                if ((StreetAddress == null) && (City == null) && (StateName == null) && (Country == null))
                 {
                     return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q=,";
                 }
                 else
                 {
-                    return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q={formatAddressString},{formatCityString}+{StateName}+{PostalCode}";
+                    return $"https://www.google.com/maps/embed/v1/search?key=AIzaSyB75sLTv_4MR8DnNb8PptRe9Acvh9vNzqI&q={formatAddressString},{formatCityString}+{StateName}+{PostalCode}+{Country}";
                 }
             }
         }
 
-        private string formatAddressString { get { return StreetAddress.Replace(' ', '+'); } }
-        private string formatCityString { get { return City.Replace(' ', '+'); } }
+        private string formatAddressString { get { if (StreetAddress == null) { return ""; } else { return StreetAddress.Replace(' ', '+'); } } }
+        private string formatCityString { get { if (City == null) { return ""; } else { return City.Replace(' ', '+'); } } }
     }
 
     public class ContactInfoMetadata

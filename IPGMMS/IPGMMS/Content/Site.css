@@ -1,10 +1,5 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Oswald);
 
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -47,28 +42,48 @@ img {
 }
 
 /*Set the font for the project and various headings*/
-h1,h2,h3{
+h1,h2,h3,h4{
     font-family: 'Oswald', sans-serif;
 }
-h4,p,body{
+p,body{
     font-family:Palanquin;
 }
+/*Set fonts to be responsive*/
+
 /*Heading specific information such as size, color, etc*/
 h1{
-    font-size: 48px;
+    font-size: 170%;
 }
 h2{
-    font-size: 36px;
+    font-size: 150%;
 }
 h3{
-    font-size:28px;
+    font-size:130%;
 }
 h4{
-    font-size: 22px;
+    font-size: 110%;
 }
 p,body{
-    font-size:16px;
+    font-size:100%;
 }
+@media screen and (max-width: 950px) {
+     h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+ h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+ h1,h2,h3,h4{
+        font-size: 100%;
+    }
+}
+
 /* Dropdown content for top nav for user navigation*/
 .w3-dropdown-content {
     cursor: auto;
@@ -96,4 +111,7 @@ p,body{
 #memberListTable a{
     color: #000080;
     font-weight:bold;
+}
+.login{
+    font-size: 18px;
 }

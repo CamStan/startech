@@ -6,9 +6,9 @@
 
 <br />
 
-<div class="w3-row">
-    <div class="w3-col" style="width:150px"><p>    </p></div>
-    <div class="w3-rest memberProfileBox">
+<div class="row">
+    <div class="col-lg-1"><p>    </p></div>
+    <div class="col-lg-10 memberProfileBox w3-padding-12">
         <br />
         <div class="row">
             <div class="col-sm-4 col-xs-8">
@@ -67,7 +67,7 @@
             }
 
                 <dl class="dl-horizontal">
-                    <dd><h2> @Html.DisplayFor(model => model.FullName) @Html.DisplayFor(model => model.LevelAbbrev)</h2></dd>
+                    <dd><h2> @Html.DisplayFor(model => model.FullName)@Html.DisplayFor(model => model.LevelAbbrev)</h2></dd>
                     <dd><h3> @Html.DisplayFor(model => model.BusinessName)</h3></dd>
                     <dd> @Html.DisplayFor(model => model.Location)</dd>
                     <dd> @Html.DisplayFor(model => model.MemberLevel)</dd>
@@ -115,7 +115,7 @@
             </dl>
         </div>
 
-        @if (Model.Contact != null && Model.Location != "")
+        @if (Model.Contact != null || Model.Location != "")
         {
             <div id="map" class="tabcontent">
                 <dl class="dl-horizontal">
@@ -127,6 +127,8 @@
             <a href="http://@Html.DisplayFor(model => model.Website)">@Html.DisplayFor(model => model.Website)</a>
         </div>
     </div>
+    <div class="col-lg-1"><p>    </p></div>
+
 </div>
 @section scripts {
     <script type="text/javascript" src="~/Scripts/MemberDetailTabs.js"></script>
