@@ -4,7 +4,7 @@
     ViewBag.Title = "AddMember";
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
 }
-<h2>MemberDetails</h2>
+<h2>Member Details</h2>
 
 <div>
     <hr />
@@ -60,10 +60,11 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Update Member Information", "UpdateMemberInfo", new { memID = Model.MemberInfo.ID })<br />
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("UpdateMemberInfo", "Portal",new { memID = Model.MemberInfo.ID })'" ><i class="fa fa-pencil fa-lg"></i> Update Member Info</button><br />
 </div>
+<br />
 <div>
-    <h4>Mailing Information</h4>
+    <h2>Mailing Information</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -125,11 +126,11 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Update Mailing Information", "UpdateMemberMailing", new { memID = Model.MemberInfo.ID })<br />
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("UpdateMemberMailing", "Portal",new { memID = Model.MemberInfo.ID })'"><i class="fa fa-pencil fa-lg"></i> Update Mailing Info</button><br />
 </div>
-
+<br />
 <div>
-    <h4>Listing Information</h4>
+    <h2>Listing Information</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -191,8 +192,9 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Update Listing Information", "UpdateMemberListing", new { memID = Model.MemberInfo.ID })<br />
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("UpdateMemberListing", "Portal",new { memID = Model.MemberInfo.ID })'"><i class="fa fa-pencil fa-lg"></i> Update Listing Info</button><br />
 </div>
+<br>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
