@@ -10,6 +10,8 @@ using IPGMMS.DAL;
 using System.Data.Entity;
 using System.Linq;
 using IPGMMS.DAL.Repositories;
+using IPGMMS.ViewModels;
+using System.Diagnostics;
 
 namespace IPGMMS.Tests.DependencyTests
 {
@@ -37,8 +39,29 @@ namespace IPGMMS.Tests.DependencyTests
                     new Member {ID = 5, FirstName = "Mary", LastName = "Albright" }
                 });
 
+            // Wayne m.Find
+            memberMock.Setup(m => m.Find(5))
+                .Returns(
+                    new Member
+                    {
+                        ID = 5,
+                        FirstName = "Tom",
+                        LastName = "Solomon",
+                        MemberLevel = 2,
+                        MemberLevel1 = new MemberLevel { MLevel = "IPG Member" }
+                    });
+
             // setup things in contactRepo to test
             contactMock = new Mock<IContactRepository>();
+
+            // Wayne m.ListingInfoFromMID
+            contactMock.Setup(m => m.ListingInfoFromMID(5))
+                .Returns(
+                new ContactInfo
+                {
+                    StateName = "Colorado",
+                    Country = "USA"
+                });
 
             // setup things in dbContext to test
             var data = new List<Member>
@@ -125,6 +148,36 @@ namespace IPGMMS.Tests.DependencyTests
             Member mem = repo.FindByIdentityID("JKL321");
 
             Assert.IsNull(mem);
+        }
+
+        // Wayne Member Details test
+        [Test]
+        public void TestCorrectDetails()
+        {
+            var controller = new MemberController(memberMock.Object, contactMock.Object);
+            var result = controller.Details(5) as ViewResult;
+            var memberDetails = (MemberDetails)result.ViewData.Model;
+            Assert.AreEqual(memberDetails.FullName, "Tom Solomon");
+            Assert.AreEqual(memberDetails.Contact.Country, "USA");
+        }
+
+        [Test]
+        // If MemberID is invalid, default to a default profile.
+        public void Test_Invalid_MemberID_Details()
+        {
+            var controller = new MemberController(memberMock.Object, contactMock.Object);
+            var result = controller.Details(1) as ViewResult;
+            var memberDetails = (MemberDetails)result.ViewData.Model;
+            Assert.AreEqual(memberDetails.FullName, "Tom Solomon");
+        }
+        [Test]
+        // If MemberID is null, default to a default profile.
+        public void Test_Null_MemberID_Details()
+        {
+            var controller = new MemberController(memberMock.Object, contactMock.Object);
+            var result = controller.Details(null) as ViewResult;
+            var memberDetails = (MemberDetails)result.ViewData.Model;
+            Assert.AreEqual(memberDetails.FullName, "Tom Solomon");
         }
     }
 }
