@@ -18,6 +18,7 @@ namespace IPGMMS.Abstract
         Member InsertorUpdate(Member member);
         void Delete(int id);
         void Save();
+        string getCountry(int id);
         string setMemberNumber(Member memb);
         string setMemberNumber(Member memb, ContactInfo info);
         int GetMemberLevelID(string level);
