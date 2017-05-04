@@ -316,6 +316,11 @@ namespace IPGMMS.Controllers
         {
             return View("UpdateCertification");
         }
+        
+        public ActionResult ReportLandingPage()
+        {
+            return View("ReportLandingPage");
+        }
 
         // Two dictionaries, one for ascending, one for descending
         Dictionary<String, Func<Member, object>> sortBy = new Dictionary<String, Func<Member, object>>()
