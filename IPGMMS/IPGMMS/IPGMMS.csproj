@@ -385,6 +385,7 @@
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Portal\ReportLandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
