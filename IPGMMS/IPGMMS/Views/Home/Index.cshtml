@@ -1,8 +1,97 @@
-﻿@{
+﻿<link rel="stylesheet" type="text/css" href="~/Content/Homepage.css" />
+@{
     ViewBag.Title = "IPGMMS";
 }
 
-    <div class="col-md-12">
+
+<div class="w3-row">
+    <div class="w3-panel">
+        <center><h1>International Professional Groomers, Inc.</h1></center>
+    </div>
+    <div class="w3-container">
+        <div id="carouselDiv" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselDiv" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselDiv" data-slide-to="0"></li>
+                <li data-target="#carouselDiv" data-slide-to="0"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/Content/Images/puppies-groomed-wide.jpg" />
+                </div>
+                <div class="item">
+                    <img src="~/Content/Images/dog-groom-wide.jpg" />
+                </div>
+                <div class="item">
+                    <img src="~/Content/Images/dog-bath-wide.jpg" />
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#carouselDiv" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carouselDiv" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div id="visitorDiv" class="w3-row w3-container col-container w3-margin-top">
+        <div class="col-text-50 w3-light-grey w3-container w3-padding-4">
+            <center><h3 class="w3-padding-16"><span class="w3-bottombar w3-padding-16">Looking for a Pet Groomer?</span></h3></center>
+            <p class="w3-padding-16 w3-margin-right">You can be assured that your pet is in good hands by going to a pet groomer
+            certifed by IPG. Our groomers are held to the highest standards of quality and safety, complete regular professional
+            training and hold themselves to our code of ethics.</p>
+            <p class="w3-margin-left"><a href="#">8 Simple Steps to Choosing a Safe Pet Groomer</a></p>
+        </div>
+        <div id="searchFormDiv" class="col-text-50 w3-grey w3-container w3-padding-4">
+            <h3 class="w3-margin-left">FIND A CERTIFIED GROOMER NEAR YOU</h3>
+            @using (Html.BeginForm("Search", "Member", FormMethod.Post, new { @class = "form-horizontal w3-container", id = "searchForm", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" class="w3-input w3-round-large" placeholder="Enter your postal code" />
+                <input type="submit" class="w3-button w3-border w3-border-light-blue w3-light-blue w3-round-large w3-ripple w3-hover-shadow" value="Find" disabled/>
+            }
+        </div>
+    </div>
+    <div id="aboutDiv" class="w3-row w3-container col-container w3-margin-top">
+        <div class="col-image">
+            <img src="~/Content/Images/grooming.jpg" />
+        </div>
+        <div class="col-text w3-container w3-light-grey w3-padding-4">
+            <center><h3 class="w3-padding-16"><span class="w3-bottombar w3-padding-16">What is IPG?</span></h3></center>
+            <p class="w3-padding-16 w3-margin-left">
+                International Professional Groomers, Inc (IPG) is an International Association created to educate, certify
+                and accredit Professional Pet Groomers. Groomers  with active membership, in good standing and who complete
+                annual continuing education and follow the "IPG Code of Ethics," maintain their certifications and educational endorsements.
+                IPG is also a a founding member of the <a href="#">Professional Pet Groomers &amp; Stylists Alliance</a> created in 2015.
+            </p>
+            <p class="w3-margin-left">@Html.ActionLink("Read more about us.", "About")</p>
+        </div>
+    </div>
+    <div id="memberDiv" class="w3-row w3-container col-container w3-margin-top">
+        <div class="col-text w3-container w3-light-grey w3-padding-4">
+            <center><h3 class="w3-padding-16"><span class="w3-bottombar w3-padding-16">Benefits of Membership</span></h3></center>
+            <ul class="w3-padding-16 w3-margin-right">
+                <li>Increases professional image and presence</li>
+                <li>Increases financial security by allowing you to charge fair prices</li>
+                <li>Reduces your stress while improving your knowledge</li>
+                <li>Sets you apart from the competition</li>
+                <li>Acknowledges your advances skills</li>
+                <li>Increases awareness of the advantages of taking pets to a Certified Professional Groomer</li>
+                <li>Provides added support through an international association with offices around the world</li>
+                <li>Provides and encourages continuing education in the latest industry requirements and skills</li>
+            </ul>
+            <p class="w3-margin-left"><a href="#">Learn more about our certifications and how to become a member</a></p>
+        </div>
+        <div class="col-image">
+            <img src="~/Content/Images/groomers.jpg" />
+        </div>
+    </div>
+</div>
+@*<div class="col-md-12">
         <br />
         <br />
         <div class="main">
@@ -30,4 +119,4 @@
             <br />
             <p>Several line breaks have been added just to scroll the display</p>
         </div>
-    </div>
+    </div>*@

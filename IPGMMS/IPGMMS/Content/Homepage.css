@@ -1,8 +1,66 @@
-﻿div.left-navbar {
-    background-color: rgb(211,231,240);
+﻿#searchFormDiv {
+    vertical-align: middle;
+}
+
+#searchForm {
+    padding-bottom: 1em;
+}
+
+#searchForm input {
+    display: inline;
+    margin-right: 1em;
+    margin-top: .25em;
+}
+
+.col-container {
+    display: table;
+    width: 100%;
+}
+
+.col-image {
+    display: table-cell;
+    width: 40%;
+}
+
+.col-text {
+    display: table-cell;
+}
+
+.col-text-50 {
+    display: table-cell;
+    width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .col-image {
+        display: block;
+        width: 100%;
+    }
+
+    .col-text { 
+        display: block;
+        width: 100%;
+    }
+
+    .col-text-50 { 
+        display: block;
+        width: 100%;
+    }
+}
+
+.col-text p a {
+    color: blue;
+}
+
+.col-text-50 p a {
+    color: blue;
+}
+
+/*div.left-navbar {
+    background-color: rgb(211,231,240);*/
   /*  max-width: 260px; */
   /*  position: fixed; */
-    padding: 5px;
+    /*padding: 5px;
     padding-left: 0px;
 }
 
@@ -14,11 +72,11 @@ div.left-navbar ul li {
 .navbar-fixed-left {
   width: 140px;
   position: fixed;
-  border-radius: 0;
+  border-radius: 0;*/
   /*height: 100%;*/
-}
+/*}*/
 
-.navbar-fixed-left .navbar-nav > li {
+/*.navbar-fixed-left .navbar-nav > li {
   float: none; 
   width: 139px;
   text-align: center;
@@ -62,4 +120,4 @@ img {
     text-indent:20px;
     margin-left: 50px;
     margin-right: 45px;
-}
+}*/
