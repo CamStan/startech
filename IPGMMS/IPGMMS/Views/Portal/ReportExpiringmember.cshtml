@@ -1,0 +1,17 @@
+﻿@model IEnumerable<IPGMMS.Models.Member>
+
+@{
+    ViewBag.Title = "ReportExpiringmember";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
+
+<h2>ReportExpiringmember</h2>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <center><h3>@Html.ActionLink(item.FullName, "Details", new { ID = item.ID })<br /></h3></center>
+        </div>
+    }
+</div>

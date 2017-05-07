@@ -317,6 +317,27 @@ namespace IPGMMS.Controllers
             return View("UpdateCertification");
         }
 
+        /// <summary>
+        /// Get the list of all members who are listed as uncategorized and require admin approval/member level action.
+        /// </summary>
+        /// <returns>View of all new members</returns>
+        public ActionResult ReportNewMember()
+        {
+            var list = memberRepo.NewMembers;
+            return View(list);
+        }
+
+        /// <summary>
+        /// Get the list of all members who will have a membership lapse in the next two months.
+        /// </summary>
+        /// <returns>View of all Expiring members</returns>
+        public ActionResult ReportExpiringmember()
+        {
+            var list = memberRepo.ExpiringMembers;
+            return View(list);
+        }
+
+
         // Two dictionaries, one for ascending, one for descending
         Dictionary<String, Func<Member, object>> sortBy = new Dictionary<String, Func<Member, object>>()
             {

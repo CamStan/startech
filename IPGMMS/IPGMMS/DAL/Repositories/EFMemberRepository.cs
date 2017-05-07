@@ -30,6 +30,26 @@ namespace IPGMMS.DAL.Repositories
             get { return db.Members.Where(m => m.ID > 1).OrderBy(m => m.LastName).ToList(); }
         }
 
+
+        /// <summary>
+        /// Gets a list of all new members sorted by date added.
+        /// </summary>
+        public IEnumerable<Member> NewMembers
+        {
+            get { return db.Members.Where(m => m.MemberLevel==9).OrderBy(m => m.Membership_SignupDate).ToList(); }
+        }
+
+        /// <summary>
+        /// Gets a list of all members who will expire in the next two months sorted by date expiring.
+        /// </summary>
+        public IEnumerable<Member> ExpiringMembers
+        {
+            get {
+                DateTime expire = DateTime.Now.AddMonths(2);
+                DateTime now = DateTime.Now;
+                return db.Members.Where(m => m.Membership_ExpirationDate<expire).Where(n => n.Membership_ExpirationDate>now).OrderBy(m => m.Membership_ExpirationDate).ToList(); }
+        }
+
         /// <summary>
         /// Creates a new member based on the EF Member model
         /// </summary>
@@ -292,5 +312,7 @@ namespace IPGMMS.DAL.Repositories
         {
             return db.MemberLevels.Where(ml => ml.MLevel.Equals(level)).FirstOrDefault().ID;
         }
+
+
     }
 }
