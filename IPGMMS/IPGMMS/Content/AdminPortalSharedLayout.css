@@ -2,6 +2,12 @@
 body{
     padding-top: 0;
 }
+
+.editButton{
+    background-color:#000080;
+    box-shadow:20px;
+}
+
 .w3-navbar {
     position: fixed;
     top: 0;
@@ -15,7 +21,7 @@ body{
 /* Set the width of the sidebar to 120px */
 
 .w3-sidebar {
-    height: 500px;
+    height: 100%;
     width: 140px;
     background-color: white;
     overflow: visible;
