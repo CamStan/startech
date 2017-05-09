@@ -232,6 +232,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="DAL\IPGMMS_Context.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MapLoc.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
     <Compile Include="Models\Partials\ContactInfo.Meta.cs" />
@@ -386,7 +387,9 @@
     <Content Include="Views\Manage\UpdateContact.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\MapApi\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
