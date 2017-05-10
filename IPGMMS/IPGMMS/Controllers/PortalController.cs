@@ -10,6 +10,9 @@ using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
 using IPGMMS.ViewModels;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace IPGMMS.Controllers
 {
@@ -317,12 +320,23 @@ namespace IPGMMS.Controllers
             return View("UpdateCertification");
         }
         //***************************************REPORTS***********************************************
-
+        /// <summary>
+        /// This method is an action result that returns the Report Landing Page view. This is the view
+        /// that houses the list of reports available to the admin.
+        /// </summary>
+        /// <returns>The Report Landing Page View</returns>
         public ActionResult ReportLandingPage()
         {
             return View("ReportLandingPage");
         }
-
+        /// <summary>
+        /// This method creates a list of expired members and returns it to the view for
+        /// display. If there is no data to display, the user is redirected to a custom
+        /// error view.
+        /// </summary>
+        /// <param name="page">The current page number</param>
+        /// <param name="sortOrder">The current sort order</param>
+        /// <returns>The view with the list of expired members or a custom error view if no data exists.</returns>
         public ActionResult ExpiredMembersReport(int? page, string sortOrder)
         {
             var members = memberRepo.GetAllMembers;
@@ -340,6 +354,30 @@ namespace IPGMMS.Controllers
 
                 return View("ExpiredMembersReport", expMembersList.ToList().ToPagedList(startPage, pageSize));
             }
+        }
+        /// <summary>
+        /// This method exports a list of expired members to Excel.
+        /// </summary>
+        public void ExportToExcel()
+        {
+            var members = memberRepo.GetAllMembers;
+
+            var grid = new GridView();
+            grid.DataSource = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=IPGReport.xls");
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
+
+            grid.RenderControl(htmlWriter);
+
+            Response.Write(stringWriter.ToString());
+            Response.End();
+
         }
 
         // Two dictionaries, one for ascending, one for descending
