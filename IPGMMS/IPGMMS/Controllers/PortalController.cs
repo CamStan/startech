@@ -316,6 +316,31 @@ namespace IPGMMS.Controllers
         {
             return View("UpdateCertification");
         }
+        //***************************************REPORTS***********************************************
+
+        public ActionResult ReportLandingPage()
+        {
+            return View("ReportLandingPage");
+        }
+
+        public ActionResult ExpiredMembersReport(int? page, string sortOrder)
+        {
+            var members = memberRepo.GetAllMembers;
+
+            var expMembersList = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+
+            if (expMembersList == null)
+            {
+                return View("Error_NoDataFound");
+            }
+            else
+            {
+                int pageSize = 20; //the number of items that can appear on each page.
+                int startPage = (page ?? 1);
+
+                return View("ExpiredMembersReport", expMembersList.ToList().ToPagedList(startPage, pageSize));
+            }
+        }
 
         /// <summary>
         /// Get the list of all members who are listed as uncategorized and require admin approval/member level action.
