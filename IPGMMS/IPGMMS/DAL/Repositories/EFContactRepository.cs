@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using IPGMMS.Models;
 using System.Data.Entity;
+using System.Diagnostics;
 
 namespace IPGMMS.DAL.Repositories
 {
@@ -47,8 +48,22 @@ namespace IPGMMS.DAL.Repositories
         /// <returns>The ContactInfo object which is the listing info for the memberID provided</returns>
         public ContactInfo ListingInfoFromMID(int? id)
         {
-            var listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType_ID == 2).First().ContactInfo_ID;
-            var contInfo = Find(listID);
+            int listID = -1;
+
+            try
+            {
+                listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType_ID == 2).First().ContactInfo_ID;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("An error occurred: '{0}'", e);
+            }
+
+            ContactInfo contInfo = new ContactInfo();
+            if (listID != -1)
+            {
+                contInfo = Find(listID);
+            }
             return contInfo;
         }
 

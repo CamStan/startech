@@ -1,0 +1,149 @@
+﻿using IPGMMS.Abstract;
+using IPGMMS.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+
+namespace IPGMMS.Controllers
+{
+    public class MapController : MController
+    {
+        private IMemberRepository memberRepo;
+        private IContactRepository contactRepo;
+        private static HttpClient client = new HttpClient();
+        private string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+        private string apiKey = "&key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk";
+
+        public MapController(IMemberRepository mRepo, IContactRepository cRepo)
+        {
+            memberRepo = mRepo;
+            contactRepo = cRepo;
+        }
+        // GET: Map
+        /// <summary>
+        /// Shows map centered on the zip code given. If no zip code is given
+        /// or the one entered is invalid, it will use 97304 as default. This
+        /// is the zip code of the IPG HQ.
+        /// </summary>
+        /// <param name="zipCode">give as string to allow for chars</param>
+        /// <returns>returns view and MapJson objects</returns>
+        public async Task<ActionResult> Index(string zipCode)
+        {
+            // Tower of London zip code -> address = "EC3N 4AB";
+            if (zipCode == null)
+            {
+                zipCode = "97304";
+            }
+            //ViewBag.locations = await GetDBLocs();
+            ViewBag.center = await GetCenter(zipCode);
+            ViewBag.found = true;
+            if (ViewBag.center == null)
+            {
+                ViewBag.center = await GetCenter("97304");
+            }
+            return View();
+        }
+
+
+        /// <summary>
+        /// Retrieves all listing addresses from the database in order to find
+        /// the longitude and latitude coordinates.
+        /// </summary>
+        /// <returns></returns>
+        private async Task<List<MapJson>> GetDBLocs()
+        {
+            var memberIDs = memberRepo.GetActiveMemberIDs();
+            List<ContactInfo> listingInfo = new List<ContactInfo>();
+
+            for (int i = 0; i < memberIDs.Length; i++)
+            {
+                ContactInfo listInfo = contactRepo.ListingInfoFromMID(memberIDs[i]);
+                if (listInfo.StateName != null)
+                {
+                    listingInfo.Add(listInfo);
+                }
+            }
+
+            ContactInfo[] listingArray = listingInfo.ToArray();
+            List<MapJson> locations = new List<MapJson>();
+
+            for (int i = 0; i < listingArray.Length; i++)
+            {
+                var address = listingArray[i].StreetAddress + ",+"
+                            + listingArray[i].City + ",+"
+                            + listingArray[i].StateName;
+                address = address.Replace(" ", "+");
+                Debug.WriteLine(address);
+                MapJson locationCheck = await GetLocation(address);
+                if (locationCheck != null)
+                {
+                    locations.Add(locationCheck);
+                }
+            }
+            return locations;
+        }
+
+
+        /// <summary>
+        /// Usings Google Geocoder API to retrieve the longitude and latitude
+        /// coordinates (and other info) for a given address.
+        /// </summary>
+        /// <param name="address">streetnum+road+city+state</param>
+        /// <returns>C# object representing the JSON from Google</returns>
+        public async Task<MapJson> GetLocation(string address)
+        {
+            //Task<MapJson>
+            // examplehttps://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=
+
+            //address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA";
+
+            
+
+
+
+            string repUrl = apiUrl + address + apiKey;
+            HttpResponseMessage response = await client.GetAsync(repUrl).ConfigureAwait(false);
+            if (response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+
+                MapJson testObject = JsonConvert.DeserializeObject<MapJson>(apiResponse);
+
+                // Will only add good addresses
+                if (testObject.status == "OK")
+                {
+                    Debug.WriteLine("lat = " + testObject.results.FirstOrDefault().geometry.location.lat.ToString());
+                    Debug.WriteLine("long = " + testObject.results.FirstOrDefault().geometry.location.lng.ToString());
+                    return testObject;
+                }
+            }
+
+            return null;
+        }
+
+        private async Task<MapJson> GetCenter(string address)
+        {
+
+            string repUrl = apiUrl + ",&components=postal_code:" + address + apiKey;
+            HttpResponseMessage response = await client.GetAsync(repUrl).ConfigureAwait(false);
+            if(response.IsSuccessStatusCode)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                MapJson test = JsonConvert.DeserializeObject<MapJson>(apiResponse);
+
+                // Returns only good addresses.
+                if (test.status == "OK")
+                {
+                    return test;
+                }
+            }
+            return null;
+        }
+    }
+}

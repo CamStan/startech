@@ -1,19 +1,12 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
 using IPGMMS.ViewModels;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace IPGMMS.Controllers
 {
@@ -35,8 +28,7 @@ namespace IPGMMS.Controllers
         {
             var user = User.Identity;
             ViewBag.Name = user.Name;
-            var something = GetLocation("test");
-
+            
             return View();
         }
 
@@ -344,33 +336,5 @@ namespace IPGMMS.Controllers
                 { "bname_desc", m => m.BusinessName },
                 { "lvl_desc", m => m.MemberLevel1.MLevel }
             };
-        public static async Task<MapJson> GetLocation(string address)
-        {
-
-            // examplehttps://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=
-            address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA";
-
-            string apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-            string apiKey = "&key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk";
-
-
-            using (var client = new HttpClient())
-            {
-                string repUrl = apiUrl + address + apiKey;
-                HttpResponseMessage response = await client.GetAsync(repUrl);
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-
-
-                    MapJson testObject = JsonConvert.DeserializeObject<MapJson>(apiResponse);
-                    Debug.WriteLine("lat = " + testObject.results.FirstOrDefault().geometry.location.lat.ToString());
-                    Debug.WriteLine("long = " + testObject.results.FirstOrDefault().geometry.location.lng.ToString());
-                    return testObject;
-                }
-
-                return null;
-            }
-        }
     }
 }
