@@ -346,20 +346,40 @@ namespace IPGMMS.Controllers
         /// Get the list of all members who are listed as uncategorized and require admin approval/member level action.
         /// </summary>
         /// <returns>View of all new members</returns>
-        public ActionResult ReportNewMember()
+        public ActionResult ReportNewMember(int? page, string sortOrder)
         {
             var list = memberRepo.NewMembers;
-            return View(list);
+            if (list == null)
+            {
+                return View("Error_NoDataFound");
+            }
+            else
+            {
+                int pageSize = 20; //the number of items that can appear on each page.
+                int startPage = (page ?? 1);
+
+                return View("ReportNewMember", list.ToList().ToPagedList(startPage, pageSize));
+            }
         }
 
         /// <summary>
         /// Get the list of all members who will have a membership lapse in the next two months.
         /// </summary>
         /// <returns>View of all Expiring members</returns>
-        public ActionResult ReportExpiringmember()
+        public ActionResult ReportExpiringMember(int? page, string sortOrder)
         {
             var list = memberRepo.ExpiringMembers;
-            return View(list);
+            if (list == null)
+            {
+                return View("Error_NoDataFound");
+            }
+            else
+            {
+                int pageSize = 20; //the number of items that can appear on each page.
+                int startPage = (page ?? 1);
+
+                return View("ReportExpiringmember", list.ToList().ToPagedList(startPage, pageSize));
+            }
         }
 
 
