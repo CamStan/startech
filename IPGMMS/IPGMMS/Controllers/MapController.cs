@@ -40,7 +40,7 @@ namespace IPGMMS.Controllers
             {
                 zipCode = "97304";
             }
-            //ViewBag.locations = await GetDBLocs();
+            ViewBag.locations = await GetMapInfos();
             ViewBag.center = await GetCenter(zipCode);
             ViewBag.found = true;
             if (ViewBag.center == null)
@@ -50,43 +50,51 @@ namespace IPGMMS.Controllers
             return View();
         }
 
-
         /// <summary>
         /// Retrieves all listing addresses from the database in order to find
         /// the longitude and latitude coordinates.
         /// </summary>
         /// <returns></returns>
-        private async Task<List<MapJson>> GetDBLocs()
+        private async Task<List<MapInfo>> GetMapInfos()
         {
+            List<MapInfo> mapinfos = new List<MapInfo>();
+
             var memberIDs = memberRepo.GetActiveMemberIDs();
+
             List<ContactInfo> listingInfo = new List<ContactInfo>();
+            List<Tuple<int, ContactInfo>> tempList = new List<Tuple<int, ContactInfo>>();
 
             for (int i = 0; i < memberIDs.Length; i++)
             {
                 ContactInfo listInfo = contactRepo.ListingInfoFromMID(memberIDs[i]);
                 if (listInfo.StateName != null)
                 {
-                    listingInfo.Add(listInfo);
+                    tempList.Add(new Tuple<int, ContactInfo>(i, listInfo));
                 }
             }
 
-            ContactInfo[] listingArray = listingInfo.ToArray();
-            List<MapJson> locations = new List<MapJson>();
-
-            for (int i = 0; i < listingArray.Length; i++)
+            foreach (var tup in tempList)
             {
-                var address = listingArray[i].StreetAddress + ",+"
-                            + listingArray[i].City + ",+"
-                            + listingArray[i].StateName;
+
+                var address = tup.Item2.StreetAddress + ",+"
+                            + tup.Item2.City + ",+"
+                            + tup.Item2.StateName;
                 address = address.Replace(" ", "+");
                 Debug.WriteLine(address);
                 MapJson locationCheck = await GetLocation(address);
                 if (locationCheck != null)
                 {
-                    locations.Add(locationCheck);
+                    MapInfo mapinfo = new MapInfo();
+                    mapinfo.businessName = memberRepo.Find(tup.Item1).BusinessName;
+                    mapinfo.address1 = tup.Item2.StreetAddress;
+                    mapinfo.address2 = tup.Item2.City + ","
+                                     + tup.Item2.StateName + " "
+                                     + tup.Item2.PostalCode;
+                    mapinfo.position = locationCheck.results.FirstOrDefault().geometry.location;
+                    mapinfos.Add(mapinfo);
                 }
             }
-            return locations;
+            return mapinfos;
         }
 
 
@@ -103,7 +111,7 @@ namespace IPGMMS.Controllers
 
             //address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA";
 
-            
+
 
 
 
@@ -127,20 +135,20 @@ namespace IPGMMS.Controllers
             return null;
         }
 
-        private async Task<MapJson> GetCenter(string address)
+        private async Task<Location> GetCenter(string address)
         {
 
             string repUrl = apiUrl + ",&components=postal_code:" + address + apiKey;
             HttpResponseMessage response = await client.GetAsync(repUrl).ConfigureAwait(false);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                MapJson test = JsonConvert.DeserializeObject<MapJson>(apiResponse);
+                MapJson center = JsonConvert.DeserializeObject<MapJson>(apiResponse);
 
                 // Returns only good addresses.
-                if (test.status == "OK")
+                if (center.status == "OK")
                 {
-                    return test;
+                    return center.results.FirstOrDefault().geometry.location;
                 }
             }
             return null;

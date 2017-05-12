@@ -1,0 +1,12 @@
+﻿html, body {
+    height:initial;
+}
+
+#map {
+    height: 400px;
+    width: 50%;
+}
+
+#postalBox {
+    padding-top:inherit;
+}

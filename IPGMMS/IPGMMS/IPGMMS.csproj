@@ -233,6 +233,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="DAL\IPGMMS_Context.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MapInfo.cs" />
     <Compile Include="Models\MapJson.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
@@ -268,6 +269,7 @@
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
+    <Content Include="Content\MapIndex.css" />
     <Content Include="Content\MemberDetails.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SharedLayout.css" />

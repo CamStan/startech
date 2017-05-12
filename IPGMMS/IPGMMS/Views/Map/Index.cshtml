@@ -1,49 +1,113 @@
-﻿<!-- This is the corresponding "starter code" for 04_Hello Map in Udacity and Google's Maps
-API Course, Lesson 1 -->
-<style type="text/css">
-    html, body {
-        height: 800px;
-        margin: 0;
-        padding: 0;
-    }
+﻿
 
-    #map {
-        height: 800px;
-    }
-</style>
-<br />
-<br />
-<br />
-<div>
-    @using (Html.BeginForm())
-    {
+<div id="postalBox">
         <p>
-            Zip Code: @Html.TextBox("zipCode", "")
-            <input type="submit" value="Center Map" id="getZip" />
+            Postal Code: @Html.TextBox("zipCode", "")
+            <input type="button" value="Center Map" id="getZip" />
         </p>
-    }
 </div>
 <br />
 <div id="map"></div>
 <script>
     var map;
+    var markers = [];
+    var arry = @Html.Raw(Json.Encode(ViewBag.locations));
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 40.7413549, lng: -73.9980244 },
-            zoom: 13
+            zoom: 11
         });
 
-        var centerLat = @ViewBag.center.results[0].geometry.location.lat;
-        var centerLng = @ViewBag.center.results[0].geometry.location.lng;
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('getZip').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+
+        var largeInfowindow = new google.maps.InfoWindow();
+
+        var centerLat = @ViewBag.center.lat;
+        var centerLng = @ViewBag.center.lng;
         var pos = {
             lat: centerLat,
             lng: centerLng
         };
         map.setCenter(pos);
+        var marker = new google.maps.Marker({
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: 'black',
+                strokeColor: 'silver',
+                scale: 7
+            },
+            map: map,
+            position: pos,
+            title: 'Center of Postal Code'
+        });
+        markers.push(marker);
+        for (var i = 0; i < arry.length; i++)
+        {
+            // Get longitude and latitude
+            var position = {
+                lat: arry[i].position.lat,
+                lng: arry[i].position.lng
+            };
+
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                id: i
+            });
+            // Push the marker into our array of markers.
+            markers.push(marker);
+            // Create an onclick event to open an infowindow at each marker.
+            marker.addListener('click', function() {
+                populateInfoWindow(this, largeInfowindow);
+            });
+        }
     }
+
+    function geocodeAddress(geocoder, resultsMap)
+    {
+        var zipCode = document.getElementById('zipCode').value;
+        geocoder.geocode({'address' : zipCode}, function(results, status) {
+            if (status == 'OK') {
+                resultsMap.setCenter(results[0].geometry.location);
+                markers[0].setPosition(results[0].geometry.location);
+            } else {
+                alert('Postal code was not found for the following reason: '
+                    + status);
+            }
+        });
+    }
+
+    function populateInfoWindow(marker, infowindow) {
+        // Check to make sure the infowindow isn't already opened
+        //if(infowindow.marker != marker) {
+            infowindow.marker = marker;
+            infowindow.setContent('<div><b>' 
+                + arry[marker.id].businessName + '<br />'
+                + arry[marker.id].address1 + '<br />'
+                + arry[marker.id].address2 + '</b></div>');
+            infowindow.open(map, marker);
+            // maker sure the marker property is cleared if the infowindow is closed.
+            infowindow.addListener('closeclick', function() {
+                infowindow.marker = null;
+            });
+        //}
+    }
+
+    var arry = @Html.Raw(Json.Encode(ViewBag.locations));
+    console.log(arry);
+
 </script>
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk&v=3&callback=initMap">
 </script>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/mapGoogle.js"></script>
+    <link href="@Url.Content("~/Content/MapIndex.css")" rel="stylesheet" />
+}
