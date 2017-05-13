@@ -391,6 +391,9 @@
     <Content Include="Views\Manage\UpdateContact.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
+    <Content Include="Views\Portal\ReportLandingPage.cshtml" />
+    <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
+    <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
