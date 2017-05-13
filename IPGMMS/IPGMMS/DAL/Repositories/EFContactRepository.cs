@@ -45,11 +45,14 @@ namespace IPGMMS.DAL.Repositories
         /// Find the Listing ContactInfo based on a member ID
         /// </summary>
         /// <param name="id">The ID of the member</param>
-        /// <returns>The ContactInfo object which is the listing info for the memberID provided</returns>
+        /// <returns>The ContactInfo object which is the listing info for the memberID provided
+        /// or an empty contact if none exists in database.</returns>
         public ContactInfo ListingInfoFromMID(int? id)
         {
+            // Set a default contact ID, -1 because it's out of range
             int listID = -1;
 
+            // Try to find existing ID, catch if there's an error (like ID doesn't exist)
             try
             {
                 listID = db.Contacts.Where(s => s.Member_ID == id).Where(x => x.ContactType_ID == 2).First().ContactInfo_ID;
@@ -60,6 +63,8 @@ namespace IPGMMS.DAL.Repositories
             }
 
             ContactInfo contInfo = new ContactInfo();
+            //If the contact ID exists, find and return it, else return an empty
+            //contact
             if (listID != -1)
             {
                 contInfo = Find(listID);
