@@ -11,5 +11,6 @@ namespace IPGMMS.Models
         public string businessName { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
+        public string website { get; set; }
     }
 }

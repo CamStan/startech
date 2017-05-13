@@ -42,7 +42,6 @@ namespace IPGMMS.Controllers
             }
             ViewBag.locations = await GetMapInfos();
             ViewBag.center = await GetCenter(zipCode);
-            ViewBag.found = true;
             if (ViewBag.center == null)
             {
                 ViewBag.center = await GetCenter("97304");
@@ -69,7 +68,7 @@ namespace IPGMMS.Controllers
                 ContactInfo listInfo = contactRepo.ListingInfoFromMID(memberIDs[i]);
                 if (listInfo.StateName != null)
                 {
-                    tempList.Add(new Tuple<int, ContactInfo>(i, listInfo));
+                    tempList.Add(new Tuple<int, ContactInfo>(memberIDs[i], listInfo));
                 }
             }
 
@@ -85,7 +84,9 @@ namespace IPGMMS.Controllers
                 if (locationCheck != null)
                 {
                     MapInfo mapinfo = new MapInfo();
-                    mapinfo.businessName = memberRepo.Find(tup.Item1).BusinessName;
+                    Member member = memberRepo.Find(tup.Item1);
+                    mapinfo.businessName = member.BusinessName;
+                    mapinfo.website = member.Website;
                     mapinfo.address1 = tup.Item2.StreetAddress;
                     mapinfo.address2 = tup.Item2.City + ","
                                      + tup.Item2.StateName + " "
@@ -110,11 +111,6 @@ namespace IPGMMS.Controllers
             // examplehttps://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=
 
             //address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA";
-
-
-
-
-
             string repUrl = apiUrl + address + apiKey;
             HttpResponseMessage response = await client.GetAsync(repUrl).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
@@ -126,8 +122,6 @@ namespace IPGMMS.Controllers
                 // Will only add good addresses
                 if (testObject.status == "OK")
                 {
-                    Debug.WriteLine("lat = " + testObject.results.FirstOrDefault().geometry.location.lat.ToString());
-                    Debug.WriteLine("long = " + testObject.results.FirstOrDefault().geometry.location.lng.ToString());
                     return testObject;
                 }
             }

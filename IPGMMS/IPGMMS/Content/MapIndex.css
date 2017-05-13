@@ -4,9 +4,30 @@
 
 #map {
     height: 400px;
-    width: 50%;
+    width: 80%;
 }
 
 #postalBox {
     padding-top:inherit;
+}
+
+.infowindow {
+
+}
+
+.business {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.address {
+    line-height: normal;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+ .site-link {
+    margin-top: 5px;
+    color: blue;
 }
