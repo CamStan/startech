@@ -66,6 +66,7 @@ function initMap() {
     //'dragend', 'zoom_changed' multiple listeners.
     map.addListener('dragend', updateSearch);
     map.addListener('zoom_changed', updateSearch);
+    map.addListener('tilesloaded', updateSearch);
 
     function updateSearch() {
         var bounds = map.getBounds();
@@ -251,8 +252,8 @@ function getMessageBox() {
             + '<div class="row listing">'
             + '<div class="col-lg-1"><p></p></div>'
             + '<div class="col-lg-10 memberProfileBox w3-padding-12">'
-            + '<p>No results found. You can enter an address, a general location like a city, state or'
-            + 'a postal code. You can also zoom the map out and drag it around to find a pin outside of'
+            + '<p>No results found. You can enter an address, a general location like a city, state or '
+            + 'a postal code. You can also zoom the map out and drag it around to find a pin outside of '
             + 'the viewable map area.</p>'
             + '</div>'
             + '<div class="col-lg-1"></div>'
