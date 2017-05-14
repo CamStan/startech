@@ -1,11 +1,8 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
@@ -34,7 +31,7 @@ namespace IPGMMS.Controllers
         {
             var user = User.Identity;
             ViewBag.Name = user.Name;
-
+            
             return View();
         }
 
@@ -154,7 +151,7 @@ namespace IPGMMS.Controllers
             {
                 info.ListingInfo = contactRepo.ListingInfoFromMID(id);
             }
-            catch(System.InvalidOperationException)
+            catch (System.InvalidOperationException)
             {
                 info.ListingInfo = null;
             }
@@ -231,13 +228,13 @@ namespace IPGMMS.Controllers
         // GET: UpdateMemberMailing()
         public ActionResult UpdateMemberMailing(int? memID)
         {
-            
+
             if (memID == null)
             {
                 return View("Index");
                 //return View(Request.UrlReferrer.ToString());
             }
-            
+
 
             return View(contactRepo.MailingInfoFromMID(memID));
         }

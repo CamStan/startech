@@ -292,5 +292,18 @@ namespace IPGMMS.DAL.Repositories
         {
             return db.MemberLevels.Where(ml => ml.MLevel.Equals(level)).FirstOrDefault().ID;
         }
+
+        public int[] GetActiveMemberIDs()
+        {
+            var active_Members = db.Members.Where(mDate => mDate.Membership_ExpirationDate >= DateTime.Today);
+            List<int> memberIDs = new List<int>();
+
+            foreach(Member mem in active_Members)
+            {
+                memberIDs.Add(mem.ID);
+            }
+            int[] memIDs = memberIDs.ToArray();
+            return memIDs;
+        }
     }
 }

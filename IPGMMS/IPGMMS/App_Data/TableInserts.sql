@@ -23,15 +23,15 @@ INSERT INTO [dbo].[Certificates](Certification) VALUES ('International Certified
 
 -- ############# Members #############
 INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('000','2000-1-1','2025-12-31',9,'Admin','','Admin','','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES ('','2016-1-1','2016-10-31',4,'Anna','','unknown','Blue''s Doggy Daycare','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('','2015-1-1','2016-3-31',1,'Melanie','','Costello','','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('','2016-1-1','2017-1-31',3,'Maoki','','Abe','Puff n Stuff Pets','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('','2016-1-1','2018-1-31',3,'Hiras','','Abraham','Hiras Shop','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('','2016-1-1','2020-1-31',5,'Mylene','','Adams','','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('','2015-1-1','2015-3-31',2,'Dusk','','Adams','Pawprints','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('1648!A1','2015-1-1','2015-1-31',2,'Georgina','','Adams','','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-0841','2009-1-1','2015-6-30',5,'Elizabeth','','Adams','The Paw Spaw Mobile','www.thepawspayakima.com','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('1536!A1','2015-3-8','2020-3-31',1,'Sam','','Adams','','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES ('01-32111','2016-1-1','2016-10-31',4,'Anna','','unknown','Blue''s Doggy Daycare','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32222','2015-1-1','2016-3-31',1,'Melanie','','Costello','','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32333','2016-1-1','2017-1-31',3,'Maoki','','Abe','Puff n Stuff Pets','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32444','2016-1-1','2018-1-31',3,'Hiras','','Abraham','Hiras Shop','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('04-43212','2016-1-1','2020-1-31',5,'Mylene','','Adams','','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32555','2015-1-1','2015-3-31',2,'Dusk','','Adams','Pawprints','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('03-54313','2015-1-1','2015-1-31',2,'Georgina','','Adams','','','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32677','2009-1-1','2015-6-30',5,'Elizabeth','','Adams','The Paw Spaw Mobile','www.thepawspayakima.com','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('03-54414','2015-3-8','2020-3-31',1,'Sam','','Adams','','','');
 
 -- ############# ContactInfo #############
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','USA','','','Anna@pmail.com');
@@ -49,6 +49,9 @@ INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2200 68th Ave','Yakima','WA','USA','98903','5555734000','thepaws@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('106 Sheffy Rd,Birdwell','Barnsley','Sheffield','UK','S70 5UX','','sam@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('106 Sheffy Rd,Birdwell','Barnsley','Sheffield','UK','S70 5UX','00781247444','sam@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','USA','','','Anna@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('55 Harrisburg Run','Bradford','PA','USA','16701','','Mel@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('332 Norman Rd','Belmot, Lower Hutt','Wellington','NZ','5010','','');
 
 
 -- ############# Contacts #############
@@ -67,6 +70,9 @@ INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (9
 INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (9,13,2);
 INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (10,14,1);
 INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (10,15,2);
+INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (2,16,2);
+INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (3,17,2);
+INSERT INTO [dbo].[Contacts] (Member_ID,ContactInfo_ID,ContactType_ID) VALUES (6,18,2);
 
 
 -- ############# MemberCertifications #############
