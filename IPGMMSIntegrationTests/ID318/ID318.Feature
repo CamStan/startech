@@ -31,6 +31,14 @@ Scenario: Confirm that there is a report of new members and it contains a member
 	And the user clicks on new members link
 	Then there will be a page listing new members
 	
-
+Scenario: Confirm that if a member's expirarion date is set, then report will reflect that member as having expired.
+	Given that a user is logged in as an admin
+	And that the user is on the homepage
+	When the user clicks on the admin portal link
+	And the user clicks on 
+	And the user clicks on 
+	And the user clicks on reports
+	And the user clicks on expired members link
+	Then there will be a page listing expired members with that member.
 	
 
