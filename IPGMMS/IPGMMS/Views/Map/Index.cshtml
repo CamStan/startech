@@ -1,13 +1,17 @@
 ﻿
 
-<div id="postalBox">
-        <p>
-            Postal Code: @Html.TextBox("zipCode", "")
-            <input type="button" value="Center Map" id="getZip" />
-        </p>
-</div>
-<br />
+
+
 <div id="map"></div>
+<div id="postalBox">
+    <p>
+        Find a groomer near: @Html.TextBox("zipCode", "City, State or Postal Code")
+        <input type="button" value="Search" id="getZip" />
+    </p>
+</div>
+<div id="searchResults">
+    This line is filler.
+</div>
 <script>
     var arry = @Html.Raw(Json.Encode(ViewBag.locations));
     var center = @Html.Raw(Json.Encode(ViewBag.center));

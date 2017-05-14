@@ -4,11 +4,11 @@
 
 #map {
     height: 400px;
-    width: 80%;
+    width: 100%;
 }
 
 #postalBox {
-    padding-top:inherit;
+    padding-top:10px;
 }
 
 .infowindow {
