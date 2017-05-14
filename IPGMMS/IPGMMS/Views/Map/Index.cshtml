@@ -5,11 +5,18 @@
 <div id="map"></div>
 <div id="postalBox">
     <p>
-        Find a groomer near: @Html.TextBox("zipCode", "City, State or Postal Code")
+        Find a groomer near: @Html.TextBox("zipCode", "Partial address or Postal Code")
         <input type="button" value="Search" id="getZip" />
     </p>
 </div>
 <div id="searchResults">
+    <div class="row listing">
+        <div class="col-lg-1"><p></p></div>
+        <div class="col-lg-10 memberProfileBox w3-padding-12">
+            <p>No results found. Try zooming out and/or dragging the map</p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
 </div>
 <script>
     var arry = @Html.Raw(Json.Encode(ViewBag.locations));
