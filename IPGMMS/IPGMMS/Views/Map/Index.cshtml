@@ -1,0 +1,26 @@
+﻿
+
+
+
+<div id="map"></div>
+<div id="postalBox">
+    <p>
+        Find a groomer near: @Html.TextBox("zipCode", "City, State or Postal Code")
+        <input type="button" value="Search" id="getZip" />
+    </p>
+</div>
+<div id="searchResults">
+</div>
+<script>
+    var arry = @Html.Raw(Json.Encode(ViewBag.locations));
+    var center = @Html.Raw(Json.Encode(ViewBag.center));
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk&v=3&callback=initMap">
+</script>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Map.js"></script>
+    <link href="@Url.Content("~/Content/MapIndex.css")" rel="stylesheet" />
+}

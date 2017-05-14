@@ -1,15 +1,15 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
 using IPGMMS.ViewModels;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace IPGMMS.Controllers
 {
@@ -31,7 +31,7 @@ namespace IPGMMS.Controllers
         {
             var user = User.Identity;
             ViewBag.Name = user.Name;
-
+            
             return View();
         }
 
@@ -151,7 +151,7 @@ namespace IPGMMS.Controllers
             {
                 info.ListingInfo = contactRepo.ListingInfoFromMID(id);
             }
-            catch(System.InvalidOperationException)
+            catch (System.InvalidOperationException)
             {
                 info.ListingInfo = null;
             }
@@ -228,13 +228,13 @@ namespace IPGMMS.Controllers
         // GET: UpdateMemberMailing()
         public ActionResult UpdateMemberMailing(int? memID)
         {
-            
+
             if (memID == null)
             {
                 return View("Index");
                 //return View(Request.UrlReferrer.ToString());
             }
-            
+
 
             return View(contactRepo.MailingInfoFromMID(memID));
         }
@@ -317,12 +317,23 @@ namespace IPGMMS.Controllers
             return View("UpdateCertification");
         }
         //***************************************REPORTS***********************************************
-
+        /// <summary>
+        /// This method is an action result that returns the Report Landing Page view. This is the view
+        /// that houses the list of reports available to the admin.
+        /// </summary>
+        /// <returns>The Report Landing Page View</returns>
         public ActionResult ReportLandingPage()
         {
             return View("ReportLandingPage");
         }
-
+        /// <summary>
+        /// This method creates a list of expired members and returns it to the view for
+        /// display. If there is no data to display, the user is redirected to a custom
+        /// error view.
+        /// </summary>
+        /// <param name="page">The current page number</param>
+        /// <param name="sortOrder">The current sort order</param>
+        /// <returns>The view with the list of expired members or a custom error view if no data exists.</returns>
         public ActionResult ExpiredMembersReport(int? page, string sortOrder)
         {
             var members = memberRepo.GetAllMembers;
@@ -340,6 +351,39 @@ namespace IPGMMS.Controllers
 
                 return View("ExpiredMembersReport", expMembersList.ToList().ToPagedList(startPage, pageSize));
             }
+        }
+        /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void ExpMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.GetAllMembers.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            ExportToExcel(expMembers);
+        }
+
+        /// <summary>
+        /// This method exports a list of expired members to Excel.
+        /// </summary>
+        private void ExportToExcel(IEnumerable<Member> memList)
+        {
+            var grid = new GridView();
+            grid.DataSource = memList;
+
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=IPGReport.xls");
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
+
+            grid.RenderControl(htmlWriter);
+
+            Response.Write(stringWriter.ToString());
+            Response.End();
+
         }
 
         /// <summary>
