@@ -5,15 +5,20 @@
 <div id="map"></div>
 <div id="postalBox">
     <p>
-        Find a groomer near: @Html.TextBox("zipCode", "Partial address or Postal Code")
+        Find a groomer near: @Html.TextBox("zipCode", "Enter a location")
         <input type="button" value="Search" id="getZip" />
     </p>
 </div>
 <div id="searchResults">
+    @* The following div is only used when the page first loads. After that, the message in the js file takes over. *@
     <div class="row listing">
         <div class="col-lg-1"><p></p></div>
         <div class="col-lg-10 memberProfileBox w3-padding-12">
-            <p>No results found. Try zooming out and/or dragging the map</p>
+            <p>
+                No results found. You can enter an address, a general location like a city, state or
+                a postal code. You can also zoom the map out and drag it around to find a pin outside of
+                the viewable map area.
+            </p>
         </div>
         <div class="col-lg-1"></div>
     </div>
