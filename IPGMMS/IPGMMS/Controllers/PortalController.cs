@@ -36,6 +36,15 @@ namespace IPGMMS.Controllers
         }
 
         //***********************************************LIST MEMBER INFO*****************************
+        
+        public ActionResult ListMembers()
+        {
+            var members = memberRepo.GetAllMembers;
+            return View(members.ToList());
+
+        }
+        
+        /*
         public ActionResult ListMembers(int? page, string sortOrder, string searchString)
         {
 
@@ -91,7 +100,7 @@ namespace IPGMMS.Controllers
 
             return View("ListMembers", members.ToList().ToPagedList(startPage, pageSize));
         }
-
+        */
         //***********************************************DETAILED MEMBER INFO*****************************
         public ActionResult DetailMember()
         {

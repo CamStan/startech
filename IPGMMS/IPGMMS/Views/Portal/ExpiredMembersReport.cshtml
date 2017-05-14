@@ -1,5 +1,4 @@
-﻿@model PagedList.IPagedList<IPGMMS.Models.Member>
-@using PagedList.Mvc
+﻿@model IEnumerable<IPGMMS.Models.Member>
 @{
     ViewBag.Title = "Expired Members";
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
@@ -7,7 +6,12 @@
 
 <h2>Expired Members Report</h2>
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function () {
+    $('#orderedTable').DataTable();
+});</script>
 
 <br />
 
@@ -19,64 +23,58 @@
 </div>
 
 <br />
-<table class="w3-table-all w3-card-4 w3-responsive" style="width:92%">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().BusinessName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_ExpirationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_SignupDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-            {
+<table id ="orderedTable" class="w3-table-all w3-card-4 w3-responsive" style="width:92%">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Membership_Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BusinessName)
-            </td>
-            <td id="memberListLinks">
-                @Html.ActionLink(item.FirstName, "UpdateMember/" + item.ID, "Portal")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().BusinessName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_ExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Membership_SignupDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().MemberLevel1.MLevel)
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membership_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusinessName)
+                </td>
+                <td id="memberListLinks">
+                    @Html.ActionLink(item.FirstName, "UpdateMember/" + item.ID, "Portal")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membership_SignupDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-<div>
-    <br />
-    Page @(Model.PageNumber < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-
-    @Html.PagedListPager(Model, page => Url.Action("ExpiredMembersReport",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-</div>
