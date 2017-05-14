@@ -1,14 +1,17 @@
 ﻿var map;
 var markers = [];
 
+var center; 
+
 document.getElementById("zipCode").addEventListener('click', function () {
     document.getElementById("zipCode").value = "";
 });
 
 
 function initMap() {
+    center = new google.maps.LatLng({ lat: centerRaw.lat, lng: centerRaw.lng });
     map = new google.maps.Map(document.getElementById('map'), {
-        center: center, //{ lat: 40.7413549, lng: -73.9980244 },
+        center: center,
         zoom: 9
     });
 
@@ -28,10 +31,6 @@ function initMap() {
 
     var largeInfowindow = new google.maps.InfoWindow();
 
-    //center = {
-    //    lat: center.lat,
-    //    lng: center.lng
-    //};
     map.setCenter(center);
     var marker = new google.maps.Marker({
         icon: {
@@ -64,7 +63,7 @@ function initMap() {
             populateInfoWindow(this, largeInfowindow);
         });
     }
-    //'dragend', 'zoom_changed'
+    //'dragend', 'zoom_changed' multiple listeners.
     map.addListener('dragend', updateSearch);
     map.addListener('zoom_changed', updateSearch);
 
@@ -85,6 +84,7 @@ function initMap() {
     };
 }
 
+// Gets the location when search button is pressed.
 function geocodeAddress(geocoder, resultsMap) {
     var zipCode = document.getElementById('zipCode').value;
     geocoder.geocode({ 'address': zipCode }, function (results, status) {
@@ -100,6 +100,7 @@ function geocodeAddress(geocoder, resultsMap) {
     });
 }
 
+// Creates the popup when marker is clicked.
 function populateInfoWindow(marker, infowindow) {
 
     infowindow.marker = marker;
@@ -112,6 +113,7 @@ function populateInfoWindow(marker, infowindow) {
     });
 }
 
+// Creates the text within the marker popup.
 function createContent(marker) {
     var contentLine = "";
     var business = arry[marker.id];
@@ -140,6 +142,7 @@ function createContent(marker) {
     return contentLine;
 }
 
+// Creates the search result box for each marker seen on map.
 function createDiv(marker) {
 
     var business = arry[marker.id];
@@ -224,9 +227,9 @@ function createDiv(marker) {
 
 // Use Spherical Law of Cosines to find the distance between points
 function findMileage(marker) {
-    var centerLat = degToRads(center.lat);
+    var centerLat = degToRads(center.lat());
     var destLat = degToRads(marker.getPosition().lat());
-    var centerLng = center.lng;
+    var centerLng = center.lng();
     var destLng = marker.getPosition().lng();
     var lngDifRad = degToRads(destLng - centerLng);
     var earthRad = 6371;
