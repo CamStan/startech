@@ -1,5 +1,6 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.Models;
+using IPGMMS.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -85,13 +86,19 @@ namespace IPGMMS.Controllers
                 {
                     MapInfo mapinfo = new MapInfo();
                     Member member = memberRepo.Find(tup.Item1);
-                    mapinfo.businessName = member.BusinessName;
-                    mapinfo.website = member.Website;
-                    mapinfo.address1 = tup.Item2.StreetAddress;
-                    mapinfo.address2 = tup.Item2.City + ","
+
+                    mapinfo.Position = locationCheck.results.FirstOrDefault().geometry.location;
+                    mapinfo.FullName = member.FullName;
+                    mapinfo.BusinessName = member.BusinessName;
+                    mapinfo.MemberLevel = member.MemberLevel1.MLevel;
+                    mapinfo.Website = member.Website;
+                    mapinfo.Address1 = tup.Item2.StreetAddress;
+                    mapinfo.Address2 = tup.Item2.City + ", "
                                      + tup.Item2.StateName + " "
                                      + tup.Item2.PostalCode;
-                    mapinfo.position = locationCheck.results.FirstOrDefault().geometry.location;
+                    mapinfo.PhoneNumber = tup.Item2.PhoneNumber;
+                    mapinfo.Email = tup.Item2.Email;
+                    
                     mapinfos.Add(mapinfo);
                 }
             }

@@ -28,8 +28,6 @@ function initMap() {
 
     var largeInfowindow = new google.maps.InfoWindow();
 
-    //var centerLat = center.lat;
-   // var centerLng = center.lng;
     var pos = {
         lat: center.lat,
         lng: center.lng
@@ -50,8 +48,8 @@ function initMap() {
     for (var i = 0; i < arry.length; i++) {
         // Get longitude and latitude
         var position = {
-            lat: arry[i].position.lat,
-            lng: arry[i].position.lng
+            lat: arry[i].Position.lat,
+            lng: arry[i].Position.lng
         };
 
         var marker = new google.maps.Marker({
@@ -69,15 +67,17 @@ function initMap() {
 
     map.addListener('center_changed', function () {
         var bounds = map.getBounds();
+        var inViewResults = "";
         for (var i = 1; i < markers.length; i++) {
             var marker = markers[i];
             if (bounds.contains(marker.getPosition())) {
-                var content = createContent(marker);
-                console.log(content);
+                inViewResults += createDiv(marker);
             }
-            else {
-                console.log("not in bounds");
-            }
+        }
+
+        $("#searchResults").empty();
+        if (inViewResults != "") {
+            $("#searchResults").append(inViewResults);
         }
     });
 }
@@ -110,23 +110,57 @@ function populateInfoWindow(marker, infowindow) {
 function createContent(marker)
 {
     var contentLine = "";
+    var business = arry[marker.id];
 
     // Piece together string. Check if item has
     // a name and website, exclude if it doesn't.
-    if (arry[marker.id].businessName != "" && arry[marker.id].businessName != null) {
+    if (business.BusinessName != "" && business.BusinessName != null) {
         contentLine = '<div class="infowindow"><div class="business">'
-                    + arry[marker.id].businessName + '</div>';
+                    + business.BusinessName + '</div>';
     } else {
         contentLine = '<div class="infowindow">';
     }
     // Address should always be present
-    contentLine += '<div class="address">' + arry[marker.id].address1 + '</div>'
-        + '<div class="address">' + arry[marker.id].address2 + '</div>';
+    contentLine += '<div class="address">' 
+                + business.Address1
+                + '</div>'
+                + '<div class="address">' 
+                + business.Address2
+                + '</div>';
     // Check to see if website is empty or null
-    if (arry[marker.id].website != "" && arry[marker.id].website != null) {
-        contentLine += '<div class="site-link"><a href="http://' + arry[marker.id].website + '">Visit their website!</div></div>'
+    if (business.Website != "" && business.Website != null) {
+        contentLine += '<div class="site-link"><a href="http://' + business.Website + '">Visit their website!</div></div>'
     } else {
         contentLine += '</div>';
     }
+    return contentLine;
+}
+
+function createDiv(marker)
+{
+    var contentLine = "<div class='row listing'>"
+                    + "<div class='col-lg-1'><p></p></div>"
+                    + "<div class='col-lg-10 memberProfileBox w3-padding-12'>"
+                    + "<br /><div class='col-sm-4 col-xs-8'>";
+    var business = arry[marker.id];
+
+    // Piece together a string to add a div under the map
+    if (business.BusinessName != "" && business.BusinessName != null) {
+        contentLine += '<div class="business">'
+                    + business.BusinessName + '</div>';
+    } 
+    // Address should always be present
+    contentLine += '<div class="address">'
+                + business.Address1
+                + '</div>'
+                + '<div class="address">'
+                + business.Address2
+                + '</div>';
+    // Check to see if website is empty or null
+    if (business.Website != "" && business.Website != null) {
+        contentLine += '<div class="site-link"><a href="http://' + business.Website + '">Visit their website!</div></div>'
+    } 
+
+    contentLine += "</div></div><div class='col-lg-1'></div></div>";
     return contentLine;
 }
