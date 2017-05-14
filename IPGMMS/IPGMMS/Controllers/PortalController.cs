@@ -356,14 +356,23 @@ namespace IPGMMS.Controllers
             }
         }
         /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void ExpMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.GetAllMembers.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            ExportToExcel(expMembers);
+        }
+
+        /// <summary>
         /// This method exports a list of expired members to Excel.
         /// </summary>
-        public void ExportToExcel()
+        private void ExportToExcel(IEnumerable<Member> memList)
         {
-            var members = memberRepo.GetAllMembers;
-
             var grid = new GridView();
-            grid.DataSource = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            grid.DataSource = memList;
 
             grid.DataBind();
 
