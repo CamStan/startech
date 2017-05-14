@@ -1,0 +1,42 @@
+﻿html, body {
+    height:initial;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+#postalBox {
+    padding-top:10px;
+}
+
+.infowindow {
+
+}
+
+.business {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.address {
+    line-height: normal;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+ .site-link {
+    margin-top: 5px;
+    color: blue;
+}
+
+ .memberProfileBox{
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 10px 3px grey;
+}
+
+ .row.listing {
+    margin-bottom: 16px;
+}
