@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
@@ -232,6 +233,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="DAL\IPGMMS_Context.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\MapInfo.cs" />
+    <Compile Include="Models\MapJson.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberCertification.cs" />
     <Compile Include="Models\Partials\ContactInfo.Meta.cs" />
@@ -271,6 +274,7 @@
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
+    <Content Include="Content\MapIndex.css" />
     <Content Include="Content\MemberDetails.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SharedLayout.css" />
@@ -319,6 +323,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\manage.js" />
+    <Content Include="Scripts\Map.js" />
     <Content Include="Scripts\MemberDetailTabs.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -390,6 +395,10 @@
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Map\Index.cshtml" />
+    <Content Include="Views\Portal\ReportLandingPage.cshtml" />
+    <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
+    <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

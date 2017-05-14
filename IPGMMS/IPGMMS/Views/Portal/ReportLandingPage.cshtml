@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ReportLandingPage";
+    Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
+}
+
+<h2>Reports</h2>
+<br />
+<div class="row">
+    <div class="col-lg-8">
+        <table class="w3-table-all  w3-responsive">
+            <tr>
+                <th>Report Name</th>
+                <th>Report Description</th>
+            </tr>
+            <tr>
+                <td id="memberListLinks"><a href="@Url.Action("ExpiredMembersReport", "Portal")">Expired_Members</a></td>
+                <td>This report lists all expired members.</td>
+            </tr>
+            <tr>
+                <td>Expiring_Members</td>
+                <td>This report lists all members expiring soon.</td>
+            </tr>
+            <tr>
+                <td>New_Members</td>
+                <td>This report description will be added soon.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

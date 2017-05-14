@@ -1,11 +1,8 @@
 ﻿using IPGMMS.Abstract;
 using IPGMMS.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Diagnostics;
@@ -31,7 +28,7 @@ namespace IPGMMS.Controllers
         {
             var user = User.Identity;
             ViewBag.Name = user.Name;
-
+            
             return View();
         }
 
@@ -151,7 +148,7 @@ namespace IPGMMS.Controllers
             {
                 info.ListingInfo = contactRepo.ListingInfoFromMID(id);
             }
-            catch(System.InvalidOperationException)
+            catch (System.InvalidOperationException)
             {
                 info.ListingInfo = null;
             }
@@ -228,13 +225,13 @@ namespace IPGMMS.Controllers
         // GET: UpdateMemberMailing()
         public ActionResult UpdateMemberMailing(int? memID)
         {
-            
+
             if (memID == null)
             {
                 return View("Index");
                 //return View(Request.UrlReferrer.ToString());
             }
-            
+
 
             return View(contactRepo.MailingInfoFromMID(memID));
         }
@@ -315,6 +312,31 @@ namespace IPGMMS.Controllers
         public ActionResult UpdateCertification()
         {
             return View("UpdateCertification");
+        }
+        //***************************************REPORTS***********************************************
+
+        public ActionResult ReportLandingPage()
+        {
+            return View("ReportLandingPage");
+        }
+
+        public ActionResult ExpiredMembersReport(int? page, string sortOrder)
+        {
+            var members = memberRepo.GetAllMembers;
+
+            var expMembersList = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+
+            if (expMembersList == null)
+            {
+                return View("Error_NoDataFound");
+            }
+            else
+            {
+                int pageSize = 20; //the number of items that can appear on each page.
+                int startPage = (page ?? 1);
+
+                return View("ExpiredMembersReport", expMembersList.ToList().ToPagedList(startPage, pageSize));
+            }
         }
 
         // Two dictionaries, one for ascending, one for descending

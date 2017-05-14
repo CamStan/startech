@@ -17,9 +17,9 @@
     background: -webkit-linear-gradient(rgb(84,161,196), rgb(211,231,240));
 }
 
-.navbar h1 {
-    text-align: center;
-}
+    .navbar h1 {
+        text-align: center;
+    }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -42,45 +42,63 @@ img {
 }
 
 /*Set the font for the project and various headings*/
-h1,h2,h3,h4{
+h1, h2, h3, h4 {
     font-family: 'Oswald', sans-serif;
 }
-p,body{
-    font-family:Palanquin;
+
+p, body {
+    font-family: Palanquin;
 }
 /*Set fonts to be responsive*/
 
 /*Heading specific information such as size, color, etc*/
-h1{
+h1 {
+    font-size: 200%;
+}
+
+h2 {
     font-size: 170%;
 }
-h2{
-    font-size: 150%;
+
+h3 {
+    font-size: 130%;
 }
-h3{
-    font-size:130%;
-}
-h4{
+
+h4 {
     font-size: 110%;
 }
-p,body{
-    font-size:100%;
+
+p, body {
+    font-size: 100%;
 }
+
 @media screen and (max-width: 950px) {
-     h1,h2,h3,h4{
-        font-size: 100%;
+    h1, h2, h3, h4 {
+        font-size: 120%;
+    }
+
+    p, body {
+        font-size: 90%;
     }
 }
 
 @media screen and (max-width: 650px) {
- h1,h2,h3,h4{
-        font-size: 100%;
+    h1, h2, h3, h4 {
+        font-size: 110%;
+    }
+
+    p, body {
+        font-size: 70%;
     }
 }
 
 @media screen and (max-width: 480px) {
- h1,h2,h3,h4{
+    h1, h2, h3, h4 {
         font-size: 100%;
+    }
+
+    p, body {
+        font-size: 60%;
     }
 }
 
@@ -101,17 +119,24 @@ p,body{
         padding: 6px 16px;
         display: block;
         background-color: white;
-        text-align:right;
+        text-align: right;
     }
 
         .w3-dropdown-content a:hover {
             background-color: #000080;
             color: white;
         }
-#memberListTable a{
+
+#memberListTable a {
     color: #000080;
-    font-weight:bold;
+    font-weight: bold;
 }
-.login{
+
+#memberListLinks {
+    color: #000080;
+    font-weight: bold;
+}
+
+.login {
     font-size: 18px;
 }
