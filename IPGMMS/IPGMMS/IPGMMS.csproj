@@ -395,6 +395,8 @@
     <Content Include="Views\Member\Apply.cshtml" />
     <Content Include="Views\Manage\UpdateContact.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Portal\ReportNewMember.cshtml" />
+    <Content Include="Views\Portal\ReportExpiringMember.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Portal\ReportLandingPage.cshtml" />
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
