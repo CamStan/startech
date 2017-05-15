@@ -9,7 +9,11 @@ document.getElementById("zipCode").addEventListener('click', function () {
 
 
 function initMap() {
-    center = new google.maps.LatLng({ lat: centerRaw.lat, lng: centerRaw.lng });
+    center = new google.maps.LatLng({
+        lat: centerRaw.results[0].geometry.location.lat,
+        lng: centerRaw.results[0].geometry.location.lng
+    });
+    placeArea(centerRaw.results[0].formatted_address);
     map = new google.maps.Map(document.getElementById('map'), {
         center: center,
         zoom: 9
@@ -88,9 +92,14 @@ function initMap() {
 // Gets the location when search button is pressed.
 function geocodeAddress(geocoder, resultsMap) {
     var zipCode = document.getElementById('zipCode').value;
+    if (zipCode == "")
+    {
+        zipCode = "97304";
+    }
     geocoder.geocode({ 'address': zipCode }, function (results, status) {
         if (status == 'OK') {
             center = results[0].geometry.location;
+            placeArea(results[0].formatted_address);
             resultsMap.setCenter(results[0].geometry.location);
             markers[0].setPosition(results[0].geometry.location);
         } else {
@@ -258,4 +267,11 @@ function getMessageBox() {
             + '</div>'
             + '<div class="col-lg-1"></div>'
             + '</div></div>'
+}
+
+// Search result message
+function placeArea(area)
+{
+    $('#searchArea').empty();
+    $('#searchArea').append("Centered at : " + area + "<br /><br />");
 }

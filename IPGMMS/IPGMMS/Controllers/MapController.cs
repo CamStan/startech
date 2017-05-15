@@ -136,7 +136,7 @@ namespace IPGMMS.Controllers
             return null;
         }
 
-        private async Task<Location> GetCenter(string address)
+        private async Task<MapJson> GetCenter(string address)
         {
 
             string repUrl = apiUrl + ",&components=postal_code:" + address + apiKey;
@@ -149,7 +149,7 @@ namespace IPGMMS.Controllers
                 // Returns only good addresses.
                 if (center.status == "OK")
                 {
-                    return center.results.FirstOrDefault().geometry.location;
+                    return center;
                 }
             }
             return null;
