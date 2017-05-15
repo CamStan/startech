@@ -51,7 +51,7 @@
             @using (Html.BeginForm("Index", "Map", FormMethod.Post, new { @class = "form-horizontal w3-container", id = "searchForm", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <input type="text" class="w3-input w3-round-large" placeholder="Enter your postal code" />
+                <input type="text" name="zipCode"class="w3-input w3-round-large" placeholder="Enter your postal code" />
                 <input type="submit" class="w3-button w3-border w3-border-light-blue w3-light-blue w3-round-large w3-ripple w3-hover-shadow" value="Find" />
             }
         </div>
