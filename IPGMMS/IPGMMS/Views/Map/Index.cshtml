@@ -1,7 +1,6 @@
 ﻿
 
 
-
 <div id="map"></div>
 <div id="postalBox">
     <p>
@@ -16,11 +15,12 @@
     var centerRaw = @Html.Raw(Json.Encode(ViewBag.center));
 </script>
 
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk&v=3&callback=initMap">
-</script>
+@*<script async defer
+
+</script>*@
 
 @section scripts {
     <script type="text/javascript" src="~/Scripts/Map.js"></script>
     <link href="@Url.Content("~/Content/MapIndex.css")" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMzq0fLRdhVhgT42oiQrfu-gz9m0ftvhk&v=3&callback=initMap"> </script>
 }
