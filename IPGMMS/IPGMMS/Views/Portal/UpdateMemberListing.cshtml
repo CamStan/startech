@@ -6,6 +6,7 @@
 }
 
 <h2>UpdateMemberListing</h2>
+<h4>@Html.ActionLink("List All Members", "ListMembers", "Portal", null, new { @class = "navigationLinks" })  >  @Html.ActionLink("Member Details", "UpdateMember", "Portal", new { id = Model.Contacts.FirstOrDefault().Member.ID}, new { @class = "navigationLinks" })  >  @Html.DisplayFor(model => model.Contacts.FirstOrDefault().Member.FullName)</h4>
 
 @using (Html.BeginForm())
 {
@@ -81,6 +82,4 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

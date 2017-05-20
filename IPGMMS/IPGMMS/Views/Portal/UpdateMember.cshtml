@@ -1,66 +1,76 @@
 ﻿@model IPGMMS.ViewModels.MemberInfoViewModel
 
 @{
-    ViewBag.Title = "AddMember";
+    ViewBag.Title = "Update Member";
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
 }
 <h2>Member Details</h2>
+<div class="w3-row">
+    <div class="w3-half">
+        <h4>@Html.ActionLink("List All Members", "ListMembers", "Portal", null, new { @class = "navigationLinks" }) > @Html.DisplayFor(model => model.MemberInfo.FullName)</h4>
+    </div>
+    <div class="w3-quarter pull-right">
+        <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("Details", "Member",new { ID = Model.MemberInfo.ID })'"><i class="fa fa-cloud"></i> View Public Profile</button><br />
+    </div>
+    <div class="w3-quarter">
+        </div>
+</div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)
-        </dd>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.FirstName)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.FirstName)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.FirstName)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.LastName)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.FirstName)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.LastName)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.LastName)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.BusinessName)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.LastName)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.BusinessName)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.BusinessName)
+    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MemberInfo.Website)
-        </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.BusinessName)
+    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MemberInfo.Website)
-        </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.Website)
+    </dt>
 
-    </dl>
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.Website)
+    </dd>
+
+</dl>
 </div>
 <div>
-    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("UpdateMemberInfo", "Portal",new { memID = Model.MemberInfo.ID })'" ><i class="fa fa-pencil fa-lg"></i> Update Member Info</button><br />
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("UpdateMemberInfo", "Portal",new { memID = Model.MemberInfo.ID })'"><i class="fa fa-pencil fa-lg"></i> Update Member Info</button><br />
 </div>
 <br />
 <div>
