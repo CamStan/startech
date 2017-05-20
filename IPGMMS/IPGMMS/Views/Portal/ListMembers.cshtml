@@ -11,7 +11,8 @@ $(document).ready(function () {
     $('#orderedTable').DataTable();
 });</script>
 
-
+<h1>View/Update Members</h1>
+<hr />
 <table id ="orderedTable" class="w3-table-all w3-card-4 w3-responsive">
     <thead>
         <tr>
@@ -48,8 +49,8 @@ $(document).ready(function () {
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Membership_Number)
+                <td id="memberListLinks">
+                    @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Membership_SignupDate)
@@ -57,8 +58,8 @@ $(document).ready(function () {
                 <td>
                     @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
                 </td>
-                <td id="memberListLinks">
-                    @Html.ActionLink(item.FirstName, "UpdateMember/" + item.ID, "Portal")
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MiddleName)
