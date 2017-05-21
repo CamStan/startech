@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-<h2>UpdateMemberInfo</h2>
+<h2>Update Member Information</h2>
+<h4>@Html.ActionLink("List All Members", "ListMembers", "Portal", null, new { @class = "navigationLinks" })  >  @Html.ActionLink("Member Details", "UpdateMember", "Portal", new { id = Model.MemberInfo.ID }, new { @class = "navigationLinks" })  >  @Html.DisplayFor(model => model.MemberInfo.FullName)</h4>
 
 @using (Html.BeginForm())
 {
@@ -101,6 +102,3 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to Member Details", "UpdateMember")
-</div>
