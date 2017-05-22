@@ -1,3 +1,5 @@
+<link href="~/Content/Forms.css" rel="stylesheet" type="text/css" />
+
 @model IPGMMS.ViewModels.MemberInfoVM
 
 @{
@@ -19,33 +21,16 @@
         @Html.HiddenFor(model => model.MemberInfo.ID)
         @Html.HiddenFor(model => model.MemberInfo.Identity_ID)
 
-        <div class="form-group">
+        <div class="form-group required">
             @Html.LabelFor(model => model.MemberInfo.Membership_Number, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberInfo.Membership_Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MemberInfo.Membership_Number, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.MemberInfo.Membership_Number, "", new { @class = "text-danger" })
 
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MemberInfo.Membership_SignupDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberInfo.Membership_SignupDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MemberInfo.Membership_SignupDate, "", new { @class = "text-danger" })
-
-            </div>
-        </div>
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.MemberInfo.Membership_ExpirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberInfo.Membership_ExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MemberInfo.Membership_ExpirationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group required">
             @Html.LabelFor(model => model.MemberInfo.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MemberInfo.FirstName, new { htmlAttributes = new { @class = "form-control" } })
@@ -61,11 +46,19 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group required">
             @Html.LabelFor(model => model.MemberInfo.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberInfo.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MemberInfo.LastName, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.MemberInfo.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group required">
+            @Html.LabelFor(model => model.MemberInfo.MemberLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MemberInfo.MemberLevel, Model.Levels)
+                @Html.ValidationMessageFor(model => model.MemberInfo.MemberLevel, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -81,16 +74,25 @@
 
             @Html.LabelFor(model => model.MemberInfo.Website, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "http://www.mywebsite.com" } })
                 @Html.ValidationMessageFor(model => model.MemberInfo.Website, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MemberInfo.MemberLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MemberInfo.Membership_SignupDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.MemberInfo.MemberLevel, Model.Levels)
-                @Html.ValidationMessageFor(model => model.MemberInfo.MemberLevel, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MemberInfo.Membership_SignupDate, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-mm-dd" } })
+                @Html.ValidationMessageFor(model => model.MemberInfo.Membership_SignupDate, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.MemberInfo.Membership_ExpirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemberInfo.Membership_ExpirationDate, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-mm-dd" } })
+                @Html.ValidationMessageFor(model => model.MemberInfo.Membership_ExpirationDate, "", new { @class = "text-danger" })
             </div>
         </div>
 

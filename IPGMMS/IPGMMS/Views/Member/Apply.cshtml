@@ -15,7 +15,7 @@
 
     <div class="form-horizontal">
         <div class="w3-container">
-            <h4>Member Info</h4>
+            <h3 class="col-md-offset-1">Member Info</h3>
             <hr />
             <!-- Member info portion of form -->
             <div class="col-md-5">
@@ -78,7 +78,7 @@
                 <div class="w3-input-group">
                     @Html.LabelFor(model => model.MemberInfo.Website, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "www.mywebsite.com" } })
+                        @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "http://www.mywebsite.com" } })
                         @Html.ValidationMessageFor(model => model.MemberInfo.Website, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -97,10 +97,10 @@
 
             @* Mailing Contact Info *@
             <div class="col-md-5">
-                <h4>Mailing Contact Info</h4>
+                <div class="row">
+                    <h3 class="col-md-offset-1">Mailing Contact Info</h3>
+                </div>
                 <hr />
-                <br />
-                <br />
                 <div class="w3-input-group required">
                     @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
@@ -112,7 +112,7 @@
                 <div class="w3-input-group required">
                     @Html.LabelFor(model => model.MailingInfo.PhoneNumber, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required", placeholder = "no dashes" } })
+                        @Html.EditorFor(model => model.MailingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required", placeholder = "5555551234" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                 <div class="w3-input-group required">
                     @Html.LabelFor(model => model.MailingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required" } })
+                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", required = "required", placeholder = "i.e., US/CA/UK" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.Country, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -162,13 +162,11 @@
 
             @* Listing Contact Info *@
             <div class="col-md-5">
-                <h4>Listing Contact Info</h4>
-                <hr />
-                <div>
-                    <label>Use mailing info for listing info?</label>
-                    <input type="checkbox" id="trigger" />
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-5"><h3>Listing Contact Info</h3></div>
+                    <div id="triggerDiv" class="col-md-6"><span id="triggerLabel"><label>Same as mailing</label></span><input type="checkbox" id="trigger" /></div>
                 </div>
-                <br />
+                <hr />
                 <div id="hidden_form">
                     <div class="w3-input-group">
                         @Html.LabelFor(model => model.ListingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
@@ -181,7 +179,7 @@
                     <div class="w3-input-group">
                         @Html.LabelFor(model => model.ListingInfo.PhoneNumber, htmlAttributes: new { @class = "control-label col-lg-4" })
                         <div class="col-lg-8">
-                            @Html.EditorFor(model => model.ListingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "no dashes" } })
+                            @Html.EditorFor(model => model.ListingInfo.PhoneNumber, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "5555551234" } })
                             @Html.ValidationMessageFor(model => model.ListingInfo.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -213,7 +211,7 @@
                     <div class="w3-input-group">
                         @Html.LabelFor(model => model.ListingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
                         <div class="col-lg-8">
-                            @Html.EditorFor(model => model.ListingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small" } })
+                            @Html.EditorFor(model => model.ListingInfo.Country, new { htmlAttributes = new { @class = "w3-input w3-hover-light-gray w3-small", placeholder = "i.e., US/CA/UK" } })
                             @Html.ValidationMessageFor(model => model.ListingInfo.Country, "", new { @class = "text-danger" })
                         </div>
                     </div>

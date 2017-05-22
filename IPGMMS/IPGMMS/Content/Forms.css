@@ -1,0 +1,5 @@
+﻿/* place a red * next to required field labels */
+.form-group.required .control-label:after {
+    content: " *";
+    color: red;
+}

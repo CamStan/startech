@@ -1,4 +1,26 @@
-﻿/* spacing between the input form items */
+﻿#triggerDiv {
+    padding-top: 11px;
+    display: inline-block;
+}
+
+#trigger {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: .5em;
+    overflow: hidden;
+}
+
+#triggerLabel {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 0;
+}
+
+#triggerLabel label {
+    margin-bottom: 0;
+}
+
+/* spacing between the input form items */
 .w3-input-group {
     padding-bottom: 1.5em;
 }

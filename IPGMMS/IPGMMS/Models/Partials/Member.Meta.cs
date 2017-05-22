@@ -12,8 +12,8 @@ namespace IPGMMS.Models
         [Display(Name = "Member")]
         public string FullName { get { return $"{FirstName} {LastName}"; } }
 
-        [Display(Name = "Website")]
-        public string WebAddress { get { return $"http://{Website}"; } }
+        //[Display(Name = "Website")]
+        //public string WebAddress { get { return $"http://{Website}"; } }
     }
 
     public class MemberMetadata
@@ -22,11 +22,13 @@ namespace IPGMMS.Models
         public string Membership_Number;
 
         [Display(Name = "Member Since")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Membership_SignupDate;
 
         [Display(Name = "Member Exp. Date")]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Membership_ExpirationDate;
 
         [Required]
@@ -45,5 +47,9 @@ namespace IPGMMS.Models
 
         [Display(Name = "Business")]
         public string BusinessName;
+
+        [Url]
+        public string Website;
+
     }
 }

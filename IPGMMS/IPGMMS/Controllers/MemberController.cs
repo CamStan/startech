@@ -116,7 +116,6 @@ namespace IPGMMS.Controllers
         /// </summary>
         /// <returns>A View object for the Member/Apply page or a redirect to their details page if already a member</returns>
         [Authorize]
-        //[ValidateAntiForgeryToken]
         public ActionResult Apply()
         {
             var userID = User.Identity.GetUserId();

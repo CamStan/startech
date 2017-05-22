@@ -144,11 +144,11 @@ namespace IPGMMS.DAL.Repositories
             {
                 return "00";
             }
-            if (place == "USA")
+            if (place == "US")
             {
                 return "01";
             }
-            if (place == "Canada")
+            if (place == "CA")
             {
                 return "02";
             }
@@ -229,11 +229,11 @@ namespace IPGMMS.DAL.Repositories
             }
             else
             {
-                if (country == "USA")
+                if (country == "US")
                 {
                     country = "01";
                 }
-                else if (country == "Canada")
+                else if (country == "CA")
                 {
                     country = "02";
                 }

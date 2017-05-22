@@ -145,6 +145,13 @@ namespace IPGMMS.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ContactInfo mailInfo = contactRepo.Find(mail);
+
+            if(mailInfo == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.IsMailing = mailInfo.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing" ? true : false;
             
             return View(mailInfo);
         }

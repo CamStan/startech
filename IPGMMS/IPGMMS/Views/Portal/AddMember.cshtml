@@ -1,4 +1,6 @@
-﻿@model IPGMMS.ViewModels.MemberCreate
+﻿<link href="~/Content/Forms.css" rel="stylesheet" type="text/css" />
+
+@model IPGMMS.ViewModels.MemberCreate
 
 
 @{
@@ -6,7 +8,7 @@
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
 }
 
-
+<h2>New IPG Member</h2>
 
 @using (Html.BeginForm())
 {
@@ -14,22 +16,23 @@
 
     <div class="form-horizontal">
         <div class="row">
-            <h4>Member Info</h4>
+            <h3>Member Info</h3>
             <hr />
             <div class="col-md-5">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 @*IPG Member #*@
-                <div class="form-group">
+                @Html.HiddenFor(model => model.MemberInfo.Membership_Number)
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.MemberInfo.Membership_Number, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
                         @Html.EditorFor(model => model.MemberInfo.Membership_Number, new { htmlAttributes = new { @class = "form-control", placeholder = "leave blank if none" } })
                         @Html.ValidationMessageFor(model => model.MemberInfo.Membership_Number, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
 
                 @* First Name *@
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MemberInfo.FirstName, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
                         @Html.EditorFor(model => model.MemberInfo.FirstName, new { htmlAttributes = new { @class = "form-control" } })
@@ -47,7 +50,7 @@
                 </div>
 
                 @* Last Name *@
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MemberInfo.LastName, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
                         @Html.EditorFor(model => model.MemberInfo.LastName, new { htmlAttributes = new { @class = "form-control" } })
@@ -56,7 +59,7 @@
                 </div>
 
                 @*Member Level Drop Box*@
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MemberInfo.MemberLevel, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
                         @Html.DropDownListFor(model => model.MemberInfo.MemberLevel, Model.Levels)
@@ -100,7 +103,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MemberInfo.Website, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "www.mywebsite.com" } })
+                        @Html.EditorFor(model => model.MemberInfo.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "http://www.mywebsite.com" } })
                         @Html.ValidationMessageFor(model => model.MemberInfo.Website, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -125,11 +128,11 @@
 
             @* Mailing Contact Info *@
             <div class="col-md-5">
-                <h4>Mailing Contact Info</h4>
+                <h3>Mailing Contact Info</h3>
                 <hr />
                 <br />
                 <br />
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.Email, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
                         @Html.EditorFor(model => model.MailingInfo.Email, new { htmlAttributes = new { @class = "form-control", required = "required" } })
@@ -137,50 +140,50 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.PhoneNumber, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "no dashes" } })
+                        @Html.EditorFor(model => model.MailingInfo.PhoneNumber, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "5555551234" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.StreetAddress, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.StreetAddress, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.StreetAddress, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.City, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.City, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.City, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.StateName, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.StateName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.StateName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.StateName, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                        @Html.EditorFor(model => model.MailingInfo.Country, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "i.e., US/CA/UK" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.Country, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.MailingInfo.PostalCode, htmlAttributes: new { @class = "control-label col-lg-4" })
                     <div class="col-lg-8">
-                        @Html.EditorFor(model => model.MailingInfo.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MailingInfo.PostalCode, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MailingInfo.PostalCode, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -190,10 +193,10 @@
 
             @* Listing Contact Info *@
             <div class="col-md-5">
-                <h4>Listing Contact Info</h4>
+                <h3>Listing Contact Info</h3>
                 <hr />
                 <div>
-                    Use mailing info for listing info?
+                    Same as mailing
                     <input type="checkbox" id="trigger" />
                 </div>
                 <br />
@@ -241,7 +244,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ListingInfo.Country, htmlAttributes: new { @class = "control-label col-lg-4" })
                         <div class="col-lg-8">
-                            @Html.EditorFor(model => model.ListingInfo.Country, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.ListingInfo.Country, new { htmlAttributes = new { @class = "form-control", placeholder = "i.e., US/CA/UK" } })
                             @Html.ValidationMessageFor(model => model.ListingInfo.Country, "", new { @class = "text-danger" })
                         </div>
                     </div>
