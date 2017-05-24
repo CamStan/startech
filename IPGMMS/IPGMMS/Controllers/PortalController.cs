@@ -369,13 +369,13 @@ namespace IPGMMS.Controllers
         public void ExpMembersReportToExcel()
         {
             IEnumerable<Member> expMembers = memberRepo.GetAllMembers.Where(m => m.Membership_ExpirationDate < DateTime.Now);
-            ExportToExcel(expMembers);
+            ExportToExcel(expMembers,"ExpiredMemberReport.xls");
         }
 
         /// <summary>
         /// This method exports a list of expired members to Excel.
         /// </summary>
-        private void ExportToExcel(IEnumerable<Member> memList)
+        private void ExportToExcel(IEnumerable<Member> memList, string name)
         {
             var grid = new GridView();
             grid.DataSource = memList;
@@ -383,7 +383,7 @@ namespace IPGMMS.Controllers
             grid.DataBind();
 
             Response.ClearContent();
-            Response.AddHeader("content-disposition", "attachment; filename=IPGReport.xls");
+            Response.AddHeader("content-disposition", ("attachment; filename="+name));
             Response.ContentType = "application/vnd.ms-excel";
             StringWriter stringWriter = new StringWriter();
             HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
@@ -408,11 +408,20 @@ namespace IPGMMS.Controllers
             }
             else
             {
-                int pageSize = 20; //the number of items that can appear on each page.
-                int startPage = (page ?? 1);
-
-                return View("ReportNewMember", list.ToList().ToPagedList(startPage, pageSize));
+                return View(list.ToList());
             }
+        }
+
+
+        /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void NewMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.NewMembers;
+            ExportToExcel(expMembers, "NewMemberReport.xls");
         }
 
         /// <summary>
@@ -428,13 +437,20 @@ namespace IPGMMS.Controllers
             }
             else
             {
-                int pageSize = 20; //the number of items that can appear on each page.
-                int startPage = (page ?? 1);
-
-                return View("ReportExpiringmember", list.ToList().ToPagedList(startPage, pageSize));
+                return View(list.ToList());
             }
         }
 
+        /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void ExpingMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.ExpiringMembers;
+            ExportToExcel(expMembers, "ExpiresSoonMemberReport.xls");
+        }
 
         // Two dictionaries, one for ascending, one for descending
         Dictionary<String, Func<Member, object>> sortBy = new Dictionary<String, Func<Member, object>>()
