@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="ID218_verifyRequiredFields.html">ID218_verifyRequiredFields</a></td></tr>
+<tr><td><a href="ID218_invalidEmailAddress.html">ID218_invalidEmailAddress</a></td></tr>
+<tr><td><a href="ID218_invalidWebAddress.html">ID218_invalidWebAddress</a></td></tr>
+<tr><td><a href="ID218_invalidPhoneNumber.html">ID218_invalidPhoneNumber</a></td></tr>
+<tr><td><a href="ID218_invalidCountryCode.html">ID218_invalidCountryCode</a></td></tr>
+<tr><td><a href="ID218_sameAsMailing_DuplicatesInfo.html">ID218_sameAsMailing_DuplicatesInfo</a></td></tr>
+</tbody></table>
+</body>
+</html>

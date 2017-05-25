@@ -30,3 +30,9 @@
     content: " *";
     color: red;
 }
+
+.fa-info-circle {
+    font-size: 75%;
+    vertical-align: top;
+    color: dodgerblue;
+}
