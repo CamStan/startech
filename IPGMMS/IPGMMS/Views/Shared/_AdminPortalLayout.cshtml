@@ -24,9 +24,9 @@
 
     <!-- Navbar on small screens (Hidden on medium and large screens) -->
     <div class="w3-bar w3-top w3-black w3-small">
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium" onclick="w3_open_bar()"><i class="fa fa-bars"></i></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium" onclick="w3_open_bar()"><i class="fa fa-bars"></i></a>
     </div>
-        <nav class="w3-sidebar w3-bar-block w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="adminPortalBar">
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="adminPortalBar">
         <a href="javascript:void(0)" onclick="w3_close_bar()" class="w3-bar-item w3-button w3-padding-16">× Close</a>
         <a href="@Url.Action("Index", "Portal")" onclick="w3_close_bar()" class="w3-bar-item w3-button">DASHBOARD</a>
         <a href="@Url.Action("ListMembers","Portal")" onclick="w3_close_bar()" class="w3-bar-item w3-button">MEMBERS</a>
@@ -46,7 +46,9 @@
 
     <!-- Page Content -->
     <div class="w3-padding-medium" id="main">
+        <div>
             @RenderBody()
+        </div>
     </div>
 
     <!-- Footer -->

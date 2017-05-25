@@ -29,16 +29,23 @@ namespace IPGMMS.Controllers
         // GET: Portal
         public ActionResult Index()
         {
-            var user = User.Identity;
             //Set values to pass to the ViewBag
+            var user = User.Identity;
             ViewBag.Name = user.Name;
-            ViewBag.TotalMembers = memberRepo.GetAllMembers.Count();
-            ViewBag.ExpiringMembers = memberRepo.ExpiringMembers.Count();
-            ViewBag.NewMembers = memberRepo.NewMembers.Count();
-            var expMembers = memberRepo.ExpiringMembers;
-            var newMembers = memberRepo.NewMembers;
 
-            return View(newMembers);
+            //Create items to add to the MemberReports ViewModel to pass to the view
+            MemberReports reports = new MemberReports();
+            reports.MemberCount = memberRepo.GetAllMembers.Count();
+            reports.ActiveMemberCount = memberRepo.GetActiveMemberCount();
+            reports.NewMemberCount = memberRepo.GetNewMemberCount();
+            reports.ExpiredMembersCount = memberRepo.ExpiredMembers.Count();
+            reports.ExpiringMembersCount = memberRepo.ExpiringMembers.Count();
+            reports.NewMembersCount = memberRepo.NewMembers.Count();
+            reports.ExpiringMembers = memberRepo.ExpiringMembers.Take(3);
+            reports.NewMembers = memberRepo.NewMembers.Take(3);
+            reports.ExpiredMembers = memberRepo.ExpiredMembers.Take(3);
+            
+            return View(reports);
         }
 
         //***********************************************LIST MEMBER INFO*****************************
@@ -373,7 +380,7 @@ namespace IPGMMS.Controllers
         public void ExpMembersReportToExcel()
         {
             IEnumerable<Member> expMembers = memberRepo.ExpiredMembers;
-            ExportToExcel(expMembers.ToList());
+            ExportToExcel(expMembers,"Expired Members.xls");
         }
 
         /// <summary>

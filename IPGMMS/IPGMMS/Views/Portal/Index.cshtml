@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IPGMMS.Models.Member>
+﻿@model IPGMMS.ViewModels.MemberReports
 @{
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
     ViewBag.Title = "Index";
@@ -6,123 +6,143 @@
 
 <div class="w3-row">
     <div class="w3-twothird">
-        <h2><i class="fa fa-dashboard"></i> Admin Dashboard</h2>
+        <h2><i class="fa fa-dashboard"></i> Admin Dashboard - Welcome, @User.Identity.Name!</h2>
     </div>
-    <div class="w3-third w3-center">
-        <h2>Welcome @User.Identity.Name!</h2>
+    <div class="w3-third w3-right-align">
     </div>
 </div>
 <hr />
 <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-third">
-        <div class="w3-container w3-blue-gray w3-padding-16 w3-card-2">
+        <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo1">
             <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
-            <div class="w3-right"><h2>@ViewBag.TotalMembers</h2></div>
+            <div class="w3-right"><h2>@Html.DisplayFor(model => model.MemberCount)</h2></div>
             <div class="w3-clear"></div>
             <h2>Total Members</h2>
         </div>
     </div>
     <div class="w3-third">
-        <div class="w3-container w3-blue-gray w3-padding-16 w3-card-2">
+        <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo2">
             <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
-            <div class="w3-right"><h2>1876</h2></div>
+            <div class="w3-right"><h2>@Html.DisplayFor(model => model.ActiveMemberCount)</h2></div>
             <div class="w3-clear"></div>
             <h2>Active Members</h2>
         </div>
     </div>
     <div class="w3-third">
-        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
+        <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo3">
             <div class="w3-left"><i class="fa fa-user-plus w3-xxlarge"></i></div>
-            <div class="w3-right"><h2>@ViewBag.NewMembers</h2></div>
+            <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMemberCount)</h2></div>
             <div class="w3-clear"></div>
             <h2>New Members this Month</h2>
         </div>
     </div>
 </div>
+<hr />
+<!-------------------------Admin Alerts----------------------------------------------->
 <div class="w3-row-padding w3-margin-bottom">
     <h2>Current Alerts</h2>
-    <div class="w3-quarter">
-        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
-            <div class="w3-left"><h3>Expiring Soon</h3></div>
-            <div class="w3-right"><h2>@ViewBag.ExpiringMembers</h2></div>
-        </div>
+    <div class="w3-half">
+        <a href="@Url.Action("ReportExpiringMember", "Portal")">
+            <div class="w3-container w3-padding-16 alertArea1 w3-card-2 w3-hoverable">
+                <div class="w3-left"><h3>Expiring Soon</h3></div>
+                <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiringMembersCount)</h2></div>
+            </div>
+        </a>
+        <table class="w3-table-all w3-responsive w3-card-4 w3-small w3-hoverable">
+            <tbody>
+                @foreach (var item in Model.ExpiringMembers)
+                {
+                    <tr>
+                        <td id="memberListLinks">
+                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-    <div class="w3-threequarter">
-        @if (ViewBag.ExpiringMembers > 0)
-        {
-            <table class="w3-table-all w3-card-4 w3-responsive">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td id="memberListLinks">
-                                @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BusinessName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+
+    <div class="w3-half">
+        <a href="@Url.Action("ReportNewMember", "Portal")">
+            <div class="w3-container w3-padding-16 alertArea1 w3-card-2 w3-hoverable">
+                <div class="w3-left"><h3>New Members</h3></div>
+                <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMemberCount)</h2></div>
+            </div>
+        </a>
+        <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
+            <tbody>
+                @foreach (var item in Model.NewMembers)
+            {
+                    <tr>
+                        <td id="memberListLinks">
+                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+
 </div>
 <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
-            <div class="w3-left"><h3>New Members</h3></div>
-            <div class="w3-right"><h2>@ViewBag.NewMembers</h2></div>
+    <div class="w3-half">
+        <a href="@Url.Action("ExpiredMembersReport", "Portal")">
+            <div class="w3-container w3-padding-16 alertArea1 w3-card-2">
+                <div class="w3-left"><h3>Expired Members</h3>
         </div>
-    </div>
-    <div class="w3-threequarter">
-        @if (ViewBag.NewMembers > 0)
-        {
-            <table class="w3-table-all w3-card-4 w3-responsive">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td id="memberListLinks">
-                                @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BusinessName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+            <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiredMembersCount)</h2></div>
+        </div>
+            </a>
+        <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
+            <tbody>
+                @foreach (var item in Model.ExpiredMembers)
+                {
+                    <tr>
+                        <td id="memberListLinks">
+                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BusinessName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+<hr />
+

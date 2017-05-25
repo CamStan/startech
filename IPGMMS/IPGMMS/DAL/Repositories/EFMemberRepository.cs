@@ -56,7 +56,7 @@ namespace IPGMMS.DAL.Repositories
         {
             get
             {
-                return db.Members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+                return db.Members.Where(m => m.Membership_ExpirationDate < DateTime.Now).ToList();
             }
         }
 
@@ -334,6 +334,24 @@ namespace IPGMMS.DAL.Repositories
             }
             int[] memIDs = memberIDs.ToArray();
             return memIDs;
+        }
+        /// <summary>
+        /// This method returns the total number of unexpired members in the database.
+        /// </summary>
+        /// <returns>The total count of active members.</returns>
+        public int GetActiveMemberCount()
+        {
+            return db.Members.Where(m => m.Membership_ExpirationDate >= DateTime.Today || m.Membership_ExpirationDate == null).Count();
+        }
+        /// <summary>
+        /// This method returns the number of new members within the last month.
+        /// </summary>
+        /// <returns>Members that have a signup date within the last month. </returns>
+        public int GetNewMemberCount()
+        {
+            DateTime today = DateTime.Today;
+            DateTime lastMonth = today.AddMonths(-1);
+            return db.Members.Where(m => m.Membership_SignupDate >= lastMonth).Count();
         }
     }
 }

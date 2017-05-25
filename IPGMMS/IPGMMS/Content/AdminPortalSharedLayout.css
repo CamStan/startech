@@ -137,4 +137,19 @@ body{
     border: none;
     cursor: pointer;
 }
+#adminDashInfo1{
+    background-color:#00009F;
+    color:white;
+}
+#adminDashInfo2{
+    background-color:#000080;
+    color:white;
+}
+#adminDashInfo3{
+    background-color:#00003D;
+    color:white;
+}
+.alertArea1{
+    background-color:#000080;
+    color:white;
 }
