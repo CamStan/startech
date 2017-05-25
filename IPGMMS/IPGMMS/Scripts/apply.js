@@ -1,4 +1,8 @@
-﻿/*
+﻿$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+/*
     Checkbox on application form that, when clicked, duplicates all the information in the mailing contact information fields
     and puts the same information in the listing contact information fields
 */
