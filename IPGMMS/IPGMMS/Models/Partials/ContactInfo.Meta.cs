@@ -41,10 +41,11 @@ namespace IPGMMS.Models
         [Display(Name = "Street Address")]
         public string StreetAddress;
 
-        [Display(Name = "State")]
+        [Display(Name = "State/Region")]
         public string StateName;
 
-        [Display(Name = "Country Code")]
+        [Display(Name = "Country")]
+        [StringLength(2, ErrorMessage = "Use 2 character abbreviation")]
         public string Country;
 
         [Display(Name = "Postal Code")]
@@ -53,5 +54,9 @@ namespace IPGMMS.Models
         [Display(Name = "Phone #")]
         [RegularExpression(@"^((\+|00)[1-9]{1,3})?(\-| {0,1})?(([\d]{0,3})(\-| {0,1})?([\d]{7,15})){1}$", ErrorMessage = "Not a valid Phone number")]
         public string PhoneNumber;
+
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string Email;
     }
 }

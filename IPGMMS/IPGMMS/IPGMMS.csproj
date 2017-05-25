@@ -261,6 +261,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Contact.css" />
     <Content Include="Content\Error.css" />
+    <Content Include="Content\Forms.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
     <Content Include="Content\Images\diggingdog2.jpg" />
@@ -273,6 +274,7 @@
     <Content Include="Content\Images\grooming.jpg" />
     <Content Include="Content\Images\IPGLogo.jpg" />
     <Content Include="Content\Images\IPGLogo2.png" />
+    <Content Include="Content\Images\ipgLogoFavicon.ico" />
     <Content Include="Content\Images\ipgLogo_transparent.png" />
     <Content Include="Content\Images\member_250x250.jpeg" />
     <Content Include="Content\Images\puppies-groomed-wide.jpg" />

@@ -30,27 +30,27 @@ INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_E
 INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('04-43212','2016-1-1','2020-1-31',5,'Mylene','','Adams','','','');
 INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32555','2015-1-1','2015-3-31',2,'Dusk','','Adams','Pawprints','','');
 INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('03-54313','2015-1-1','2015-1-31',2,'Georgina','','Adams','','','');
-INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32677','2009-1-1','2015-6-30',5,'Elizabeth','','Adams','The Paw Spaw Mobile','www.thepawspayakima.com','');
+INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('01-32677','2009-1-1','2015-6-30',5,'Elizabeth','','Adams','The Paw Spaw Mobile','http://www.thepawspayakima.com','');
 INSERT INTO [dbo].[Members](MemberShip_Number,Membership_SignupDate,Membership_ExpirationDate,MemberLevel,FirstName,MiddleName,LastName,BusinessName,Website,Identity_ID) VALUES('03-54414','2015-3-8','2020-3-31',1,'Sam','','Adams','','','');
 
 -- ############# ContactInfo #############
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','USA','','','Anna@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('55 Harrisburg Run','Bradford','PA','USA','16701','','Mel@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('3243 Murdock Ln','Duluth','GA','USA','30096','4044081446','Maoki@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','US','','','Anna@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('55 Harrisburg Run','Bradford','PA','US','16701','','Mel@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('3243 Murdock Ln','Duluth','GA','US','30096','4044081446','Maoki@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('1150 Jones Bridge Rd','Johns Creek','GA','USA','30022','','Maoki@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2535 Birchtree Dr','Murrieta','CA','USA','92563','','animalspaws@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2535 Birchtree Dr','Murrieta','CA','USA','92563','','animalspaws@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2535 Birchtree Dr','Murrieta','CA','US','92563','','animalspaws@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2535 Birchtree Dr','Murrieta','CA','US','92563','','animalspaws@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('332 Norman Rd','Belmot, Lower Hutt','Wellington','NZ','5010','','');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('932 Powderkeg Ln','Baltimore','MD','USA','21234','','Dusk@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('932 PowerKeg Ln','Baltimore','MD','USA','21234','4443235555','Dusk@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('932 Powderkeg Ln','Baltimore','MD','US','21234','','Dusk@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('932 PowerKeg Ln','Baltimore','MD','US','21234','4443235555','Dusk@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('22 Ash Rd','Newbold Coleorton','Leicestershire','UK','','','George@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('22 Ash Rd','Newbold Coleorton','Leicestershire','UK','','07940926752','George@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2200 68th Ave','Yakima','WA','USA','98903','','thepaws@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2200 68th Ave','Yakima','WA','USA','98903','5555734000','thepaws@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2200 68th Ave','Yakima','WA','US','98903','','thepaws@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('2200 68th Ave','Yakima','WA','US','98903','5555734000','thepaws@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('106 Sheffy Rd,Birdwell','Barnsley','Sheffield','UK','S70 5UX','','sam@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('106 Sheffy Rd,Birdwell','Barnsley','Sheffield','UK','S70 5UX','00781247444','sam@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','USA','','','Anna@pmail.com');
-INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('55 Harrisburg Run','Bradford','PA','USA','16701','','Mel@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('32 Carter st','Blue Ridge','GA','US','','','Anna@pmail.com');
+INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('55 Harrisburg Run','Bradford','PA','US','16701','','Mel@pmail.com');
 INSERT INTO [dbo].[ContactInfo] (StreetAddress,City,StateName,Country,PostalCode,PhoneNumber,Email) VALUES ('332 Norman Rd','Belmot, Lower Hutt','Wellington','NZ','5010','','');
 
 

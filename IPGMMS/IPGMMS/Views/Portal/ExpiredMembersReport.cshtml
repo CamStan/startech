@@ -17,9 +17,9 @@ $(document).ready(function () {
 
 
 <div>
-    <button class="w3-btn w3-round w3-ripple w3-small editButton"><i class="fa fa-envelope fa-lg"></i> Email Members</button>
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("ReportLandingPage", "Portal")'"><i class="fa fa-arrow-left fa-lg"></i> Back to Reports</button>
     <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href='@Url.Action("ExpMembersReportToExcel", "Portal")'" ><i class="fa fa-table fa-lg"></i> Export to Excel</button>
-    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("ReportLandingPage", "Portal")'"><i class="fa fa-arrow-left fa-lg"></i>Back to Reports</button>
+    <button class="w3-btn w3-round w3-ripple w3-small editButton" disabled><i class="fa fa-envelope fa-lg"></i> Email Members</button>
 </div>
 
 <br />
@@ -53,14 +53,14 @@ $(document).ready(function () {
         @foreach (var item in Model)
             {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Membership_Number)
+                <td id="memberListLinks">
+                    @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BusinessName)
                 </td>
-                <td id="memberListLinks">
-                    @Html.ActionLink(item.FirstName, "UpdateMember/" + item.ID, "Portal")
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)

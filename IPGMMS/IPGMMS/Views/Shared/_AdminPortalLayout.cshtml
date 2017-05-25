@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - IPG Admin Portal</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/Images/ipgLogoFavicon.ico" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/w3.css")
     @Styles.Render("~/Content/AdminPortalSharedLayout.css")
@@ -19,7 +20,12 @@
     </div>
     <!-- Icon Bar (Sidebar - hidden on small screens) -->
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-black">
-        <div style="width:100%"><a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/IPGLogo.jpg" alt="Top Logo" /></a></div>
+        <div class="dropdown">
+            <a href="@Url.Action("Index", "Portal")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+                <i class="fa fa-home w3-xxlarge"></i>
+                <p>ADMIN HOME</p>
+            </a>
+        </div>
         <div class="dropdown">
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
                 <i class="fa fa-user w3-xxlarge"></i>
@@ -27,8 +33,7 @@
             </a>
             <div class="dropdown-content">
                 <a href="@Url.Action("AddMember", "Portal")">Add Member</a>
-                <a href="@Url.Action("UpdateMember","Portal")">Update Member</a>
-                <a href="@Url.Action("ListMembers","Portal")">Search Members</a>
+                <a href="@Url.Action("ListMembers","Portal")">View/Update Members</a>
             </div>
         </div>
         <div class="dropdown">
@@ -56,6 +61,12 @@
                 <a href="#">TO BE ADDED</a>
                 <a href="#">TO BE ADDED</a>
             </div>
+        </div>
+        <div class="dropdown">
+            <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+                <i class="fa fa-mail-reply w3-xxlarge"></i>
+                <p>IPG HOME</p>
+            </a>
         </div>
     </nav>
 

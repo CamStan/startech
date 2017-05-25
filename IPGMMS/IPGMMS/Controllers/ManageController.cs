@@ -67,7 +67,7 @@ namespace IPGMMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(MemberIdentityInfoViewModel modelCompound, FormCollection form, ManageMessageId? message)
+        public async Task<ActionResult> Index(MemberIdentityInfoViewModel modelCompound, FormCollection form, ManageMessageId? message, bool? success = false)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -77,6 +77,10 @@ namespace IPGMMS.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            // check if a user was just redirected to this page after successfully applying to IPG
+            bool applied = success ?? false;
+            ViewBag.Success = applied;
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
@@ -112,6 +116,10 @@ namespace IPGMMS.Controllers
                     var memId = modelCompound.MemberInfo.ID;
                     modelCompound.MailingInfo = contactRepo.MailingInfoFromMID(memId);
                     modelCompound.ListingInfo = contactRepo.ListingInfoFromMID(memId);
+
+                    ViewBag.Success = true;
+                    ViewBag.SuccessMessage = "Your account has been successfully linked!";
+
                     return View(modelCompound);
                 }
                 errorCode = 1;
@@ -137,6 +145,13 @@ namespace IPGMMS.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ContactInfo mailInfo = contactRepo.Find(mail);
+
+            if(mailInfo == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.IsMailing = mailInfo.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing" ? true : false;
             
             return View(mailInfo);
         }
