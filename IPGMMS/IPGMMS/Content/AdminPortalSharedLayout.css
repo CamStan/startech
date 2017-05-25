@@ -43,6 +43,12 @@ body{
 #mainFooter {
     margin-left: 160px;
 }
+/*Sets the padding on small screens for main body in admin portal*/
+@media screen and (max-width: 600px) {
+    #main{
+        margin-top:20px;
+    }
+}
 
 /* Dropdown content for top nav for user navigation*/
 

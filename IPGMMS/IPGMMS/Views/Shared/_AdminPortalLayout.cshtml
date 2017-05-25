@@ -18,80 +18,35 @@
     <div class="w3-navbar w3-black w3-hide-small">
         @Html.Partial("_LoginPartial")
     </div>
-    <!-- Icon Bar (Sidebar - hidden on small screens) -->
-    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-black">
-        <div class="dropdown">
-            <a href="@Url.Action("Index", "Portal")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-home w3-xxlarge"></i>
-                <p>ADMIN HOME</p>
-            </a>
-        </div>
-        <div class="dropdown">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-user w3-xxlarge"></i>
-                <p>MEMBERS</p>
-            </a>
-            <div class="dropdown-content">
-                <a href="@Url.Action("AddMember", "Portal")">Add Member</a>
-                <a href="@Url.Action("ListMembers","Portal")">View/Update Members</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <a href="@Url.Action("ReportLandingPage", "Portal")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-file w3-xxlarge"></i>
-                <p>REPORTS</p>
-            </a>
-        </div>
-        <div class="dropdown">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-clipboard w3-xxlarge"></i>
-                <p>RESULTS</p>
-            </a>
-            <div class="dropdown-content">
-                <a href="#">TO BE ADDED</a>
-                <a href="#">TO BE ADDED</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-list-alt w3-xxlarge"></i>
-                <p>TEST CERT</p>
-            </a>
-            <div class="dropdown-content">
-                <a href="#">TO BE ADDED</a>
-                <a href="#">TO BE ADDED</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
-                <i class="fa fa-mail-reply w3-xxlarge"></i>
-                <p>IPG HOME</p>
-            </a>
-        </div>
-    </nav>
+    <div>
+        @Html.Partial("_AdminSideNav")
+    </div>
 
     <!-- Navbar on small screens (Hidden on medium and large screens) -->
-    <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-        <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-            <a href="#" class="w3-bar-item w3-button" style="width:20% !important">MEMBERS</a>
-            <a href="#" class="w3-bar-item w3-button" style="width:20% !important">TEST RESULTS</a>
-            <a href="#" class="w3-bar-item w3-button" style="width:20% !important">TEST CERT</a>
-            <a href="#" class="w3-bar-item w3-button" style="width:20% !important">REPORTS</a>
-            <a href="javascript:document.getElementById('logoutForm').submit()" class="w3-bar-item w3-button" style="width:20% !important">LOG OFF</a>
-        </div>
+    <div class="w3-bar w3-top w3-black w3-small">
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium" onclick="w3_open_bar()"><i class="fa fa-bars"></i></a>
     </div>
+        <nav class="w3-sidebar w3-bar-block w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="adminPortalBar">
+        <a href="javascript:void(0)" onclick="w3_close_bar()" class="w3-bar-item w3-button w3-padding-16">× Close</a>
+        <a href="@Url.Action("Index", "Portal")" onclick="w3_close_bar()" class="w3-bar-item w3-button">DASHBOARD</a>
+        <a href="@Url.Action("ListMembers","Portal")" onclick="w3_close_bar()" class="w3-bar-item w3-button">MEMBERS</a>
+        <a href="@Url.Action("ReportLandingPage", "Portal")" onclick="w3_close_bar()" class="w3-bar-item w3-button">REPORTS</a>
+        <a href="#pricing" onclick="w3_close_bar()" class="w3-bar-item w3-button">RESULTS</a>
+        <a href="#contact" onclick="w3_close_bar()" class="w3-bar-item w3-button">TEST CERT</a>
+        <a href="@Url.Action("Index", "Home")" onclick="w3_close_bar()" class="w3-bar-item w3-button">IPG HOME</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()" onclick="w3_close_bar()" class="w3-bar-item w3-button">LOG OFF</a>
+    </nav>
 
     <!-- END PAGE CONTENT -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/SharedLayout.js")
     @RenderSection("scripts", required: false)
 
     <!-- Page Content -->
     <div class="w3-padding-medium" id="main">
-        <div class="container body-content">
             @RenderBody()
-        </div>
     </div>
 
     <!-- Footer -->

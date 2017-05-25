@@ -403,6 +403,7 @@
     <Content Include="Views\Portal\ReportLandingPage.cshtml" />
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
+    <Content Include="Views\Shared\_AdminSideNav.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

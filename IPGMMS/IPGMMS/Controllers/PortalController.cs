@@ -30,9 +30,15 @@ namespace IPGMMS.Controllers
         public ActionResult Index()
         {
             var user = User.Identity;
+            //Set values to pass to the ViewBag
             ViewBag.Name = user.Name;
-            
-            return View();
+            ViewBag.TotalMembers = memberRepo.GetAllMembers.Count();
+            ViewBag.ExpiringMembers = memberRepo.ExpiringMembers.Count();
+            ViewBag.NewMembers = memberRepo.NewMembers.Count();
+            var expMembers = memberRepo.ExpiringMembers;
+            var newMembers = memberRepo.NewMembers;
+
+            return View(newMembers);
         }
 
         //***********************************************LIST MEMBER INFO*****************************
@@ -336,8 +342,8 @@ namespace IPGMMS.Controllers
             return View("ReportLandingPage");
         }
         /// <summary>
-        /// This method creates a list of expired members and returns it to the view for
-        /// display. If there is no data to display, the user is redirected to a custom
+        /// This method gets a list of expired members to return to the view.
+        /// If there is no data to display, the user is redirected to a custom
         /// error view.
         /// </summary>
         /// <param name="page">The current page number</param>
@@ -345,9 +351,7 @@ namespace IPGMMS.Controllers
         /// <returns>The view with the list of expired members or a custom error view if no data exists.</returns>
         public ActionResult ExpiredMembersReport(int? page, string sortOrder)
         {
-            var members = memberRepo.GetAllMembers;
-
-            var expMembersList = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            var expMembersList = memberRepo.ExpiredMembers;
 
             if (expMembersList == null)
             {
@@ -368,8 +372,8 @@ namespace IPGMMS.Controllers
         /// </summary>
         public void ExpMembersReportToExcel()
         {
-            IEnumerable<Member> expMembers = memberRepo.GetAllMembers.Where(m => m.Membership_ExpirationDate < DateTime.Now);
-            ExportToExcel(expMembers);
+            IEnumerable<Member> expMembers = memberRepo.ExpiredMembers;
+            ExportToExcel(expMembers.ToList());
         }
 
         /// <summary>

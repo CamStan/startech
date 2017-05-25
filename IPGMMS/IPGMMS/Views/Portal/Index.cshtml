@@ -1,45 +1,128 @@
-﻿
+﻿@model IEnumerable<IPGMMS.Models.Member>
 @{
     Layout = "~/Views/Shared/_AdminPortalLayout.cshtml";
     ViewBag.Title = "Index";
 }
 
-<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
-
-@section scripts {
-    <link href="@Url.Content("~/Content/Homepage.css")" rel="stylesheet" type="text/css" />
-}
-
-<!--
-@*<div class="col-md-2">*@
-@Html.Partial("_AdminNav")
-@*</div>*@-->
-
-@*<div class="col-md-10">*@
-<div class="container">
-    <div class="row">
-        <br />
-        <br />
-        <p>
-            This will be the Admin Portal showing all sorts of neat stuff.
-            @*@if (ViewBag.displayAdmin == "Yes")
-                {*@
-            <h1> Welcome @User.Identity.Name</h1>
-        <p>
-            This page will be worked on in due time. For now just sit back and enjoy the blue along the top and left side.
-            This is a test @User.Identity.AuthenticationType
-        </p>
-
-        @*}
-            else
-            {
-
-                <h2>Hey wait <strong>@ViewBag.Name!</strong> You're not an Admin!!</h2>
-            }
-            </p>*@
-<!--
-        <div id="CenterPartialUpdateFrame"></div>
+<div class="w3-row">
+    <div class="w3-twothird">
+        <h2><i class="fa fa-dashboard"></i> Admin Dashboard</h2>
     </div>
-</div>-->
- </div>
+    <div class="w3-third w3-center">
+        <h2>Welcome @User.Identity.Name!</h2>
+    </div>
+</div>
+<hr />
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-third">
+        <div class="w3-container w3-blue-gray w3-padding-16 w3-card-2">
+            <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
+            <div class="w3-right"><h2>@ViewBag.TotalMembers</h2></div>
+            <div class="w3-clear"></div>
+            <h2>Total Members</h2>
+        </div>
+    </div>
+    <div class="w3-third">
+        <div class="w3-container w3-blue-gray w3-padding-16 w3-card-2">
+            <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
+            <div class="w3-right"><h2>1876</h2></div>
+            <div class="w3-clear"></div>
+            <h2>Active Members</h2>
+        </div>
+    </div>
+    <div class="w3-third">
+        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
+            <div class="w3-left"><i class="fa fa-user-plus w3-xxlarge"></i></div>
+            <div class="w3-right"><h2>@ViewBag.NewMembers</h2></div>
+            <div class="w3-clear"></div>
+            <h2>New Members this Month</h2>
+        </div>
+    </div>
+</div>
+<div class="w3-row-padding w3-margin-bottom">
+    <h2>Current Alerts</h2>
+    <div class="w3-quarter">
+        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
+            <div class="w3-left"><h3>Expiring Soon</h3></div>
+            <div class="w3-right"><h2>@ViewBag.ExpiringMembers</h2></div>
+        </div>
+    </div>
+    <div class="w3-threequarter">
+        @if (ViewBag.ExpiringMembers > 0)
+        {
+            <table class="w3-table-all w3-card-4 w3-responsive">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td id="memberListLinks">
+                                @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BusinessName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+        <div class="w3-container w3-blue-grey w3-padding-16 w3-card-2">
+            <div class="w3-left"><h3>New Members</h3></div>
+            <div class="w3-right"><h2>@ViewBag.NewMembers</h2></div>
+        </div>
+    </div>
+    <div class="w3-threequarter">
+        @if (ViewBag.NewMembers > 0)
+        {
+            <table class="w3-table-all w3-card-4 w3-responsive">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td id="memberListLinks">
+                                @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BusinessName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Membership_ExpirationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Membership_SignupDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
 </div>

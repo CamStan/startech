@@ -49,6 +49,16 @@ namespace IPGMMS.DAL.Repositories
                 DateTime now = DateTime.Now;
                 return db.Members.Where(m => m.Membership_ExpirationDate<expire).Where(n => n.Membership_ExpirationDate>now).OrderBy(m => m.Membership_ExpirationDate).ToList(); }
         }
+        /// <summary>
+        /// Gets a list of all expired members in the database
+        /// </summary>
+        public IEnumerable<Member> ExpiredMembers
+        {
+            get
+            {
+                return db.Members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            }
+        }
 
         /// <summary>
         /// Creates a new member based on the EF Member model
