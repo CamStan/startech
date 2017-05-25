@@ -2,5 +2,9 @@
 }
 
 #dogNotFound {
-    width: 150%;
+    width: 100%;
+}
+
+.message {
+    font-size:x-large;
 }

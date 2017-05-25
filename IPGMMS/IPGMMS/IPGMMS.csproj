@@ -263,9 +263,11 @@
     <Content Include="Content\Error.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
+    <Content Include="Content\Images\diggingdog2.jpg" />
     <Content Include="Content\Images\dog-bath-wide.jpg" />
     <Content Include="Content\Images\dog-groom-wide.jpg" />
     <Content Include="Content\Images\dog_digging_outline.jpg" />
+    <Content Include="Content\Images\dog_digging_outline1.jpg" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\groomers.jpg" />
     <Content Include="Content\Images\grooming.jpg" />
@@ -274,6 +276,7 @@
     <Content Include="Content\Images\ipgLogo_transparent.png" />
     <Content Include="Content\Images\member_250x250.jpeg" />
     <Content Include="Content\Images\puppies-groomed-wide.jpg" />
+    <Content Include="Content\Images\servers.jpg" />
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
@@ -405,6 +408,7 @@
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
     <Content Include="Views\Error\notfound.cshtml" />
+    <Content Include="Views\Error\server.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

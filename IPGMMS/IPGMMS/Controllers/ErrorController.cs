@@ -9,8 +9,15 @@ namespace IPGMMS.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult notfound()
+        public ActionResult NotFound()
         {
+            Response.TrySkipIisCustomErrors = true;
+            return View();
+        }
+
+        public ActionResult ServerError()
+        {
+            Response.TrySkipIisCustomErrors = true;
             return View();
         }
     }
