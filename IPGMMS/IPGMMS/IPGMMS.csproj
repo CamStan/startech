@@ -409,8 +409,8 @@
     <Content Include="Views\Portal\ReportLandingPage.cshtml" />
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
-    <Content Include="Views\Error\notfound.cshtml" />
-    <Content Include="Views\Error\server.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
