@@ -1,0 +1,51 @@
+﻿<!-- Side Navigation for Admin Portal -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-black" style="position:fixed">
+    <div class="dropdown">
+        <a href="@Url.Action("Index", "Portal")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-home w3-xxlarge"></i>
+            <p>ADMIN HOME</p>
+        </a>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-user w3-xxlarge"></i>
+            <p>MEMBERS</p>
+        </a>
+        <div class="dropdown-content">
+            <a href="@Url.Action("AddMember", "Portal")">Add Member</a>
+            <a href="@Url.Action("ListMembers","Portal")">View/Update Members</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="@Url.Action("ReportLandingPage", "Portal")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-file w3-xxlarge"></i>
+            <p>REPORTS</p>
+        </a>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-clipboard w3-xxlarge"></i>
+            <p>RESULTS</p>
+        </a>
+        <div class="dropdown-content">
+            <a href="#">TO BE ADDED</a>
+            <a href="#">TO BE ADDED</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-list-alt w3-xxlarge"></i>
+            <p>TEST CERT</p>
+        </a>
+        <div class="dropdown-content">
+            <a href="#">TO BE ADDED</a>
+            <a href="#">TO BE ADDED</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <a href="@Url.Action("Index", "Home")" class="w3-bar-item w3-button w3-padding-large w3-hover-white">
+            <i class="fa fa-mail-reply w3-xxlarge"></i>
+            <p>IPG HOME</p>
+        </a>
+    </div>
+</nav>
