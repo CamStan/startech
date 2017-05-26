@@ -142,9 +142,14 @@ function createContent(marker) {
     if (business.BusinessName != "" && business.BusinessName != null) {
         contentLine = '<div class="infowindow"><div class="business">'
                     + business.BusinessName + '</div>';
-    } else {
-        contentLine = '<div class="infowindow">';
-    }
+    } else
+        if (business.FullName != "" && business.FullName != null) {
+            contentLine += '<div class="business">'
+                        + business.FullName
+                        + '</div>';
+        } else {
+            contentLine = '<div class="infowindow">';
+        }
     // Address should always be present
     contentLine += '<div class="address">'
                 + business.Address1
