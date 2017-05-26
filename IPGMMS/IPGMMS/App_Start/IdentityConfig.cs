@@ -11,15 +11,31 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using IPGMMS.Models;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace IPGMMS
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            await configSendGridasync(message);
+        }
+
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            string apiKey = System.Web.Configuration.WebConfigurationManager.AppSettings["EmailConfirmationKey"];
+            var client = new SendGridClient(apiKey);
+            var myMessage = new SendGridMessage();
+            myMessage.AddTo(message.Destination);
+            myMessage.From = new SendGrid.Helpers.Mail.EmailAddress("noReply@ipgicmg.com", "IPG");
+            myMessage.Subject = message.Subject;
+            myMessage.PlainTextContent = message.Body;
+            myMessage.HtmlContent = message.Body;
+
+            var response = await client.SendEmailAsync(myMessage);
         }
     }
 
