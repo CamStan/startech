@@ -1,6 +1,6 @@
 ﻿var map;
 var markers = [];
-
+var markersInSight = [];
 var center; 
 
 document.getElementById("zipCode").addEventListener('click', function () {
@@ -73,14 +73,23 @@ function initMap() {
     map.addListener('tilesloaded', updateSearch);
 
     function updateSearch() {
+        markersInSight = [];
         var bounds = map.getBounds();
         var inViewResults = "";
         for (var i = 1; i < markers.length; i++) {
             var marker = markers[i];
             if (bounds.contains(marker.getPosition())) {
-                inViewResults += createDiv(marker);
+                markersInSight.push(marker);
             }
         }
+        if (markersInSight.length > 0) {
+            markersInSight.sort(function (a, b) { return findMileage(a) - findMileage(b) });
+            for (var j = 0; j < markersInSight.length; j++) {
+                var markerInSight = markersInSight[j];
+                inViewResults += createDiv(markerInSight);
+            }
+        }
+        
         $("#searchResults").empty();
         if (inViewResults == "") {
             inViewResults = getMessageBox();
@@ -133,9 +142,14 @@ function createContent(marker) {
     if (business.BusinessName != "" && business.BusinessName != null) {
         contentLine = '<div class="infowindow"><div class="business">'
                     + business.BusinessName + '</div>';
-    } else {
-        contentLine = '<div class="infowindow">';
-    }
+    } else
+        if (business.FullName != "" && business.FullName != null) {
+            contentLine += '<div class="business">'
+                        + business.FullName
+                        + '</div>';
+        } else {
+            contentLine = '<div class="infowindow">';
+        }
     // Address should always be present
     contentLine += '<div class="address">'
                 + business.Address1
@@ -145,7 +159,7 @@ function createContent(marker) {
                 + '</div>';
     // Check to see if website is empty or null
     if (business.Website != "" && business.Website != null) {
-        contentLine += '<div class="site-link"><a href="http://' + business.Website + '">Visit their website!</div></div>'
+        contentLine += '<div class="site-link"><a href=' + business.Website + '>Visit their website!</a></div></div>'
     } else {
         contentLine += '</div>';
     }
@@ -161,6 +175,7 @@ function createDiv(marker) {
     // Add a result box for showing results.
     contentLine += "<div class='col-lg-10 memberProfileBox w3-padding-12'>";
     // First column in result box for name of business and address
+    contentLine += "<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>";
     contentLine += "<div class='col-sm-4'>";
 
 
@@ -187,7 +202,7 @@ function createDiv(marker) {
                 + business.Address2
                 + '</div>';
     // Close off name and address column.
-    contentLine += '</div>';
+    contentLine += '</div></a>';
 
     // Further contact information
     contentLine += "<div class='col-sm-4'>";
@@ -207,9 +222,11 @@ function createDiv(marker) {
         contentLine += "<div><br /></div>";
     }
     if (business.Website != "" && business.Website != null) {
-        contentLine += '<div class="site-link"><a href="http://'
-                    + business.Website
-                    + '">Visit their website!</div>'
+        contentLine += '<div class="site-link"><a href='
+                     + business.Website + '>'
+                     + business.Website
+                     + "</a></div>";
+        //<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>
     } else {
         contentLine += '<div><br /></div>';
     }
@@ -220,6 +237,7 @@ function createDiv(marker) {
     var distance = findMileage(marker);
 
     // Display in box by first making third column.
+    contentLine += "<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>";
     contentLine += "<div class='col-sm-4'>";
     //contentLine += "<div><br /></div>";
     contentLine += "<div class='mileage'> Straight line distance: </div>";
@@ -231,7 +249,7 @@ function createDiv(marker) {
     contentLine += "</div>";
 
     // Close off result view box, add right spacer and close row.
-    contentLine += "</div><div class='col-lg-1'></div></div>";
+    contentLine += "</div><div class='col-lg-1'></div></a></div>";
     return contentLine;
 }
 

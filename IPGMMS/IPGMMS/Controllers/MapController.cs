@@ -98,6 +98,7 @@ namespace IPGMMS.Controllers
                                      + tup.Item2.PostalCode;
                     mapinfo.PhoneNumber = tup.Item2.PhoneNumber;
                     mapinfo.Email = tup.Item2.Email;
+                    mapinfo.MemberID = member.ID;
                     
                     mapinfos.Add(mapinfo);
                 }
