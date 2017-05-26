@@ -145,7 +145,7 @@ function createContent(marker) {
                 + '</div>';
     // Check to see if website is empty or null
     if (business.Website != "" && business.Website != null) {
-        contentLine += '<div class="site-link"><a href="http://' + business.Website + '">Visit their website!</div></div>'
+        contentLine += '<div class="site-link"><a href=' + business.Website + '>Visit their website!</a></div></div>'
     } else {
         contentLine += '</div>';
     }
@@ -157,10 +157,11 @@ function createDiv(marker) {
 
     var business = arry[marker.id];
     // Add row for result box and add a left spacer column to start
-    var contentLine = "<div class='row listing' onclick='location.href'@(Url.Action('Member/' + 5, 'Portal'))''>" + "<div class='col-lg-1'><p></p></div>";
+    var contentLine = "<div class='row listing'>" + "<div class='col-lg-1'><p></p></div>";
     // Add a result box for showing results.
     contentLine += "<div class='col-lg-10 memberProfileBox w3-padding-12'>";
     // First column in result box for name of business and address
+    contentLine += "<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>";
     contentLine += "<div class='col-sm-4'>";
 
 
@@ -187,7 +188,7 @@ function createDiv(marker) {
                 + business.Address2
                 + '</div>';
     // Close off name and address column.
-    contentLine += '</div>';
+    contentLine += '</div></a>';
 
     // Further contact information
     contentLine += "<div class='col-sm-4'>";
@@ -207,9 +208,11 @@ function createDiv(marker) {
         contentLine += "<div><br /></div>";
     }
     if (business.Website != "" && business.Website != null) {
-        contentLine += '<div class="site-link"><a href="http://'
-                    + business.Website
-                    + '">Visit their website!</div>'
+        contentLine += '<div class="site-link"><a href='
+                     + business.Website + '>'
+                     + business.Website
+                     + "</a></div>";
+        //<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>
     } else {
         contentLine += '<div><br /></div>';
     }
@@ -220,6 +223,7 @@ function createDiv(marker) {
     var distance = findMileage(marker);
 
     // Display in box by first making third column.
+    contentLine += "<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>";
     contentLine += "<div class='col-sm-4'>";
     //contentLine += "<div><br /></div>";
     contentLine += "<div class='mileage'> Straight line distance: </div>";
@@ -231,7 +235,7 @@ function createDiv(marker) {
     contentLine += "</div>";
 
     // Close off result view box, add right spacer and close row.
-    contentLine += "</div><div class='col-lg-1'></div></div>";
+    contentLine += "</div><div class='col-lg-1'></div></a></div>";
     return contentLine;
 }
 

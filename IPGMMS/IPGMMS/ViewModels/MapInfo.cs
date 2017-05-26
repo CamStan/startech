@@ -17,5 +17,6 @@ namespace IPGMMS.Models
         public string Address2 { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public int MemberID { get; set; }
     }
 }
