@@ -157,7 +157,7 @@ function createDiv(marker) {
 
     var business = arry[marker.id];
     // Add row for result box and add a left spacer column to start
-    var contentLine = "<div class='row listing'>" + "<div class='col-lg-1'><p></p></div>";
+    var contentLine = "<div class='row listing' onclick='location.href'@(Url.Action('Member/' + 5, 'Portal'))''>" + "<div class='col-lg-1'><p></p></div>";
     // Add a result box for showing results.
     contentLine += "<div class='col-lg-10 memberProfileBox w3-padding-12'>";
     // First column in result box for name of business and address
