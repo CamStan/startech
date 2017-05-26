@@ -1,6 +1,6 @@
 ﻿var map;
 var markers = [];
-
+var markersInSight = [];
 var center; 
 
 document.getElementById("zipCode").addEventListener('click', function () {
@@ -73,14 +73,23 @@ function initMap() {
     map.addListener('tilesloaded', updateSearch);
 
     function updateSearch() {
+        markersInSight = [];
         var bounds = map.getBounds();
         var inViewResults = "";
         for (var i = 1; i < markers.length; i++) {
             var marker = markers[i];
             if (bounds.contains(marker.getPosition())) {
-                inViewResults += createDiv(marker);
+                markersInSight.push(marker);
             }
         }
+        if (markersInSight.length > 0) {
+            markersInSight.sort(function (a, b) { return findMileage(a) - findMileage(b) });
+            for (var j = 0; j < markersInSight.length; j++) {
+                var markerInSight = markersInSight[j];
+                inViewResults += createDiv(markerInSight);
+            }
+        }
+        
         $("#searchResults").empty();
         if (inViewResults == "") {
             inViewResults = getMessageBox();
