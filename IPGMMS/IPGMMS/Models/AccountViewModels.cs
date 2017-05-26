@@ -116,4 +116,12 @@ namespace IPGMMS.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class ResendConfirmEmailViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
 }

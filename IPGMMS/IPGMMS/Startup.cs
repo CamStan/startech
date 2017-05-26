@@ -35,9 +35,9 @@ namespace IPGMMS
 
                 var user = new ApplicationUser();
                 user.UserName = "Valkyrie";
-                user.Email = "flightofthe@valhalla.com";
+                user.Email = System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
 
-                string userPWD = "W@gner3";
+                string userPWD = System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
 
                 var chkUser = UserManager.Create(user, userPWD);
 
@@ -65,9 +65,9 @@ namespace IPGMMS
 
                 var user = new ApplicationUser();
                 user.UserName = "DeadPool";
-                user.Email = "shoop@badoop.com";
+                user.Email = System.Web.Configuration.WebConfigurationManager.AppSettings["MemberEmail"];
 
-                string userPWD = "D3adp00l";
+                string userPWD = System.Web.Configuration.WebConfigurationManager.AppSettings["MemberPassword"];
 
                 var chkUser = UserManager.Create(user, userPWD);
 

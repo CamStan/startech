@@ -51,8 +51,8 @@ namespace IPGMMS.Controllers
             {
                 if(!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    ViewBag.errorMessage = "You must have confirmed email to log on.";
-                    return View("Error");
+                    ViewBag.errorMessage = "You must confirm your email to log on.";
+                    return View("ResendConfirmEmail");
                 }
             }
 
@@ -152,10 +152,6 @@ namespace IPGMMS.Controllers
                     // Send an email with this link
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your IPG account");
 
-                     //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                     //await UserManager.SendEmailAsync(user.Id, "Confirm your IPG account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                     // Assign Role to user Here
                     //await this.UserManager.AddToRoleAsync(user.Id, "Uncategorized");
                     // Ends here
@@ -195,6 +191,35 @@ namespace IPGMMS.Controllers
         }
 
         //
+        // POST: /Account/ResendConfirmEmail
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [CaptchaValidator]
+        public async Task<ActionResult> ResendConfirmEmail(ResendConfirmEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    ViewBag.Message = "Your email confirmation has been resent. Please check your email and confirm your account.";
+                    return View("Info");
+                }
+
+                // Send an email with this link
+                string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your IPG account");
+
+                ViewBag.Message = "Your email confirmation has been resent. Please check your email and confirm your account.";
+
+                return View("Info");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -207,6 +232,7 @@ namespace IPGMMS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [CaptchaValidator]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)

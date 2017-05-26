@@ -408,6 +408,7 @@
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Account\ResendConfirmEmail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
