@@ -2,12 +2,12 @@
 body{
     padding-top: 0;
 }
-
+/*Edit buttons for admin portal*/
 .editButton{
     background-color:#000080;
     box-shadow:20px;
 }
-
+/*SideNav for admin portal----------------------------------------------------------------------*/
 .w3-navbar {
     position: fixed;
     top: 0;
@@ -17,9 +17,7 @@ body{
     overflow: visible;
     z-index:200;
 }
-
 /* Set the width of the sidebar to 120px */
-
 .w3-sidebar {
     height: 100%;
     width: 140px;
@@ -32,14 +30,12 @@ body{
     top:45px;
 }
 
-
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-
 #main {
     margin-left: 145px;
     margin-top: 60px;
 }
-
+/*Main footer for admin portal*/
 #mainFooter {
     margin-left: 160px;
 }
@@ -51,7 +47,6 @@ body{
 }
 
 /* Dropdown content for top nav for user navigation*/
-
 .w3-dropdown-content {
     cursor: auto;
     color: #000;
@@ -137,10 +132,18 @@ body{
     border: none;
     cursor: pointer;
 }
+/*Admin Dashboard -------------------------------------------------------------------------------*/
+.removeTextDecor:hover{
+    text-decoration:none;
+}
+/*Admin Dashboard Section 1 ------------------------------------------------*/
 #adminDashInfo1{
     background-color:#00009F;
     color:white;
 }
+    #adminDashInfo1:hover{
+        opacity:.75;
+    }
 #adminDashInfo2{
     background-color:#000080;
     color:white;
@@ -149,7 +152,69 @@ body{
     background-color:#00003D;
     color:white;
 }
-.alertArea1{
-    background-color:#000080;
+/*Admin Dashboard Section 2-------------------------------------------------*/
+#alertArea1{
+    background-color:#8B0A00;
     color:white;
 }
+    #alertArea1:hover{
+        opacity:.75;
+    }
+#alertArea2{
+    background-color:#00632B;
+    color:white;
+}
+    #alertArea2:hover{
+        opacity:.75;
+    }
+#alertArea3{
+    background-color:#B77D00;
+    color:white;
+}
+    #alertArea3:hover{
+        opacity:.75;
+    }
+/*Admin Dashboard Section 3 -----------------------------------------------------------------------*/
+.socialMediaIcons {
+  padding: 20px;
+  font-size: 30px;
+  width: 70px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.socialMediaIcons:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+

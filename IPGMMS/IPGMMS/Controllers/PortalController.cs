@@ -37,7 +37,7 @@ namespace IPGMMS.Controllers
             MemberReports reports = new MemberReports();
             reports.MemberCount = memberRepo.GetAllMembers.Count();
             reports.ActiveMemberCount = memberRepo.GetActiveMemberCount();
-            reports.NewMemberCount = memberRepo.GetNewMemberCount();
+            reports.NewMemberLast30Count = memberRepo.GetNewMemberCount();
             reports.ExpiredMembersCount = memberRepo.ExpiredMembers.Count();
             reports.ExpiringMembersCount = memberRepo.ExpiringMembers.Count();
             reports.NewMembersCount = memberRepo.NewMembers.Count();

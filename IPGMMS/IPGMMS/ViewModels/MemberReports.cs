@@ -9,7 +9,7 @@ namespace IPGMMS.ViewModels
     public class MemberReports
     {
         public int MemberCount { get; set; }
-        public int NewMemberCount { get; set; }
+        public int NewMemberLast30Count { get; set; }
         public int ActiveMemberCount { get; set; }
         public int ExpiredMembersCount { get; set; }
         public int ExpiringMembersCount { get; set; }

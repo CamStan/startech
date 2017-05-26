@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+<!--Admin dashboard Welcome Section--------------------------------------------------------->
 <div class="w3-row">
     <div class="w3-twothird">
         <h2><i class="fa fa-dashboard"></i> Admin Dashboard - Welcome, @User.Identity.Name!</h2>
@@ -12,14 +13,17 @@
     </div>
 </div>
 <hr />
+<!--Admin dashboard Section 1 * Info Boxes-------------------------------------------------->
 <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-third">
-        <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo1">
-            <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
-            <div class="w3-right"><h2>@Html.DisplayFor(model => model.MemberCount)</h2></div>
-            <div class="w3-clear"></div>
-            <h2>Total Members</h2>
-        </div>
+        <a href="@Url.Action("ListMember", "Portal")">
+            <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo1">
+                <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
+                <div class="w3-right"><h2>@Html.DisplayFor(model => model.MemberCount)</h2></div>
+                <div class="w3-clear"></div>
+                <h2 class="removeTextDecor">Total Members</h2>
+            </div>
+        </a>
     </div>
     <div class="w3-third">
         <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo2">
@@ -32,19 +36,19 @@
     <div class="w3-third">
         <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo3">
             <div class="w3-left"><i class="fa fa-user-plus w3-xxlarge"></i></div>
-            <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMemberCount)</h2></div>
+            <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMemberLast30Count)</h2></div>
             <div class="w3-clear"></div>
             <h2>New Members this Month</h2>
         </div>
     </div>
 </div>
 <hr />
-<!-------------------------Admin Alerts----------------------------------------------->
+<!--Admin dashboard Section 2 * Reports-------------------------------------------------------------------->
 <div class="w3-row-padding w3-margin-bottom">
     <h2>Current Alerts</h2>
     <div class="w3-half">
         <a href="@Url.Action("ReportExpiringMember", "Portal")">
-            <div class="w3-container w3-padding-16 alertArea1 w3-card-2 w3-hoverable">
+            <div class="w3-container w3-padding-16 w3-card-2 w3-hoverable" id="alertArea3">
                 <div class="w3-left"><h3>Expiring Soon</h3></div>
                 <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiringMembersCount)</h2></div>
             </div>
@@ -53,9 +57,9 @@
             <tbody>
                 @foreach (var item in Model.ExpiringMembers)
                 {
-                    <tr>
-                        <td id="memberListLinks">
-                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                    <tr class="w3-hover-pale-yellow" onclick="location.href='@(Url.Action("UpdateMember/" + item.ID, "Portal"))'">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Membership_Number)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FullName)
@@ -77,18 +81,18 @@
 
     <div class="w3-half">
         <a href="@Url.Action("ReportNewMember", "Portal")">
-            <div class="w3-container w3-padding-16 alertArea1 w3-card-2 w3-hoverable">
+            <div class="w3-container w3-padding-16 w3-card-2 w3-hoverable" id="alertArea2">
                 <div class="w3-left"><h3>New Members</h3></div>
-                <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMemberCount)</h2></div>
+                <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMembersCount)</h2></div>
             </div>
         </a>
         <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
             <tbody>
                 @foreach (var item in Model.NewMembers)
             {
-                    <tr>
-                        <td id="memberListLinks">
-                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                    <tr class="w3-hover-pale-green" onclick="location.href='@(Url.Action("UpdateMember/" + item.ID, "Portal"))'">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Membership_Number)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FullName)
@@ -112,19 +116,20 @@
 <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-half">
         <a href="@Url.Action("ExpiredMembersReport", "Portal")">
-            <div class="w3-container w3-padding-16 alertArea1 w3-card-2">
-                <div class="w3-left"><h3>Expired Members</h3>
-        </div>
-            <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiredMembersCount)</h2></div>
-        </div>
-            </a>
+            <div class="w3-container w3-padding-16 w3-card-2" id="alertArea1">
+                <div class="w3-left">
+                    <h3>Expired Members</h3>
+                </div>
+                <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiredMembersCount)</h2></div>
+            </div>
+        </a>
         <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
             <tbody>
                 @foreach (var item in Model.ExpiredMembers)
                 {
-                    <tr>
-                        <td id="memberListLinks">
-                            @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
+                    <tr class="w3-hover-pale-red" onclick="location.href='@(Url.Action("UpdateMember/" + item.ID, "Portal"))'">
+                        <td>
+                            @Html.DisplayFor(modelitem => item.Membership_Number)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FullName)
@@ -145,4 +150,16 @@
     </div>
 </div>
 <hr />
+<!--Admin dashboard Section 3 * Social Media Center------------------------------------------------------->
+<div class="w3-row-padding w3-margin-bottom">
+    <h2>Social Media Center</h2>
+    <div class="w3-half">
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-facebook w3-xlarge w3-card-4"></a>
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-twitter w3-xlarge w3-card-4"></a>
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-google w3-xlarge w3-card-4"></a>
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-linkedin w3-xlarge w3-card-4"></a>
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-youtube w3-xlarge w3-card-4"></a>
+        <a href="#" class="removeTextDecor socialMediaIcons fa fa-instagram w3-xlarge w3-card-4"></a>
+    </div>
+</div>
 
