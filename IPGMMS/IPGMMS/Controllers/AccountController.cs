@@ -45,6 +45,18 @@ namespace IPGMMS.Controllers
                 return View(model);
             }
 
+            //Require the user to have confirmed email before they can log on.
+            var user = await UserManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                if(!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    ViewBag.errorMessage = "You must confirm your email to log on.";
+                    return View("ResendConfirmEmail");
+                }
+            }
+
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
@@ -133,19 +145,21 @@ namespace IPGMMS.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    // Uncomment to no longer require a user to be twoFactor authenticated before being able to log in
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your IPG account");
 
                     // Assign Role to user Here
                     //await this.UserManager.AddToRoleAsync(user.Id, "Uncategorized");
                     // Ends here
 
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Message = "Please check your email and confirm your account. Your account must be confirmed before you can log in.";
+
+                    return View("Info");
+                    //return RedirectToAction("Index", "Home");
                 }
                 //ViewBag.Name = new SelectList(repo.GetRoles, "Name", "Name");
                 AddErrors(result);
@@ -169,6 +183,43 @@ namespace IPGMMS.Controllers
         }
 
         //
+        // GET: /Account/ResendConfirmEmail
+        [AllowAnonymous]
+        public ActionResult ResendConfirmEmail()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ResendConfirmEmail
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [CaptchaValidator]
+        public async Task<ActionResult> ResendConfirmEmail(ResendConfirmEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    ViewBag.Message = "Your email confirmation has been resent. Please check your email and confirm your account.";
+                    return View("Info");
+                }
+
+                // Send an email with this link
+                string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your IPG account");
+
+                ViewBag.Message = "Your email confirmation has been resent. Please check your email and confirm your account.";
+
+                return View("Info");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -181,11 +232,12 @@ namespace IPGMMS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [CaptchaValidator]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -194,10 +246,10 @@ namespace IPGMMS.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -231,7 +283,7 @@ namespace IPGMMS.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -413,6 +465,15 @@ namespace IPGMMS.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(userID, subject, "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+            return callbackUrl;
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
