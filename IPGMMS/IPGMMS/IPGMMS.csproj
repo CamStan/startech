@@ -212,6 +212,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
@@ -259,11 +260,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Contact.css" />
+    <Content Include="Content\Error.css" />
     <Content Include="Content\Forms.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
+    <Content Include="Content\Images\diggingdog2.jpg" />
     <Content Include="Content\Images\dog-bath-wide.jpg" />
     <Content Include="Content\Images\dog-groom-wide.jpg" />
+    <Content Include="Content\Images\dog_digging_outline.jpg" />
+    <Content Include="Content\Images\dog_digging_outline1.jpg" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\groomers.jpg" />
     <Content Include="Content\Images\grooming.jpg" />
@@ -273,6 +278,7 @@
     <Content Include="Content\Images\ipgLogo_transparent.png" />
     <Content Include="Content\Images\member_250x250.jpeg" />
     <Content Include="Content\Images\puppies-groomed-wide.jpg" />
+    <Content Include="Content\Images\servers.jpg" />
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
@@ -403,6 +409,8 @@
     <Content Include="Views\Portal\ReportLandingPage.cshtml" />
     <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

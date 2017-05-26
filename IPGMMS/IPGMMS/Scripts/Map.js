@@ -170,7 +170,7 @@ function createDiv(marker) {
                     + business.BusinessName
                     + '</div>';
     } else
-        if (business.FullName != "" && business.BusinessName != null) {
+        if (business.FullName != "" && business.FullName != null) {
             contentLine += '<div class="business">'
                         + business.FullName
                         + '</div>';
