@@ -16,7 +16,7 @@
 <!--Admin dashboard Section 1 * Info Boxes-------------------------------------------------->
 <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-third">
-        <a href="@Url.Action("ListMember", "Portal")">
+        <a class="removeTextDecor" href="@Url.Action("ListMembers", "Portal")">
             <div class="w3-container w3-padding-16 w3-card-4" id="adminDashInfo1">
                 <div class="w3-left"><i class="fa fa-users w3-xxlarge"></i></div>
                 <div class="w3-right"><h2>@Html.DisplayFor(model => model.MemberCount)</h2></div>
@@ -53,7 +53,7 @@
                 <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiringMembersCount)</h2></div>
             </div>
         </a>
-        <table class="w3-table-all w3-responsive w3-card-4 w3-small w3-hoverable">
+        <table class="w3-table w3-bordered w3-responsive w3-card-4 w3-small w3-hoverable">
             <tbody>
                 @foreach (var item in Model.ExpiringMembers)
                 {
@@ -86,7 +86,7 @@
                 <div class="w3-right"><h2>@Html.DisplayFor(model => model.NewMembersCount)</h2></div>
             </div>
         </a>
-        <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
+        <table class="w3-table w3-bordered w3-card-4 w3-responsive w3-small w3-hoverable">
             <tbody>
                 @foreach (var item in Model.NewMembers)
             {
@@ -123,7 +123,7 @@
                 <div class="w3-right"><h2>@Html.DisplayFor(model => model.ExpiredMembersCount)</h2></div>
             </div>
         </a>
-        <table class="w3-table-all w3-card-4 w3-responsive w3-small w3-hoverable">
+        <table class="w3-table w3-bordered w3-card-4 w3-responsive w3-small w3-hoverable">
             <tbody>
                 @foreach (var item in Model.ExpiredMembers)
                 {
