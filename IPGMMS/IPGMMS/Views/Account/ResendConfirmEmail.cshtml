@@ -1,12 +1,18 @@
 ﻿@using reCAPTCHA.MVC
-@model IPGMMS.Models.ForgotPasswordViewModel
+@model IPGMMS.Models.ResendConfirmEmailViewModel
 @{
-    ViewBag.Title = "Forgot your password?";
+    ViewBag.Title = "Resend Confirmation Email";
 }
 
 <h2>@ViewBag.Title.</h2>
+@{
+    if (!String.IsNullOrEmpty(ViewBag.errorMessage))
+    {
+        <h2 class="text-danger">@ViewBag.errorMessage</h2>
+    }
+}
 
-@using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("ResendConfirmEmail", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Enter your email.</h4>

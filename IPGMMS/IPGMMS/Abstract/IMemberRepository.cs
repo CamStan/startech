@@ -12,6 +12,7 @@ namespace IPGMMS.Abstract
         IEnumerable<Member> GetAllMembers { get; }
         IEnumerable<Member> NewMembers { get; }
         IEnumerable<Member> ExpiringMembers { get; }
+        IEnumerable<Member> ExpiredMembers { get; }
         IEnumerable<SelectListItem> GetLevels { get; }
         Member CreateMember();
         Member Find(int? id);
@@ -25,5 +26,7 @@ namespace IPGMMS.Abstract
         string setMemberNumber(Member memb, ContactInfo info);
         int GetMemberLevelID(string level);
         int[] GetActiveMemberIDs();
+        int GetActiveMemberCount();
+        int GetNewMemberCount();
     }
 }

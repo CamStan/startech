@@ -29,10 +29,23 @@ namespace IPGMMS.Controllers
         // GET: Portal
         public ActionResult Index()
         {
+            //Set values to pass to the ViewBag
             var user = User.Identity;
             ViewBag.Name = user.Name;
+
+            //Create items to add to the MemberReports ViewModel to pass to the view
+            MemberReports reports = new MemberReports();
+            reports.MemberCount = memberRepo.GetAllMembers.Count();
+            reports.ActiveMemberCount = memberRepo.GetActiveMemberCount();
+            reports.NewMemberLast30Count = memberRepo.GetNewMemberCount();
+            reports.ExpiredMembersCount = memberRepo.ExpiredMembers.Count();
+            reports.ExpiringMembersCount = memberRepo.ExpiringMembers.Count();
+            reports.NewMembersCount = memberRepo.NewMembers.Count();
+            reports.ExpiringMembers = memberRepo.ExpiringMembers.Take(3);
+            reports.NewMembers = memberRepo.NewMembers.Take(3);
+            reports.ExpiredMembers = memberRepo.ExpiredMembers.Take(3);
             
-            return View();
+            return View(reports);
         }
 
         //***********************************************LIST MEMBER INFO*****************************
@@ -336,8 +349,8 @@ namespace IPGMMS.Controllers
             return View("ReportLandingPage");
         }
         /// <summary>
-        /// This method creates a list of expired members and returns it to the view for
-        /// display. If there is no data to display, the user is redirected to a custom
+        /// This method gets a list of expired members to return to the view.
+        /// If there is no data to display, the user is redirected to a custom
         /// error view.
         /// </summary>
         /// <param name="page">The current page number</param>
@@ -345,9 +358,7 @@ namespace IPGMMS.Controllers
         /// <returns>The view with the list of expired members or a custom error view if no data exists.</returns>
         public ActionResult ExpiredMembersReport(int? page, string sortOrder)
         {
-            var members = memberRepo.GetAllMembers;
-
-            var expMembersList = members.Where(m => m.Membership_ExpirationDate < DateTime.Now);
+            var expMembersList = memberRepo.ExpiredMembers;
 
             if (expMembersList == null)
             {
@@ -368,8 +379,8 @@ namespace IPGMMS.Controllers
         /// </summary>
         public void ExpMembersReportToExcel()
         {
-            IEnumerable<Member> expMembers = memberRepo.GetAllMembers.Where(m => m.Membership_ExpirationDate < DateTime.Now);
-            ExportToExcel(expMembers,"ExpiredMemberReport.xls");
+            IEnumerable<Member> expMembers = memberRepo.ExpiredMembers;
+            ExportToExcel(expMembers,"Expired Members.xls");
         }
 
         /// <summary>
