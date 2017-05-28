@@ -52,7 +52,7 @@ $(document).ready(function () {
     <tbody>
         @foreach (var item in Model)
             {
-            <tr>
+            <tr class="w3-hover-aqua">
                 <td id="memberListLinks">
                     @Html.ActionLink(item.Membership_Number, "UpdateMember/" + item.ID, "Portal")
                 </td>

@@ -2,9 +2,6 @@
 
 @model IPGMMS.ViewModels.MemberIdentityInfoViewModel
 
-@{
-    ViewBag.Title = "Details";
-}
 
 <!-- Success message displayed when new user has successfully applied for IPG account or current member successfully linked account -->
 @if (ViewBag.Success)
@@ -14,60 +11,69 @@
     </div>
 }
 
-<h2>Details for @User.Identity.Name</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="w3-row">
 
-@if (Model.MemberInfo != null)
-{
-    <div class="row">
-        @* Side barish for member picture, Name, Number, Type and dates*@
-        <div class="col-md-3">
-            <div class="row">
-                <div class="pic">
-                    @* Need database table to hold pics and code here to retrieve. *@
-                    <img src="~/Content/Images/avatar_a4be82c62409_128.png" alt="Spanish_Inquisition" />
+    @if (Model.MemberInfo != null)
+    {
+
+        <div class="w3-col m4">
+            <div class="w3-card-2 w3-round w3-light-gray">
+                <div class="w3-container">
+
+                    <h2>Details for @User.Identity.Name</h2>
+                    <hr>
+                    <p class="w3-center">
+                        <img src="~/Content/Images/avatar_a4be82c62409_128.png" class="w3-circle" alt="Spanish_Inquisition" />
+                    </p>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.FullName)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.FullName)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_Number)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_Number)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
+                        <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
+                    </dl>
+                    <br />
+                    <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("UpdateMyInfo",new { memID = Model.MemberInfo.ID })'"><i class="fa fa-vcard"></i> Update Info  <a href="#" data-toggle="tooltip" title="Update your information, such as Business Name and Website."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
+                    <br />
+                    <br />
+                    @if (Model.IdentityInfo.HasPassword)
+                    {
+                        <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("ChangePassword")'"><i class="fa fa-unlock-alt"></i> Change Password  <a href="#" data-toggle="tooltip" title="Private info only available to IPG. Please see our privacy aggreement for more details."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Create", "SetPassword")
+                    }
+                    <br /><br />
                 </div>
             </div>
-            <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(model => model.MemberInfo.FullName)</dt>
-                <dd>@Html.DisplayFor(model => model.MemberInfo.FullName)</dd>
-                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_Number)</dt>
-                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_Number)</dd>
-                <dt>@Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)</dt>
-                <dd>@Html.DisplayFor(model => model.MemberInfo.MemberLevel1.MLevel)</dd>
-                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_SignupDate)</dt>
-                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_SignupDate)</dd>
-                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)</dt>
-                <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
-            </dl>
-
-            @Html.ActionLink("Update Member Information", "UpdateMyInfo", new { memID = Model.MemberInfo.ID })<br />
         </div>
-      
-        @* Mainpage part for Business Name, Website, Contact Info, Certifications and Test Results.*@
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-5">
-                    <dl class="dl-horizontal">
-                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.BusinessName)</dt>
-                        <dd>@Html.DisplayFor(model => model.MemberInfo.BusinessName) </dd>
-                    </dl>
+        <div class="w3-col m8">
+            <div class="w3-row-padding">
+                <div class="w3-col m12">
+                    <div class="w3-card-2 w3-round w3-gray">
+                        <div class="w3-container w3-padding">
+                            <dl class="dl-horizontal">
+                                <dt>@Html.DisplayNameFor(model => model.MemberInfo.BusinessName)</dt>
+                                <dd>@Html.DisplayFor(model => model.MemberInfo.BusinessName) </dd>
+                                <dt>@Html.DisplayNameFor(model => model.MemberInfo.Website)</dt>
+                                <dd>@Html.DisplayFor(model => model.MemberInfo.Website)</dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5">
-                    <dl class="dl-horizontal">
-                        <dt>@Html.DisplayNameFor(model => model.MemberInfo.Website)</dt>
-                        <dd>@Html.DisplayFor(model => model.MemberInfo.Website)</dd>
-                    </dl>
-                </div>
-                <div class="col-md-2">
-                    @*  Removed because links were added for individual sections
-                        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.MemberInfo.ID }) *@
-                </div>
+                
             </div>
-            <hr />
-            <div class="row">
-                @*Mailing List Info*@
-                <div class="col-md-6">
-                    <p> Private Contact Information</p>
+            <div class="w3-row-padding">
+                <div class="w3-card-2 w3-round w3-light-grey w3-container w3-margin">
+                    <button class="w3-btn w3-block w3-small editButton" onclick="location.href=  '@Url.Action("UpdateContact", new { mail = Model.MailingInfo.ID })'"><i class="fa fa-pencil fa-lg"></i>  Private Contact Information  <a href="#" data-toggle="tooltip" title="Private info only available to IPG. Please see our privacy aggreement for more details."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
                     <dl class="dl-horizontal">
                         <dt>@Html.DisplayNameFor(model => model.MailingInfo.Email)</dt>
                         <dd>@Html.DisplayFor(model => model.MailingInfo.Email)</dd>
@@ -84,161 +90,144 @@
                         <dt>@Html.DisplayNameFor(model => model.MailingInfo.PostalCode)</dt>
                         <dd>@Html.DisplayFor(model => model.MailingInfo.PostalCode)</dd>
                     </dl>
-
-                    @Html.ActionLink("Update Mailing Information", "UpdateContact",new { mail = Model.MailingInfo.ID })<br />
-                </div>
-                @* Listing Info*@
-                <div class="col-md-6">
-                    <p> Public Contact Information</p>
-                    <dl class="dl-horizontal">
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.Email)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.PhoneNumber)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StreetAddress)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.StreetAddress)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.City)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.City)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StateName)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.StateName)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Country)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.Country)</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
-                        <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)</dd>
-                    </dl>
-
-                    @Html.ActionLink("Update Listing Information", "UpdateContact", new { mail = Model.ListingInfo.ID })<br />
                 </div>
             </div>
-            @* Add further information here such as Certificates and Tests Taken/Results*@
+
+            <div class="w3-row-padding">
+                <div class="w3-card-2 w3-round w3-light-gray w3-container w3-margin">
+                    <button class="w3-btn w3-block w3-small editButton" onclick="location.href=  '@Url.Action("UpdateContact", new { mail = Model.ListingInfo.ID })'"><i class="fa fa-pencil fa-lg"></i>  Public Contact Information  <a href="#" data-toggle="tooltip" title="Public info displayed on your profile for potential clients to be able to find you."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
+                    <dl class="dl-horizontal">
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.Email)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)&</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.PhoneNumber)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StreetAddress)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.StreetAddress)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.City)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.City)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.StateName)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.StateName)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.Country)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.Country)&nbsp</dd>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PostalCode)</dt>
+                        <dd>@Html.DisplayFor(model => model.ListingInfo.PostalCode)&nbsp</dd>
+                    </dl>
+                </div>
+            </div>
+
         </div>
 
-    </div>
-}
-else
-{
-    <div class="row">
-        <h4>Link your IPG account or start the application to become an IPG member</h4>
-        <hr />
-        @if (ViewBag.ErrorCode != 0) {
-            <p class="text-danger">@ViewBag.ErrorMessage</p>
-        }
-        <div class="panel-group col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
-                    @Html.ActionLink("Start IPG Application", "Apply", "Member", null, new { @class = "btn btn-default" })
-                </div>
-                <div id="memberLookUp" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <h4>Enter IPG Membership Number</h4>
-                            <hr />
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="membNum">IPG #</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" type="text" name="membNum" maxlength="10" />
+
+
+    }
+    else
+    {
+        <div class="row">
+            <h4>Link your IPG account or start the application to become an IPG member</h4>
+            <hr />
+            @if (ViewBag.ErrorCode != 0)
+            {
+                <p class="text-danger">@ViewBag.ErrorMessage</p>
+            }
+            <div class="panel-group col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
+                        @Html.ActionLink("Start IPG Application", "Apply", "Member", null, new { @class = "btn btn-default" })
+                    </div>
+                    <div id="memberLookUp" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <h4>Enter IPG Membership Number</h4>
+                                <hr />
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="membNum">IPG #</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="membNum" maxlength="10" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" class="btn btn-default" value="Link Account" />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" class="btn btn-default" value="Link Account" />
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-8">
+               
+            </div>
         </div>
-        <div class="col-md-8"></div>
-    </div>
-}
-<hr />
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.IdentityInfo.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
+    }
+
+                                        @*
+                        <br />
+        @Model.IdentityInfo.Logins.Count [
+        @Html.ActionLink("Manage", "ManageLogins") ]
+                                        *@
+                @*
+                    Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+                     See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+                     Uncomment the following block after you have set up two-factor authentication
+                *@
+                @*
+                    <dt>Phone Number:</dt>
+                    <dd>
+                        @(Model.PhoneNumber ?? "None")
+                        @if (Model.PhoneNumber != null)
+                        {
+                            <br />
+                            <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                            using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                            }
+                        }
+                        else
+                        {
+                            <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                        }
+                    </dd>
+                *@
+                @*<dt>Two-Factor Authentication:</dt>
+                    <dd>
+                        <p>
+                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                            for details on setting up this ASP.NET application to support two-factor authentication.
+                        </p>
+                        @if (Model.TwoFactor)
+                            {
+                                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <text>Enabled
+                                    <input type="submit" value="Disable" class="btn btn-link" />
+                                    </text>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <text>Disabled
+                                    <input type="submit" value="Enable" class="btn btn-link" />
+                                    </text>
+                                }
+                            }
+                    </dd>*@
+                
+
+            @section scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+                <script type="text/javascript" src="~/Scripts/manage.js"></script>
+                <link href="@Url.Content("~/Content/ManageDetails.css")" rel="stylesheet" />
             }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.IdentityInfo.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        @*<dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-        </dd>*@
-    </dl>
-</div>
-
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript" src="~/Scripts/manage.js"></script>
-    <link href="@Url.Content("~/Content/ManageDetails.css")" rel="stylesheet" />
-}
