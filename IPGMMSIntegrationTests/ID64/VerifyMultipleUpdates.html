@@ -23,38 +23,33 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Search Members</td>
+	<td>link=View/Update Members</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=SearchString</td>
+	<td>css=input[type=&quot;search&quot;]</td>
 	<td>anna</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>css=input[type=&quot;submit&quot;]</td>
+	<td>link=01-32111</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Anna</td>
+	<td>//button[@onclick=&quot;location.href='/Portal/UpdateMemberMailing?memID=2'&quot;]</td>
 	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Update Mailing Information</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=City</td>
-	<td>Salem</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=StateName</td>
 	<td>CA</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=City</td>
+	<td>Salem</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -63,23 +58,18 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Update Mailing Information</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyValue</td>
-	<td>id=StateName</td>
-	<td>CA</td>
-</tr>
-<tr>
-	<td>verifyText</td>
-	<td>id=City</td>
+	<td>//button[@onclick=&quot;location.href='/Portal/UpdateMemberMailing?memID=2'&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyValue</td>
 	<td>id=City</td>
 	<td>Salem</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=StateName</td>
+	<td>CA</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -96,7 +86,6 @@
 	<td>css=input.btn.btn-default</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

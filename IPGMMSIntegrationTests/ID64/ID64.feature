@@ -66,7 +66,7 @@ Feature: ID64 - Admin view and update members
             and the city is currently Blue Ridge
         When I click on the button 'Update Mailing Info'
             and I update the state to 'CA'
-            and I update the city to 'Blue Ridge'
+            and I update the city to 'Salem'
         Then I am redirected back to the member update page for 'Anna'
             and the 'Mailing Information' city is now 'Blue Ridge'
             and the 'Mailing Information' state is now 'CA'

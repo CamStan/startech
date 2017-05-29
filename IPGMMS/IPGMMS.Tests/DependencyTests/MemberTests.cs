@@ -32,10 +32,10 @@ namespace IPGMMS.Tests.DependencyTests
                 .Returns(
                 new Member[]
                 {
-                    new Member {ID = 1, FirstName = "Tom", LastName = "Solomon" },
+                    new Member {ID = 1, FirstName = "Tom", LastName = "Solomon"},
                     new Member {ID = 2, FirstName = "Dick", LastName = "Solomon" },
                     new Member {ID = 3, FirstName = "Harry", LastName = "Solomon" },
-                    new Member {ID = 4, FirstName = "Sally", LastName = "Solomon" },
+                    new Member {ID = 4, FirstName = "Sally", LastName = "Solomon"},
                     new Member {ID = 5, FirstName = "Mary", LastName = "Albright" }
                 });
             
@@ -68,9 +68,9 @@ namespace IPGMMS.Tests.DependencyTests
             // setup things in dbContext to test
             var data = new List<Member>
             {
-                new Member {ID = 1, FirstName = "Wolverine", Membership_Number = "0100123", Identity_ID = "ABC123" },
-                new Member {ID = 2, FirstName = "Storm", Membership_Number = "0200345", Identity_ID = "DEF456" },
-                new Member {ID = 3, FirstName = "Rogue", Membership_Number = "0300456", Identity_ID = "GHI789" }
+                new Member {ID = 1, FirstName = "Wolverine", Membership_Number = "0100123", Identity_ID = "ABC123",Membership_ExpirationDate=new DateTime(2016,6,7),MemberLevel=9 },
+                new Member {ID = 2, FirstName = "Storm", Membership_Number = "0200345", Identity_ID = "DEF456",Membership_ExpirationDate=new DateTime(2017,6,17),MemberLevel=9 },
+                new Member {ID = 3, FirstName = "Rogue", Membership_Number = "0300456", Identity_ID = "GHI789",Membership_ExpirationDate=new DateTime(2018,1,2),MemberLevel=1 }
 
             }.AsQueryable();
 
@@ -193,5 +193,41 @@ namespace IPGMMS.Tests.DependencyTests
 
 
         }*/
+        /// <summary>
+        /// Tests expired members in database mock object
+        /// </summary>
+        [Test]
+        public void TestExpiredMemberReport()
+        {
+            EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
+
+            var ExpiredMembersReport = repo.ExpiredMembers.ToList();
+            Console.WriteLine(ExpiredMembersReport);
+            Assert.AreEqual(ExpiredMembersReport.Count,1);
+        }
+        /// <summary>
+        /// Tests expiring members in database mock object
+        /// </summary>
+        [Test]
+        public void TestExpiringMemberReport()
+        {
+            EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
+
+            var ExpiringMembersReport = repo.ExpiringMembers.ToList();
+            Console.WriteLine(ExpiringMembersReport);
+            Assert.AreEqual(ExpiringMembersReport.Count, 1);
+        }
+        /// <summary>
+        /// Tests new members in database mock object
+        /// </summary>
+        [Test]
+        public void TestNewMemberReport()
+        {
+            EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
+
+            var NewMembersReport = repo.NewMembers.ToList();
+            
+            Assert.AreEqual(NewMembersReport.Count, 2);
+        }
     }
 }
