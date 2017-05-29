@@ -324,6 +324,7 @@
     <Content Include="Scripts\apply.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\data_tables.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -412,7 +413,7 @@
     <Content Include="Views\Portal\ReportExpiringMember.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Portal\ReportLandingPage.cshtml" />
-    <Content Include="Views\Portal\ExpiredMembersReport.cshtml" />
+    <Content Include="Views\Portal\ReportExpiredMembers.cshtml" />
     <Content Include="Views\Portal\RedirectPages\Error_NoDataFound.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Account\ResendConfirmEmail.cshtml" />
