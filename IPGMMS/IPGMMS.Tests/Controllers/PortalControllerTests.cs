@@ -29,19 +29,6 @@ namespace IPGMMS.Tests.Controllers
             TestRouteMatch("~/Portal/ListMembers", "Portal", "ListMembers");
         }
 
-        // Not sure if we can actually test the next 2 with the default tests.
-        [Test]
-        public void Portal_Member_Page1_ShouldMapTo_Portal_ListMembers_Page1()
-        {
-            TestRouteMatch("~/Portal/ListMembers?page=1", "Portal", "ListMembers");
-        }
-        // Probably need to write another test.
-        [Test]
-        public void Portal_Member_Page2_ShouldMapTo_Portal_ListMembers_Page2()
-        {
-            TestRouteMatch("~/Portal/ListMembers?page=2", "Portal", "ListMember");
-        }
-
         [Test]
         public void Portal_DetailMember_That_We_Dont_Use()
         {
