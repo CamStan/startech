@@ -54,6 +54,11 @@
                     <br /><br />
                 </div>
             </div>
+            <div class="w3-card-2 w3-round w3-blue w3-margin w3-hover-light-blue" onclick="location.href= '@Url.Action("Details","Member", new { ID = Model.MemberInfo.ID })'">
+                <div class="w3-container w3-center">
+                    View My Profile
+                </div>
+            </div>
         </div>
         <div class="w3-col m8">
             <div class="w3-row-padding">
@@ -99,7 +104,7 @@
                     <dl class="dl-horizontal">
                         <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
                         <dd>@Html.DisplayFor(model => model.ListingInfo.Email)&nbsp</dd>
-                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)&</dt>
+                        <dt>@Html.DisplayNameFor(model => model.ListingInfo.PhoneNumber)</dt>
                         <dd>@Html.DisplayFor(model => model.ListingInfo.PhoneNumber)&nbsp</dd>
                         <dt>@Html.DisplayNameFor(model => model.ListingInfo.StreetAddress)</dt>
                         <dd>@Html.DisplayFor(model => model.ListingInfo.StreetAddress)&nbsp</dd>
@@ -163,6 +168,7 @@
             </div>
         </div>
     }
+    </div>
 
                                         @*
                         <br />
