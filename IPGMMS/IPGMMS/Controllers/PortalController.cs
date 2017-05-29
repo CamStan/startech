@@ -356,7 +356,7 @@ namespace IPGMMS.Controllers
         /// <param name="page">The current page number</param>
         /// <param name="sortOrder">The current sort order</param>
         /// <returns>The view with the list of expired members or a custom error view if no data exists.</returns>
-        public ActionResult ExpiredMembersReport(int? page, string sortOrder)
+        public ActionResult ReportExpiredMembers()
         {
             var expMembersList = memberRepo.ExpiredMembers;
 
@@ -366,51 +366,15 @@ namespace IPGMMS.Controllers
             }
             else
             {
-                int pageSize = 20; //the number of items that can appear on each page.
-                int startPage = (page ?? 1);
-
-                return View("ExpiredMembersReport", expMembersList.ToList().ToPagedList(startPage, pageSize));
+                return View("ReportExpiredMembers", expMembersList.ToList());
             }
-        }
-        /// <summary>
-        /// This method creates an IEnumerable of type Member with all expired members found
-        /// in the database and calls the ExportToExcel method to create an Excel file of expired
-        /// members.
-        /// </summary>
-        public void ExpMembersReportToExcel()
-        {
-            IEnumerable<Member> expMembers = memberRepo.ExpiredMembers;
-            ExportToExcel(expMembers,"Expired Members.xls");
-        }
-
-        /// <summary>
-        /// This method exports a list of expired members to Excel.
-        /// </summary>
-        private void ExportToExcel(IEnumerable<Member> memList, string name)
-        {
-            var grid = new GridView();
-            grid.DataSource = memList;
-
-            grid.DataBind();
-
-            Response.ClearContent();
-            Response.AddHeader("content-disposition", ("attachment; filename="+name));
-            Response.ContentType = "application/vnd.ms-excel";
-            StringWriter stringWriter = new StringWriter();
-            HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
-
-            grid.RenderControl(htmlWriter);
-
-            Response.Write(stringWriter.ToString());
-            Response.End();
-
         }
 
         /// <summary>
         /// Get the list of all members who are listed as uncategorized and require admin approval/member level action.
         /// </summary>
         /// <returns>View of all new members</returns>
-        public ActionResult ReportNewMember(int? page, string sortOrder)
+        public ActionResult ReportNewMember()
         {
             var list = memberRepo.NewMembers;
             if (list == null)
@@ -425,21 +389,10 @@ namespace IPGMMS.Controllers
 
 
         /// <summary>
-        /// This method creates an IEnumerable of type Member with all expired members found
-        /// in the database and calls the ExportToExcel method to create an Excel file of expired
-        /// members.
-        /// </summary>
-        public void NewMembersReportToExcel()
-        {
-            IEnumerable<Member> expMembers = memberRepo.NewMembers;
-            ExportToExcel(expMembers, "NewMemberReport.xls");
-        }
-
-        /// <summary>
         /// Get the list of all members who will have a membership lapse in the next two months.
         /// </summary>
         /// <returns>View of all Expiring members</returns>
-        public ActionResult ReportExpiringMember(int? page, string sortOrder)
+        public ActionResult ReportExpiringMember()
         {
             var list = memberRepo.ExpiringMembers;
             if (list == null)
@@ -452,6 +405,52 @@ namespace IPGMMS.Controllers
             }
         }
 
+
+        /// <summary>
+        /// This method exports a list of expired members to Excel.
+        /// </summary>
+        private void ExportToExcel(IEnumerable<Member> memList, string name)
+        {
+            var grid = new GridView();
+            grid.DataSource = memList;
+
+            grid.DataBind();
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", ("attachment; filename=" + name));
+            Response.ContentType = "application/vnd.ms-excel";
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter);
+
+            grid.RenderControl(htmlWriter);
+
+            Response.Write(stringWriter.ToString());
+            Response.End();
+
+        }
+
+        /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void ExpMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.ExpiredMembers;
+            ExportToExcel(expMembers, "Expired Members.xls");
+        }
+
+        /// <summary>
+        /// This method creates an IEnumerable of type Member with all expired members found
+        /// in the database and calls the ExportToExcel method to create an Excel file of expired
+        /// members.
+        /// </summary>
+        public void NewMembersReportToExcel()
+        {
+            IEnumerable<Member> expMembers = memberRepo.NewMembers;
+            ExportToExcel(expMembers, "NewMemberReport.xls");
+        }
+        
         /// <summary>
         /// This method creates an IEnumerable of type Member with all expired members found
         /// in the database and calls the ExportToExcel method to create an Excel file of expired
