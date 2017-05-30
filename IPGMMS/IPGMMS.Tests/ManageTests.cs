@@ -43,6 +43,7 @@ namespace IPGMMS.Tests.DependencyTests
                     PhoneNumber = "5555555555",
                     Email = "Some@mail.com",
                 });
+            
         }
 
         [Test]

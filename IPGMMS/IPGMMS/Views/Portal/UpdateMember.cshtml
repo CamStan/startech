@@ -20,6 +20,14 @@
 <hr />
 <dl class="dl-horizontal">
     <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.Membership_Number)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.Membership_Number) 
+    </dd>
+
+    <dt>
         @Html.DisplayNameFor(model => model.MemberInfo.MemberLevel1.MLevel)
     </dt>
 
@@ -36,11 +44,27 @@
     </dd>
 
     <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.Membership_ExpirationDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)
+    </dd>
+
+    <dt>
         @Html.DisplayNameFor(model => model.MemberInfo.FirstName)
     </dt>
 
     <dd>
         @Html.DisplayFor(model => model.MemberInfo.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.MemberInfo.MiddleName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.MemberInfo.MiddleName)
     </dd>
 
     <dt>
@@ -126,11 +150,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MailingInfo.StateName)
+            @Html.DisplayNameFor(model => model.MailingInfo.Country)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MailingInfo.StateName)
+            @Html.DisplayFor(model => model.MailingInfo.Country)
         </dd>
 
     </dl>
@@ -192,11 +216,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ListingInfo.StateName)
+            @Html.DisplayNameFor(model => model.ListingInfo.Country)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ListingInfo.StateName)
+            @Html.DisplayFor(model => model.ListingInfo.Country)
         </dd>
 
     </dl>
