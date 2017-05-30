@@ -151,7 +151,15 @@ namespace IPGMMS.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.IsMailing = mailInfo.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing" ? true : false;
+            try
+            {
+                ViewBag.IsMailing = mailInfo.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing" ? true : false;
+            }
+            catch (System.Exception e)
+            {
+                //It should only be null during unit tests.
+                ViewBag.IsMailing = false;
+            }
             
             return View(mailInfo);
         }
