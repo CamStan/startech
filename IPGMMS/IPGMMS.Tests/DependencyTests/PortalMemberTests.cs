@@ -30,7 +30,7 @@ namespace IPGMMS.Tests.DependencyTests
 
             // setup things in contactRepo to test
             contactMock = new Mock<IContactRepository>();
-            contactMock.Setup(c => c.MailingInfoFromMID(1)).Returns(new ContactInfo { ID = 1, Country = "USA", City = "Salem" });
+            contactMock.Setup(c => c.MailingInfoFromMID(1)).Returns(new ContactInfo { ID = 1, Country = "US", City = "Salem" });
             contactMock.Setup(c => c.ListingInfoFromMID(2)).Returns(new ContactInfo { ID = 2, Country = "UK", City = "London" });
 
             // setup things in dbContext to test
@@ -49,7 +49,7 @@ namespace IPGMMS.Tests.DependencyTests
 
             var cData = new List<ContactInfo>
             {
-                new ContactInfo {ID = 1, Country = "USA", City = "Salem" },
+                new ContactInfo {ID = 1, Country = "US", City = "Salem" },
                 new ContactInfo { ID = 2, Country = "UK" , City = "London"}
             }.AsQueryable();
 
@@ -86,9 +86,9 @@ namespace IPGMMS.Tests.DependencyTests
 
             string s = repo.setMemberNumber(
                 new Member { ID = 1, FirstName = "Wolverine", Membership_Number = "0100123", Identity_ID = "ABC123" },
-                new ContactInfo { ID = 1, Country = "USA", City = "Salem" });
+                new ContactInfo { ID = 1, Country = "US", City = "Salem" });
             s = s.Substring(0, s.Length - 1);
-            Assert.AreEqual("0111123", s);
+            Assert.AreEqual("0111124", s);
         }
 
         [Test]
@@ -98,9 +98,9 @@ namespace IPGMMS.Tests.DependencyTests
 
             string s = repo.setMemberNumber(
                 new Member { ID = 1, FirstName = "Wolverine", Membership_Number = null, Identity_ID = "ABC123" },
-                new ContactInfo { ID = 1, Country = "USA", City = "Salem" });
+                new ContactInfo { ID = 1, Country = "US", City = "Salem" });
             s = s.Substring(0, s.Length - 1);
-            Assert.AreEqual("0111123", s);
+            Assert.AreEqual("0111124", s);
         }
 
         [Test]

@@ -47,9 +47,9 @@ namespace IPGMMS.Tests.Controllers
         // Member/Details Tests
 
         [Test]
-        public void MemberDetails_WithoutID_ShouldMapTo_Member_Index()
+        public void MemberDetails_WithoutID_ShouldMapTo_Details_BeforeReroute()
         {
-            TestRouteMatch("~/Member/Details", "Member", "Index");
+            TestRouteMatch("~/Member/Details", "Member", "Details");
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace IPGMMS.Tests.Controllers
         }
 
         [Test]
-        public void MemberDetails_WithInvalidID_ShouldMapTo_Member_Index()
+        public void MemberDetails_WithInvalidID_ShouldMapTo_Details_BeforeReroute()
         {
             TestRouteMatch("~/Member/Details/99", "Member", "Details",  new { id = "99" });
         }

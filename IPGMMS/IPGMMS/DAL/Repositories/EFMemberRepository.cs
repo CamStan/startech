@@ -260,19 +260,25 @@ namespace IPGMMS.DAL.Repositories
             Random rand = new Random();
             int rnum = rand.Next(9);
 
-            string lastMem = db.Members.Where(s => s.Membership_Number.StartsWith(country)).OrderByDescending(x => x.Membership_Number).FirstOrDefault().Membership_Number;
+            var lastMem = db.Members.Where(s => s.Membership_Number.StartsWith(country)).OrderByDescending(x => x.Membership_Number).FirstOrDefault();
+            string lastMemNum = "";
             if (lastMem == null)
             {
-                lastMem = (country + "2000" + "0");
+                lastMemNum = (country + "2000" + "0");
+            }
+            else
+            {
+                lastMemNum = lastMem.Membership_Number;
             }
 
-            string num = lastMem.Substring(2, 5);
+            string num = lastMemNum.Substring(2, 5);
             int i = 0;
             bool success = Int32.TryParse(num, out i);
             string memberNum = "";
 
             if (success)
             {
+                i++;
                 i = i * 10;
                 i += rnum;
 
