@@ -284,6 +284,7 @@
     <Content Include="Content\Images\member_250x250.jpeg" />
     <Content Include="Content\Images\puppies-groomed-wide.jpg" />
     <Content Include="Content\Images\servers.jpg" />
+    <Content Include="Content\Images\StarTechLogo.png" />
     <Content Include="Content\Images\students_250x250.jpeg" />
     <Content Include="Content\Images\World_map_wallpaper.jpg" />
     <Content Include="Content\ManageDetails.css" />
@@ -420,6 +421,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Shared\_AdminSideNav.cshtml" />
+    <Content Include="Views\Home\StarTechCredits.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
