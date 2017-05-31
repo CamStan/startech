@@ -104,6 +104,18 @@ namespace IPGMMS.Tests.DependencyTests
         }
 
         [Test]
+        public void TestNewMemberNumber_MemberDoesNotHaveNumberOrCountry()
+        {
+            EFMemberRepository repo = new EFMemberRepository(dbMock.Object);
+
+            string s = repo.setMemberNumber(
+                new Member { ID = 1, FirstName = "Wolverine", Membership_Number = null, Identity_ID = "ABC123" },
+                new ContactInfo { ID = 1, Country = "AU", City = "Salem" });
+            s = s.Substring(0, s.Length - 1);
+            Assert.AreEqual("0111124", s);
+        }
+
+        [Test]
         public void TestUpdateMemberMailing_Get()
         {
             PortalController controller = new PortalController(memberMock.Object, contactMock.Object);
