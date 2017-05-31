@@ -180,3 +180,6 @@ p, body {
 .navigationLinks {
     color: #000080;
 }
+.allowScroll{
+    overflow-x:scroll;
+}
