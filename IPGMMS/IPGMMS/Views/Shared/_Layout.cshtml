@@ -38,7 +38,7 @@
     <div class="w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
     <!-- Page Content -->
-    <div class="w3-padding-large allowScroll" id="main">
+    <div class="w3-padding-large" id="main">
         <div class="container body-content">
             @RenderBody()
         </div>
@@ -51,16 +51,17 @@
                 <h3><a href="@Url.Action("Index","Home")">Home</a></h3>
                 <h3><a href="@Url.Action("About","Home")">About IPG</a></h3>
                 <h3><a href="@Url.Action("FAQ", "Home")">FAQ</a></h3>
-                <h3><a href="@Url.Action("Contact", "Home")">Contact IPG</a></h3>
+                <h3><a href="@Url.Action("Contact", "Home")">Contact IPG</a></h3> 
+                <h3><a href="@Url.Action("StarTechCredits","Home")">StarTech Credits</a></h3>              
             </div>
             <div class="w3-half w3-padding-right w3-padding-left">
                 <h3>IPG Certification Tracks</h3>
                 <h3>IPG Events</h3>
-                <h3>IPG Products</h3>
+                <h3>IPG Products</h3>   
                 <i class="fa fa-facebook"></i>
                 <i class="fa fa-instagram"></i>
                 <i class="fa fa-twitter"></i>
-                <i class="fa fa-youtube"></i>
+                <i class="fa fa-youtube"></i>    
             </div>
         </div>
     </footer>

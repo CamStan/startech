@@ -32,5 +32,9 @@ namespace IPGMMS.Controllers
         {
             return View();
         }
+        public ActionResult StarTechCredits()
+        {
+            return View();
+        }
     }
 }
