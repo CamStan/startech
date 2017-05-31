@@ -4,19 +4,19 @@ Feature: ID71 - As an IPG member I need to be able make changes to my personal
         Scenario:	IPG member can get to their own manage account page.
                 Given a user has already registered on the website	
                     And	has an IPG profile linked to their account
-                    And their IPG Member Number is: 01-32662
+                    And their IPG Member Number is: 01326782
                 When the user clicks on their "Manage Account" link
                 Then they are taken to the manage account page
-                    And the IPG Member number field matches 01-32662 
+                    And the IPG Member number field matches 01326782 
                     
         Scenario:	IPG member can access their own update member info page	
                 Given a user has already registered on the website	
                     And	has an IPG profile linked to their account
-                    And their IPG Member Number is: 01-32662
+                    And their IPG Member Number is: 01326782
                     And is on their manage account page
                 When the user clicks on "Update Member Information"	
                 Then they are taken to the member info update form
-                    And the IPG Member number field matches 01-32662
+                    And the IPG Member number field matches 01326782
                     
         Scenario:	IPG member first name field on the update form cannot be empty	
                 Given a user has already registered on the website	
