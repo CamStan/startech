@@ -32,5 +32,10 @@ namespace IPGMMS.Controllers
         {
             return View();
         }
+
+        public ActionResult UnderConstruction()
+        {
+            return View();
+        }
     }
 }
