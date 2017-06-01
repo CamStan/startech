@@ -27,7 +27,7 @@ namespace IPGMMS.DAL.Repositories
         /// </summary>
         public IEnumerable<Member> GetAllMembers
         {
-            get { return db.Members.Where(m => m.ID > 1).OrderBy(m => m.LastName).ToList(); }
+            get { return db.Members.OrderBy(m => m.LastName).ToList(); }
         }
 
 
