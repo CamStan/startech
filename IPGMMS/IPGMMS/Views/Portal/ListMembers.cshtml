@@ -10,7 +10,7 @@
 
 <h1>View/Update Members</h1>
 <hr />
-<table id ="orderedTable" class="w3-table-all w3-card-4 w3-responsive">
+<table id="orderedTable" class="w3-table-all w3-card-4 w3-responsive">
     <thead>
         <tr>
             <th>
@@ -44,7 +44,7 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-        {
+            {
             <tr class="w3-hover-blue" onclick="location.href = '@(Url.Action("UpdateMember/" + item.ID, "Portal"))'">
                 <td>
                     @Html.DisplayFor(modelItem => item.Membership_Number)
