@@ -20,8 +20,8 @@
     <nav class="w3-sidebar w3-bar-block w3-card-2 w3-top w3-xlarge w3-animate-left w3-light-gray" style="display:none;z-index:2;width:40%;max-width:300px" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button"><i class="fa fa-close"></i></a>
         <div class="w3-padding-12"><a href="@Url.Action("Index", "Home")"><img src="~/Content/Images/IPGLogo2.png" /></a></div>
-        <a href="@Url.Action("Index","Member")" onclick="w3_close()" class="w3-bar-item w3-button">IPG Member Search</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">About IPG Membership</a>
+        <a href="@Url.Action("Index","Map")" onclick="w3_close()" class="w3-bar-item w3-button">IPG Member Search</a>
+        <a href="@Url.Action("Index","Member")" onclick="w3_close()" class="w3-bar-item w3-button">View All Members</a>
 
     </nav>
 
@@ -55,9 +55,9 @@
                 <h3><a href="@Url.Action("StarTechCredits","Home")">StarTech Credits</a></h3>              
             </div>
             <div class="w3-half w3-padding-right w3-padding-left">
-                <h3>IPG Certification Tracks</h3>
-                <h3>IPG Events</h3>
-                <h3>IPG Products</h3>   
+                <a href="@Url.Action("Underconstruction","Home")"><h3>IPG Certification Tracks</h3></a>
+                <a href="@Url.Action("Underconstruction","Home")"><h3>IPG Events</h3></a>
+                <a href="@Url.Action("Underconstruction","Home")"><h3>IPG Products</h3></a>
                 <i class="fa fa-facebook"></i>
                 <i class="fa fa-instagram"></i>
                 <i class="fa fa-twitter"></i>

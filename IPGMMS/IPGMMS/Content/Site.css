@@ -114,6 +114,10 @@ p, body {
     p, body {
         font-size: 80%;
     }
+
+    .allowScroll {
+        overflow-x: scroll;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -135,6 +139,10 @@ p, body {
 
     p, body {
         font-size: 70%;
+    }
+
+    .allowScroll {
+        overflow-x: scroll;
     }
 }
 
@@ -179,7 +187,4 @@ p, body {
 
 .navigationLinks {
     color: #000080;
-}
-.allowScroll{
-    overflow-x:scroll;
 }
