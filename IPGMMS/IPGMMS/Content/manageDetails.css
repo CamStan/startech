@@ -1,15 +1,4 @@
-﻿body {
-}
-
-/*img {
-    display: block;
-    margin: 0px 75px;
-    height: auto;
-    max-width: 100%;
-    float: left;
-}*/
-
-.dl-horizontal {
+﻿.dl-horizontal {
     width: auto;
     margin-left: auto;
     display: table-cell;
@@ -26,6 +15,8 @@
     display: table-cell;
 }
 
-/*hr {
-    border-top: 2px solid #eee;
-}*/
+.fa-info-circle {
+    font-size: 75%;
+    vertical-align: top;
+    color: dodgerblue;
+}

@@ -31,7 +31,7 @@ namespace IPGMMS.Controllers
         {
             var members = memberRepo.GetAllMembers;
 
-            int pageSize = 3;
+            int pageSize = 9;
             double pages = Math.Ceiling((double)members.Count() / pageSize);
 
             int pageNum = page ?? 1;

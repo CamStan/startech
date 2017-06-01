@@ -290,6 +290,7 @@
     <Content Include="Content\ManageDetails.css" />
     <Content Include="Content\MapIndex.css" />
     <Content Include="Content\MemberDetails.css" />
+    <Content Include="Content\MemberIndex.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SharedLayout.css" />
     <Content Include="Content\w3.css" />

@@ -1,0 +1,11 @@
+﻿#memberHeader {
+    padding-bottom: 1em;
+}
+
+.memberBlock {
+    padding-bottom: 4em;
+}
+
+.memberBlock h3 {
+    color: mediumblue;
+}

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<IPGMMS.Models.Member>
+﻿<link href="@Url.Content("~/Content/MemberIndex.css")" rel="stylesheet" />
+@model IEnumerable<IPGMMS.Models.Member>
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +13,13 @@
 
 <div class="row col-md-12">
 
-    <center><h2>IPG Members</h2></center>
+    <center><h2 id="memberHeader">IPG Members</h2></center>
 
     <div class="row">
         <!-- Displays each member, their member level, business name, and website -->
         @foreach (var item in Model)
         {
-            <div class="col-md-4">
+            <div class="col-md-4 memberBlock">
                 <center><h3>@Html.ActionLink(item.FullName, "Details", new { ID = item.ID })<br /><small>@Html.DisplayFor(modelItem => item.MemberLevel1.MLevel)</small></h3></center>
                 <div><span>@Html.DisplayNameFor(model => model.BusinessName): </span><span>@Html.DisplayFor(modelItem => item.BusinessName)</span></div>
                 <div><span>@Html.DisplayNameFor(model => model.Website): </span><span><a href="@item.Website" target="_blank">@item.Website</a></span></div>
