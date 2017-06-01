@@ -1,4 +1,9 @@
-﻿function openTab(evt, name) {
+﻿$(document).ready(function () {
+    var b = document.getElementById("firstClick");
+    b.click();
+});
+
+function openTab(evt, name) {
     // Declare the variables
     var i, tabcontent, tablinks;
 

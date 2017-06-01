@@ -180,7 +180,7 @@ namespace IPGMMS.Controllers
             {"Approved Salon", "Salon" },
             {"Approved School", "School" },
             {"Member School", "School" },
-            {"Uncategorized", "Newbie" }
+            {"Uncategorized", "Novice" }
         };
     }
 }
