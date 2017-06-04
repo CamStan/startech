@@ -36,11 +36,13 @@ namespace IPGMMS.Controllers
         /// <returns>returns view and MapJson objects</returns>
         public async Task<ActionResult> Index(string zipCode)
         {
-            // Tower of London zip code -> address = "EC3N 4AB";
+            // Tower of London zip code -> "EC3N 4AB";
             if (zipCode == null)
             {
+                // Default Salem, OR
                 zipCode = "97304";
             }
+            // Get active members with Google readable addresses
             ViewBag.locations = await GetMapInfos();
             ViewBag.center = await GetCenter(zipCode);
             if (ViewBag.center == null)
@@ -62,6 +64,8 @@ namespace IPGMMS.Controllers
             var memberIDs = memberRepo.GetActiveMemberIDs();
 
             List<ContactInfo> listingInfo = new List<ContactInfo>();
+
+            // Tuple memberID, listInfo
             List<Tuple<int, ContactInfo>> tempList = new List<Tuple<int, ContactInfo>>();
 
             for (int i = 0; i < memberIDs.Length; i++)
@@ -81,6 +85,9 @@ namespace IPGMMS.Controllers
                             + tup.Item2.StateName;
                 address = address.Replace(" ", "+");
                 Debug.WriteLine(address);
+
+                // Check to see if the address given will return a valid map
+                // location.
                 MapJson locationCheck = await GetLocation(address);
                 if (locationCheck != null)
                 {
@@ -137,6 +144,11 @@ namespace IPGMMS.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Gets the center location to center the map at that locatoin
+        /// </summary>
+        /// <param name="address">A valid address formatted in an addressy manner</param>
+        /// <returns>MapJson object to center the map</returns>
         private async Task<MapJson> GetCenter(string address)
         {
 
