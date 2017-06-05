@@ -269,12 +269,10 @@
     <Content Include="Content\Forms.css" />
     <Content Include="Content\Homepage.css" />
     <Content Include="Content\Images\avatar_a4be82c62409_128.png" />
-    <Content Include="Content\Images\diggingdog2.jpg" />
     <Content Include="Content\Images\dog-bath-wide.jpg" />
     <Content Include="Content\Images\dog-groom-wide.jpg" />
     <Content Include="Content\Images\doghouse.jpg" />
     <Content Include="Content\Images\dog_digging_outline.jpg" />
-    <Content Include="Content\Images\dog_digging_outline1.jpg" />
     <Content Include="Content\Images\Easton, Linda.jpg" />
     <Content Include="Content\Images\groomers.jpg" />
     <Content Include="Content\Images\grooming.jpg" />

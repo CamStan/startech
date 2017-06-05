@@ -170,6 +170,9 @@ namespace IPGMMS.Controllers
             return View(newMember);
         }
 
+        /// <summary>
+        /// Converts the given Identity Role to a friendly short word.
+        /// </summary>
         Dictionary<String, String> ToAbbr = new Dictionary<string, string>()
         {
             {"Student Member", "Student" },

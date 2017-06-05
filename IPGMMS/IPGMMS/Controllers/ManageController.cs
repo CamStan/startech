@@ -38,7 +38,7 @@ namespace IPGMMS.Controllers
             // check if a user was just redirected to this page after successfully applying to IPG
             bool applied = success ?? false;
             ViewBag.Success = applied;
-            if (applied)                
+            if (applied)
                 ViewBag.SuccessMessage = "Thank you for applying to IPG";
 
             var userId = User.Identity.GetUserId();
@@ -138,31 +138,78 @@ namespace IPGMMS.Controllers
         }
 
         //GET: UpdateMyMailing
-        public ActionResult UpdateContact(int? mail)
+        /// <summary>
+        /// Gets the requested ContactInfo and redirects to the update
+        /// ContactInfo page. 
+        /// </summary>
+        /// <param name="mail">ListingInfo or MailingInfo; the desired contact info</param>
+        /// <returns>ContactInfo model for page.</returns>
+        public ActionResult UpdateContact(string mail)
         {
-            if(mail == null)
+            Member memb = memberRepo.FindByIdentityID(User.Identity.GetUserId());
+            // Pull both ContactInfo out of member object. ContactInfo should 
+            // be in the same order for all member objects but checks are
+            // there to make sure it is.
+            ContactInfo firstInfo;
+            ContactInfo secondInfo;
+            // Prevents a null ContactInfo from being sent to view.
+            ContactInfo NULL = new ContactInfo
             {
-                return RedirectToAction("Index", "Home");
-            }
-            ContactInfo mailInfo = contactRepo.Find(mail);
+                Email = "no value",
+                PhoneNumber = "5555551234",
+                StreetAddress = "There's none listed",
+                City = "Nowhere",
+                StateName = "Nope",
+                Country = "NO",
+                PostalCode = "55555"
+            };
 
-            if(mailInfo == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
+            // Try in case the requested contactinfo is null.
             try
             {
-                // This will throw an exception if null
-                ViewBag.IsMailing = mailInfo.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing" ? true : false;
+                firstInfo = (ContactInfo)memb.Contacts.FirstOrDefault().ContactInfo;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                //It should only be null during unit tests.
+                firstInfo = NULL;
+            }
+            try
+            {
+                secondInfo = (ContactInfo)memb.Contacts.ElementAt(1).ContactInfo;
+            }
+            catch (System.Exception)
+            {
+                secondInfo = NULL;
+            }
+
+            // We have the info, send back what is requetsted.
+            if(mail == "MailingInfo")
+            {
+                ViewBag.IsMailing = true;
+                if (memb.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing")
+                {
+                    return View(firstInfo);
+                }
+                else
+                {
+                    return View(secondInfo);
+                }
+            }
+
+            if (mail == "ListingInfo")
+            {
                 ViewBag.IsMailing = false;
+                if (memb.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing")
+                {
+                    return View(secondInfo);
+                }
+                else
+                {
+                    return View(firstInfo);
+                }
             }
             
-            return View(mailInfo);
+            return View("Index", "Home");
         }
 
         //Post: UpdateMyMailing()
@@ -174,51 +221,47 @@ namespace IPGMMS.Controllers
             if (ModelState.IsValid)
             {
                 contactRepo.InsertorUpdate(mailInfo);
-                
+
                 return RedirectToAction("Index");
             }
             var id = mailInfo.ID;
             return RedirectToAction("UpdateMyMailing", id);
         }
 
+        /// <summary>
+        /// Gets the member info based on the currently logged in Member.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UpdateMyInfo()
+        {
+            // Find membernumber by the user that is currently logged in.
+            // Prevents abuse due to an exposed member ID.
+            var test = User.Identity.GetUserId();
+            Member memb = memberRepo.FindByIdentityID(User.Identity.GetUserId());
 
-       // GET
-       public ActionResult UpdateMyInfo(int? memID)
-       {
-           if (memID == null)
-           {
-               return View(Request.UrlReferrer.ToString());
-           }
-           if (memberRepo.Find(memID) == null)
-           {
-               return View(Request.UrlReferrer.ToString());
-           }
+            return View(memb);
+        }
 
-           var memb = memberRepo.Find(memID);
+        /// <summary>
+        /// This method is the POST for UpdateMyInfo(). 
+        /// This method will save updates to the database and return the user to the Index page to view 
+        /// their changes.
+        /// </summary>
+        /// <param name="memb">Member object</param>
+        /// <returns>If the model state is valid, this returns the user back to the Index view
+        /// if it is not valid, it returns the user to the UpdateMyInfo view with the Model given.</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateMyInfo(Member memb)
+        {
+            if (ModelState.IsValid)
+            {
+                memberRepo.InsertorUpdate(memb);
+                return RedirectToAction("Index");
+            }
+            return View(memb);
+        }
 
-           return View(memb);
-       }
-
-       /// <summary>
-       /// This method is the POST for UpdateMyInfo(). 
-       /// This method will save updates to the database and return the user to the Index page to view 
-       /// their changes.
-       /// </summary>
-       /// <param name="memb">Member object</param>
-       /// <returns>If the model state is valid, this returns the user back to the Index view
-       /// if it is not valid, it returns the user to the UpdateMyInfo view with the Model given.</returns>
-       [HttpPost]
-       [ValidateAntiForgeryToken]
-       public ActionResult UpdateMyInfo(Member memb)
-       {
-           if (ModelState.IsValid)
-           {
-               memberRepo.InsertorUpdate(memb);
-               return RedirectToAction("Index");
-           }
-           return View(memb);
-       }
-      
 
 
 
@@ -468,17 +511,6 @@ namespace IPGMMS.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing && _userManager != null)
-        //    {
-        //        _userManager.Dispose();
-        //        _userManager = null;
-        //    }
-
-        //    base.Dispose(disposing);
-        //}
 
         #region Helpers
         // Used for XSRF protection when adding external logins

@@ -9,6 +9,7 @@ namespace IPGMMS.Controllers
     
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -33,6 +34,11 @@ namespace IPGMMS.Controllers
             return View();
         }
         
+        /// <summary>
+        /// Point to this method for any links that currently do not have a 
+        /// page associated with them. 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult UnderConstruction()
         {
             return View();
