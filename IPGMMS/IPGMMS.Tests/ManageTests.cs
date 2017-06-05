@@ -69,6 +69,29 @@ namespace IPGMMS.Tests.DependencyTests
                     }
                 });
 
+                        memberMock.Setup(m => m.FindByIdentityID("userName2"))
+                .Returns(
+                new Member
+                {
+                    ID = 2,
+                    Membership_Number = "0202020",
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    Identity_ID = "userName2",
+                    Contacts = new List<Contact>
+                    {
+                        new Contact
+                            { ID = 3, ContactInfo = new ContactInfo { ID = 3, Country = "US" }, ContactType = new ContactType { ContactType1 = "Listing" } },
+                        new Contact
+                            { ID = 4, ContactInfo = new ContactInfo { ID = 4, Country = "US" }, ContactType = new ContactType { ContactType1 = "Mailing" } }
+                    }
+                });
+        }
+
+        [Test]
+        // Test if UpdateMyInfo() finds the proper member id from User.
+        public void Manage_Test_UpdateMyInfo_Valid()
+        {
             // This is the Identity Name
             var identity = new GenericIdentity("userName", "");
             // This is the Identity ID
@@ -81,13 +104,6 @@ namespace IPGMMS.Tests.DependencyTests
             // This is needed to get the User into the Mock environment.
             mockContext.SetupGet(x => x.HttpContext.User).Returns(mockPrincipal.Object);
 
-        }
-
-        [Test]
-        // Test if UpdateMyInfo() finds the proper member id from User.
-        public void Manage_Test_UpdateMyInfo_Valid()
-        {
-
             var controller = new ManageController(memberMock.Object, contactMock.Object);
             controller.ControllerContext = mockContext.Object;
 
@@ -97,10 +113,24 @@ namespace IPGMMS.Tests.DependencyTests
             Assert.AreEqual(member.ID, 1);
             Assert.AreEqual(member.Identity_ID, "userName");
         }
+
         [Test]
-        // Tests if UpdateContact returns valid contactinfo object
+        // Tests if UpdateContact returns valid contactinfo object with the
+        // mailing info first.
         public void Manage_Test_UpdateContact_Valid()
         {
+            // This is the Identity Name
+            var identity = new GenericIdentity("userName", "");
+            // This is the Identity ID
+            var nameidentifierClaim = new Claim(ClaimTypes.NameIdentifier, "userName");
+            identity.AddClaim(nameidentifierClaim);
+            mockPrincipal.Setup(p => p.IsInRole("Administrator")).Returns(true);
+            mockPrincipal.Setup(x => x.Identity).Returns(identity);
+            mockPrincipal.Setup(x => x.IsInRole(It.IsAny<string>())).Returns(true);
+
+            // This is needed to get the User into the Mock environment.
+            mockContext.SetupGet(x => x.HttpContext.User).Returns(mockPrincipal.Object);
+
             var controller = new ManageController(memberMock.Object, contactMock.Object);
             controller.ControllerContext = mockContext.Object;
 
@@ -108,6 +138,34 @@ namespace IPGMMS.Tests.DependencyTests
             var contact = (ContactInfo)result.ViewData.Model;
 
             Assert.AreEqual(contact.ID, 2);
+            Assert.AreEqual(contact.Country, "US");
+
+        }
+
+        [Test]
+        // Tests if UpdateContact returns valid contactinfo object with the 
+        // listing info first
+        public void Manage_Test_UpdateContact_ContactInfo_Reveresed_Valid()
+        {
+            // This is the Identity Name
+            var identity = new GenericIdentity("userName2", "");
+            // This is the Identity ID
+            var nameidentifierClaim = new Claim(ClaimTypes.NameIdentifier, "userName2");
+            identity.AddClaim(nameidentifierClaim);
+            mockPrincipal.Setup(p => p.IsInRole("Administrator")).Returns(true);
+            mockPrincipal.Setup(x => x.Identity).Returns(identity);
+            mockPrincipal.Setup(x => x.IsInRole(It.IsAny<string>())).Returns(true);
+
+            // This is needed to get the User into the Mock environment.
+            mockContext.SetupGet(x => x.HttpContext.User).Returns(mockPrincipal.Object);
+
+            var controller = new ManageController(memberMock.Object, contactMock.Object);
+            controller.ControllerContext = mockContext.Object;
+
+            var result = controller.UpdateContact("ListingInfo") as ViewResult;
+            var contact = (ContactInfo)result.ViewData.Model;
+
+            Assert.AreEqual(contact.ID, 3);
             Assert.AreEqual(contact.Country, "US");
 
         }
