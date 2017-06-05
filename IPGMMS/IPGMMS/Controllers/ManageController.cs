@@ -182,6 +182,7 @@ namespace IPGMMS.Controllers
                 secondInfo = NULL;
             }
 
+            // We have the info, send back what is requetsted.
             if(mail == "MailingInfo")
             {
                 ViewBag.IsMailing = true;

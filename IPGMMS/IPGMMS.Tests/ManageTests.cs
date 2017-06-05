@@ -50,7 +50,7 @@ namespace IPGMMS.Tests.DependencyTests
                     Email = "Some@mail.com",
                 });
 
-
+            // userName is the Identity_ID.
             memberMock.Setup(m => m.FindByIdentityID("userName"))
                 .Returns(
                 new Member
@@ -69,7 +69,8 @@ namespace IPGMMS.Tests.DependencyTests
                     }
                 });
 
-                        memberMock.Setup(m => m.FindByIdentityID("userName2"))
+            // userName2 is the Identity_ID
+            memberMock.Setup(m => m.FindByIdentityID("userName2"))
                 .Returns(
                 new Member
                 {
@@ -92,8 +93,12 @@ namespace IPGMMS.Tests.DependencyTests
         // Test if UpdateMyInfo() finds the proper member id from User.
         public void Manage_Test_UpdateMyInfo_Valid()
         {
+            // Setups up the User that is logged in. This needs to be added
+            // to each test that uses a logged in member if multiple members
+            // are to be checked.
+
             // This is the Identity Name
-            var identity = new GenericIdentity("userName", "");
+            var identity = new GenericIdentity("lliB", "");
             // This is the Identity ID
             var nameidentifierClaim = new Claim(ClaimTypes.NameIdentifier, "userName");
             identity.AddClaim(nameidentifierClaim);
@@ -119,8 +124,12 @@ namespace IPGMMS.Tests.DependencyTests
         // mailing info first.
         public void Manage_Test_UpdateContact_Valid()
         {
+            // Setups up the User that is logged in. This needs to be added
+            // to each test that uses a logged in member if multiple members
+            // are to be checked.
+
             // This is the Identity Name
-            var identity = new GenericIdentity("userName", "");
+            var identity = new GenericIdentity("enaJ", "");
             // This is the Identity ID
             var nameidentifierClaim = new Claim(ClaimTypes.NameIdentifier, "userName");
             identity.AddClaim(nameidentifierClaim);
@@ -147,6 +156,10 @@ namespace IPGMMS.Tests.DependencyTests
         // listing info first
         public void Manage_Test_UpdateContact_ContactInfo_Reveresed_Valid()
         {
+            // Setups up the User that is logged in. This needs to be added
+            // to each test that uses a logged in member if multiple members
+            // are to be checked.
+
             // This is the Identity Name
             var identity = new GenericIdentity("userName2", "");
             // This is the Identity ID
