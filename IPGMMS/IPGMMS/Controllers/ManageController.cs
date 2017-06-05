@@ -235,6 +235,7 @@ namespace IPGMMS.Controllers
         {
             // Find membernumber by the user that is currently logged in.
             // Prevents abuse due to an exposed member ID.
+            var test = User.Identity.GetUserId();
             Member memb = memberRepo.FindByIdentityID(User.Identity.GetUserId());
 
             return View(memb);
