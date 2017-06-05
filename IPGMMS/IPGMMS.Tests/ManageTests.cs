@@ -26,7 +26,7 @@ namespace IPGMMS.Tests.DependencyTests
         private Mock<IContactRepository> contactMock;
         private Mock<IPrincipal> mockPrincipal;
         private Mock<ControllerContext> mockContext;
-        
+
         [SetUp]
         public void SetupManageMock()
         {
@@ -50,14 +50,6 @@ namespace IPGMMS.Tests.DependencyTests
                     Email = "Some@mail.com",
                 });
 
-            var contactInfo1 = new ContactInfo { ID = 1, Country = "US" };
-            var contactInfo2 = new ContactInfo { ID = 2, Country = "US" };
-            var contactType1 = new ContactType { ContactType1 = "Mailing" };
-            var contactType2 = new ContactType { ContactType1 = "Listing" };
-            var contact1 = new Contact { ID = 1, ContactInfo = contactInfo1, ContactType = contactType1 };
-            var contact2 = new Contact { ID = 2, ContactInfo = contactInfo2, ContactType = contactType2 };
-            ICollection<Contact> contacts = new List<Contact> { contact1, contact2 };
-
 
             memberMock.Setup(m => m.FindByIdentityID("userName"))
                 .Returns(
@@ -68,7 +60,13 @@ namespace IPGMMS.Tests.DependencyTests
                     FirstName = "Bill",
                     LastName = "Saw",
                     Identity_ID = "userName",
-                    Contacts = contacts
+                    Contacts = new List<Contact>
+                    {
+                        new Contact
+                            { ID = 1, ContactInfo = new ContactInfo { ID = 1, Country = "US" }, ContactType = new ContactType { ContactType1 = "Mailing" } },
+                        new Contact
+                            { ID = 2, ContactInfo = new ContactInfo { ID = 2, Country = "US" }, ContactType = new ContactType { ContactType1 = "Listing" } }
+                    }
                 });
 
             // This is the Identity Name
