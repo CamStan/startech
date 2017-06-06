@@ -6,7 +6,10 @@ using System.Web.Mvc;
 
 namespace IPGMMS.Controllers
 {
-    
+    /// <summary>
+    /// Most pages in this controller are HTML information pages,
+    /// Keep action methods in an appropriate controller.
+    /// </summary>
     public class HomeController : Controller
     {
 
@@ -17,15 +20,11 @@ namespace IPGMMS.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult FAQ()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
