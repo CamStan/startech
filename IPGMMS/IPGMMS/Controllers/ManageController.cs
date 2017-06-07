@@ -185,7 +185,7 @@ namespace IPGMMS.Controllers
             }
 
             // We have the info, send back what is requetsted.
-            if(mail == "MailingInfo")
+            if (mail == "MailingInfo")
             {
                 ViewBag.IsMailing = true;
                 if (memb.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing")
@@ -210,7 +210,7 @@ namespace IPGMMS.Controllers
                     return View(firstInfo);
                 }
             }
-            
+
             return View("Index", "Home");
         }
 
@@ -222,12 +222,12 @@ namespace IPGMMS.Controllers
             ViewBag.IsMailing = (bool)TempData["IsMailing"];
 
             if (ModelState.IsValid)
-             {
+            {
                 contactRepo.InsertorUpdate(mailInfo);
 
                 return RedirectToAction("Index");
             }
-            
+
             return View(mailInfo);
         }
 
