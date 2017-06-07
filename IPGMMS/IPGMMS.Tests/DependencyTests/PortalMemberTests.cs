@@ -112,7 +112,8 @@ namespace IPGMMS.Tests.DependencyTests
                 new Member { ID = 1, FirstName = "Wolverine", Membership_Number = null, Identity_ID = "ABC123" },
                 new ContactInfo { ID = 1, Country = "AU", City = "Salem" });
             s = s.Substring(0, s.Length - 1);
-            Assert.AreEqual("0111124", s);
+            // Since noone is from AU, the base number '0000000' has 2000 added to it
+            Assert.AreEqual("0020001", s);
         }
 
         [Test]

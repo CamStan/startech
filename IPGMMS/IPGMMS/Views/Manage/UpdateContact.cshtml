@@ -8,6 +8,9 @@
 
 <h2>Update My Contact Information</h2>
 
+@* This is used to pass the value IsMailing back incase the model is invalid
+    during the post method*@
+@{ TempData["IsMailing"] = ViewBag.IsMailing; }
 
 @using (Html.BeginForm())
 {
