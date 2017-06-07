@@ -183,48 +183,49 @@ namespace IPGMMS.Tests.DependencyTests
 
         }
 
-        //[Test]
-        // Tests if contact ID is null, should return to home/index page
-        //public void Manage_Test_UpdateContact_Invalid()
-        //{
-        //    var controller = new ManageController(memberMock.Object, contactMock.Object);
+        [Test]
+        // Test to check if UpdateContact returns to Manage Index after update.
+        public void Manage_Test_UpdateContact_Successful()
+        {
+            // Setups up the User that is logged in. This needs to be added
+            // to each test that uses a logged in member if multiple members
+            // are to be checked.
 
-        //    // Need the (int?) conversion to resolve ambiguity of UpdateContact method overload
-        //    // There's also a post method that takes a ContactInfo object.
-        //    // This just tests the get method.
-        //    var result = controller.UpdateContact((int?)null);
+            // This is the Identity Name
+            var identity = new GenericIdentity("userName2", "");
+            // This is the Identity ID
+            var nameidentifierClaim = new Claim(ClaimTypes.NameIdentifier, "userName2");
+            identity.AddClaim(nameidentifierClaim);
+            mockPrincipal.Setup(p => p.IsInRole("Administrator")).Returns(true);
+            mockPrincipal.Setup(x => x.Identity).Returns(identity);
+            mockPrincipal.Setup(x => x.IsInRole(It.IsAny<string>())).Returns(true);
 
-        //    // We make sure that it is of the right type.
-        //    Assert.That(result, Is.InstanceOf<RedirectToRouteResult>());
+            // This is needed to get the User into the Mock environment.
+            mockContext.SetupGet(x => x.HttpContext.User).Returns(mockPrincipal.Object);
 
-        //    // Cast it as that type for proper object values.
-        //    RedirectToRouteResult resultCast = (RedirectToRouteResult)result;
+            var controller = new ManageController(memberMock.Object, contactMock.Object);
+            controller.ControllerContext = mockContext.Object;
 
-        //    // RouteValues is a dictionary, check the key.
-        //    // "Index" is what we want it to be. RouteValues["action"] is the key
-        //    Assert.AreEqual("Index", resultCast.RouteValues["action"].ToString());
-        //    Assert.AreEqual("Home", resultCast.RouteValues["controller"].ToString());
-        //}
+            var result = controller.UpdateContact("ListingInfo") as ViewResult;
+            var contact = (ContactInfo)result.ViewData.Model;
 
-        //[Test]
-        //// Test to check if UpdateContact returns to Manage Index after update.
-        //public void Manage_Test_UpdateContact_Successful()
-        //{
-        //    var controller = new ManageController(memberMock.Object, contactMock.Object);
-        //    var result = controller.UpdateContact(1) as ViewResult;
-        //    var contact = (ContactInfo)result.ViewData.Model;
+            // Since the Unit Test bypasses the HTMl, the TempData must be set
+            // here in order for the method to be able to read it.
+            TempDataDictionary tempData = new TempDataDictionary();
+            tempData.Add("IsMailing", false);
+            controller.TempData = tempData;
 
-        //    var result2 = controller.UpdateContact(contact);
+            var result2 = controller.UpdateContact(contact);
 
-        //    // Make sure that it is of the right type.
-        //    Assert.That(result2, Is.InstanceOf<RedirectToRouteResult>());
+            // Make sure that it is of the right type.
+            Assert.That(result2, Is.InstanceOf<RedirectToRouteResult>());
 
-        //    // Cast it as that type for proper object values
-        //    RedirectToRouteResult result2Cast = (RedirectToRouteResult)result2;
+            // Cast it as that type for proper object values
+            RedirectToRouteResult result2Cast = (RedirectToRouteResult)result2;
 
-        //    // RouteValues is a dictionary, check the key.
-        //    // "Index" is what we want it to be. RouteValues["action"] is the key
-        //    Assert.AreEqual("Index", result2Cast.RouteValues["action"].ToString());
-        //}
+            // RouteValues is a dictionary, check the key.
+            // "Index" is what we want it to be. RouteValues["action"] is the key
+            Assert.AreEqual("Index", result2Cast.RouteValues["action"].ToString());
+        }
     }
 }
