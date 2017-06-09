@@ -35,8 +35,14 @@ namespace IPGMMS.Tests.DependencyTests
                     new Member {ID = 1, FirstName = "Tom", LastName = "Solomon"},
                     new Member {ID = 2, FirstName = "Dick", LastName = "Solomon" },
                     new Member {ID = 3, FirstName = "Harry", LastName = "Solomon" },
-                    new Member {ID = 4, FirstName = "Sally", LastName = "Solomon"},
-                    new Member {ID = 5, FirstName = "Mary", LastName = "Albright" }
+                    new Member {ID = 4, FirstName = "Liz", LastName = "Lemon"},
+                    new Member {ID = 5, FirstName = "Jenna", LastName = "Maroney" },
+                    new Member {ID = 6, FirstName = "Tracy", LastName = "Jordan" },
+                    new Member {ID = 7, FirstName = "Diana", LastName = "Prince"},
+                    new Member {ID = 8, FirstName = "Clark", LastName = "Kent" },
+                    new Member {ID = 9, FirstName = "Bruce", LastName = "wayne" },
+                    new Member {ID = 10, FirstName = "Sally", LastName = "Solomon"},
+                    new Member {ID = 11, FirstName = "Mary", LastName = "Albright" }
                 });
             
 
@@ -107,10 +113,16 @@ namespace IPGMMS.Tests.DependencyTests
             List<Member> m = (List<Member>)mem.Model;
             Member[] members = m.ToArray();
 
-            Assert.IsTrue(members.Length == 3);
+            Assert.IsTrue(members.Length == 9);
             Assert.AreEqual(members[0].FirstName, "Tom");
             Assert.AreEqual(members[1].FirstName, "Dick");
             Assert.AreEqual(members[2].FirstName, "Harry");
+            Assert.AreEqual(members[3].FirstName, "Liz");
+            Assert.AreEqual(members[4].FirstName, "Jenna");
+            Assert.AreEqual(members[5].FirstName, "Tracy");
+            Assert.AreEqual(members[6].FirstName, "Diana");
+            Assert.AreEqual(members[7].FirstName, "Clark");
+            Assert.AreEqual(members[8].FirstName, "Bruce");
         }
 
         [Test]
