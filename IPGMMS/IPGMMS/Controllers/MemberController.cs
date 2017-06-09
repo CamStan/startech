@@ -57,7 +57,7 @@ namespace IPGMMS.Controllers
         {
             if (!ID.HasValue)
             {
-                ID = 5;
+                ID = 5; // default member (probably should change this
             }
 
             Member memb;
@@ -80,21 +80,27 @@ namespace IPGMMS.Controllers
                 Console.WriteLine(e.StackTrace);
             }
 
+            // viewModel for the member to display details for
             MemberDetails memDet = new MemberDetails();
             memDet.Contact = cont;
 
             memDet.MemberLevelbyInt = memb.MemberLevel;
+
+            //get the abbreviated member level
             string abbr;
             ToAbbr.TryGetValue(memb.MemberLevel1.MLevel, out abbr);
             memDet.LevelAbbrev = ", " + abbr;
+
             memDet.FullName = memb.FullName;
             memDet.BusinessName = memb.BusinessName;
+
+            // if not a student member, list business and website
             if (memb.MemberLevel > 1)
             {
                 memDet.MemberLevel = memb.MemberLevel1.MLevel;
                 memDet.Website = memb.Website;
             }
-            else
+            else // list the school the student attends
             {
                 // We have no schools set in database. Maybe require students
                 // to list their school as the business name.
@@ -119,6 +125,7 @@ namespace IPGMMS.Controllers
         public ActionResult Apply()
         {
             var userID = User.Identity.GetUserId();
+            // if statement to only allow users that haven't already applied to access the application page
             if (memberRepo.FindByIdentityID(userID) == null) // current Identity user doesn't already have an associated IPG account/application
             {
                 MemberInfoViewModel newMember = new MemberInfoViewModel();
