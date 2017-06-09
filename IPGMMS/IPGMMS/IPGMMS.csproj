@@ -258,6 +258,7 @@
     <Content Include="App_Data\auth.sql" />
     <Content Include="App_Data\tableCreation.sql" />
     <Content Include="App_Data\TableInserts.sql" />
+    <Content Include="App_Data\TableTearDown.sql" />
     <Content Include="Content\AdminPortalSharedLayout.css" />
     <Content Include="Content\Apply.css" />
     <Content Include="Content\bootstrap-theme.css" />
