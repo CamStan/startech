@@ -201,7 +201,7 @@ namespace IPGMMS.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByEmailAsync(model.Email);
-                if (user == null)
+                if (user == null || user.EmailConfirmed)
                 {
                     ViewBag.Message = "Your email confirmation has been resent. Please check your email and confirm your account.";
                     return View("Info");
