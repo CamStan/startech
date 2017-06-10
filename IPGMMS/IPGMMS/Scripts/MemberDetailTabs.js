@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿// Open the default tab (as choosen in HTML) when document is ready
+$(document).ready(function () {
     var b = document.getElementById("firstClick");
     b.click();
 });

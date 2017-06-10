@@ -23,4 +23,16 @@ function w3_close_bar() {
     adminPortalBar.style.display = "none";
 }
 
+// If a user clicks anywhere but the divs classed as navButton close sideNav
+// If they click on the navButton elements, open sideNave. This is needed
+// so the click event doesn't get ate.
+$(document).click(function (event) {
+    if ($(event.target).is('.navButton')) {
+        w3_open();
+    }
+    if (!$(event.target).is('.navButton')) {
+        w3_close();
+    }
+});
+
 
