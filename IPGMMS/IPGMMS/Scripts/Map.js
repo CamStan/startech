@@ -1,14 +1,17 @@
-﻿var map;
+﻿// Persistant variables 
+var map;
 var markers = [];
 var markersInSight = [];
 var center; 
 
+// Get value from the text box.
 document.getElementById("zipCode").addEventListener('click', function () {
     document.getElementById("zipCode").value = "";
 });
 
 
 function initMap() {
+    // Center - this value comes from the controller
     center = new google.maps.LatLng({
         lat: centerRaw.results[0].geometry.location.lat,
         lng: centerRaw.results[0].geometry.location.lng
@@ -33,9 +36,12 @@ function initMap() {
         geocodeAddress(geocoder, map);
     });
 
+    // Popup window when a marker is clicked.
     var largeInfowindow = new google.maps.InfoWindow();
 
     map.setCenter(center);
+
+    // Customize the center marker
     var marker = new google.maps.Marker({
         icon: {
             path: google.maps.SymbolPath.CIRCLE,
@@ -47,6 +53,10 @@ function initMap() {
         position: center,
         title: 'Center of Postal Code'
     });
+    /* Make the center marker the very first marker in the array 
+        This will also mean that all location markers will start
+        at index 1
+    */
     markers.push(marker);
     for (var i = 0; i < arry.length; i++) {
         // Get longitude and latitude
@@ -72,6 +82,7 @@ function initMap() {
     map.addListener('zoom_changed', updateSearch);
     map.addListener('tilesloaded', updateSearch);
 
+    // Remove and add markers as the map is done moving
     function updateSearch() {
         markersInSight = [];
         var bounds = map.getBounds();
@@ -83,7 +94,10 @@ function initMap() {
             }
         }
         if (markersInSight.length > 0) {
+            // The distance to each marker from center is not stored in the
+            // marker so we must calculate it 
             markersInSight.sort(function (a, b) { return findMileage(a) - findMileage(b) });
+            // Write the HTML to display the search results
             for (var j = 0; j < markersInSight.length; j++) {
                 var markerInSight = markersInSight[j];
                 inViewResults += createDiv(markerInSight);
@@ -91,6 +105,7 @@ function initMap() {
         }
         
         $("#searchResults").empty();
+        // if there's no markers shown on the map, use the default message
         if (inViewResults == "") {
             inViewResults = getMessageBox();
         }
@@ -103,7 +118,7 @@ function geocodeAddress(geocoder, resultsMap) {
     var zipCode = document.getElementById('zipCode').value;
     if (zipCode == "")
     {
-        zipCode = "97304";
+        zipCode = "97304"; // Default to the IPG HQ in Salem, OR
     }
     geocoder.geocode({ 'address': zipCode }, function (results, status) {
         if (status == 'OK') {
@@ -112,8 +127,6 @@ function geocodeAddress(geocoder, resultsMap) {
             resultsMap.setCenter(results[0].geometry.location);
             markers[0].setPosition(results[0].geometry.location);
         } else {
-            // alert('Postal code was not found for the following reason: '
-            //     + status);
             alert('Enter a valid address, partial address or postal code');
         }
     });
@@ -139,6 +152,7 @@ function createContent(marker) {
 
     // Piece together string. Check if item has
     // a name and website, exclude if it doesn't.
+    // First line of text
     if (business.BusinessName != "" && business.BusinessName != null) {
         contentLine = '<div class="infowindow"><div class="business">'
                     + business.BusinessName + '</div>';
@@ -150,7 +164,9 @@ function createContent(marker) {
         } else {
             contentLine = '<div class="infowindow">';
         }
+
     // Address should always be present
+    // Second line of text
     contentLine += '<div class="address">'
                 + business.Address1
                 + '</div>'
@@ -158,6 +174,7 @@ function createContent(marker) {
                 + business.Address2
                 + '</div>';
     // Check to see if website is empty or null
+    // Third line of text
     if (business.Website != "" && business.Website != null) {
         contentLine += '<div class="site-link"><a href=' + business.Website + '>Visit their website!</a></div></div>'
     } else {
@@ -204,7 +221,7 @@ function createDiv(marker) {
     // Close off name and address column.
     contentLine += '</div></a>';
 
-    // Further contact information
+    // Further contact information (Middle Column)
     contentLine += "<div class='col-sm-4'>";
     if (business.PhoneNumber != "" && business.PhoneNumber != null) {
         contentLine += "<div class='PhoneNumber'>"
@@ -226,7 +243,6 @@ function createDiv(marker) {
                      + business.Website + '>'
                      + business.Website
                      + "</a></div>";
-        //<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>
     } else {
         contentLine += '<div><br /></div>';
     }
@@ -236,7 +252,7 @@ function createDiv(marker) {
     // Compute approximate distance from center to marker without Google
     var distance = findMileage(marker);
 
-    // Display in box by first making third column.
+    // Display distance (Third Column)
     contentLine += "<a href=" + "'/Member/Details/" + business.MemberID.toString() + "'>";
     contentLine += "<div class='col-sm-4'>";
     //contentLine += "<div><br /></div>";
@@ -260,11 +276,11 @@ function findMileage(marker) {
     var centerLng = center.lng();
     var destLng = marker.getPosition().lng();
     var lngDifRad = degToRads(destLng - centerLng);
-    var earthRad = 6371;
+    var earthRad = 6371;  //Replace with 3959 if want to display miles.
 
     var dist = Math.acos(Math.sin(centerLat) * Math.sin(destLat) + Math.cos(centerLat) * Math.cos(destLat) * Math.cos(lngDifRad)) * earthRad;
 
-    return Math.ceil(dist);
+    return Math.ceil(dist);  // Round up to nearest whole number
 }
 
 //convert degress to radians
