@@ -257,32 +257,32 @@ namespace IPGMMS.Controllers
         // Test & Certification section to be added to later when time permits.
         public ActionResult ListTests()
         {
-            return View("ListTests");
+            return RedirectToAction("UnderConstruction", "Home");
         }
 
         public ActionResult AddTest()
         {
-            return View("AddTest");
+            return RedirectToAction("UnderConstruction", "Home");
         }
 
         public ActionResult ListCertifications()
         {
-            return View("ListCertifications");
+            return RedirectToAction("UnderConstruction", "Home");
         }
 
         public ActionResult DetailCertification()
         {
-            return View("DetailCertification");
+            return RedirectToAction("UnderConstruction", "Home");
         }
 
         public ActionResult AddCertification()
         {
-            return View("AddCertification");
+            return RedirectToAction("UnderConstruction", "Home");
         }
 
         public ActionResult UpdateCertification()
         {
-            return View("UpdateCertification");
+            return RedirectToAction("UnderConstruction","Home");
         }
 
 
