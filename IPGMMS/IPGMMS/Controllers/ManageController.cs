@@ -21,9 +21,17 @@ namespace IPGMMS.Controllers
             memberRepo = mRepo;
             contactRepo = cRepo;
         }
-
-        //
+        
         // GET: /Manage/Index
+        /// <summary>
+        /// This will be the member's private details page.
+        /// This should display a message after an identity change, 
+        /// and should allow for the linking of identity to DB member.
+        /// If member is already linked a viewmodel containing all their information will be passed back to view.
+        /// </summary>
+        /// <param name="message">optional ManageMessageID The message to be displayed for the user after some change</param>
+        /// <param name="success">optional bool if a member has successfully linked an account</param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(ManageMessageId? message, bool? success = false)
         {
             ViewBag.StatusMessage =
@@ -64,7 +72,17 @@ namespace IPGMMS.Controllers
             return View(modelCompound);
 
         }
-
+        /// <summary>
+        /// This will be the member's private details page.
+        /// This should display a message after an identity change.
+        /// and should allow for the linking of identity to DB member.
+        /// If member is already linked a viewmodel containing all their information will be passed back to view.
+        /// </summary>
+        /// <param name="modelCompound">MemberIdentityInfoViewModel containing all the member detailed information</param>
+        /// <param name="form"></param>
+        /// <param name="message">optional ManageMessageID The message to be displayed for the user after some change</param>
+        /// <param name="success">optional bool if a member has successfully linked an account</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(MemberIdentityInfoViewModel modelCompound, FormCollection form, ManageMessageId? message, bool? success = false)
