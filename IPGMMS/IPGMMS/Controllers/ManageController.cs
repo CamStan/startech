@@ -29,8 +29,8 @@ namespace IPGMMS.Controllers
         /// and should allow for the linking of identity to DB member.
         /// If member is already linked a viewmodel containing all their information will be passed back to view.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="success"></param>
+        /// <param name="message">optional ManageMessageID The message to be displayed for the user after some change</param>
+        /// <param name="success">optional bool if a member has successfully linked an account</param>
         /// <returns></returns>
         public async Task<ActionResult> Index(ManageMessageId? message, bool? success = false)
         {
@@ -78,10 +78,10 @@ namespace IPGMMS.Controllers
         /// and should allow for the linking of identity to DB member.
         /// If member is already linked a viewmodel containing all their information will be passed back to view.
         /// </summary>
-        /// <param name="modelCompound"></param>
+        /// <param name="modelCompound">MemberIdentityInfoViewModel containing all the member detailed information</param>
         /// <param name="form"></param>
-        /// <param name="message"></param>
-        /// <param name="success"></param>
+        /// <param name="message">optional ManageMessageID The message to be displayed for the user after some change</param>
+        /// <param name="success">optional bool if a member has successfully linked an account</param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]

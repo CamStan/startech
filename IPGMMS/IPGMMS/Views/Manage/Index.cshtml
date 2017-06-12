@@ -12,20 +12,25 @@
 }
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div class="w3-row">
+<!-- Main Content Body -->
 
+<div class="w3-row">
+    <!-- If Account is linked this will display -->
     @if (Model.MemberInfo != null)
     {
 
+        <!-- Left Col -->
         <div class="w3-col m4">
             <div class="w3-card-2 w3-round w3-light-gray">
                 <div class="w3-container">
 
                     <h2>Details for @User.Identity.Name</h2>
-                    <hr>
+                    <hr>                    
+                    <!-- User Profile Picture -->
                     <p class="w3-center">
                         <img src="~/Content/Images/avatar_a4be82c62409_128.png" class="w3-circle" alt="Spanish_Inquisition" />
                     </p>
+                    <!-- User Member Information -->
                     <dl class="dl-horizontal">
                         <dt>@Html.DisplayNameFor(model => model.MemberInfo.FullName)</dt>
                         <dd>@Html.DisplayFor(model => model.MemberInfo.FullName)</dd>
@@ -39,28 +44,35 @@
                         <dd>@Html.DisplayFor(model => model.MemberInfo.Membership_ExpirationDate)</dd>
                     </dl>
                     <br />
+                    <!-- Update Member Info Link -->
                     <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("UpdateMyInfo")'"><i class="fa fa-vcard"></i> Update Info  <a href="#" data-toggle="tooltip" title="Update your information, such as Business Name and Website."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
                     <br />
                     <br />
+                    <!-- Check if user has password -->
                     @if (Model.IdentityInfo.HasPassword)
                     {
+                        <!-- Update User Password Link -->
                         <button class="w3-btn w3-round w3-ripple w3-small editButton" onclick="location.href=  '@Url.Action("ChangePassword")'"><i class="fa fa-unlock-alt"></i> Change Password  <a href="#" data-toggle="tooltip" title="Private info only available to IPG. Please see our privacy aggreement for more details."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
 
                     }
                     else
                     {
+                        <!-- Set User Password Link -->
                         @Html.ActionLink("Create", "SetPassword")
                     }
                     <br /><br />
                 </div>
-            </div>
+            </div>            
+            <!-- View Member Public Page -->
             <div class="w3-card-2 w3-round w3-blue w3-margin w3-hover-light-blue" onclick="location.href= '@Url.Action("Details","Member", new { ID = Model.MemberInfo.ID })'">
                 <div class="w3-container w3-center">
                     View My Profile
                 </div>
             </div>
         </div>
+        <!-- Center/Right Col -->
         <div class="w3-col m8">
+            <!-- Business/Website Block -->
             <div class="w3-row-padding">
                 <div class="w3-col m12">
                     <div class="w3-card-2 w3-round w3-gray">
@@ -75,9 +87,11 @@
                     </div>
                 </div>
                 
-            </div>
+            </div>            
+            <!-- Mailing Information Block -->
             <div class="w3-row-padding">
                 <div class="w3-card-2 w3-round w3-light-grey w3-container w3-margin">
+                    <!-- Update Mailing Information Link -->
                     <button class="w3-btn w3-block w3-small editButton" onclick="location.href=  '@Url.Action("UpdateContact", new { mail = "MailingInfo" })'"><i class="fa fa-pencil fa-lg"></i>  Private Contact Information  <a href="#" data-toggle="tooltip" title="Private info only available to IPG. Please see our privacy aggreement for more details."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
                     <dl class="dl-horizontal">
                         <dt>@Html.DisplayNameFor(model => model.MailingInfo.Email)</dt>
@@ -97,9 +111,10 @@
                     </dl>
                 </div>
             </div>
-
+            <!-- Listing Information Block -->
             <div class="w3-row-padding">
                 <div class="w3-card-2 w3-round w3-light-gray w3-container w3-margin">
+                    <!-- Update Listing Information Link -->
                     <button class="w3-btn w3-block w3-small editButton" onclick="location.href=  '@Url.Action("UpdateContact", new { mail = "ListingInfo" })'"><i class="fa fa-pencil fa-lg"></i>  Public Contact Information  <a href="#" data-toggle="tooltip" title="Public info displayed on your profile for potential clients to be able to find you."><i class="fa fa-info-circle" aria-hidden="true"></i></a></button>
                     <dl class="dl-horizontal">
                         <dt>@Html.DisplayNameFor(model => model.ListingInfo.Email)</dt>
@@ -125,6 +140,7 @@
 
 
     }
+    <!-- If Account is not yet linked this will display -->
     else
     {
         <div class="row">
@@ -141,10 +157,12 @@
             <div class="panel-group col-md-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
+                        <!-- Apply For Membership Link -->
                         <a class="btn btn-default" data-toggle="collapse" href="#memberLookUp">Link IPG Account</a>
                         @Html.ActionLink("Start IPG Application", "Apply", "Member", null, new { @class = "btn btn-default" })
                     </div>
                     <div id="memberLookUp" class="panel-collapse collapse">
+                        <!-- Link Membership Number Form -->
                         <div class="panel-body">
                             @using (Html.BeginForm("Index", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
