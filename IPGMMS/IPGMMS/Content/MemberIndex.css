@@ -1,11 +1,14 @@
-﻿#memberHeader {
+﻿/* Add whitespace below the header */
+#memberHeader {
     padding-bottom: 1em;
 }
 
+/* Adds whitespace below each row of members */
 .memberBlock {
     padding-bottom: 4em;
 }
 
+/* Changes the name of each member blue to signify that it's a link */
 .memberBlock h3 {
     color: mediumblue;
 }

@@ -164,6 +164,8 @@ namespace IPGMMS.Controllers
         /// <returns>ContactInfo model for page.</returns>
         public ActionResult UpdateContact(string mail)
         {
+            ViewBag.Type = mail;
+
             Member memb = memberRepo.FindByIdentityID(User.Identity.GetUserId());
             // Pull both ContactInfo out of member object. ContactInfo should 
             // be in the same order for all member objects but checks are
@@ -201,7 +203,7 @@ namespace IPGMMS.Controllers
             }
 
             // We have the info, send back what is requetsted.
-            if(mail == "MailingInfo")
+            if (mail == "MailingInfo")
             {
                 ViewBag.IsMailing = true;
                 if (memb.Contacts.FirstOrDefault().ContactType.ContactType1 == "Mailing")
@@ -226,7 +228,7 @@ namespace IPGMMS.Controllers
                     return View(firstInfo);
                 }
             }
-            
+
             return View("Index", "Home");
         }
 
@@ -235,6 +237,7 @@ namespace IPGMMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateContact(ContactInfo mailInfo)
         {
+            ViewBag.IsMailing = (bool)TempData["IsMailing"];
 
             if (ModelState.IsValid)
             {
@@ -242,8 +245,8 @@ namespace IPGMMS.Controllers
 
                 return RedirectToAction("Index");
             }
-            var id = mailInfo.ID;
-            return RedirectToAction("UpdateMyMailing", id);
+
+            return View(mailInfo);
         }
 
         /// <summary>

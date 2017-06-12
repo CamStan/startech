@@ -6,12 +6,13 @@
 
 <h2>@ViewBag.Title.</h2>
 @{
+    <!-- Error message if user was redirected here from trying to log in w/out account being confirmed -->
     if (!String.IsNullOrEmpty(ViewBag.errorMessage))
     {
         <h2 class="text-danger">@ViewBag.errorMessage</h2>
     }
 }
-
+<!-- Resend email form -->
 @using (Html.BeginForm("ResendConfirmEmail", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -24,6 +25,7 @@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
+    <!-- Captcha -->
     <div class="form-group">
         <div class="col-md-offset-2">
             @Html.Recaptcha()

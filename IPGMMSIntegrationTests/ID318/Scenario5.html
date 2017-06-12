@@ -23,23 +23,23 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Search Members</td>
+	<td>link=View/Update Members</td>
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>link=Anna</td>
-	<td></td>
+	<td>sendKeys</td>
+	<td>css=input[type=&quot;search&quot;]</td>
+	<td>georgina</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//button[@onclick=&quot;location.href='/Portal/UpdateMemberInfo?memID=2'&quot;]</td>
+	<td>//table[@id='orderedTable']/tbody/tr/td[4]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=MemberInfo_Membership_ExpirationDate</td>
-	<td>01/01/2017</td>
+	<td>//div[@id='main']/div/dl/dd[3]</td>
+	<td>2015-01-31</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -48,15 +48,14 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Expired_Members</td>
+	<td>link=Expired Members</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>xpath=(//td[@id='memberListLinks'])[6]</td>
-	<td>Anna</td>
+	<td>//table[@id='orderedTable']/tbody/tr[2]/td[3]</td>
+	<td>Georgina</td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

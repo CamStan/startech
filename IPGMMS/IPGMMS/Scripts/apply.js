@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿// Brings in the bootstrap display for tooltips
+$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 

@@ -1,4 +1,5 @@
-﻿#searchFormDiv {
+﻿/* Alignes the search box vertically in the middle */
+#searchFormDiv {
     vertical-align: middle;
 }
 
@@ -6,12 +7,18 @@
     padding-bottom: 1em;
 }
 
+/* Customize the look of the member search input box area */
 #searchForm input {
     display: inline;
     margin-right: 1em;
     margin-top: .25em;
 }
 
+/* 
+    Set up the cells on the homepage to be the same size vertically as one another.
+    This work well in Chrome, but seems to cause problems in other browsers. Will 
+    need to be adjusted in the future.
+*/
 .col-container {
     display: table;
     width: 100%;
@@ -31,6 +38,7 @@
     width: 50%;
 }
 
+/* Change the display of the cells to block form when the screen gets small */
 @media only screen and (max-width: 600px) {
     .col-image {
         display: block;
@@ -55,69 +63,3 @@
 .col-text-50 p a {
     color: blue;
 }
-
-/*div.left-navbar {
-    background-color: rgb(211,231,240);*/
-  /*  max-width: 260px; */
-  /*  position: fixed; */
-    /*padding: 5px;
-    padding-left: 0px;
-}
-
-div.left-navbar ul li {
-    font-size: 12pt;
-    padding-bottom: 5px
-}
-
-.navbar-fixed-left {
-  width: 140px;
-  position: fixed;
-  border-radius: 0;*/
-  /*height: 100%;*/
-/*}*/
-
-/*.navbar-fixed-left .navbar-nav > li {
-  float: none; 
-  width: 139px;
-  text-align: center;
-}
-
-.navbar-fixed-left + .container {
-  padding-left: 160px;  
-}
-
-.navbar-fixed-left .navbar-brand {
-    margin-bottom: 20px;
-}
-
-.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-  margin-top: -50px;
-  margin-left: 140px;
-}
-
-.dropdown:hover .dropdown-menu{
-    display: block;
-}
-
-div.map {
-    padding: 20px;
-}
-
-img {
-    display: block;
-    margin: 0 auto;
-    height: auto;
-    max-width: 100%;
-}
-
-.main {
-    background-color: white;
-    height: 740px;
-    overflow-y:auto;
-}
-
-.main > p {
-    text-indent:20px;
-    margin-left: 50px;
-    margin-right: 45px;
-}*/

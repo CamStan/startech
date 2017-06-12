@@ -35,8 +35,9 @@ Scenario: Confirm that if a member's expiration date is set, then report will re
 	Given that a user is logged in as an admin
 	And that the user is on the homepage
 	When the user clicks on the admin portal link
-	And the user clicks on 
-	And the user clicks on 
+	And the user clicks on Members -> View/Update members
+    And the user searches for Georgina
+    And the user verifies that Georgina's membership is expired
 	And the user clicks on reports
 	And the user clicks on expired members link
 	Then there will be a page listing expired members with that member.
