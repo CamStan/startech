@@ -10,4 +10,4 @@
     * Go to a command line prompt and in the directory with the repository type
     * git remote add upstream *string you just copied*
     * This will be where you pull the latest dev branch.
-4. Once you get the repository, read the documentation found in the Milestones?? folder for project plans.
+4. Once you get the repository, read the project foundation documentation found in the Milestones folders.

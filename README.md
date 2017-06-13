@@ -6,10 +6,12 @@ This is the repository for StarTech, a team for the CS461/CS462 Senior Project 2
 
 1. IPGMMS
     * The primary group project for this repository.
-2. FakeNewsProject 
+2. IPGMMSIntegrationTests
+    * The integration tests for the IPGMMS projects. 
+3. FakeNewsProject
     * An in class project that was used for the initial learning of the Scrum process.
-3. Milestones 
-    1. Milestone1 
+4. Milestones
+    1. Milestone1
 	    * StarTech logo and letterhead, three initial group project ideas, and a resume and sample business cards for each StarTech member.
 	2. Milestone2  
 	    * The initial inception of the in class projects and a slightly more detailed write up of two of the initial group project ideas.
@@ -37,7 +39,7 @@ The project StarTech has taken on for their senior capstone is the creation of t
 
 ### How do I get started? ###
 
-The [starting](starting.md) file has information about how to clone and set up this project on your local machine  and how to become a contributor.
+The [starting](starting.md) file has information about how to clone and set up this project on your local machine and how to become a contributor.
 
 ### Contributing ###
 
@@ -46,8 +48,8 @@ Here is a list of [contributors](contributors.md) to this project. Please add yo
 
 ### Software Construction Process ###
 
-For this project, we are following Agile methodologies, specifically Disciplined Agile Delivery process framework. 
-We follow a two-week sprint cycle that involves daily SCRUM meetings, weekly sprint planning sessions, an end of sprint review and retrospective. 
+For this project, we are following Agile methodologies, specifically Disciplined Agile Delivery process framework.
+We follow a two-week sprint cycle that involves daily SCRUM meetings, weekly sprint planning sessions, an end of sprint review and retrospective.
 To contribute to this project, one will need to be involved in this process with the StarTech team.
 
 ### Tools, Configurations, and Packages ###

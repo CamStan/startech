@@ -229,3 +229,6 @@ Version: 2.2.0
 
 ### WebGrease ###
 Version: 1.6.0
+
+### Selenium ###
+Version 3.4.0
