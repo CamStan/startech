@@ -15,13 +15,8 @@
 ## Style ##
 
 * Use external CSS files (no in-line CSS)
-* Color scheme for this project includes the colors listed below:
-    * Light Blue (211,231,240)
-    * Medium Blue (84,161,196)
-    * Dark Blue (33,75,95)
-    * Crimson (128,0,0) - Note: This is an accent font only. Use sparingly.
 * Fonts used for this site are as follows:
-    * h1,h2,h3 (size varies): League Gothic-Regular
+    * h1,h2,h3 (size varies): Oswald
     * h4,body,p (size varies): Palanquin-Regular
 
 ## Database ##
